@@ -1,0 +1,90 @@
+NOTAS SOBRE PROYECTO - REPORTES
+
+REQUERIMIENTOS FUNCIONALES
+	-3.-Almacenar datos de UPIIZ (Boleta (ID), nombre, carrera (IMP), grupo (Origen), sexo (Stats))
+		Reportes con fecha, inscripcion / Mensual,trimestral
+		Altas, bajas, inhabilitación	/ Sin repetición de boleta
+	
+	-1.- y 2.-Dar de alta talleres y actividades (Nombre, tipo(def por usuario[1]), fecha de inicio, duracion[2], modalidad(no/presencial),
+	 coordinador[3], logotipo(opcional)).
+		Altas, bajas, edicion e inhabilitacion de talleres sin que se repitan, asignacion de coordinadores
+		1.-Tipo: Deportivo, academico, artistico? Que tipos hay?
+		2.-Horario, horas totales, meses?
+		3.-Solo un taller por coordinador, auxiliares, estudiantes, num de trabajador?
+
+	-1.- y 2.-Coordinadores o admins agregan alumnos a talleres o actividades con boleta / nombre.
+		Administrar para asistencia durante ejecucion y crear reportes diarios o por eventos (LISTA)
+		Se generan y mantienen actualizadas listas de alumnos inscritos a los talleres/actividades.
+
+	-1.- y 2.-Listas de alumnos de cada taller y actividad
+		Nombre de taller/actividad, coordinador asignado, numero de boleta y numero de alumno [FECHA]
+		Generar e imprimir listas de los alumnos que asistiran a cada taller/actividad
+		Las listas se imprimen adecuadamente y son consistentes con la informacion del sistema
+
+	-3.-Crear constancias de alumnos
+		Fechas de inicio y fin de taller/actividad, nombre de alumno, carrera, numero de boleta, nombre de taller, escuela,
+		numero de horas que se reportan, logo de la actividad(si existe).
+		Las constancias se generan e imprimen adecuadamente y son consistentes con la informacion almacenada en el sistema.
+
+	-1.- y 2.-Reporte de asistencia por taller/actividad a partir de las fechas de inicio y fin seleccionadas, que incluye:
+		Nombre del taller/actividad, periodo del reporte, coordinador asignado, total de horas por genero, total de horas general;
+		Alumno: Nombre, numero de asistencias, horas de asistencia.
+
+	-1.-Usuario y contraseña para admins y coodinadores:
+		-Administrador: Tiene acceso a las caracteristicas completas, excepto el trabajo de coordinador de talleres.
+		-Coordinador: Tiene acceso al trabajo como responsable de talleres/actividades (administrar alumnos y generar lista)
+		Deben poder reiniciar contraseña y usuario o pedir su reposicion.
+		Ingresar al sistema, caracteristicas de su perfil, recuperar contraseñas o datos de acceso.
+
+	-2.- Registro en asistencia en modalidad presencial
+		-Nombre de actividad, coordinador, fecha, alumno y registro de asistencia
+		Editables para ajustarlos a la realidad de cada sesion.
+		Asistencias y faltas de un taller o actividad
+
+	-2.-Registro de trabajos en modalidad no presencial
+		Nombre de actividad, coordinador, fecha, alumno, cantidad de hr equivalentes, actividades realizadas
+		No puede exceder el maximo de horas por dia. [MAXIMO PREDEFINIDO]
+		Registrar horas de participantes y la evidencia[4] de los trabajos
+		4.-Dar evidencia por medio de archivos, media, como?
+
+	-1.-Estado de actividades
+		Estado y asistencias de cada taller/avctividad que se lleve a cabo para verificar la asistencia de alumnos. 
+		Buscar por taller/actividad o carrera.
+		Consultar la asistencia de cualuier taller/actividad en el momento que lo necesite
+		
+	
+	-1.-Coordinadores
+		Nombre completo, usuario, contraseña y correo electronico
+		Altas, bajas, inhabilitaciones y edicion.
+
+	-1.-, 2.- y 3.-Modos de trabajo
+		Crear una interfaz web para escritorio y movil.
+		Registros, listas, asistencias.
+
+REQUERIMIENTOS NO FUNCIONALES
+	-2.- y 3.-Actualizacion de bases de datos y registros
+		Actualizacion cada semestre de manera manual
+		Forzar actualizacion, inhabilitar fuera del periodo
+	
+	-Control de acceso
+		No ocurren situaciones donde se divulgue informacion sensible del sistema sin autorizacion o se viole la seguridad del producto
+		Control por usuarios y contraseñas
+
+	-Tiempo de sesion activa
+		Definir tiempo de inactividad, para designar una medida de seguridad
+
+	
+	
+
+	
+		
+		
+
+FUNCIONES UNIVERSALES
+	-Conteo de inhabilitados (con eliminación)
+	-Periodo de actualizacion
+
+TIPOS
+	-1.-Administradores
+	-2.-Coordinadores
+	-3.-Alumnos
