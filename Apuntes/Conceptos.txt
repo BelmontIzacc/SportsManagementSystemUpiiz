@@ -1,0 +1,3 @@
+middleware: en laravel son mecanismos que sirven de filtro para las solicitudes http que ingresan en la aplicacion, por ejemplo la autenticacion de un usuario 
+	https://laravel.com/docs/5.6/middleware#defining-middleware
+
