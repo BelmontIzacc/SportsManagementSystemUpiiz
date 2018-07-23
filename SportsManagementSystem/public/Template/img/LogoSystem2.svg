@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="512"
+   height="512"
+   viewBox="0 0 135.46666 135.46667"
+   version="1.1"
+   id="svg3690"
+   sodipodi:docname="LogoSystem2.svg"
+   inkscape:version="0.92.2 5c3e80d, 2017-08-06">
+  <defs
+     id="defs3684">
+    <inkscape:perspective
+       sodipodi:type="inkscape:persp3d"
+       inkscape:vp_x="-5.2242357 : 66.6993 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_z="130.24242 : 66.6993 : 1"
+       inkscape:persp3d-origin="62.509094 : 44.121522 : 1"
+       id="perspective4908" />
+    <marker
+       inkscape:stockid="Arrow1Lstart"
+       orient="auto"
+       refY="0.0"
+       refX="0.0"
+       id="Arrow1Lstart"
+       style="overflow:visible"
+       inkscape:isstock="true">
+      <path
+         id="path4509"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         style="fill-rule:evenodd;stroke:#ffffff;stroke-width:1pt;stroke-opacity:1;fill:#85003a;fill-opacity:1"
+         transform="scale(0.8) translate(12.5,0)" />
+    </marker>
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.98994949"
+     inkscape:cx="200.72567"
+     inkscape:cy="252.74541"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     showgrid="true"
+     units="px"
+     inkscape:pagecheckerboard="true"
+     borderlayer="false"
+     showguides="true"
+     inkscape:guide-bbox="true"
+     inkscape:window-width="1600"
+     inkscape:window-height="842"
+     inkscape:window-x="0"
+     inkscape:window-y="30"
+     inkscape:window-maximized="1">
+    <inkscape:grid
+       type="xygrid"
+       id="grid4906" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata3687">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-161.53332)">
+    <circle
+       style="fill:#85003a;fill-opacity:1;fill-rule:evenodd;stroke:#ffffff;stroke-width:2.06695223;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:4.13390452, 4.13390452;stroke-dashoffset:0;stroke-opacity:0.92156863"
+       id="path4499"
+       cx="67.752831"
+       cy="229.51443"
+       r="65.639526" />
+    <path
+       sodipodi:type="star"
+       style="fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:3.05568719;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:0.54901961"
+       id="path4544"
+       sodipodi:sides="5"
+       sodipodi:cx="-66.777885"
+       sodipodi:cy="-229.45168"
+       sodipodi:r1="61.10989"
+       sodipodi:r2="30.554943"
+       sodipodi:arg1="0.92729522"
+       sodipodi:arg2="1.5556137"
+       inkscape:flatsided="false"
+       inkscape:rounded="0"
+       inkscape:randomized="0"
+       d="m -30.111952,-180.56376 -36.202047,-18.33649 -35.628661,19.42715 6.251995,-40.09648 -29.486175,-27.88155 40.065988,-6.4445 17.405197,-36.65889 18.510153,36.11356 40.2431806,5.2251 -28.6260866,28.76391 z"
+       inkscape:transform-center-x="-0.28669917"
+       inkscape:transform-center-y="5.5621414"
+       transform="scale(-1)" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:68.84725189px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#85003a;fill-opacity:1;stroke:none;stroke-width:1.72118115px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="15.588949"
+       y="259.07462"
+       id="text4947"><tspan
+         sodipodi:role="line"
+         id="tspan4945"
+         x="15.588949"
+         y="259.07462"
+         style="fill:#85003a;fill-opacity:1;stroke-width:1.72118115px">IPN</tspan></text>
+  </g>
+</svg>

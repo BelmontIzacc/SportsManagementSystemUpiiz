@@ -11,6 +11,6 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'welcomeController@index');
+Route::get('/inicio', 'welcomeController@create');
+Route::get('/login', 'Auth\AuthController@getLogin');
