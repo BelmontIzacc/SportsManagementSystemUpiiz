@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('barra.layout2')
 
 @section('title')
 <title>Inicio</title>
