@@ -1,7 +1,7 @@
 <?php
 	$index = 4;
 ?>
-@extends('Admin.layout2')
+@extends('barra.layout2')
 
 @section('title')
 <title>Inicio servicio Becas</title>

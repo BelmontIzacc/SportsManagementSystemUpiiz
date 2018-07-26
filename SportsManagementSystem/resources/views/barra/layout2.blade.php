@@ -64,7 +64,7 @@
     </div>
 </div><!--.modal-->
 
-    @unless($index == 4)
+ @unless($index == 4)
 
    <header class="site-header">
 	    <div class="container-fluid">
@@ -73,7 +73,7 @@
 
 	  <span class="lbl hidden-md-down" style="font-size:25px;margin: 0 0 10px 0px;">{{config('globalInfo.nombreUpiiz')}}</span>
       <span class="lbl hidden-lg-up" style="font-size:25px">{{config('globalInfo.nombreUpiiz2')}}</span>
-
+@if(Auth::check())
 	                <div class="site-header-shown">	                    
 	
 	                    <div class="dropdown user-menu">
@@ -87,6 +87,7 @@
 	                        </div>
 	                    </div>
 	                </div><!--.site-header-shown-->
+	                @endif
 	            </div><!--site-header-content-in-->
 	        </div><!--.site-header-content-->
 	    </div><!--.container-fluid-->

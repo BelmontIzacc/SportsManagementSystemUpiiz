@@ -1,4 +1,4 @@
-@extends('Admin.layout2')
+@extends('barra.layout2')
 @section('title')
 <title>No disponible temporalmente</title>
 @stop

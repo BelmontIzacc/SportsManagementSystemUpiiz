@@ -198,7 +198,7 @@ class AuthController extends Controller
         }
 
         if(Auth::user()->tipo() == 1){
-          session()->flash('message', '¡Bienvenido! - Inició sesión como administrador');
+          session()->flash('message', '¡Bienvenido! - Inició sesión como administrador 0.0');
           session()->flash('type', 'warning');
 
           return property_exists($this, 'redirectTo') ? $this->redirectTo : '/admin';

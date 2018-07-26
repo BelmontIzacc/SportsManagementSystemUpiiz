@@ -15,6 +15,7 @@
 @stop
 @section('content')
 Principal
+
 @stop
 @section('scripts')
 

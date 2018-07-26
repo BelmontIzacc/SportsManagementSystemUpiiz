@@ -1,15 +1,13 @@
 <?php
 
 namespace App\Http\Controllers;
-use Illuminate\Support\Facades\Auth;
-use App\user;
+
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use Carbon\Carbon;
 
-class welcomeController extends Controller
+class CoordController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,18 +16,9 @@ class welcomeController extends Controller
      */
     public function index()
     {
-        $index=10;
-        return view('welcome', [
-        'index'=>$index,
-        ]);
+        //
     }
-    public function index1()
-    {
-        $index=10;
-        return view('test', [
-        'index'=>$index,
-        ]);
-    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -48,19 +37,7 @@ class welcomeController extends Controller
      */
     public function store(Request $request)
     {
-        user::create($request->all());
-        return view('layout');
-    }
-    public function stop()
-    {
-        $index = 4;
-        return view('errors.unavailable', ['index'=>$index]);
-    }
-    public function night()
-    {
         //
-        $index = -1;
-        return view('Admin.night', ['index'=>$index]);
     }
 
     /**
