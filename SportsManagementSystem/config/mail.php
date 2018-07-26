@@ -16,6 +16,7 @@ return [
     */
 
     'driver' => env('MAIL_DRIVER', 'smtp'),
+    //'driver' => 'log',
 
     /*
     |--------------------------------------------------------------------------
@@ -28,7 +29,9 @@ return [
     |
     */
 
-    'host' => env('MAIL_HOST', 'smtp.mailgun.org'),
+    //'host' => env('MAIL_HOST', 'smtp.mailgun.org'),
+    'host' => env('MAIL_HOST', 'smtp.gmail.com'),
+    //'host' => 'smtp.gmail.com',
 
     /*
     |--------------------------------------------------------------------------
@@ -40,8 +43,9 @@ return [
     | stay compatible with the Mailgun e-mail application by default.
     |
     */
-
     'port' => env('MAIL_PORT', 587),
+    //'port' => env('MAIL_PORT', 465),
+    //'port' => '587',
 
     /*
     |--------------------------------------------------------------------------
@@ -54,7 +58,9 @@ return [
     |
     */
 
-    'from' => ['address' => null, 'name' => null],
+    //'from' => ['address' => 'jisagiizacc@gmail.com', 'name' => 'Izacc'],
+    'from' => ['address' => 'serviciobecasupiiz@gmail.com', 'name' => 'Not Reply'],
+    //'from' => ['address' => null, 'name' => null],
 
     /*
     |--------------------------------------------------------------------------
@@ -67,6 +73,7 @@ return [
     |
     */
 
+    //'encryption' => env('MAIL_ENCRYPTION', 'ssl'),
     'encryption' => env('MAIL_ENCRYPTION', 'tls'),
 
     /*
@@ -80,7 +87,8 @@ return [
     |
     */
 
-    'username' => env('MAIL_USERNAME'),
+    //'username' => env('MAIL_USERNAME'),
+    'username' => 'serviciobecasupiiz@gmail.com',
 
     /*
     |--------------------------------------------------------------------------
@@ -93,7 +101,9 @@ return [
     |
     */
 
-    'password' => env('MAIL_PASSWORD'),
+    //'password' => env('MAIL_PASSWORD'),
+    'password' => 'pmdrykxfbbtwfiii',
+    //pmdrykxfbbtwfiii
 
     /*
     |--------------------------------------------------------------------------
@@ -119,6 +129,14 @@ return [
     |
     */
 
-    'pretend' => env('MAIL_PRETEND', false),
+    //'pretend' => env('MAIL_PRETEND', false),
+    'pretend' => false,
 
+'stream' => [
+   'ssl' => [
+      'allow_self_signed' => true,
+      'verify_peer' => false,
+      'verify_peer_name' => false,
+   ],
+],
 ];

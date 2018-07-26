@@ -1,11 +1,13 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Auth;
+use App\user;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Carbon\Carbon;
 
 class welcomeController extends Controller
 {
@@ -17,7 +19,9 @@ class welcomeController extends Controller
     public function index()
     {
         $index=1;
-        return view('inicio');
+        return view('welcome', [
+        'index'=>$index,
+        ]);
     }
 
     /**
@@ -28,10 +32,6 @@ class welcomeController extends Controller
     public function create()
     {
         //
-        $index=1;
-        return view('plantilla',[
-            'index' => $index,
-        ]);
     }
 
     /**
@@ -42,7 +42,19 @@ class welcomeController extends Controller
      */
     public function store(Request $request)
     {
+        user::create($request->all());
+        return view('layout');
+    }
+    public function stop()
+    {
+        $index = 4;
+        return view('errors.unavailable', ['index'=>$index]);
+    }
+    public function night()
+    {
         //
+        $index = -1;
+        return view('Admin.night', ['index'=>$index]);
     }
 
     /**

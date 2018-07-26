@@ -90,6 +90,11 @@ class AuthController extends Controller
     public function getLogin()
     {
 
+        if (view()->exists('auth.authenticate')) 
+        {
+            return view('auth.authenticate');
+        }
+
         $index = 4;
 
         return view('auth.login', ['index'=>$index]);

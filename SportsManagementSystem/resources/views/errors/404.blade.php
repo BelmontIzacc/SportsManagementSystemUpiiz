@@ -1,10 +1,10 @@
 <?php
 	$index = 4;
 ?>
-@extends('layout')
+@extends('Admin.layout2')
 
 @section('title')
-<title>Inicio servicio medico</title>
+<title>Inicio servicio Becas</title>
 @stop
 
 @section('css')
