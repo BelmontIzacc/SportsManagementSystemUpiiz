@@ -4,3 +4,5 @@ php artisan migrate:refresh --seed <- crea y atualiza la base de datos
 php artisan serv <- inicia el servidor para visualizar los archivos
 php artisan key:generate <- genera clave unica para el uso de laravel
 php artisan make:controller <nombre>Controller <- crea un controlador
+php artisan cache:clear <- limpia el cache
+php artisan config:cache <- configura el cache

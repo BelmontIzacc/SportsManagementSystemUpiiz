@@ -12,10 +12,13 @@
 */
 
 //-----------------------------------------------------------------------------------//
-Route::get('/', 'Auth\AuthController@getLogin');
-Route::post('/', 'Auth\AuthController@postLogin');
+Route::get('/', 'welcomeController@index');
+Route::get('/login', 'Auth\AuthController@getLogin');
+Route::post('/login', 'Auth\AuthController@postLogin');
 Route::get('/logout','Auth\AuthController@getLogout');
 //-----------------------------------------------------------------------------------//
 Route::get('/admin', 'adminController@index');
 //-----------------------------------------------------------------------------------//
 Route::get('/user','UserController@index');
+//-----------------------------------------------------------------------------------//
+Route::get('/coord','CoordController@index');

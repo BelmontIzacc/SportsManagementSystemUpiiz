@@ -4,7 +4,7 @@
 @extends('barra.layout2')
 
 @section('title')
-<title>Inicio servicio Becas</title>
+<title>Error</title>
 @stop
 
 @section('css')

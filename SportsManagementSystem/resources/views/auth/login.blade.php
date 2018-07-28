@@ -1,7 +1,7 @@
 @extends('barra.layout2')
 
 @section('title')
-<title>Login Servicio Becas</title>
+<title>Login</title>
 @stop
 
 @section('css')

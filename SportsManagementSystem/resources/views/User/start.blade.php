@@ -1,7 +1,7 @@
 @extends('barra.layout2')
 
 @section('title')
-<title>Inicio</title>
+<title>Inicio Usuario</title>
 @stop
 
 @section('css')
@@ -14,7 +14,7 @@
 @stop
 
 @section('content')
-Hola
+Usuario
 @stop
 
 @section('scripts')

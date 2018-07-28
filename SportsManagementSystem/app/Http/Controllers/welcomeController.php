@@ -23,13 +23,6 @@ class welcomeController extends Controller
         'index'=>$index,
         ]);
     }
-    public function index1()
-    {
-        $index=10;
-        return view('test', [
-        'index'=>$index,
-        ]);
-    }
     /**
      * Show the form for creating a new resource.
      *
