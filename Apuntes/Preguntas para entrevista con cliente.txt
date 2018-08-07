@@ -1,0 +1,4 @@
+preguntas proxima entrebista al cliente
+
+¿como se registra un coordinador(formulario aparte o asignación de poder a un usuario ya registrado)?
+¿logos?
