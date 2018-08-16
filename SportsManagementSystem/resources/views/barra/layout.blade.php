@@ -31,23 +31,24 @@
 @yield('popUp')
 
 <body class="with-side-menu" style="">
- 
+
  @unless($index == 4)
 	<header class="site-header">
 	    <div class="container-fluid">
 	        <a href="#" class="site-logo">
-	            <img class="hidden-md-down" src="img/logo-2.png" alt="">
-	            <img class="hidden-lg-up" src="img/logo-2-mob.png" alt="">
+	            <img class="hidden-md-down" src="" alt="">
+	            <img class="hidden-lg-up" src="" alt="">
 	        </a>
 	        <button class="hamburger hamburger--htla">
 	            <span>toggle menu</span>
 	        </button>
 	        <div class="site-header-content">
 	            <div class="site-header-content-in">
+	            @if(Auth::check())
 	                <div class="site-header-shown">
 	                    <div class="dropdown user-menu">
 	                        <button class="dropdown-toggle" id="dd-user-menu" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-	                            <img src="/Template/img/avatar-2-64.png" alt="">
+	                            <img src="{{asset('/Template/img/avatar-2-64.png')}}" alt="">
 	                        </button>
 	                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dd-user-menu">
 	                            <a class="dropdown-item" href="#"><span class="font-icon glyphicon glyphicon-user"></span>Profile</a>
@@ -59,7 +60,7 @@
 	                    </div>
 	
 	                </div><!--.site-header-shown-->
-	
+				@endif
 	                <div class="mobile-menu-right-overlay"></div>
 	                <div class="site-header-collapsed">
 	                    <div class="site-header-collapsed-in">
@@ -83,32 +84,32 @@
 	<nav class="side-menu">
 	    <div class="side-menu-avatar">
 	        <div class="avatar-preview avatar-preview-100">
-	            <img src="img/avatar-1-256.png" alt="">
+	            <img src="{{asset('/Template/img/avatar-1-256.png')}}" alt="">
 	        </div>
 	    </div>
 	    <ul class="side-menu-list">
 	        <li class="brown">
 	            <a href="#">
 	                <i class="font-icon font-icon-home"></i>
-	                <span class="lbl">Overview</span>
+	                <span class="lbl">Ejemplo1</span>
 	            </a>
 	        </li>
 	        <li class="green">
 	            <a href="#">
 	                <i class="font-icon font-icon-cart"></i>
-	                <span class="lbl">Marketplace</span>
+	                <span class="lbl">Ejemplo2</span>
 	            </a>
 	        </li>
 	        <li class="gold opened">
 	            <a href="#">
 	                <i class="font-icon font-icon-speed"></i>
-	                <span class="lbl">Performance</span>
+	                <span class="lbl">Ejemplo3</span>
 	            </a>
 	        </li>
 	        <li class="blue">
 	            <a href="#">
 	                <i class="font-icon font-icon-users"></i>
-	                <span class="lbl">Community</span>
+	                <span class="lbl">Ejemplo4</span>
 	            </a>
 	        </li>
 	          

@@ -15,11 +15,8 @@ class userTableSeeder extends Seeder
         DB::table('usuario')->insert([
             'nombre' => 'Izacc',
             'boleta' => '2016670126',
-            'tipo' => '1',
+            'tipo' => 1,
             'password' => bcrypt('admin'),
-            'edad' => '22',
-            'grupo' => '2cm3',
-            'semestre' => '6',
             'apellidoPaterno' => 'Belmont',
             'apellidoMaterno' => 'Belmont',
             'email' => 'jisagiizacc@gmail.com',
@@ -31,14 +28,10 @@ class userTableSeeder extends Seeder
             DB::table('usuario')->insert([
                 'nombre' => 'Alejandra',
                 'boleta' => '2016670007',
-                'tipo' => '2',
-                'password' => bcrypt('fea'),
-                'edad' => '20',
-                'grupo' => '2cm3',
-                'semestre' => '6',
+                'tipo' => 2,
+                'password' => bcrypt('belmont'),
                 'apellidoPaterno' => 'Belmont',
                 'apellidoMaterno' => 'Belmont',            
-                'carrera_id' =>'1',
                 'completado'=>1,
             ]);
 
@@ -59,14 +52,10 @@ class userTableSeeder extends Seeder
                 DB::table('usuario')->insert([
                     'nombre' => $name,
                     'boleta' => '20'.rand(10 , 30).rand(10 , 30).rand(10 , 70).rand(10 , 60),
-                    //'tipo' => '2',
-                    'password' => bcrypt('0'),
-                    'edad' => rand (18 , 22),
-                    'grupo' => '2cm3',
-                    'semestre' => rand (1 , 9),
+                    'tipo' => 3,
+                    'password' => bcrypt('belmont'),
                     'apellidoPaterno' => $lastName1,
                     'apellidoMaterno' => $lastName2,
-                    'carrera_id' =>rand (1 , 5),
                     'completado'=>1,
                 ]);
             }

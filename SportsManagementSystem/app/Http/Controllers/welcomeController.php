@@ -18,10 +18,12 @@ class welcomeController extends Controller
      */
     public function index()
     {
-        $index=10;
+        /*$index=10;
         return view('welcome', [
         'index'=>$index,
         ]);
+        */
+        return redirect('/login');
     }
     /**
      * Show the form for creating a new resource.

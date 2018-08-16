@@ -20,6 +20,8 @@ class UserMigration extends Migration
             $table->string('boleta')->unique();
             $table->integer('tipo')->default(2);
             $table->string('password', 60)->default(1);
+            $table->string('apellidoPaterno', 50);
+            $table->string('apellidoMaterno', 50);
             
             $table->integer('completado')->default(0);
             
@@ -36,9 +38,6 @@ class UserMigration extends Migration
      */
     public function down()
     {
-        Schema::table('usuario', function (Blueprint $table) {
-            $table->dropForeign(['carrera_id']);
-        });
         Schema::drop('usuario');
     }
 }
