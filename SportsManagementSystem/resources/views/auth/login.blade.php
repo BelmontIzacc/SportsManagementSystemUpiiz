@@ -29,8 +29,6 @@
         </ul>
     </div>
 @endif 
-
-                
                 <header class="sign-title">Iniciar sesión</header>
                 <div class="form-group">
                     {!!Form::text('boleta', null, ['class'=>'form-control', 'placeholder'=>'Identificación', 'id'=>'boleta'])!!}
@@ -46,8 +44,6 @@
                 </div>
                 <button type="submit" class="btn btn-rounded">Entrar</button>
                 
-                <a href="{{asset('/')}}"><button type="button" class="close">
-                    <span aria-hidden="true">&times;</span>
                 </button></a>
             {!!Form::close()!!}
         </div>

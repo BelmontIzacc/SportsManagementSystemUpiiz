@@ -89,9 +89,9 @@
 	    </div>
 	    <ul class="side-menu-list">
 	        <li class="brown">
-	            <a href="#">
-	                <i class="font-icon font-icon-home"></i>
-	                <span class="lbl">Ejemplo1</span>
+	            <a href="{{asset('/admin/registerCoord')}}">
+	                <i class="font-icon font-icon-user"></i>
+	                <span class="lbl">Registrar un Coordinador</span>
 	            </a>
 	        </li>
 	        <li class="green">

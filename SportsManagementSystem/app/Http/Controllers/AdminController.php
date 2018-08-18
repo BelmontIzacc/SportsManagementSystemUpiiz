@@ -33,4 +33,12 @@ class AdminController extends Controller
         'index' => $index,
         ]);
     }
+
+    public function register()
+    {
+        $index=4;
+        return view('Admin.registro',[
+        'index' => $index,
+        ]);
+    }
 }

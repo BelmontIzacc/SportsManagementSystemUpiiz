@@ -16,8 +16,8 @@ class UserMigration extends Migration
             $table->increments('id');
 
             $table->String('nombre', 50);
-            $table->String('email')->nullable()->unique();
-            $table->string('boleta')->unique();
+            $table->String('email')->nullable();
+            $table->string('boleta');
             $table->integer('tipo')->default(2);
             $table->string('password', 60)->default(1);
             $table->string('apellidoPaterno', 50);
