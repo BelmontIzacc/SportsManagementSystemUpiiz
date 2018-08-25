@@ -88,16 +88,16 @@
 	        </div>
 	    </div>
 	    <ul class="side-menu-list">
-	        <li class="brown">
+	        <li class="blue">
 	            <a href="{{asset('/admin/registerCoord')}}">
 	                <i class="font-icon font-icon-user"></i>
 	                <span class="lbl">Registrar un Coordinador</span>
 	            </a>
 	        </li>
-	        <li class="green">
+	        <li class="brown">
 	            <a href="#">
-	                <i class="font-icon font-icon-cart"></i>
-	                <span class="lbl">Ejemplo2</span>
+	                <i class="font-icon font-icon-award"></i>
+	                <span class="lbl">Registrar un Taller</span>
 	            </a>
 	        </li>
 	        <li class="gold opened">
