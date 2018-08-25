@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class instituteSeeder extends Seeder
+class institutoSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -19,6 +19,5 @@ class instituteSeeder extends Seeder
         DB::table('institucion')->insert([
             'nombre' => 'Zecyt',
         ]);
-        
     }
 }

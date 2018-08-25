@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class studioSeeder extends Seeder
+class tallerSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,7 +11,7 @@ class studioSeeder extends Seeder
      */
     public function run()
     {
-        //   
+        //
         $limit = config('global.limite');
             for($i = 0; $i <= $limit; $i++){
                 DB::table('tallerdatos')->insert([

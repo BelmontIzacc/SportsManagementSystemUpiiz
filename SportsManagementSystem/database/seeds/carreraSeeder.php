@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class carrerTableSeeder extends Seeder
+class carreraSeeder extends Seeder
 {
     /**
      * Run the database seeds.

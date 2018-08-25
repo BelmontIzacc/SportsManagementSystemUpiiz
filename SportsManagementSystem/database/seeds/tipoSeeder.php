@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class typeSeeder extends Seeder
+class tipoSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -23,6 +23,5 @@ class typeSeeder extends Seeder
         DB::table('tipo')->insert([
             'nombre' => 'electrico',
         ]);
-        
     }
 }

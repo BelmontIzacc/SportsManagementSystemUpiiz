@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class studioDateSeeder extends Seeder
+class datosTallerSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -12,7 +12,7 @@ class studioDateSeeder extends Seeder
     public function run()
     {
         //
-            for($i = 0; $i <= 10; $i++){
+        for($i = 0; $i <= 10; $i++){
                 DB::table('taller')->insert([
                     'nombre' => 'Generico'.rand(1,100),
                     'coordinador' => 'Generico',
