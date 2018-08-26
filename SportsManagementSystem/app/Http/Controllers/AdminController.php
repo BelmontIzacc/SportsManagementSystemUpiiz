@@ -34,11 +34,19 @@ class AdminController extends Controller
         ]);
     }
 
-    public function register()
+    public function registerCoord()
     {
         $index=4;
         return view('Admin.registro',[
         'index' => $index,
+        ]);
+    }
+    
+    public function  registerStudio()
+    {
+        $index=4;
+        return view('Admin.studio',[
+            'index' => $index,
         ]);
     }
 }

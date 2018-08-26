@@ -25,7 +25,7 @@
     <link rel="stylesheet" href="{{asset('/Template/css/lib/font-awesome/font-awesome.min.css')}}">
     <link rel="stylesheet" href="{{asset('/Template/css/main.css')}}">
 	
-	<style type="text/css">.fancybox-margin{margin-right:0px;}</style></head>
+	<style type="text/css">.fancybox-margin{margin-right:0px;}</style>
 	@yield('css')
 </head>
 @yield('popUp')
@@ -95,7 +95,7 @@
 	            </a>
 	        </li>
 	        <li class="brown">
-	            <a href="#">
+	            <a href="{{asset('/admin/registerStudio')}}">
 	                <i class="font-icon font-icon-award"></i>
 	                <span class="lbl">Registrar un Taller</span>
 	            </a>

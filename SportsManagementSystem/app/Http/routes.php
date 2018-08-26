@@ -18,7 +18,8 @@ Route::post('/login', 'Auth\AuthController@postLogin');
 Route::get('/logout','Auth\AuthController@getLogout');
 //-----------------------------------------------------------------------------------//
 Route::get('/admin', 'adminController@index');
-Route::get('/admin/registerCoord', 'adminController@register');
+Route::get('/admin/registerCoord', 'adminController@registerCoord');
+Route::get('admin/registerStudio', 'adminController@registerStudio');
 //-----------------------------------------------------------------------------------//
 Route::get('/user','UserController@index');
 //-----------------------------------------------------------------------------------//

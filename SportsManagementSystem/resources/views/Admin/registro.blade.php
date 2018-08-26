@@ -3,7 +3,7 @@
   $classSizeForms = "col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2";
   $classSize = "col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1";
 
-    $personales = '
+  $personales = '
     <div class="icon">
         <i class="font-icon font-icon-user"></i>
     </div>
@@ -27,7 +27,7 @@
     <div class="caption hidden-sm-down">Taller</div>
   ';
 
-$sexos = array(
+  $sexos = array(
         'Seleccionar',
         'Masculino',
         'Femenino',
@@ -220,19 +220,41 @@ $sexos = array(
 
                 <h5 class="m-t-lg with-border">Llenado de información Taller</h5>
                 <div class="row">
-                  <div class="{{$classSizeForms}}">
-                    <fieldset class="form-group">
-                      
-        						</fieldset>
-                  </div>
-                  <div class="{{$classSizeForms}}">
-                    <fieldset class="form-group">
-                      
-        						</fieldset>
-                  </div>
+                    <div class="{{$classSizeForms}}">
+                        <fieldset class="form-group">
+                            <label class="form-label">Nombre</label>
+                             {!!Form::text('nomreTaller', null, ['class'=>'form-control', 'placeholder'=>'Nombre del Taller', 'id'=>'taller'])!!}
+                        </fieldset>
+                    </div>
+                    <div class="{{$classSizeForms}}">
+                        {!!Form::number('limite', null, ['class'=>'form-control', 'placeholder'=>'Cupo Limite' ,'id'=>'limte'])!!}
+                    </div>
+                    <div class="{{$classSizeForms}}">
+                        <fieldset class="form-group">
+                            <label class="form-label">Horario</label>
+                            {!!Form::time('hora', null, ['class'=>'form-control', 'id'=>'hora'])!!}
+                        </fieldset>
+                    </div>
+                    <div class="{{$classSizeForms}}">
+                        <fieldset class="form-group">
+                            {!!Form::text('dias', null, ['class'=>'form-control', 'placeholder'=>'Dias deImpartición', 'id'=>'dia'])!!}
+                        </fieldset>
+                    </div><div class="{{$classSizeForms}}">
+                        <fieldset class="form-group">
+                            {!!Form::text('lugar', null, ['class'=>'form-control', 'placeholder'=>'Lugar', 'id'=>'lugar'])!!}
+                        </fieldset>
+                    </div>
+                    <div class="{{$classSizeForms}}">
+                        <label class="form-label">Fecha de inicio</label>
+                        {!!Form::date('inicio', null, ['class'=>'form-control', 'id'=>'inicio'])!!}
+                    </div>
+                    <div class="{{$classSizeForms}}">
+                        <label class="form-label">Fecha de cierre (Opcional)</label>
+                        {!!Form::date('cierre', null, ['class'=>'form-control', 'id'=>'cierre'])!!}
+                    </div>
                 </div>
 
-                </br>
+                <br/>
                 <div class="row">
                     <div class="col-lg-6 col-md-6 col-sm-6">
                         <button type="button" class="btn btn-rounded btn-grey btn-inline" onclick="toggle2();">← Atrás</button>
