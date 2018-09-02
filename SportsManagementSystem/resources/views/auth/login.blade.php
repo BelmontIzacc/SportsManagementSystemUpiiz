@@ -43,7 +43,8 @@
                     </div>
                 </div>
                 <button type="submit" class="btn btn-rounded">Entrar</button>
-                
+                </br>
+                <p class="sign-note">¿Nuevo en el sitio? <a href="{{asset('/signup')}}">Registrarme</a></p>
                 </button></a>
             {!!Form::close()!!}
         </div>

@@ -43,7 +43,7 @@
 <link rel="stylesheet" href="{{asset('/Template/css/lib/clockpicker/bootstrap-clockpicker.min.css')}}"/>
 
 <style>
-#nombre,#apellidoPaterno,#apellidoMaterno{
+#nombre,#apellidoPaterno,#apellidoMaterno,#nombreTaller{
   text-transform: capitalize;
 } 
 </style>
@@ -57,7 +57,7 @@
     </div>
   </div>
 
-{!!Form::open(array('url'=>'#', 'method'=>'post'))!!}
+{!!Form::open(array('url'=>'/admin/registerCoord', 'method'=>'post'))!!}
 <a href="{{asset('/admin')}}"><button type="button" class="close"><span aria-hidden="true">&times;</span></button></a>
     <div class="row details1 text-center" style="display:block">
         <div class="{{$classSize}}">
@@ -97,8 +97,8 @@
                   <div class="{{$classSizeForms}}">
                     <fieldset class="form-group">
                       <label class="form-label">Sexo</label>
-                {!!Form::select('sexo',$sexos, 0, ['class'=>'bootstrap-select bootstrap-select-arrow form-control'])!!}   
-               </fieldset>
+                {!!Form::select('sexo',$sexos, 0, ['class'=>'bootstrap-select bootstrap-select-arrow form-control','id'=>'sexo'])!!}   
+                    </fieldset>
                   </div>
                 </div>
                 <div class="row">
@@ -222,36 +222,90 @@
                 <div class="row">
                     <div class="{{$classSizeForms}}">
                         <fieldset class="form-group">
-                            <label class="form-label">Nombre</label>
-                             {!!Form::text('nomreTaller', null, ['class'=>'form-control', 'placeholder'=>'Nombre del Taller', 'id'=>'taller'])!!}
+                            <label class="form-label"></label>
+                            <div class="form-group">
+                              <label class="col-sm-12">¿Se encuentra registrado el taller?</label>
+                              <div class="col-sm-12">
+                                <div class="rdio rdio-primary">
+                                  <input type="radio" name="taller" value="si" id="tlist" onclick="mostrar();">
+                                  <label>Si</label>
+                                </div>
+                                <div class="rdio rdio-primary">
+                                  <input type="radio" name="taller" value="no" id="tlistt" onclick="mostrar();">
+                                  <label>No</label>
+                                </div>
+                              </div>
+                            </div>
                         </fieldset>
                     </div>
-                    <div class="{{$classSizeForms}}">
-                        {!!Form::number('limite', null, ['class'=>'form-control', 'placeholder'=>'Cupo Limite' ,'id'=>'limte'])!!}
-                    </div>
+
                     <div class="{{$classSizeForms}}">
                         <fieldset class="form-group">
-                            <label class="form-label">Horario</label>
-                            {!!Form::time('hora', null, ['class'=>'form-control', 'id'=>'hora'])!!}
+                            <label class="form-label"</label>
+                              <!--Bloque Oculto-->
+                              <div id="tlistF" style="display:none;">
+                                <label>¿Cuál?</label>
+                                <div>
+                                      <fieldset class="form-group">
+                                          <label class="form-label"></br></label>
+                                           {!!Form::select('tlista',$tlista, 0, ['class'=>'select2 form-control', 'placeholder'=>'Selecciona un taller'])!!}
+                                      </fieldset>
+                                </div>
+                              </div>
+                              <!--Bloque Oculto-->
+                              <!--Bloque Oculto-->
+                              <div id="tlistM" class="col-sm-12" style="display:none;">
+                                <h5 class="m-t-lg with-border">Registro Taller</h5>
+                                  <div>
+                                      <fieldset class="form-group">
+                                          <label class="form-label"></label>
+                                            {!!Form::text('nombreT', null, ['class'=>'form-control', 'placeholder'=>'Nombre del taller', 'id'=>'nombreTaller'])!!}   
+                                      </fieldset>
+                                  </div>
+
+                                  <div>
+                                    <fieldset class="form-group">
+                                      <label class="form-label"></label>
+                                        {!!Form::number('duracion', null, ['class'=>'form-control', 'placeholder'=>'Duracion en horas (total)', 'id'=>'duracion'])!!}  
+                                    </fieldset>
+                                </div>
+
+                                <div>
+                                    <fieldset class="form-group">
+                                      <label class="form-label"></label>
+                                           {!!Form::select('tilista',$tilista, 0, ['class'=>'select2 form-control', 'placeholder'=>'Selecciona un tipo'])!!} 
+                                    </fieldset>
+                                </div>
+
+                                <div>
+                                  <fieldset class="form-group">
+                                      <label class="form-label">Inicio del Taller</label>
+                                        <div class='input-group date'>
+                                              {!!Form::text('Date1', null, ['class'=>'form-control', 'id'=>'date_box', 'placeholder'=>'00/00/0000'])!!}
+                                              <span class="input-group-addon">
+                                                  <i class="font-icon font-icon-calend"></i>
+                                              </span>
+                                        </div>
+                                  </fieldset>
+                                </div>
+
+                                <div>
+                                  <fieldset class="form-group">
+                                      <label class="form-label">Fin del Taller</label>
+                                        <div class='input-group date'>
+                                              {!!Form::text('Date2', null, ['class'=>'form-control', 'id'=>'date_box2', 'placeholder'=>'00/00/0000'])!!}
+                                              <span class="input-group-addon">
+                                                  <i class="font-icon font-icon-calend"></i>
+                                              </span>
+                                        </div>
+                                  </fieldset>
+                                </div>
+
+                              </div>
+                              <!--Bloque Oculto-->
                         </fieldset>
                     </div>
-                    <div class="{{$classSizeForms}}">
-                        <fieldset class="form-group">
-                            {!!Form::text('dias', null, ['class'=>'form-control', 'placeholder'=>'Dias deImpartición', 'id'=>'dia'])!!}
-                        </fieldset>
-                    </div><div class="{{$classSizeForms}}">
-                        <fieldset class="form-group">
-                            {!!Form::text('lugar', null, ['class'=>'form-control', 'placeholder'=>'Lugar', 'id'=>'lugar'])!!}
-                        </fieldset>
-                    </div>
-                    <div class="{{$classSizeForms}}">
-                        <label class="form-label">Fecha de inicio</label>
-                        {!!Form::date('inicio', null, ['class'=>'form-control', 'id'=>'inicio'])!!}
-                    </div>
-                    <div class="{{$classSizeForms}}">
-                        <label class="form-label">Fecha de cierre (Opcional)</label>
-                        {!!Form::date('cierre', null, ['class'=>'form-control', 'id'=>'cierre'])!!}
-                    </div>
+
                 </div>
 
                 <br/>
@@ -296,6 +350,28 @@ Registro
         $('#telefono').mask('(000) 000-0000', {placeholder: "Teléfono personal"});
         $('#boleta').mask('0000 00 0000', {placeholder: "Boleta/Numero de Trabajador"});
     });
+
+    function mostrar(){
+      e = document.getElementById("tlistF");
+      c = document.getElementById("tlist");
+
+      a = document.getElementById("tlistM");
+      l = document.getElementById("tlistt");
+
+      if (c.checked) {
+        e.style.display = 'block';
+      }
+      else{
+        e.style.display = 'none';
+      }
+
+      if(l.checked){
+        a.style.display = 'block';
+      }else{
+        a.style.display = 'none';
+      }
+    }
+
     </script>
 
 @stop

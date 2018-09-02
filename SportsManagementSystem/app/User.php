@@ -38,14 +38,11 @@ class user extends Model implements AuthenticatableContract,
         'boleta',
         'email',
         'tipo',
-        'password',
-        'edad',
-        'grupo',
-        'semestre',      
+        'password',   
         'apellidoPaterno',
         'apellidoMaterno',
-        'carrera_id',
         'completado',
+        'tipo',
     ];
     //protected $guarded = ['tipo'];
 
@@ -56,12 +53,6 @@ class user extends Model implements AuthenticatableContract,
      */
     protected $hidden = ['password'];
 
-    public function carrer(){
-        return $this->belongsTo(carrer::class, 'carrera_id');
-    }
-    public function getOrigenAttribute($value){
-        return config('globalInfo.nombreUpiiz2');
-    }
     public function __toString(){
         return $this->nombre.' '.$this->apellidoPaterno.' '.$this->apellidoMaterno;
     }
@@ -71,16 +62,10 @@ class user extends Model implements AuthenticatableContract,
     public function tipo(){
         return $this->getOriginal('tipo');
     }
-    public function vivienda(){
-        return $this->hasOne(tenement::class,'usuario_id');
+    public function informacion(){
+        return $this->hasOne(informacion::class,'usuario_id');
     }
-    public function gasto(){
-        return $this->hasOne(spending::class,'usuario_id');
-    }
-    public function antecedentes(){
-        return $this->hasOne(record::class,'usuario_id');
-    }
-    public function personales(){
-        return $this->hasOne(personal::class,'usuario_id');
+    public function tallerdatos(){
+        return $this->hasOne(tallerdatos::class,'usuario_id');
     }
 }

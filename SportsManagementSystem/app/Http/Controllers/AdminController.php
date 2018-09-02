@@ -37,16 +37,42 @@ class AdminController extends Controller
     public function registerCoord()
     {
         $index=4;
+        $tlista = \App\taller::lists('nombre','id');
+        $tilista = \App\tipo::lists('nombre','id');
         return view('Admin.registro',[
         'index' => $index,
+        'tlista' => $tlista,
+        'tilista' => $tilista,
         ]);
     }
     
+    public function postCoord(Request $request){
+        $this->validate($request, [
+            'nombre' => 'required',
+            'apellidoPaterno' => 'required',
+            'apellidoMaterno' => 'required',
+            'sexo' => 'required|min:1',
+            'telefono' => 'required',
+            'email' => 'required',
+            'boleta' => 'required',
+            'password' => 'required',
+            'password2' => 'required',
+        ]);
+
+        session()->flash('message', 'Alumno '.$request->sexo. ' actualizado correctamente');
+        session()->flash('type', 'success');
+        return redirect('/admin');
+    }
+
     public function  registerStudio()
     {
         $index=4;
+        $tilista = \App\tipo::lists('nombre','id');
+        $coord = \App\User::where('tipo', 3)->get();
         return view('Admin.studio',[
             'index' => $index,
+            'tilista' => $tilista,
+            'coord' => $coord,
         ]);
     }
 }
