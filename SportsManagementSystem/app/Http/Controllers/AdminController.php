@@ -57,7 +57,16 @@ class AdminController extends Controller
             'boleta' => 'required',
             'password' => 'required',
             'password2' => 'required',
+            'taller' => 'required',
         ]);
+
+        $opc_taller = $request->taller;
+
+        if($opc_taller=='si'){
+            $this->validate($request, [
+                'tlista' => 'required|min:1',
+            ]);
+        }
 
         session()->flash('message', 'Alumno '.$request->sexo. ' actualizado correctamente');
         session()->flash('type', 'success');

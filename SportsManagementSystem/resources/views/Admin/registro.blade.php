@@ -32,6 +32,14 @@
         'Masculino',
         'Femenino',
     );
+
+  $dia = array(
+        'Lunes',
+        'Martes',
+        'Miercoles',
+        'Jueves',
+        'Viernes',
+    );
 ?>
 
 @section('title')
@@ -248,7 +256,7 @@
                                 <div>
                                       <fieldset class="form-group">
                                           <label class="form-label"></br></label>
-                                           {!!Form::select('tlista',$tlista, 0, ['class'=>'select2 form-control', 'placeholder'=>'Selecciona un taller'])!!}
+                                           {!!Form::select('tlista',$tlista, 0, ['class'=>'select2 form-control', 'placeholder'=>'Selecciona un taller','id'=>'tlista'])!!}
                                       </fieldset>
                                 </div>
                               </div>
@@ -269,6 +277,18 @@
                                         {!!Form::number('duracion', null, ['class'=>'form-control', 'placeholder'=>'Duracion en horas (total)', 'id'=>'duracion'])!!}  
                                     </fieldset>
                                 </div>
+
+                              <div>
+                                  <fieldset class="form-group">
+                                  <label class="form-label">Dias de Imparticion</label>
+                                  {!!Form::select('dias',$dia, 0, ['class'=>'select2 select2-hidden-accessible','id'=>'dias','multiple'=>'','aria-hidden'=>'true','tabindex'=>'-1'])!!}
+                                  </fieldset>
+                              </div>
+                              <div>
+                                  <fieldset class="form-group">
+                                      {!!Form::text('lugar', null, ['class'=>'form-control', 'placeholder'=>'Lugar', 'id'=>'lugar'])!!}
+                                  </fieldset>
+                              </div>
 
                                 <div>
                                     <fieldset class="form-group">

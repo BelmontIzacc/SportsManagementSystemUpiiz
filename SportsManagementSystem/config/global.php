@@ -3,7 +3,7 @@
 return [
     //Desarrollo
     'desarrollo' => true,
-    'limite' => 500,
+    'limite' => 10,
     //Fin desarrollo
 
     //Constantes
