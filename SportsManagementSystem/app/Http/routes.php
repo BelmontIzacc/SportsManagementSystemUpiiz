@@ -23,5 +23,6 @@ Route::post('/admin/registerCoord','adminController@postCoord');
 Route::get('admin/registerStudio', 'adminController@registerStudio');
 //-----------------------------------------------------------------------------------//
 Route::get('/user','UserController@index');
+Route::get('/user/RegistroUsuario','UserController@getRegister');
 //-----------------------------------------------------------------------------------//
 Route::get('/coord','CoordController@index');

@@ -34,7 +34,11 @@ class UserController extends Controller
     {
         $index=1;
         return view('User.start',[
-        'index' => $index,
+        'index' => $index
         ]);
+    }
+    public function getRegister(){
+        $index = 4;
+        return view('RegistroUsuaio', ['index'=>$index]);
     }
 }
