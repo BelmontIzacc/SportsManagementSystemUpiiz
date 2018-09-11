@@ -39,6 +39,6 @@ class UserController extends Controller
     }
     public function getRegister(){
         $index = 4;
-        return view('RegistroUsuaio', ['index'=>$index]);
+        return view('User.RegistroUsuario', ['index'=>$index]);
     }
 }
