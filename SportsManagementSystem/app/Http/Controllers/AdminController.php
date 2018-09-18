@@ -12,6 +12,10 @@ use Illuminate\Database\Eloquent\Collection;
 use Hash;
 use Carbon\Carbon;
 
+use App\User;
+use App\informacion;
+use App\taller;
+
 class AdminController extends Controller
 {
 
@@ -60,15 +64,43 @@ class AdminController extends Controller
             'taller' => 'required',
         ]);
 
+        User::create([
+            'nombre' =>$request->nombre,
+            'apellidoPaterno' =>$request->apellidoPaterno,
+            'apellidoMaterno' =>$request->apellidoMaterno,
+            'email' => $request->email,
+            'boleta' => $request->boleta,
+            'password' => bcrypt($request->password),
+            'tipo' => 3,
+            'completado' => 1,
+        ]);
+
         $opc_taller = $request->taller;
+        $us = User::where('boleta',$request->boleta);
 
         if($opc_taller=='si'){
             $this->validate($request, [
                 'tlista' => 'required|min:1',
             ]);
+
+            $t =  taller::where('id',$request->tlista);
+            $t->update([
+                //'usuario_id' => $us->id,
+            ]);
+
+        }else if($opc_taller=='no'){
+            $this->validate($request, [
+                'nombreTaller' => 'required',
+                'duracion' => 'required',
+                'dia' => 'required',
+                'lugar' => 'required',
+                'tilista' => 'required',
+                'Date1'=>'required',
+                'Date2'=>'required',
+            ]);
         }
 
-        session()->flash('message', 'Alumno '.$request->sexo. ' actualizado correctamente');
+        session()->flash('message', 'Alumno '.$us. ' actualizado correctamente '.$request->tlista);
         session()->flash('type', 'success');
         return redirect('/admin');
     }

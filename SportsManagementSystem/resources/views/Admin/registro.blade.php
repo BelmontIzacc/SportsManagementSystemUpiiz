@@ -267,7 +267,7 @@
                                   <div>
                                       <fieldset class="form-group">
                                           <label class="form-label"></label>
-                                            {!!Form::text('nombreT', null, ['class'=>'form-control', 'placeholder'=>'Nombre del taller', 'id'=>'nombreTaller'])!!}   
+                                            {!!Form::text('nombreTaller', null, ['class'=>'form-control', 'placeholder'=>'Nombre del taller', 'id'=>'nombreTaller'])!!}   
                                       </fieldset>
                                   </div>
 
@@ -281,7 +281,7 @@
                               <div>
                                   <fieldset class="form-group">
                                   <label class="form-label">Dias de Imparticion</label>
-                                  {!!Form::select('dias',$dia, 0, ['class'=>'select2 select2-hidden-accessible','id'=>'dias','multiple'=>'','aria-hidden'=>'true','tabindex'=>'-1'])!!}
+                                  {!!Form::select('dia',$dia, 0, ['class'=>'select2 select2-hidden-accessible','id'=>'dia','multiple'=>'','aria-hidden'=>'true','tabindex'=>'-1'])!!}
                                   </fieldset>
                               </div>
                               <div>
@@ -293,7 +293,7 @@
                                 <div>
                                     <fieldset class="form-group">
                                       <label class="form-label"></label>
-                                           {!!Form::select('tilista',$tilista, 0, ['class'=>'select2 form-control', 'placeholder'=>'Selecciona un tipo'])!!} 
+                                           {!!Form::select('tilista',$tilista, 0, ['class'=>'select2 form-control', 'placeholder'=>'Selecciona un tipo','id'=>'tilista'])!!} 
                                     </fieldset>
                                 </div>
 
