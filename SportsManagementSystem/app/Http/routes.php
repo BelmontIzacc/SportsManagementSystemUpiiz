@@ -24,5 +24,7 @@ Route::get('admin/registerStudio', 'adminController@registerStudio');
 //-----------------------------------------------------------------------------------//
 Route::get('/user','UserController@index');
 Route::get('/user/RegistroUsuario','UserController@getRegister');
+Route::post('/user/RegistroUsuario','UserController@postRegister');
+Route::get('/user/InfoCompleta','UserController@getCompleto');
 //-----------------------------------------------------------------------------------//
 Route::get('/coord','CoordController@index');
