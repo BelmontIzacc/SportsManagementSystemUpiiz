@@ -34,6 +34,16 @@ class usuarioSeeder extends Seeder
                 'apellidoMaterno' => 'Belmont',            
                 'completado'=>1,
             ]);
+            
+            DB::table('usuario')->insert([
+                'nombre' => 'Orlando',
+                'boleta' => '201800217',
+                'tipo' => 1,
+                'password' => bcrypt('admin2'),
+                'apellidoPaterno' => 'Belmonte',
+                'apellidoMaterno' => 'Flores',
+                'completado' => 1,
+            ]);
 
             $limit = config('global.limite');
             $word = " abcdefghijklmnopqrstuvwxyzae i o u";

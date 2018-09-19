@@ -112,7 +112,25 @@
 	                <span class="lbl">Ejemplo4</span>
 	            </a>
 	        </li>
-	          
+            
+            
+            
+	        <li>
+                <div align="right">
+                    <div class="site-header-search-container">
+                        <form class="site-header-search closed">
+                            <input type="text" placeholder="Search">
+                            <button type="submit">
+                                <span class="font-icon-search"></span>
+                            </button>
+                            <div class="overlay"></div>
+                        </form>
+                   </div>
+                </div>
+            </li>
+            
+            
+            
 	    </ul>
 	</nav><!--.side-menu-->
 
@@ -127,10 +145,11 @@
 
 	@endunless
 
-	<script src="{{asset('/Template/js/lib/jquery/jquery.min.js')}}"></script>
 	<script src="{{asset('/Template/js/lib/tether/tether.min.js')}}"></script>
-	<script src="{{asset('/Template/js/lib/bootstrap/bootstrap.min.js')}}"></script>
+	<script src="{{asset('/Template/js/lib/jquery/jquery.min.js')}}"></script>
 	<script src="{{asset('/Template/js/plugins.js')}}"></script>
+	<script src="{{asset('/Template/js/lib/bootstrap/bootstrap.min.js')}}"></script>
+    <script src="{{asset('/Template/js/app.js')}}"></script>
 
 	@yield('scripts')
 
