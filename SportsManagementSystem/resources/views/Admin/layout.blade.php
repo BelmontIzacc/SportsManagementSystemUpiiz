@@ -91,7 +91,7 @@
 	        <li class="blue">
 	            <a href="{{asset('/admin/registerCoord')}}">
 	                <i class="font-icon font-icon-user"></i>
-	                <span class="lbl">Registrar un Coordinador</span>
+	                <span class="lbl">Registrar un Nuevo Coordinador</span>
 	            </a>
 	        </li>
 	        <li class="brown">
@@ -100,16 +100,16 @@
 	                <span class="lbl">Registrar un Taller</span>
 	            </a>
 	        </li>
-	        <li class="gold opened">
-	            <a href="#">
-	                <i class="font-icon font-icon-speed"></i>
-	                <span class="lbl">Ejemplo3</span>
+	        <li class="red">
+	            <a href="{{asset('/admin/search')}}">
+	                <i class="font-icon font-icon-search"></i>
+	                <span class="lbl">Buscar</span>
 	            </a>
 	        </li>
-	        <li class="blue">
+	        <li class="black">
 	            <a href="#">
 	                <i class="font-icon font-icon-users"></i>
-	                <span class="lbl">Ejemplo4</span>
+	                <span class="lbl">Panel de control</span>
 	            </a>
 	        </li>
             

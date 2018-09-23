@@ -9,7 +9,6 @@
         "laravel/framework": "5.1.*",
         "nesbot/carbon": "^1.22",
         "jenssegers/date": "^3.2",
-	"laravelcollective/html": "5.1.*",
         "barryvdh/laravel-dompdf": "^0.8.2"
     },
     "require-dev": {

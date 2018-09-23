@@ -2,10 +2,15 @@
 
 namespace App;
 
+use Sofa\Eloquence\Eloquence;
 use Illuminate\Database\Eloquent\Model;
+use Jenssegers\Date\Date;
+use Carbon\Carbon;
 
 class informacion extends Model
 {
+    use Eloquence;
+    
     protected $table = 'informacion';
 
     /**
@@ -28,7 +33,7 @@ class informacion extends Model
         'codigoPostal'
     ];
 
-	public function user(){
+    public function user(){
         return $this->belongsTo(User::class, 'usuario_id');
     }
 	public function institucion(){

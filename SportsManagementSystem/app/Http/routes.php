@@ -21,6 +21,9 @@ Route::get('/admin', 'adminController@index');
 Route::get('/admin/registerCoord', 'adminController@registerCoord');
 Route::post('/admin/registerCoord','adminController@postCoord');
 Route::get('admin/registerStudio', 'adminController@registerStudio');
+Route::post('admin/registerStudio', 'adminController@postStudio');
+Route::get('admin/search', 'adminController@search');
+Route::post('admin/search', 'adminController@getSearch');
 //-----------------------------------------------------------------------------------//
 Route::get('/user','UserController@index');
 Route::get('/user/RegistroUsuario','UserController@getRegister');

@@ -58,13 +58,13 @@ class AdminController extends Controller
             'sexo' => 'required|min:1',
             'telefono' => 'required',
             'email' => 'required',
-            'boleta' => 'required',
+            'boleta' => 'required|unique:usuario,boleta',
             'password' => 'required',
             'password2' => 'required',
             'taller' => 'required',
         ]);
 
-        User::create([
+        $user = User::create([
             'nombre' =>$request->nombre,
             'apellidoPaterno' =>$request->apellidoPaterno,
             'apellidoMaterno' =>$request->apellidoMaterno,
@@ -76,17 +76,23 @@ class AdminController extends Controller
         ]);
 
         $opc_taller = $request->taller;
-        $us = User::where('boleta',$request->boleta);
 
         if($opc_taller=='si'){
             $this->validate($request, [
                 'tlista' => 'required|min:1',
             ]);
 
-            $t =  taller::where('id',$request->tlista);
-            $t->update([
-                //'usuario_id' => $us->id,
-            ]);
+            $t =  \App\taller::find($request->tlista);
+            if($t->usuario_id==null){
+               $t->update([
+                'usuario_id' => $user->id,
+                ]); 
+            }else{
+                return redirect('/admin')
+                ->withErrors([
+                    $request->clave => 'El taller '.$t->nombre.',Ya cuenta con un coordinador asignado, no se a creado el Coordinador.',
+                ]);
+            }
 
         }else if($opc_taller=='no'){
             $this->validate($request, [
@@ -98,9 +104,48 @@ class AdminController extends Controller
                 'Date1'=>'required',
                 'Date2'=>'required',
             ]);
+
+        $input = 'd-m-Y';
+        $date = $request->input('Date1');
+        $output = 'Y-m-d';
+
+        $input2 = 'd-m-Y';
+        $date2 = $request->input('Date2');
+        $output2 = 'Y-m-d';
+
+        $dateFormated = Carbon::createFromFormat($input, $date)->format($output);
+        $dateFormated2 = Carbon::createFromFormat($input2, $date2)->format($output2);
+
+        $dias=" ";
+        foreach($request->dia as $d){
+            //$dias = $dias.' , '.$d;
+            if($d=='1'){
+                $dias='Lunes';
+            }else if ($d=='2') {
+                $dias=$dias.',Martes';
+            }else if ($d=='3') {
+                $dias=$dias.',Miercoles';
+            }else if ($d=='4') {
+                $dias=$dias.',Jueves';
+            }else if ($d=='5') {
+                $dias=$dias.',Viernes';
+            }
         }
 
-        session()->flash('message', 'Alumno '.$us. ' actualizado correctamente '.$request->tlista);
+        $taller = taller::create([
+            'usuario_id'=>$user->id,
+            'nombre' =>$request->nombreTaller,
+            'fechaInicio' =>$dateFormated,
+            'fechaFin'=>$dateFormated2,
+            'duracion' =>$request->duracion,
+            'status' => "Activo",
+            'lugar' => $request->lugar,
+            'dias' => $dias,
+            'tipo_id' => $request->tilista,
+            ]);
+        }
+
+        session()->flash('message', 'Alumno '.$user->nombre.' actualizado correctamente');
         session()->flash('type', 'success');
         return redirect('/admin');
     }
@@ -109,11 +154,108 @@ class AdminController extends Controller
     {
         $index=4;
         $tilista = \App\tipo::lists('nombre','id');
-        $coord = \App\User::where('tipo', 3)->get();
+        $coord = \App\User::where('tipo', 3)->lists('boleta','id');
         return view('Admin.studio',[
             'index' => $index,
             'tilista' => $tilista,
             'coord' => $coord,
         ]);
+    }
+
+    public function postStudio(Request $request)
+    {
+        $this->validate($request, [
+            'nombre' => 'required',
+            'duracion' => 'required',
+            'tipo' => 'required',
+            'dia' => 'required',
+            'lugar' => 'required',
+            'Date1'=>'required',
+            'Date2'=>'required',
+            'taller'=>'required',
+        ]);
+
+        $input = 'd-m-Y';
+        $date = $request->input('Date1');
+        $output = 'Y-m-d';
+
+        $input2 = 'd-m-Y';
+        $date2 = $request->input('Date2');
+        $output2 = 'Y-m-d';
+
+        $dateFormated = Carbon::createFromFormat($input, $date)->format($output);
+        $dateFormated2 = Carbon::createFromFormat($input2, $date2)->format($output2);
+
+        $dias=" ";
+        foreach($request->dia as $d){
+            //$dias = $dias.' , '.$d;
+            if($d=='1'){
+                $dias='Lunes';
+            }else if ($d=='2') {
+                $dias=$dias.',Martes';
+            }else if ($d=='3') {
+                $dias=$dias.',Miercoles';
+            }else if ($d=='4') {
+                $dias=$dias.',Jueves';
+            }else if ($d=='5') {
+                $dias=$dias.',Viernes';
+            }
+        }
+
+        $taller = taller::create([
+            'nombre' =>$request->nombre,
+            'fechaInicio' =>$dateFormated,
+            'fechaFin'=>$dateFormated2,
+            'duracion' =>$request->duracion,
+            'status' => "Activo",
+            'lugar' => $request->lugar,
+            'dias' => $dias,
+            'tipo_id' => $request->tipo,
+            ]);
+
+        $opc_taller = $request->taller;
+
+        if($opc_taller=='si'){
+            $this->validate($request, [
+                'coordinador'=>'required',
+            ]);
+
+            $u =  \App\User::find($request->coordinador);
+            $taller->update([
+                'usuario_id' => $u->id,
+            ]);
+        }
+
+        session()->flash('message', 'Se a creado el taller '.$request->nombre.' ');
+        session()->flash('type', 'success');
+        return redirect('/admin');
+
+    }
+
+    public function search()
+    {
+        $index=1;
+        return view('Admin.search',[
+            'index' => $index,
+        ]);
+    }
+
+    public function getSearch(Request $request){
+        $index = 1;
+
+        switch($request->opc){
+            case 1:
+                $this->validate($request, [
+                    'busqueda' => 'required'
+                ]);
+
+                $user = \App\User::where('boleta', $request->busqueda)->get();
+                if(count($user) == 0){
+                    session()->flash('message', 'No se encontró ningun registro con la boleta: '.$request->busqueda);
+                    session()->flash('type', 'danger');
+                }
+                return view('Admin.search', ['index'=>$index, 'user'=>$user]);
+            break;
+        }
     }
 }

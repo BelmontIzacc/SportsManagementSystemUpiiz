@@ -10,6 +10,15 @@
     <div class="caption hidden-md-up">-1-</div>
     <div class="caption hidden-sm-down">Taller</div>
   ';
+
+    $dia = array(
+        'Lunes',
+        'Martes',
+        'Miercoles',
+        'Jueves',
+        'Viernes',
+    );
+
 ?>
 
 @section('title')
@@ -36,7 +45,7 @@
     </div>
   </div>
 
-{!!Form::open(array('url'=>'#', 'method'=>'post'))!!}
+{!!Form::open(array('url'=>'/admin/registerStudio', 'method'=>'post'))!!}
 <a href="{{asset('/admin')}}"><button type="button" class="close"><span aria-hidden="true">&times;</span></button></a>
     <div class="row details1 text-center" style="display:block">
         <div class="{{$classSize}}">
@@ -54,7 +63,7 @@
                 <div class="row">
                     <div class="{{$classSizeForms}}">
                         <fieldset class="form-group">
-                            {!!Form::text('nombreT', null, ['class'=>'form-control', 'placeholder'=>'Nombre del taller', 'id'=>'nombreTaller'])!!} 
+                            {!!Form::text('nombre', null, ['class'=>'form-control', 'placeholder'=>'Nombre del taller', 'id'=>'nombreTaller'])!!} 
                         </fieldset>
                         
                     </div>
@@ -66,12 +75,13 @@
                     <div class="{{$classSizeForms}}">
                         <fieldset class="form-group">
                             <label class="form-label"></label>
-        				    {!!Form::select('tilista',$tilista, 0, ['class'=>'select2 form-control', 'placeholder'=>'Selecciona un tipo'])!!}		
+        				    {!!Form::select('tipo',$tilista, 0, ['class'=>'select2 form-control', 'placeholder'=>'Selecciona un tipo'])!!}		
         			     </fieldset>
                     </div>
                     <div class="{{$classSizeForms}}">
                         <fieldset class="form-group">
-                            {!!Form::text('dias', null, ['class'=>'form-control', 'placeholder'=>'Dias de Impartición', 'id'=>'dias'])!!}
+                            <label class="form-label">Dias de Imparticion</label>
+                            {!!Form::select('dia[]',$dia,0, ['class'=>'select2 remove-example', 'multiple'])!!}
                         </fieldset>
                     </div>
                     <div class="{{$classSizeForms}}">
@@ -130,7 +140,7 @@
                                 <div>
                                       <fieldset class="form-group">
                                           <label class="form-label"></br></label>
-                                            {!!Form::select('coord',$coord, 0, ['class'=>'select2 form-control', 'placeholder'=>'Selecciona un taller'])!!}
+                                            {!!Form::select('coordinador',$coord, -1, ['class'=>'select2 form-control', 'placeholder'=>'Selecciona un taller'])!!}
                                       </fieldset>
                                 </div>
                               </div>

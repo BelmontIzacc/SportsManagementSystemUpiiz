@@ -28,7 +28,7 @@ class usuarioSeeder extends Seeder
             DB::table('usuario')->insert([
                 'nombre' => 'Alejandra',
                 'boleta' => '2016670007',
-                'tipo' => 2,
+                'tipo' => 3,
                 'password' => bcrypt('belmont'),
                 'apellidoPaterno' => 'Belmont',
                 'apellidoMaterno' => 'Belmont',            
@@ -62,7 +62,7 @@ class usuarioSeeder extends Seeder
                 DB::table('usuario')->insert([
                     'nombre' => $name,
                     'boleta' => '20'.rand(10 , 30).rand(10 , 30).rand(10 , 70).rand(10 , 60),
-                    'tipo' => 3,
+                    'tipo' => 2,
                     'password' => bcrypt('belmont'),
                     'apellidoPaterno' => $lastName1,
                     'apellidoMaterno' => $lastName2,

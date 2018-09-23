@@ -28,7 +28,6 @@
   ';
 
   $sexos = array(
-        'Seleccionar',
         'Masculino',
         'Femenino',
     );
@@ -105,7 +104,7 @@
                   <div class="{{$classSizeForms}}">
                     <fieldset class="form-group">
                       <label class="form-label">Sexo</label>
-                {!!Form::select('sexo',$sexos, 0, ['class'=>'bootstrap-select bootstrap-select-arrow form-control','id'=>'sexo'])!!}   
+                {!!Form::select('sexo',$sexos, -1, ['class'=>'bootstrap-select bootstrap-select-arrow form-control','id'=>'sexo','placeholder'=>'Seleccionar'])!!}   
                     </fieldset>
                   </div>
                 </div>
@@ -167,7 +166,7 @@
                   <div class="{{$classSizeForms}}">
                     <fieldset class="form-group">
                     <label class="form-label">Usuario</label>
-                      {!!Form::text('boleta', null, ['class'=>'form-control', 'id'=>'boleta'])!!}
+                      {!!Form::text('boleta', null, ['class'=>'form-control', 'id'=>'boleta', 'placeholder'=> 'Boleta/Numero de Trabajador'])!!}
                     </fieldset>
                   </div>
                   <div class="{{$classSizeForms}}">
@@ -281,7 +280,7 @@
                               <div>
                                   <fieldset class="form-group">
                                   <label class="form-label">Dias de Imparticion</label>
-                                  {!!Form::select('dia',$dia, 0, ['class'=>'select2 select2-hidden-accessible','id'=>'dia','multiple'=>'','aria-hidden'=>'true','tabindex'=>'-1'])!!}
+                                  {!!Form::select('dia[]',$dia,0, ['class'=>'select2 remove-example', 'multiple'])!!}
                                   </fieldset>
                               </div>
                               <div>
@@ -368,7 +367,7 @@ Registro
     <script>
     $(document).ready(function() {
         $('#telefono').mask('(000) 000-0000', {placeholder: "Teléfono personal"});
-        $('#boleta').mask('0000 00 0000', {placeholder: "Boleta/Numero de Trabajador"});
+        //$('#boleta').mask('0000 00 0000', {placeholder: "Boleta/Numero de Trabajador"});
     });
 
     function mostrar(){
