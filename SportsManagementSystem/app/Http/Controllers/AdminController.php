@@ -250,6 +250,10 @@ class AdminController extends Controller
                 ]);
 
                 $user = \App\User::where('boleta', $request->busqueda)->get();
+                error_log($user);
+                // $id_user = $user->nombre;
+                //$informacion = \App\informacion::where('usuario_id',$id_user)->get();
+
                 if(count($user) == 0){
                     session()->flash('message', 'No se encontró ningun registro con la boleta: '.$request->busqueda);
                     session()->flash('type', 'danger');
@@ -257,5 +261,50 @@ class AdminController extends Controller
                 return view('Admin.search', ['index'=>$index, 'user'=>$user]);
             break;
         }
+    }
+
+    public function show($id)
+    {
+        $index = 0;
+
+        $student = \App\informacion::find($id);
+
+        return view('Admin.student', ['index'=>$index,'student'=>$student]);
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(Request $request, $id)
+    {
+        //abort(500);
+
+        //return ':v';
+        $student = \App\student::find($id);
+        $student->update([
+            'documentacion'=>$request->documentacion,
+            'estatus_id'=>$request->estatus,
+            'observaciones'=>$request->observaciones,
+        ]);
+
+        $medicalData = $student->user->medicalData;
+        $medicalData->update([
+            'seguroVida'=>$request->seguro,
+        ]);
+
+        if($request->ajax()){
+            $user = $student->user;
+            return response()->json([
+                "message" => "Se ha actualizado a el usuario:",
+                "userName" => $user->__tostring(),
+                "Id" => $user->identificacion,
+                "carrer" => $student->carrer->nombre,
+            ]);
+        }
+
+        return back();
     }
 }

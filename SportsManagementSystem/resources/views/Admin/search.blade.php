@@ -56,7 +56,7 @@ Busqueda de registro
                                 </div>
                                 <div class="tbl-cell">
                                     <p>
-                                        Nombre : {{$u->__toString()}} 
+                                        <a href="{{asset('/admin/lists')}}/{{$u->informacion->id}}" class="semibold">{{$u}}</a>
                                     </p>
                                     <p>
                                         Correo: {{$u->email}}
@@ -65,10 +65,10 @@ Busqueda de registro
                                         Boleta: {{$u->boleta}}
                                     </p>
                                     <p>
-                                        Institucion: {{$u->id}}
+                                        Institucion: {{$u->informacion->institucion->nombre}}
                                     </p>
                                     <p>
-                                        Carrera: 
+                                        Carrera: {{$u->informacion->carrera->nombre}}
                                     </p>
                                 </div>
                             </div>

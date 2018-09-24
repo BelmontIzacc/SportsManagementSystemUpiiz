@@ -4,8 +4,6 @@ namespace App;
 
 use Sofa\Eloquence\Eloquence;
 use Illuminate\Database\Eloquent\Model;
-use Jenssegers\Date\Date;
-use Carbon\Carbon;
 
 class informacion extends Model
 {
@@ -30,12 +28,13 @@ class informacion extends Model
         'numExterior',
         'numInterior',
         'colonia',
-        'codigoPostal'
+        'codigoPostal',
     ];
 
-    public function user(){
+    public function usuario(){
         return $this->belongsTo(User::class, 'usuario_id');
     }
+
 	public function institucion(){
         return $this->belongsTo(institucion::class, 'institucion_id');
     }

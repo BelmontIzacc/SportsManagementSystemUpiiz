@@ -15,7 +15,7 @@ use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 
 
-class user extends Model implements AuthenticatableContract,
+class User extends Model implements AuthenticatableContract,
                                     AuthorizableContract,
                                     CanResetPasswordContract
 {
@@ -34,6 +34,7 @@ class user extends Model implements AuthenticatableContract,
      * @var array
      */
         protected $fillable = [
+        'id',
         'nombre',
         'boleta',
         'email',
@@ -44,7 +45,6 @@ class user extends Model implements AuthenticatableContract,
         'completado',
         'tipo',
     ];
-    //protected $guarded = ['tipo'];
 
     /**
      * The attributes excluded from the model's JSON form.
@@ -56,19 +56,16 @@ class user extends Model implements AuthenticatableContract,
     public function __toString(){
         return $this->nombre.' '.$this->apellidoPaterno.' '.$this->apellidoMaterno;
     }
-    public function getTipoAttribute($value){
-        return config('global.tipos')[$value];
-    }
-    public function tipo(){
-        return $this->getOriginal('tipo');
-    }
     public function informacion(){
-        return $this->hasOne(informacion::class,'usuario_id','id');
+        return $this->hasOne(informacion::class,'usuario_id');
     }
     public function tallerdatos(){
         return $this->hasOne(tallerdatos::class,'usuario_id');
     }
     public function completado(){
         return $this->getOriginal('completado');
+    }
+    public function tipo(){
+        return $this->getOriginal('tipo');
     }
 }

@@ -24,6 +24,8 @@ Route::get('admin/registerStudio', 'adminController@registerStudio');
 Route::post('admin/registerStudio', 'adminController@postStudio');
 Route::get('admin/search', 'adminController@search');
 Route::post('admin/search', 'adminController@getSearch');
+Route::get('/admin/lists/{id}', 'adminController@show');
+Route::post('/admin/lists/{id}', 'adminController@edit');
 //-----------------------------------------------------------------------------------//
 Route::get('/user','UserController@index');
 Route::get('/user/RegistroUsuario','UserController@getRegister');
