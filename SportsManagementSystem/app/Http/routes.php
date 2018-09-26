@@ -26,6 +26,7 @@ Route::get('admin/search', 'adminController@search');
 Route::post('admin/search', 'adminController@getSearch');
 Route::get('/admin/lists/{id}', 'adminController@show');
 Route::post('/admin/lists/{id}', 'adminController@edit');
+Route::get('/admin/controlPanel', 'adminController@control');
 //-----------------------------------------------------------------------------------//
 Route::get('/user','UserController@index');
 Route::get('/user/RegistroUsuario','UserController@getRegister');

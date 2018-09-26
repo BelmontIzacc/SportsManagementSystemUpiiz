@@ -12,7 +12,7 @@ class carrera extends Model
     
     public $timestamps = false;
     
-    public function informacion(){
-        return $this->hasMany(informacion::class, 'carrera_id');
-    }
+	public function informacion(){
+	        return $this->hasMany(informacion::class, 'carrera_id');
+	}
 }

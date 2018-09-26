@@ -280,31 +280,22 @@ class AdminController extends Controller
      */
     public function edit(Request $request, $id)
     {
-        //abort(500);
-
-        //return ':v';
-        $student = \App\student::find($id);
-        $student->update([
-            'documentacion'=>$request->documentacion,
-            'estatus_id'=>$request->estatus,
-            'observaciones'=>$request->observaciones,
-        ]);
-
-        $medicalData = $student->user->medicalData;
-        $medicalData->update([
-            'seguroVida'=>$request->seguro,
-        ]);
-
-        if($request->ajax()){
-            $user = $student->user;
-            return response()->json([
-                "message" => "Se ha actualizado a el usuario:",
-                "userName" => $user->__tostring(),
-                "Id" => $user->identificacion,
-                "carrer" => $student->carrer->nombre,
-            ]);
-        }
 
         return back();
+    }
+
+    public function control()
+    {
+        $index=4;
+        $usuarios = \App\User::all();
+        $taller = \App\taller::all();
+        $carrer = \App\carrera::all();
+
+        return view('Admin.control',[
+            'index' => $index,
+            'usuarios'=>$usuarios,
+            'carrer'=>$carrer,
+            'taller'=>$taller,
+        ]);
     }
 }

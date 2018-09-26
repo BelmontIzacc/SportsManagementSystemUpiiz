@@ -107,7 +107,7 @@
 	            </a>
 	        </li>
 	        <li class="black">
-	            <a href="#">
+	            <a href="{{asset('/admin/controlPanel')}}">
 	                <i class="font-icon font-icon-users"></i>
 	                <span class="lbl">Panel de control</span>
 	            </a>
