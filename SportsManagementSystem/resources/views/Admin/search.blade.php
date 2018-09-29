@@ -55,20 +55,35 @@ Busqueda de registro
                                     
                                 </div>
                                 <div class="tbl-cell">
+                                    @unless($u->informacion == null)
                                     <p>
                                         <a href="{{asset('/admin/lists')}}/{{$u->informacion->id}}" class="semibold">{{$u}}</a>
                                     </p>
+                                    @endunless
                                     <p>
-                                        Correo: {{$u->email}}
+                                        @unless($u->email == null)
+                                            Correo: {{$u->email}}
+                                        @endunless
                                     </p>
                                     <p>
                                         Boleta: {{$u->boleta}}
                                     </p>
                                     <p>
-                                        Institucion: {{$u->informacion->institucion->nombre}}
+                                        @unless($u->informacion == null)
+                                            Institucion: {{$u->informacion->institucion->nombre}}
+                                        @endunless
                                     </p>
                                     <p>
-                                        Carrera: {{$u->informacion->carrera->nombre}}
+                                        @unless($u->informacion == null)
+                                            Carrera: {{$u->informacion->carrera->nombre}}
+                                        @endunless
+                                    </p>
+                                    <p>
+                                        @if($u->completado == 1) 
+                                            Status: Completado
+                                        @else
+                                            Status: Incompleto
+                                        @endif
                                     </p>
                                 </div>
                             </div>

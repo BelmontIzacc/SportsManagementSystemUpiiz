@@ -20,6 +20,7 @@ class datosTallerSeeder extends Seeder
                     'status' => ''.rand (1 , 4),
                     'lugar' => 'upiiz',
                     'dias' => 'martes,miercoles',
+                    'descripcion' => 'Trae tus cosas genericas para este generico curso',
                 ]);
             }
     }

@@ -29,6 +29,7 @@ class informacion extends Model
         'numInterior',
         'colonia',
         'codigoPostal',
+        'telefono',
     ];
 
     public function usuario(){
@@ -37,7 +38,7 @@ class informacion extends Model
 	public function institucion(){
         return $this->belongsTo(institucion::class, 'institucion_id');
     }
-    public function carrer(){
-        return $this->belongsTo(carrer::class, 'carrera_id');
+    public function carrera(){
+        return $this->belongsTo(carrera::class, 'carrera_id');
     }
 }

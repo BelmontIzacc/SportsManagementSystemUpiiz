@@ -30,7 +30,7 @@
 <link rel="stylesheet" href="{{asset('/Template/css/lib/clockpicker/bootstrap-clockpicker.min.css')}}"/>
 
 <style>
-#nombreTaller{
+#nombreTaller,#descri{
   text-transform: capitalize;
 } 
 </style>
@@ -75,7 +75,7 @@
                     <div class="{{$classSizeForms}}">
                         <fieldset class="form-group">
                             <label class="form-label"></label>
-        				    {!!Form::select('tipo',$tilista, 0, ['class'=>'select2 form-control', 'placeholder'=>'Selecciona un tipo'])!!}		
+        				            {!!Form::select('tipo',$tilista, 0, ['class'=>'select2 form-control', 'placeholder'=>'Selecciona un tipo'])!!}		
         			     </fieldset>
                     </div>
                     <div class="{{$classSizeForms}}">
@@ -87,6 +87,11 @@
                     <div class="{{$classSizeForms}}">
                         <fieldset class="form-group">
                             {!!Form::text('lugar', null, ['class'=>'form-control', 'placeholder'=>'Lugar', 'id'=>'lugar'])!!}
+                        </fieldset>
+                    </div>
+                    <div class="{{$classSizeForms}}">
+                        <fieldset class="form-group">
+                            {!!Form::textArea('descri', null, ['class'=>'form-control','maxlength'=>'255','rows'=>'8','cols'=>31,'placeholder'=>'Descripcion del taller', 'id'=>'descri'])!!}
                         </fieldset>
                     </div>
                     <div class="{{$classSizeForms}}">
@@ -140,7 +145,7 @@
                                 <div>
                                       <fieldset class="form-group">
                                           <label class="form-label"></br></label>
-                                            {!!Form::select('coordinador',$coord, -1, ['class'=>'select2 form-control', 'placeholder'=>'Selecciona un taller'])!!}
+                                            {!!Form::select('coordinador',$coord, -1, ['class'=>'select2 form-control', 'placeholder'=>'Selecciona un usuario'])!!}
                                       </fieldset>
                                 </div>
                               </div>
@@ -168,18 +173,22 @@
 @stop
 @section('scripts')
 
+    <script src="{{asset('/Template/js/lib/hide-show-password/bootstrap-show-password.min.js')}}"></script>
+    <script src="{{asset('/Template/js/lib/hide-show-password/bootstrap-show-password-init.js')}}"></script>
+
+    <script src="{{asset('/Template/js/custom/completeProfileToggle.js')}}"></script>
+    <script src="{{asset('/Template/js/plugins.js')}}"></script>
+
+    <script src="{{asset('/Template/js/lib/bootstrap-sweetalert/sweetalert.min.js')}}"></script>
+    <script src="{{asset('/Template/js/custom/desabilitar.js')}}"></script>
+
     <script src="{{asset('/Template/js/lib/bootstrap-select/bootstrap-select.min.js')}}"></script>
     <script src="{{asset('/Template/js/lib/select2/select2.full.min.js')}}"></script>
-    <script src="{{asset('/Template/js/custom/completeProfileToggle.js')}}"></script>
 
     <script src="{{asset('/Template/js/lib/clockpicker/bootstrap-clockpicker.min.js')}}"></script>
     <script src="{{asset('/Template/js/lib/clockpicker/bootstrap-clockpicker-init.js')}}"></script>
     <script src="{{asset('/Template/js/lib/daterangepicker/daterangepicker.js')}}"></script>
-
-    <script src="{{asset('/Template/js/lib/input-mask/jquery.mask.min.js')}}"></script>
-
-    <script src="{{asset('/Template/js/lib/hide-show-password/bootstrap-show-password.min.js')}}"></script>
-    <script src="{{asset('/Template/js/lib/hide-show-password/bootstrap-show-password-init.js')}}"></script>
+  
     <script>
     $(document).ready(function() {
         $('#telefono').mask('(000) 000-0000', {placeholder: "Teléfono personal"});

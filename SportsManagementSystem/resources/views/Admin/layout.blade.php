@@ -1,7 +1,5 @@
 <!DOCTYPE html>
 <html>
-<html class="" style="overflow: auto;">
-
 <head lang="en">
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
@@ -111,26 +109,7 @@
 	                <i class="font-icon font-icon-users"></i>
 	                <span class="lbl">Panel de control</span>
 	            </a>
-	        </li>
-            
-            
-            
-	        <li>
-                <div align="right">
-                    <div class="site-header-search-container">
-                        <form class="site-header-search closed">
-                            <input type="text" placeholder="Search">
-                            <button type="submit">
-                                <span class="font-icon-search"></span>
-                            </button>
-                            <div class="overlay"></div>
-                        </form>
-                   </div>
-                </div>
-            </li>
-            
-            
-            
+	        </li>           
 	    </ul>
 	</nav><!--.side-menu-->
 
@@ -147,7 +126,6 @@
 
 	<script src="{{asset('/Template/js/lib/tether/tether.min.js')}}"></script>
 	<script src="{{asset('/Template/js/lib/jquery/jquery.min.js')}}"></script>
-	<script src="{{asset('/Template/js/plugins.js')}}"></script>
 	<script src="{{asset('/Template/js/lib/bootstrap/bootstrap.min.js')}}"></script>
     <script src="{{asset('/Template/js/app.js')}}"></script>
 

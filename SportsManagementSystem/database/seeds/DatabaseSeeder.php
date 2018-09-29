@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
         $this->call(datosTallerSeeder::class);
         $this->call(datosSeeder::class);
         $this->call(asistenciaSeeder::class);
+        $this->call(inscribirSeeder::class);
 
         Model::reguard();
     }

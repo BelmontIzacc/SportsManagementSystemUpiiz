@@ -1,7 +1,7 @@
 @extends('Admin.layout')
 <?php
-  $classSizeForms = "col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2";
-  $classSize = "col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1";
+  $classSizeForms = "col-lg-6 col-lg-offset-3 col-md-12 col-md-offset-3 col-sm-4 col-sm-offset-3 col-xs-8 col-xs-offset-2";
+  $classSize = "col-lg-6 col-lg-offset-3 col-md-12 col-md-offset-2 col-sm-8 col-sm-offset-1";
 
   $personales = '
     <div class="icon">
@@ -19,11 +19,20 @@
     <div class="caption hidden-sm-down">Usuario</div>
   ';
 
+  $extra = '
+    <div class="icon">
+        <i class="font-icon font-icon-eye"></i>
+    </div>
+    <div class="caption hidden-md-up">-3-</div>
+    <div class="caption hidden-sm-down">Escolar/Localizacion</div>
+  ';
+
+
   $taller = '
     <div class="icon">
         <i class="font-icon font-icon-fire"></i>
     </div>
-    <div class="caption hidden-md-up">-3-</div>
+    <div class="caption hidden-md-up">-4-</div>
     <div class="caption hidden-sm-down">Taller</div>
   ';
 
@@ -50,7 +59,7 @@
 <link rel="stylesheet" href="{{asset('/Template/css/lib/clockpicker/bootstrap-clockpicker.min.css')}}"/>
 
 <style>
-#nombre,#apellidoPaterno,#apellidoMaterno,#nombreTaller{
+#nombre,#apellidoPaterno,#apellidoMaterno,#nombreTaller,#col,#cal{
   text-transform: capitalize;
 } 
 </style>
@@ -79,12 +88,15 @@
                             {!!$usuario!!}
                         </li>
                         <li>
+                            {!!$extra!!}
+                        </li>
+                        <li>
                             {!!$taller!!}
                         </li>
                     </ul>
                 </div>
 
-                <h5 class="m-t-lg with-border">Llenado de información personal</h5>
+                <h5 class="m-t-lg with-border">Llenado de información Personal</h5>
                 <div class="row">
                   <div class="{{$classSizeForms}}">
                     <fieldset class="form-group">
@@ -121,7 +133,7 @@
                   </div>
                   <div class="{{$classSizeForms}}">
                     <fieldset class="form-group">
-                      
+                {!!Form::number('edad', null, ['class'=>'form-control', 'placeholder'=>'Edad', 'id'=>'edad'])!!}       
         						</fieldset>
                   </div>
                   <div class="{{$classSizeForms}}">
@@ -155,6 +167,9 @@
                       <li class="active">
                           {!!$usuario!!}
                       </li>
+                        <li>
+                            {!!$extra!!}
+                        </li>
                       <li>
                           {!!$taller!!}
                       </li>
@@ -213,12 +228,164 @@
             <section class="box-typical">
                 <div class="steps-icon-progress" style="padding:30px">
                     <ul>
+                      <li class="active">
+                          {!!$personales!!}
+                      </li>
+                      <li class="active">
+                          {!!$usuario!!}
+                      </li>
+                      <li class="active">
+                          {!!$extra!!}
+                      </li>      
+                      <li>
+                          {!!$taller!!}
+                      </li>
+                    </ul>
+                </div>
+
+                <h5 class="m-t-lg with-border">Llenado de información Escolar</h5>
+                <div class="row">
+                  <div class="{{$classSizeForms}}">
+                    <fieldset class="form-group">
+                    <label class="form-label">Plantel</label>
+                      {!!Form::select('plantel',$inst, 0, ['class'=>'select2 form-control', 'placeholder'=>'Selecciona un Plantel','id'=>'plantel'])!!}
+                    </fieldset>
+                  </div>
+                  <div class="{{$classSizeForms}}">
+                    <fieldset class="form-group">
+                    <label class="form-label">Carrera/Bachiller/Cargo</label>
+                      {!!Form::select('carrera',$carrera, 0, ['class'=>'select2 form-control', 'placeholder'=>'Selecciona una Carrera/Bachiller','id'=>'carrera'])!!}
+                    </fieldset>
+                  </div>
+                  <div class="{{$classSizeForms}}">
+                    <fieldset class="form-group">
+                      <label class="form-label">Semestre</label>
+                        {!!Form::number('semestre',0, ['class'=>'form-control', 'placeholder'=>'Semestre actual', 'id'=>'semestre'])!!}  
+                    </fieldset>
+                  </div>
+                  <div class="{{$classSizeForms}}">
+                    <fieldset class="form-group">
+                      <label class="form-label">Grupo</label>
+                        {!!Form::text('grupo','Ejemplo: 3cm2', ['class'=>'form-control', 'placeholder'=>'Grupo actual', 'id'=>'grupo'])!!}  
+                    </fieldset>
+                  </div>
+                  <div class="{{$classSizeForms}}">
+                    <fieldset class="form-group">
+
+                    </fieldset>
+                  </div>
+                  <div class="{{$classSizeForms}}">
+                    <fieldset class="form-group">
+
+                    </fieldset>
+                  </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                        <button type="button" class="btn btn-rounded btn-grey btn-inline" onclick="toggle2();">← Atrás</button>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                        <button type="button" class="btn btn-rounded btn-inline" onclick="toggle1();">
+                            Siguiente →
+                        </button>
+                    </div>
+                </div>
+
+            </section><!--.steps-icon-block-->
+        </div>
+    </div><!--.row-->
+
+<div class="row details4 text-center" style="display:none">
+        <div class="{{$classSize}}">
+          <a href="{{asset('/admin')}}"><button type="button" class="close"><span aria-hidden="true">&nbsp;&times;&nbsp;</span></button></a>
+            <section class="box-typical">
+                <div class="steps-icon-progress" style="padding:30px">
+                    <ul>
+                      <li class="active">
+                          {!!$personales!!}
+                      </li>
+                      <li class="active">
+                          {!!$usuario!!}
+                      </li>
+                      <li class="active">
+                          {!!$extra!!}
+                      </li>         
+                      <li>
+                          {!!$taller!!}
+                      </li>
+                    </ul>
+                </div>
+
+                <h5 class="m-t-lg with-border">Llenado de información de localizacion</h5>
+                <div class="row">
+                  <div class="{{$classSizeForms}}">
+                    <fieldset class="form-group">
+                      <label class="form-label">Calle</label>
+                        {!!Form::text('cal', null, ['class'=>'form-control', 'placeholder'=>'Ingresa la calle', 'id'=>'cal'])!!}  
+                    </fieldset>
+                  </div>
+                  <div class="{{$classSizeForms}}">
+                    <fieldset class="form-group">
+                      <label class="form-label">Colonia</label>
+                        {!!Form::text('col', null, ['class'=>'form-control', 'placeholder'=>'Ingresa la colonia', 'id'=>'col'])!!}  
+                    </fieldset>
+                  </div>
+                  <div class="{{$classSizeForms}}">
+                    <fieldset class="form-group">
+                      <label class="form-label">Numeracion</label>
+                      {!!Form::text('numext', 0, ['class'=>'form-control', 'placeholder'=>'Ingresa el numero exterior', 'id'=>'numext'])!!}
+                      {!!Form::text('numin', 0, ['class'=>'form-control', 'placeholder'=>'Ingresa el numero interior', 'id'=>'numint'])!!}  
+                    </fieldset>
+                  </div>
+                  <div class="{{$classSizeForms}}">
+                    <fieldset class="form-group">
+                      <label class="form-label">Codigo Postal</label>
+                        {!!Form::text('postal', null, ['class'=>'form-control', 'placeholder'=>'Ingresa Codigo Postal', 'id'=>'postal'])!!}  
+                    </fieldset>
+                  </div>
+                  <div class="{{$classSizeForms}}">
+                    <fieldset class="form-group">
+
+                    </fieldset>
+                  </div>
+                  <div class="{{$classSizeForms}}">
+                    <fieldset class="form-group">
+
+                    </fieldset>
+                  </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                        <button type="button" class="btn btn-rounded btn-grey btn-inline" onclick="toggle2();">← Atrás</button>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                        <button type="button" class="btn btn-rounded btn-inline" onclick="toggle1();">
+                            Siguiente →
+                        </button>
+                    </div>
+                </div>
+
+            </section><!--.steps-icon-block-->
+        </div>
+    </div><!--.row-->
+
+    <div class="row details5 text-center" style="display:none">
+        <div class="{{$classSize}}">
+          <a href="{{asset('/admin')}}"><button type="button" class="close"><span aria-hidden="true">&nbsp;&times;&nbsp;</span></button></a>
+            <section class="box-typical">
+                <div class="steps-icon-progress" style="padding:30px">
+                    <ul>
                         <li class="active">
                             {!!$personales!!}
                         </li>
                         <li class="active">
                             {!!$usuario!!}
                         </li>
+                        <li class="active">
+                            {!!$extra!!}
+                        </li>  
                         <li class="active">
                             {!!$taller!!}
                         </li>
@@ -352,18 +519,22 @@ Registro
 @stop
 @section('scripts')
 
+    <script src="{{asset('/Template/js/lib/hide-show-password/bootstrap-show-password.min.js')}}"></script>
+    <script src="{{asset('/Template/js/lib/hide-show-password/bootstrap-show-password-init.js')}}"></script>
+
+    <script src="{{asset('/Template/js/custom/completeProfileToggle.js')}}"></script>
+    <script src="{{asset('/Template/js/plugins.js')}}"></script>
+
+    <script src="{{asset('/Template/js/lib/bootstrap-sweetalert/sweetalert.min.js')}}"></script>
+    <script src="{{asset('/Template/js/custom/desabilitar.js')}}"></script>
+
     <script src="{{asset('/Template/js/lib/bootstrap-select/bootstrap-select.min.js')}}"></script>
     <script src="{{asset('/Template/js/lib/select2/select2.full.min.js')}}"></script>
-    <script src="{{asset('/Template/js/custom/completeProfileToggle.js')}}"></script>
 
     <script src="{{asset('/Template/js/lib/clockpicker/bootstrap-clockpicker.min.js')}}"></script>
     <script src="{{asset('/Template/js/lib/clockpicker/bootstrap-clockpicker-init.js')}}"></script>
     <script src="{{asset('/Template/js/lib/daterangepicker/daterangepicker.js')}}"></script>
-
-    <script src="{{asset('/Template/js/lib/input-mask/jquery.mask.min.js')}}"></script>
-
-    <script src="{{asset('/Template/js/lib/hide-show-password/bootstrap-show-password.min.js')}}"></script>
-    <script src="{{asset('/Template/js/lib/hide-show-password/bootstrap-show-password-init.js')}}"></script>
+    
     <script>
     $(document).ready(function() {
         $('#telefono').mask('(000) 000-0000', {placeholder: "Teléfono personal"});

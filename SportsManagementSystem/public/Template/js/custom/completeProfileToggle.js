@@ -6,7 +6,7 @@ function toggle1(){
     $('.details'+ indexHidden).slideToggle(function(){$('#more').html($('.details' + indexHidden).is(':visible')?'Oculto':'Siguiente →');});
     index++;
     indexHidden++;
-    if(index > 3){
+    if(index > 5){
         index = 1;
         indexHidden = 2;
     }

@@ -43,10 +43,14 @@ class AdminController extends Controller
         $index=4;
         $tlista = \App\taller::lists('nombre','id');
         $tilista = \App\tipo::lists('nombre','id');
+        $inst = \App\institucion::lists('nombre','id');
+        $carrera = \App\carrera::lists('nombre','id');
         return view('Admin.registro',[
-        'index' => $index,
-        'tlista' => $tlista,
-        'tilista' => $tilista,
+            'index' => $index,
+            'tlista' => $tlista,
+            'tilista' => $tilista,
+            'inst' => $inst,
+            'carrera'=>$carrera,
         ]);
     }
     
@@ -58,9 +62,22 @@ class AdminController extends Controller
             'sexo' => 'required|min:1',
             'telefono' => 'required',
             'email' => 'required',
+            'edad' => 'required',
+
             'boleta' => 'required|unique:usuario,boleta',
             'password' => 'required',
             'password2' => 'required',
+
+            'plantel' => 'required',
+            'carrera' => 'required',
+            'semestre' => 'required',
+
+            'col' => 'required',
+            'cal' => 'required',
+            'numext' => 'required',
+            'numin' => 'required',
+            'postal' => 'required',
+
             'taller' => 'required',
         ]);
 
@@ -73,6 +90,37 @@ class AdminController extends Controller
             'password' => bcrypt($request->password),
             'tipo' => 3,
             'completado' => 1,
+        ]);
+
+        $plantel = $request->plantel;
+        if($plantel==0){
+            $plantel = null;
+        }
+
+        $semestre = $request->semestre;
+        if($semestre==0){
+            $semestre = null;
+        }
+
+        $grupo = $request->grupo;
+        if($grupo=='Ejemplo: 3cm2'){
+            $grupo = null;
+        }
+
+        \App\informacion::create([
+            'usuario_id' => $user->id,
+            'institucion_id' => $plantel,
+            'semestre' => $semestre,
+            'carrera_id' => $request->carrera,
+            'calle' => $request->cal,
+            'numExterior' => $request->numext,
+            'numInterior' => $request->numin,
+            'colonia' => $request->col,
+            'codigoPostal' => $request->postal,
+            'sexo' => $request->sexo,
+            'grupo' => $grupo,
+            'edad' => $request->edad,
+            'telefono' => $request->telefono,
         ]);
 
         $opc_taller = $request->taller;
@@ -155,10 +203,15 @@ class AdminController extends Controller
         $index=4;
         $tilista = \App\tipo::lists('nombre','id');
         $coord = \App\User::where('tipo', 3)->lists('boleta','id');
+        $admin = \App\User::where('tipo', 1)->lists('boleta','id');
+        $Pcoord = \App\User::where('permisos', 1)->lists('boleta','id');
+
         return view('Admin.studio',[
             'index' => $index,
             'tilista' => $tilista,
             'coord' => $coord,
+            'admin' => $admin,
+            'pcoord' => $Pcoord,
         ]);
     }
 
@@ -265,7 +318,7 @@ class AdminController extends Controller
 
     public function show($id)
     {
-        $index = 0;
+        $index = 1;
 
         $student = \App\informacion::find($id);
 

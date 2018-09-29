@@ -27,6 +27,8 @@ class StudioMigration extends Migration
             $table->String('lugar',70);
             $table->String('dias',70);
 
+            $table->String('descripcion')->nullable();
+
             $table->integer('tipo_id')->unsigned()->index()->nullable();
             $table->foreign('tipo_id')->references('id')->on('tipo')->onDelete('set null');
 

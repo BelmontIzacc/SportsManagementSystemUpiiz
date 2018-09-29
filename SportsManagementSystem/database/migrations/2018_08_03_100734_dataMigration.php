@@ -25,15 +25,16 @@ class DataMigration extends Migration
             $table->foreign('carrera_id')->references('id')->on('carrera')->onDelete('set null');
 
             $table->integer('edad');
-            $table->string('grupo',5);
+            $table->string('grupo',5)->nullable();
             $table->string('sexo',2);
-            $table->integer('semestre');
+            $table->integer('semestre')->nullable();
             $table->string('calle', 50)->nullable();
             $table->string('numExterior', 8)->nullable();
             $table->string('numInterior', 8)->default(0);
             $table->string('colonia', 50)->nullable();
             $table->integer('codigoPostal')->nullable();    
-                
+            $table->string('telefono',20)->nullable();    
+
             $table->timestamps();
             
         });

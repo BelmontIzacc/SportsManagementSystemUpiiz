@@ -26,8 +26,8 @@ class datosSeeder extends Seeder
                     'codigoPostal' => rand (0 , 9).rand (0 , 9).rand (0 , 99).rand (0 , 99),
                     'sexo' => ''.rand (1 , 2),
                     'grupo' => '2cm3',
-                    'semestre' => rand (1 , 9),
                     'edad' => rand (18 , 25),
+                    'telefono' => rand (0 , 9).rand (0 , 9).rand (0 , 99).rand (0 , 99),
                 ]);
             }
     }
