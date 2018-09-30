@@ -312,7 +312,21 @@ class AdminController extends Controller
                     session()->flash('type', 'danger');
                 }
                 return view('Admin.search', ['index'=>$index, 'user'=>$user]);
-            break;
+                break;
+            case 2:
+                $this->validate($request, [
+                    'busqueda' => 'required'
+                ]);
+                
+                $taller = \App\taller::where('nombre', $request->busqueda)->get();
+                error_log($taller);
+                
+                if(count($taller) == 0) {
+                    session()->flash('message', 'No se encontro ningun registro con el nombre: '.$request->busqueda);
+                    session()->flash('type', 'danger');
+                }
+                return view('Admin.search', ['index'=>$index, 'taller'=>$taller]);
+                break;
         }
     }
 

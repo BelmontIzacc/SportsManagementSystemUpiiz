@@ -26,6 +26,7 @@ Busqueda de registro
                     </button>
                     <div class="dropdown-menu dropdown-menu-right">
                         <a class="dropdown-item" onclick="identification(1);">Boleta especifica</a>
+                        <a class="dropdown-item" onclick="identification(2);">Taller especifico</a>
                     </div>
                 </div>
             </div>
@@ -92,6 +93,49 @@ Busqueda de registro
                 @endforeach
                 </div>
             </section><!--.widget-tasks-->
+        </div>
+    </div>
+@endif
+
+@if(isset($taller))
+    <div class="container">
+        <div class="row">
+            <section class="widget widget-activity">
+                <header class="widget-header">
+                    Resultados
+                    <span class="label label-pill lavel-primary">{{count($taller)}}</span>
+                </header>
+                <div>
+                @foreach($taller as $t)
+                     <div class="widget-activity-item">
+                        <div class="user-card-row">
+                            <div class="tbl-row">
+                                <div class="tbl-cell tbl-cell-photo">
+                                
+                                </div>
+                                <div class="tbl-cell">
+                                    <p>
+                                        {{$t->nombre}}
+                                    </p>
+                                    <p>
+                                        Coordinador: {{$t->coordinador}}
+                                    </p>
+                                    <p>
+                                        Duración: {{$t->duracion}}
+                                    </p>
+                                    <p>
+                                        Lugar: {{$t->lugar}}
+                                    </p>
+                                    <p>
+                                        Estatus: {{$t->status}}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+                </div>
+            </section>
         </div>
     </div>
 @endif
