@@ -126,7 +126,7 @@ Busqueda de registro
                                         @endunless
                                     </p>
                                     <p>
-                                        @unless($t->usuario->nombre == null)
+                                        @unless($t->usuario_id == null)
                                             Coordinador: {{$t->usuario}}
                                         @endunless
                                     </p>
