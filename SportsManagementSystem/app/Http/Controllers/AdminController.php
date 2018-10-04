@@ -170,15 +170,15 @@ class AdminController extends Controller
         $dias=" ";
         foreach($request->dia as $d){
             //$dias = $dias.' , '.$d;
-            if($d=='1'){
+            if($d=='0'){
                 $dias='Lunes';
-            }else if ($d=='2') {
+            }else if ($d=='1') {
                 $dias=$dias.',Martes';
-            }else if ($d=='3') {
+            }else if ($d=='2') {
                 $dias=$dias.',Miercoles';
-            }else if ($d=='4') {
+            }else if ($d=='3') {
                 $dias=$dias.',Jueves';
-            }else if ($d=='5') {
+            }else if ($d=='4') {
                 $dias=$dias.',Viernes';
             }
         }
@@ -246,15 +246,15 @@ class AdminController extends Controller
         $dias=" ";
         foreach($request->dia as $d){
             //$dias = $dias.' , '.$d;
-            if($d=='1'){
+            if($d=='0'){
                 $dias='Lunes';
-            }else if ($d=='2') {
+            }else if ($d=='1') {
                 $dias=$dias.',Martes';
-            }else if ($d=='3') {
+            }else if ($d=='2') {
                 $dias=$dias.',Miercoles';
-            }else if ($d=='4') {
+            }else if ($d=='3') {
                 $dias=$dias.',Jueves';
-            }else if ($d=='5') {
+            }else if ($d=='4') {
                 $dias=$dias.',Viernes';
             }
         }
@@ -308,7 +308,7 @@ class AdminController extends Controller
                 ]);
 
                 $user = \App\User::where('boleta', $request->busqueda)->get();
-                error_log($user);
+                //error_log($user);
                 // $id_user = $user->nombre;
                 //$informacion = \App\informacion::where('usuario_id',$id_user)->get();
 
@@ -398,11 +398,20 @@ class AdminController extends Controller
 
         $student = \App\informacion::find($request->idVal2);
         $user = \App\User::find($student->usuario->id);
-        $taller = \App\taller::where('usuario_id',$user->id)->get();
-        error_log($taller);
-        //$user->delete();
+        
+        if($user->taller !=null){
 
-       /* if($request->ajax()){
+            $idTaller = $user->taller->id;
+            $taller = \App\taller::find($idTaller);
+            $taller->update([
+                'usuario_id' => null,
+            ]); 
+            
+        }
+
+        $user->delete();
+
+        if($request->ajax()){
             return response()->json([
                 "message" => "Se ha eliminado a el usuario:",
                 "userName" => $user->__tostring(),
@@ -416,7 +425,7 @@ class AdminController extends Controller
         $user->delete();
 
         session()->flash('type', 'danger');
-*/
+
         return redirect('/admin/search');
     }
 

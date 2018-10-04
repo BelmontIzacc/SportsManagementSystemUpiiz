@@ -25,7 +25,7 @@ Busqueda de registro
                         Buscar
                     </button>
                     <div class="dropdown-menu dropdown-menu-right">
-                        <a class="dropdown-item" onclick="identification(1);">Boleta del Coordinador</a>
+                        <a class="dropdown-item" onclick="identification(1);">Boleta especifica</a>
                         <div role="separator" class="dropdown-divider"></div>
                         <a class="dropdown-item" onclick="identification(2);">Nombre del Taller</a>
                     </div>
@@ -62,6 +62,17 @@ Busqueda de registro
                                         <a href="{{asset('/admin/lists')}}/{{$u->informacion->id}}" class="semibold">{{$u}}</a>
                                     </p>
                                     @endunless
+                                    <p>
+                                        @unless($u->tipo == null)
+                                            @if($u->tipo == 1) 
+                                                Cargo: Administrador
+                                            @elseif($u->tipo == 2) 
+                                                Cargo: Usuario
+                                            @elseif($u->tipo == 3) 
+                                                Cargo: Coordinador
+                                            @endif
+                                        @endunless
+                                    </p>
                                     <p>
                                         @unless($u->email == null)
                                             Correo: {{$u->email}}

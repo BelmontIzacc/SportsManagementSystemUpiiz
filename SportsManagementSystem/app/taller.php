@@ -38,6 +38,6 @@ class taller extends Model
         return $this->belongsTo(tipo::class, 'tipo_id');
     }
     public function asistencia(){
-        return $this->belongsTo(taller::class, 'taller_id');
+        return $this->belongsTo(asistencia::class, 'taller_id');
     }
 }

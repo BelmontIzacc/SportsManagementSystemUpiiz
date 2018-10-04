@@ -59,8 +59,8 @@ class User extends Model implements AuthenticatableContract,
     public function informacion(){
         return $this->hasOne(informacion::class,'usuario_id');
     }
-    public function tallerdatos(){
-        return $this->hasOne(tallerdatos::class,'usuario_id');
+    public function taller(){
+        return $this->hasOne(taller::class,'usuario_id');
     }
     public function completado(){
         return $this->getOriginal('completado');
