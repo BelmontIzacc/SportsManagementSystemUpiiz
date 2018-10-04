@@ -48,6 +48,12 @@
         'Jueves',
         'Viernes',
     );
+  $status = array(
+        'Inactivo',
+        'Activo',
+        'Suspendido temporalmente',
+        'Sin Coordinador',
+    );
 ?>
 
 @section('title')
@@ -123,7 +129,7 @@
                 <div class="row">
                   <div class="{{$classSizeForms}}">
                     <fieldset class="form-group">
-        				{!!Form::text('telefono', null, ['class'=>'form-control', 'id'=>'telefono'])!!}
+        				{!!Form::text('telefono', null, ['class'=>'form-control', 'id'=>'telefono','placeholder'=>'Teléfono personal'])!!}
         						</fieldset>
                   </div>
                   <div class="{{$classSizeForms}}">
@@ -266,7 +272,7 @@
                   <div class="{{$classSizeForms}}">
                     <fieldset class="form-group">
                       <label class="form-label">Grupo</label>
-                        {!!Form::text('grupo','Ejemplo: 3cm2', ['class'=>'form-control', 'placeholder'=>'Grupo actual', 'id'=>'grupo'])!!}  
+                        {!!Form::text('grupo',' ', ['class'=>'form-control', 'placeholder'=>'Grupo actual', 'id'=>'grupo'])!!}  
                     </fieldset>
                   </div>
                   <div class="{{$classSizeForms}}">
@@ -455,7 +461,11 @@
                                       {!!Form::text('lugar', null, ['class'=>'form-control', 'placeholder'=>'Lugar', 'id'=>'lugar'])!!}
                                   </fieldset>
                               </div>
-
+                              <div>
+                                  <fieldset class="form-group">
+                                      {!!Form::textArea('descri', null, ['class'=>'form-control','maxlength'=>'255','rows'=>'8','cols'=>31,'placeholder'=>'Descripcion del taller', 'id'=>'descri'])!!}
+                                  </fieldset>
+                              </div>
                                 <div>
                                     <fieldset class="form-group">
                                       <label class="form-label"></label>
@@ -486,6 +496,13 @@
                                         </div>
                                   </fieldset>
                                 </div>
+
+                                  <div>
+                                    <fieldset class="form-group">
+                                      <label class="form-label">Estatus</label>
+                                      {!!Form::select('status',$status, -1, ['class'=>'bootstrap-select bootstrap-select-arrow form-control','id'=>'status','placeholder'=>'Seleccionar'])!!}   
+                                    </fieldset>
+                                  </div>
 
                               </div>
                               <!--Bloque Oculto-->

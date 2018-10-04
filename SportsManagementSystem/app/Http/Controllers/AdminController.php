@@ -41,7 +41,8 @@ class AdminController extends Controller
     public function registerCoord()
     {
         $index=4;
-        $tlista = \App\taller::lists('nombre','id');
+        //$tlista = \App\taller::where('usuario_id','<',1)->lists('nombre','id');
+        $tlista = \App\taller::whereNull('usuario_id')->lists('nombre','id'); //Regresa talleres sin coordinador
         $tilista = \App\tipo::lists('nombre','id');
         $inst = \App\institucion::lists('nombre','id');
         $carrera = \App\carrera::lists('nombre','id');
@@ -103,7 +104,7 @@ class AdminController extends Controller
         }
 
         $grupo = $request->grupo;
-        if($grupo=='Ejemplo: 3cm2'){
+        if($grupo==' ' || $grupo==''){
             $grupo = null;
         }
 
@@ -148,7 +149,9 @@ class AdminController extends Controller
                 'duracion' => 'required',
                 'dia' => 'required',
                 'lugar' => 'required',
+                'descri'=>'required',
                 'tilista' => 'required',
+                'status'=>'required',
                 'Date1'=>'required',
                 'Date2'=>'required',
             ]);
@@ -186,7 +189,8 @@ class AdminController extends Controller
             'fechaInicio' =>$dateFormated,
             'fechaFin'=>$dateFormated2,
             'duracion' =>$request->duracion,
-            'status' => "Activo",
+            'descripcion'=>$request->descri,
+            'status' => $request->status,
             'lugar' => $request->lugar,
             'dias' => $dias,
             'tipo_id' => $request->tilista,
@@ -260,7 +264,8 @@ class AdminController extends Controller
             'fechaInicio' =>$dateFormated,
             'fechaFin'=>$dateFormated2,
             'duracion' =>$request->duracion,
-            'status' => "Activo",
+            'descripcion'=>$request->descri,
+            'status' => $request->status,
             'lugar' => $request->lugar,
             'dias' => $dias,
             'tipo_id' => $request->tipo,
@@ -318,8 +323,9 @@ class AdminController extends Controller
                     'busqueda' => 'required'
                 ]);
                 
-                $taller = \App\taller::where('nombre', $request->busqueda)->get();
-                error_log($taller);
+                //$taller = \App\taller::where('nombre', $request->busqueda)->get();
+                $taller = \App\taller::where('nombre','like','%'.$request->busqueda.'%')->get();
+                //error_log($taller);
                 
                 if(count($taller) == 0) {
                     session()->flash('message', 'No se encontro ningun registro con el nombre: '.$request->busqueda);
@@ -347,8 +353,78 @@ class AdminController extends Controller
      */
     public function edit(Request $request, $id)
     {
+        $student = \App\informacion::find($id);
+        
+        $permisos = $request->perm;
+        $status = $request->stats;
+        $user = \App\User::find($student->usuario->id);
+
+        switch($permisos){
+            case '1':{
+                    //error_log($user->id);
+                    $user->permisos = 1;
+                break;
+            }
+            case '0':{
+                    //error_log($user->id);
+                    $user->permisos = 0;
+                break;
+            }
+        }
+
+        switch($status){
+            case '1':{
+                    //error_log($user->id);
+                    $user->completado = 1;
+                break;
+            }
+            case '0':{
+                    //error_log($user->id);
+                    $user->completado = 0;
+                break;
+            }
+        }
+        $user->save();
+
+        session()->flash('message', 'Se a actualizado el Usuario '.$user);
+        session()->flash('type', 'success');
 
         return back();
+    }
+    
+    public function destroy(Request $request)
+    {
+        //abort(500);
+
+        $student = \App\informacion::find($request->idVal2);
+        $user = \App\User::find($student->usuario->id);
+        $taller = \App\taller::where('usuario_id',$user->id)->get();
+        error_log($taller);
+        //$user->delete();
+
+       /* if($request->ajax()){
+            return response()->json([
+                "message" => "Se ha eliminado a el usuario:",
+                "userName" => $user->__tostring(),
+                "Id" => $user->boleta,
+                "carrer" => $student->carrera->nombre,
+            ]);
+        }
+
+        session()->flash('message', 'Se eliminó a: '.$user. ' con boleta: '. $user->boleta);
+
+        $user->delete();
+
+        session()->flash('type', 'danger');
+*/
+        return redirect('/admin/search');
+    }
+
+    public function showTaller($id)
+    {
+        $index = 1;
+        $taller = \App\taller::find($id);
+        return view('Admin.taller', ['index'=>$index,'taller'=>$taller]);
     }
 
     public function control()

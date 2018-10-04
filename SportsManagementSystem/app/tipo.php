@@ -11,7 +11,7 @@ class tipo extends Model
 
     protected $fillable = ['nombre'];
 
-    public function tipo(){
+    public function taller(){
         return $this->hasMany(taller::class, 'tipo_id');
     }
 }

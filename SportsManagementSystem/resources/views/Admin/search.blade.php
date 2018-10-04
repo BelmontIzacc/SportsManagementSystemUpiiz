@@ -25,8 +25,9 @@ Busqueda de registro
                         Buscar
                     </button>
                     <div class="dropdown-menu dropdown-menu-right">
-                        <a class="dropdown-item" onclick="identification(1);">Boleta especifica</a>
-                        <a class="dropdown-item" onclick="identification(2);">Taller especifico</a>
+                        <a class="dropdown-item" onclick="identification(1);">Boleta del Coordinador</a>
+                        <div role="separator" class="dropdown-divider"></div>
+                        <a class="dropdown-item" onclick="identification(2);">Nombre del Taller</a>
                     </div>
                 </div>
             </div>
@@ -114,20 +115,39 @@ Busqueda de registro
                                 
                                 </div>
                                 <div class="tbl-cell">
+                                    @unless($t->nombre == null)
                                     <p>
-                                        {{$t->nombre}}
+                                        <a href="{{asset('/admin/lists/taller/')}}/{{$t->id}}" class="semibold">{{$t->nombre}}</a>
+                                    </p>
+                                    @endunless
+                                    <p>
+                                        @unless($t->tipo->nombre == null)
+                                            Tipo: {{$t->tipo->nombre}}
+                                        @endunless
                                     </p>
                                     <p>
-                                        Coordinador: {{$t->coordinador}}
+                                        @unless($t->usuario->nombre == null)
+                                            Coordinador: {{$t->usuario}}
+                                        @endunless
                                     </p>
                                     <p>
-                                        Duración: {{$t->duracion}}
+                                        @unless($t->usuario_id == null)
+                                            <!--Coordinador: {{$t->coordinador}}-->
+                                            Boleta del Coordinador: {{$t->usuario->boleta}}
+                                        @endunless
                                     </p>
                                     <p>
-                                        Lugar: {{$t->lugar}}
-                                    </p>
-                                    <p>
-                                        Estatus: {{$t->status}}
+                                        @unless($t->status == null)
+                                            @if($t->status == 0) 
+                                                Estatus: Inactivo
+                                            @elseif($t->status == 1) 
+                                                Estatus: Activo
+                                            @elseif($t->status == 2) 
+                                                Estatus: Suspendido temporalmente
+                                            @elseif($t->status == 3) 
+                                                Estatus: Sin Coordinador
+                                            @endif
+                                        @endunless
                                     </p>
                                 </div>
                             </div>

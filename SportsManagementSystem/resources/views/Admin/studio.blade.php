@@ -19,6 +19,13 @@
         'Viernes',
     );
 
+    $status = array(
+        'Inactivo',
+        'Activo',
+        'Suspendido temporalmente',
+        'Sin Coordinador',
+    );
+
 ?>
 
 @section('title')
@@ -115,6 +122,13 @@
                                   </span>
                             </div>
                         </fieldset>
+                    </div>
+
+                    <div class="{{$classSizeForms}}">
+                      <fieldset class="form-group">
+                        <label class="form-label">Estatus</label>
+                        {!!Form::select('status',$status, -1, ['class'=>'bootstrap-select bootstrap-select-arrow form-control','id'=>'status','placeholder'=>'Seleccionar'])!!}   
+                      </fieldset>
                     </div>
 
                     <div class="{{$classSizeForms}}">

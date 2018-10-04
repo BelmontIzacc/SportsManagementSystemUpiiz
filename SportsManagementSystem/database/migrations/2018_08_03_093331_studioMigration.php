@@ -15,7 +15,7 @@ class StudioMigration extends Migration
         Schema::create('taller', function (Blueprint $table) {
             $table->increments('id');
 
-            $table->integer('usuario_id')->unsigned()->index()->nullable(true);
+            $table->integer('usuario_id')->unsigned()->index()->nullable();
             $table->foreign('usuario_id')->references('id')->on('usuario')->onDelete('cascade');
             
             $table->String('nombre', 50);
@@ -23,7 +23,7 @@ class StudioMigration extends Migration
             $table->date('fechaInicio')->default('1994-12-09');
             $table->date('fechaFin')->default('2018-03-04');
             $table->String('duracion', 7);
-            $table->String('status', 20);
+            $table->String('status', 40);
             $table->String('lugar',70);
             $table->String('dias',70);
 

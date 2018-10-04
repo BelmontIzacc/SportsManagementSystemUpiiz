@@ -27,18 +27,17 @@
                 </button>
                 <h4 class="modal-title" id="mySmallModalLabel">Edición del perfil</h4>
             </div>
-            {!!Form::open(array('method'=>'post', 'id'=>'userForm'))!!}
+            {!!Form::open(array('method'=>'post', 'id'=>'forms'))!!}
+             
             <div class="modal-body">
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-4 col-lg-offset-1 col-md-5 col-md-offset-1">
                             <div class="checkbox-toggle">
-                                    <input type="checkbox" id="check-toggle-1" name="check-toggle-1"   
+                                    <input type="checkbox" id="check-toggle-1" name="check-toggle-1" onclick="getValue();"  
                                         @if($student->usuario->completado == 1)
-                                            value="false"
                                             checked
                                         @else
-                                            value="true"
                                         @endif
                                     >
                                     <label for="check-toggle-1">Estatus</label>
@@ -46,12 +45,10 @@
                         </div>
                         <div class="col-lg-4 col-lg-offset-1 col-md-5 col-md-offset-1">
                             <div class="checkbox-toggle">
-                                <input type="checkbox" id="check-toggle-2" name="check-toggle-2"   
+                                <input type="checkbox" id="check-toggle-2" name="check-toggle-2" onclick="getValue2();" 
                                     @if($student->usuario->permisos == 1)
-                                        value="false"
                                         checked
                                     @else
-                                        value="true"
                                     @endif
                                 >
                                 <label for="check-toggle-2">Permisos</label>
@@ -63,7 +60,9 @@
             <div class="modal-footer">
 <!--                 <button type="button" class="btn btn-rounded btn-default" data-dismiss="modal">Close</button> -->
                 <div class="text-center">
-                    <button type="submit" class="btn btn-rounded btn-primary" formaction="{{asset('/')}}" id="formi">Guardar cambios</button>
+                    <input type="hidden" id="stats" name="stats"></input>
+                    <input type="hidden" id="perm" name="perm"></input>
+                    <button type="submit" class="btn btn-rounded btn-primary" id="formi">Guardar cambios</button>
                 </div>
             </div>
             {!!Form::close()!!}
@@ -83,7 +82,7 @@
                         </div>
                         <div class="row">
                             <div class="col-lg-6 col-md-6">
-                                <button type="submit" class="btn btn-rounded btn-primary btn-danger" formaction="{{asset('/admin/')}}" id="formButton2">Eliminar</button>
+                                <button type="submit" class="btn btn-rounded btn-primary btn-danger" id="formButton2">Eliminar</button>
                             </div>
                             <div class="col-lg-6 col-md-6">
                                 <button type="button" class="btn btn-rounded btn-primary" onclick="toggle();">Cancelar</button>
@@ -196,6 +195,16 @@
             </fieldset>
         </div>
         @endunless
+        <div class="{{$classSize}}">
+            <fieldset class="form-group">
+                <label class="form-label" for="exampleInputDisabled2">Estatus</label>
+                    @if($student->usuario->permisos == 1) 
+                         <input type="text" readonly class="form-control" value="Permisos de Coordinador">
+                    @else
+                         <input type="text" readonly class="form-control" value="Sin Permisos de Coordinador">
+                    @endif
+            </fieldset>
+        </div>
         @unless($student->usuario->email == null)
     	<div class="{{$classSize}} hidden-lg-up">
             <fieldset class="form-group">
@@ -316,6 +325,21 @@
 @stop
 
 @section('scripts')
+    <script type="text/javascript">
+        function getValue() {
+           var isChecked = document.getElementById('check-toggle-1').checked;
+           var the_value = isChecked ? 1 : 0;
+           //alert('status :'+the_value);
+           document.getElementById('stats').value = the_value;
+        }
+
+        function getValue2() {
+           var isChecked = document.getElementById('check-toggle-2').checked;
+           var the_value = isChecked ? 1 : 0;
+           //alert('permisos :'+the_value);
+           document.getElementById('perm').value = the_value;
+        }
+    </script>
     <script src="{{asset('/Template/js/lib/bootstrap-select/bootstrap-select.min.js')}}"></script>
     <script src="{{asset('/Template/js/lib/select2/select2.full.min.js')}}"></script>
     <script src="{{asset('/Template/js/custom/listsEdits.js')}}"></script>
