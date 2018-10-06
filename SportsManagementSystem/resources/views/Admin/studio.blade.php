@@ -98,7 +98,7 @@
                     </div>
                     <div class="{{$classSizeForms}}">
                         <fieldset class="form-group">
-                            {!!Form::textArea('descri', null, ['class'=>'form-control','maxlength'=>'255','rows'=>'8','cols'=>31,'placeholder'=>'Descripcion del taller', 'id'=>'descri'])!!}
+                            {!!Form::textarea('descri', null, ['class'=>'form-control','maxlength-simple','maxlength'=>'255','rows'=>'8','cols'=>31,'placeholder'=>'Descripcion del taller', 'id'=>'descri'])!!}
                         </fieldset>
                     </div>
                     <div class="{{$classSizeForms}}">
@@ -138,6 +138,7 @@
                               <label class="col-sm-12">¿Esta Registrado el Coordinador?</label>
                               <div class="col-sm-12">
                                 <div class="rdio rdio-primary">
+                                  </br>
                                   <input type="radio" name="taller" value="si" id="tlist" onclick="mostrar();">
                                   <label>Si</label>
                                 </div>
@@ -155,12 +156,19 @@
                             <label class="form-label"</label>
                               <!--Bloque Oculto-->
                               <div id="tlistF" style="display:none;">
-                                <label>¿Quien?</label>
+                                <label>¿Seleccione el Coordinador?</label>
                                 <div>
                                       <fieldset class="form-group">
-                                          <label class="form-label"></br></label>
+                                        </br>
+                                          <label class="form-label">Coordinadores</br></label>
                                             {!!Form::select('coordinador',$coord, -1, ['class'=>'select2 form-control', 'placeholder'=>'Selecciona un usuario'])!!}
                                       </fieldset>
+                                      @unless(count($Pcoord)==0)
+                                      <fieldset class="form-group">
+                                          <label class="form-label">Alumnos</br></label>
+                                            {!!Form::select('Pcoordinador',$Pcoord, -1, ['class'=>'select2 form-control', 'placeholder'=>'Selecciona un usuario'])!!}
+                                      </fieldset>
+                                      @endunless
                                 </div>
                               </div>
                               <!--Bloque Oculto-->

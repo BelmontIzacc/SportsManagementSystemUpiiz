@@ -33,8 +33,10 @@ class AdminController extends Controller
     public function index()
     {
         $index=1;
+        $taller = \App\taller::all();
         return view('Admin.start',[
         'index' => $index,
+        'taller'=>$taller,
         ]);
     }
 
@@ -206,16 +208,14 @@ class AdminController extends Controller
     {
         $index=4;
         $tilista = \App\tipo::lists('nombre','id');
-        $coord = \App\User::where('tipo', 3)->lists('boleta','id');
-        $admin = \App\User::where('tipo', 1)->lists('boleta','id');
+        $coord = \App\User::where('tipo','!=',2)->lists('boleta','id');
         $Pcoord = \App\User::where('permisos', 1)->lists('boleta','id');
 
         return view('Admin.studio',[
             'index' => $index,
             'tilista' => $tilista,
             'coord' => $coord,
-            'admin' => $admin,
-            'pcoord' => $Pcoord,
+            'Pcoord' => $Pcoord,
         ]);
     }
 
@@ -259,7 +259,7 @@ class AdminController extends Controller
             }
         }
 
-        $taller = taller::create([
+       $taller = taller::create([
             'nombre' =>$request->nombre,
             'fechaInicio' =>$dateFormated,
             'fechaFin'=>$dateFormated2,
@@ -275,9 +275,28 @@ class AdminController extends Controller
 
         if($opc_taller=='si'){
             $this->validate($request, [
-                'coordinador'=>'required',
+                //'coordinador'=>'required',
+                //'Pcoordinador'=>'required',
             ]);
 
+            $idc = $request->coordinador;
+            $idPc = $request->Pcoordinador;
+            $val=0;
+            if($idc!=null){
+                $val++;
+            }
+
+            if($idPc!=null){
+                $val++;   
+            }
+            //error_log('coordinador : '.$idc.' pcoordinador : '.$idPc.' valor : '.$val);
+
+            if($val==2){
+                $val=0;
+                return back()->withErrors([
+                $request->coordinador => 'Seleccione solo un Coordinador',
+            ]);;
+            }
             $u =  \App\User::find($request->coordinador);
             $taller->update([
                 'usuario_id' => $u->id,
@@ -341,8 +360,14 @@ class AdminController extends Controller
         $index = 1;
 
         $student = \App\informacion::find($id);
+        $iduser = $student->usuario->id;
+        $taller = \App\taller::where('usuario_id',$iduser)->get();
 
-        return view('Admin.student', ['index'=>$index,'student'=>$student]);
+        return view('Admin.student', [
+            'index'=>$index,
+            'student'=>$student,
+            'taller'=>$taller,
+        ]);
     }
 
     /**
@@ -405,6 +430,7 @@ class AdminController extends Controller
             $taller = \App\taller::find($idTaller);
             $taller->update([
                 'usuario_id' => null,
+                'status'=>3,
             ]); 
             
         }
@@ -429,11 +455,64 @@ class AdminController extends Controller
         return redirect('/admin/search');
     }
 
+    public function addTallerUser($id){
+        $taller = \App\taller::whereNull('usuario_id')->lists('nombre','id'); //Regresa talleres sin coordinador
+        $index = 4;
+        $iduser = $id;
+        $user = \App\informacion::find($id);
+        return view('Admin.addTallerUsuario', 
+            [
+                'user'=>$user,
+                'id'=>$iduser,
+                'index'=>$index,
+                'taller'=>$taller,
+            ]);
+    }
+
+    public function addTaller(Request $request, $id){
+        $student = \App\informacion::find($id);
+        
+        $this->validate($request, [
+            'taller' => 'required',
+        ]);
+
+        $taller = \App\taller::find($request->taller);
+
+        $taller->update([
+            'usuario_id' => $student->usuario->id,
+        ]);
+
+        return back()->withErrors([
+                    $request->taller => 'Se a agregado el taller a '.$student->usuario->nombre.'',
+                ]);
+    }
+
+    public function showInfoUserTaller($id)
+    {
+        $index = 4;
+        $taller = \App\taller::find($id);
+        $idStudent = $taller->usuario_id;
+        $student = \App\informacion::where('usuario_id',$idStudent)->get();
+        $inscripcion = \App\inscripcion::where('taller_id',$id)->get();
+        return view('Admin.tallerUsuario', 
+            [
+                'id'=>$id,
+                'index'=>$index,
+                'student'=>$student,
+                'taller'=>$taller,
+                'inscripcion'=>$inscripcion,
+            ]);
+    }
+
     public function showTaller($id)
     {
         $index = 1;
         $taller = \App\taller::find($id);
-        return view('Admin.taller', ['index'=>$index,'taller'=>$taller]);
+
+        return view('Admin.taller', [
+            'index'=>$index,
+            'taller'=>$taller,
+        ]);
     }
 
     public function control()

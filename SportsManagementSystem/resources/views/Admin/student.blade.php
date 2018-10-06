@@ -69,11 +69,11 @@
             
              <div class="modal-footer">
                 <div class="text-center">
-                    <a onclick="toggle();" id="more">Mostrar más</a>
+                    <a onclick="toggle2();" id="more2">Mostrar más</a>
                 </div>
             </div>
             
-            {!!Form::open(array('method'=>'delete', 'style'=>'display:none', 'class'=>'details'))!!}
+            {!!Form::open(array('method'=>'delete', 'style'=>'display:none', 'class'=>'details2'))!!}
                 <input type="hidden" name="idVal2" id="idVal2" value="{{$student->id}}">
                 <div class="modal-footer">
                     <div class="container text-center">
@@ -85,6 +85,63 @@
                                 <button type="submit" class="btn btn-rounded btn-primary btn-danger" id="formButton2">Eliminar</button>
                             </div>
                             <div class="col-lg-6 col-md-6">
+                                <button type="button" class="btn btn-rounded btn-primary" onclick="toggle2();">Cancelar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {!!Form::close()!!}
+        </div>
+    </div>
+</div><!--.modal-->
+
+
+<div class="modal fade bd-example-modal-lg"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="mySmallModalLabel"
+        aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="modal-close" data-dismiss="modal" aria-label="Close">
+                    <i class="font-icon-close-2"></i>
+                </button>
+                <h4 class="modal-title" id="mySmallModalLabel">Talleres</h4>
+            </div>
+             
+            <div class="modal-body">
+                <div class="container">
+                    <div class="row">
+                        <div class="text-center">
+                            <button class="btn btn-inline dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Elije el taller para ver</button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                @foreach($taller as $t)
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="{{asset('/admin/student/')}}/{{$t->id}}/studio">{{$t->nombre}}</a>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+             <div class="modal-footer">
+                <div class="text-center">
+                    <a onclick="toggle();" id="more">Mostrar más</a>
+                </div>
+            </div>
+            
+            {!!Form::open(array( 'style'=>'display:none', 'class'=>'details'))!!}
+                <input type="hidden" name="idVal2" id="idVal2" value="{{$student->id}}">
+                <div class="modal-footer">
+                    <div class="container text-center">
+                        <div class="form-group">
+                            <h7 class="m-t-lg with-border">¿Agregar talleres al usuario?</h5>
+                        </div>
+                        <div class="row">
+                            <a href="{{asset('/admin/student/add/studio/')}}/{{$student->id}}" class="btn btn-rounded btn-inline btn-success">Ver talleres</a>
+                            <div class="dropdown-divider"></div>
+                            <div class="col-lg-12 col-md-12">
                                 <button type="button" class="btn btn-rounded btn-primary" onclick="toggle();">Cancelar</button>
                             </div>
                         </div>
@@ -94,6 +151,7 @@
         </div>
     </div>
 </div><!--.modal-->
+
 
 @stop
 
@@ -313,12 +371,22 @@
 	</br>
 
 	<div class="row text-center">
-		<div class="col-lg-4 col-md-4">
+         @if(($student->usuario->permisos == 1) || ($student->usuario->tipo != 2))
+		<div class="col-lg-6 col-md-6">
 		    <button type="button" class="btn btn-rounded btn-inline btn-warning" data-toggle="modal" data-target=".bd-example-modal-sm" onclick="updateInputsProfile({{$student->id}}, '{{$student->user}}');">Editar</button>
 		</div>
-        <div class="col-lg-4 col-md-4">
-             <a href="{{asset('/admin/student')}}/{{$student->id}}" class="btn btn-rounded btn-inline btn-success" target="_blank" >Ver talleres</a>
+        <div class="col-lg-6 col-md-6">
+            <button type="button" class="btn btn-rounded btn-inline btn-success" data-toggle="modal" data-target=".bd-example-modal-lg" onclick="updateInputsProfile({{$student->id}}, '{{$student->user}}');">Talleres</button>
         </div>
+        <!--<div class="col-lg-6 col-md-6">
+             <a href="{{asset('/admin/student/')}}/{{$student->id}}/studio" class="btn btn-rounded btn-inline btn-success">Ver talleres</a>
+        </div>
+            -->
+        @else
+        <div class="col-lg-12 col-md-12">
+            <button type="button" class="btn btn-rounded btn-inline btn-warning" data-toggle="modal" data-target=".bd-example-modal-sm" onclick="updateInputsProfile({{$student->id}}, '{{$student->user}}');">Editar</button>
+        </div>
+        @endif
 	</div>
 </div>
 

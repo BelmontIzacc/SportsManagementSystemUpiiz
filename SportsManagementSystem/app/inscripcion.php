@@ -3,17 +3,17 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Sofa\Eloquence\Eloquence;
 
-class asistencia extends Model
+class inscripcion extends Model
 {
     //
-    protected $table = 'asistencia';
+    use Eloquence;
+    protected $table = 'inscripcion';
 
     protected $fillable = [
-    'usuario_id',
-    'taller_id',
-    'fecha',
-    'asistencia',
+	    'usuario_id',
+	    'taller_id',
     ];
 
     public function usuario(){

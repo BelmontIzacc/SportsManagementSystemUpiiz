@@ -140,6 +140,10 @@ function toggle(){
     $('.details').slideToggle(function(){$('#more').html($('.details').is(':visible')?'Ocultar':'Mostrar más');});
 }
 
+function toggle2(){
+    //Intercambia visibilidad de un elemento
+    $('.details2').slideToggle(function(){$('#more2').html($('.details2').is(':visible')?'Ocultar':'Mostrar más');});
+}
 // function para actualizar los inputs de la pagina de estudiante detallada
 function updateInputsProfile(id, userName){
     document.getElementById('myModalLabel').innerHTML=userName;
