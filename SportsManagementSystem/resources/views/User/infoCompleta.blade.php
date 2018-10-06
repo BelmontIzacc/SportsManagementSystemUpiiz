@@ -81,46 +81,18 @@
                 <div class="row">
                   <div class="{{$classSizeForms}}">
                     <fieldset class="form-group">
-        				{!!Form::text('nombre', null, ['class'=>'form-control', 'placeholder'=>'Nombre(s)', 'id'=>'nombre'])!!}			
-        			     </fieldset>
-                  </div>
-                  <div class="{{$classSizeForms}}">
-                    <fieldset class="form-group">
-        				{!!Form::text('apellidoPaterno', null, ['class'=>'form-control', 'placeholder'=>'Apellido paterno', 'id'=>'apellidoPaterno'])!!}			
-        						</fieldset>
-                  </div>
-                  <div class="{{$classSizeForms}}">
-                    <fieldset class="form-group">
-        				    {!!Form::text('apellidoMaterno', null, ['class'=>'form-control', 'placeholder'=>'Apellido materno', 'id'=>'apellidoMaterno'])!!}		
-        			 </fieldset>
-                  </div>
-                  <div class="{{$classSizeForms}}">
-                    <fieldset class="form-group">
                       <label class="form-label">Sexo</label>
-                {!!Form::select('sexo',$sexos, 0, ['class'=>'bootstrap-select bootstrap-select-arrow form-control','id'=>'sexo'])!!}   
+                        {!!Form::select('sexo',$sexos, 0, ['class'=>'bootstrap-select bootstrap-select-arrow form-control','id'=>'sexo'])!!}   
                     </fieldset>
                   </div>
                 </div>
+                
                 <div class="row">
                   <div class="{{$classSizeForms}}">
                     <fieldset class="form-group">
+                        <label class="form-label">Edad</label>
         				{!!Form::number('edad', null, ['class'=>'form-control','placeholder'=>'Edad', 'id'=>'edad'])!!}
-        						</fieldset>
-                  </div>
-                  <div class="{{$classSizeForms}}">
-                    <fieldset class="form-group">
-                {!!Form::text('email', null, ['class'=>'form-control', 'placeholder'=>'E-Mail', 'id'=>'email'])!!}      
-        						</fieldset>
-                  </div>
-                  <div class="{{$classSizeForms}}">
-                    <fieldset class="form-group">
-                      
-        						</fieldset>
-                  </div>
-                  <div class="{{$classSizeForms}}">
-                    <fieldset class="form-group">
-
-        						</fieldset>
+                    </fieldset>
                   </div>
                 </div>
 
@@ -263,24 +235,6 @@
                                            {!!Form::select('tlista',$tlista, 0, ['class'=>'bootstrap-select bootstrap-select-arrow form-control', 'placeholder'=>'Seleccionar carrera','id'=>'tlista'])!!}
                                       </fieldset>
                                 </div>
-                                <div>
-                                    <fieldset class="form-group">
-                                        <label class="form-label">Boleta</label>   
-                                            {!!Form::text('boleta', null, ['class'=>'form-control','placeholder'=>'2018670001','id'=>'boleta'])!!}
-                                    </fieldset>
-                                </div>
-                                <div>
-                                    <fieldset class="form-group">
-                                        <label class="form-label">Semestre</label>   
-                                            {!!Form::number('semestre', null, ['class'=>'form-control','placeholder'=>'Semestre','id'=>'semestre'])!!}
-                                    </fieldset>
-                                </div>
-                                <div>
-                                    <fieldset class="form-group">
-                                        <label class="form-label">Grupo</label>   
-                                            {!!Form::text('grupo', null, ['class'=>'form-control','placeholder'=>'1CM1','id'=>'grupo'])!!}
-                                    </fieldset>
-                                </div>
                               </div>
                               <!--Bloque Oculto-->
                         
@@ -290,32 +244,26 @@
                                   <div>
                                       <fieldset class="form-group">
                                           <label class="form-label">Carrera</label>
-                                           {!!Form::select('tlista',$tlista, 0, ['class'=>'bootstrap-select bootstrap-select-arrow form-control', 'placeholder'=>'Seleccionar carrera','id'=>'tlista'])!!}
+                                           {!!Form::select('tlistac',$tlistac, 0, ['class'=>'bootstrap-select bootstrap-select-arrow form-control', 'placeholder'=>'Seleccionar carrera','id'=>'tlistac'])!!}
                                       </fieldset>
                                 </div>
-                                <div>
-                                    <fieldset class="form-group">
-                                        <label class="form-label">Boleta</label>   
-                                            {!!Form::text('boleta', null, ['class'=>'form-control','placeholder'=>'2018670001','id'=>'boleta'])!!}
-                                    </fieldset>
-                                </div>
-                                <div>
-                                    <fieldset class="form-group">
-                                        <label class="form-label">Semestre</label>   
-                                            {!!Form::number('semestre', null, ['class'=>'form-control','placeholder'=>'Semestre','id'=>'semestre'])!!}
-                                    </fieldset>
-                                </div>
-                                <div>
-                                    <fieldset class="form-group">
-                                        <label class="form-label">Grupo</label>   
-                                            {!!Form::text('grupo', null, ['class'=>'form-control','placeholder'=>'1CM1','id'=>'grupo'])!!}
-                                    </fieldset>
-                                </div>
-                                  
-                                  
+                                
                               </div>
                               <!--Bloque Oculto-->
                         </fieldset>
+                        
+                        <div>
+                            <fieldset class="form-group">
+                                <label class="form-label">Semestre</label>   
+                                    {!!Form::number('semestre', null, ['class'=>'form-control','placeholder'=>'Semestre','id'=>'semestre'])!!}
+                            </fieldset>
+                        </div>
+                        <div>
+                            <fieldset class="form-group">
+                                <label class="form-label">Grupo</label>   
+                                    {!!Form::text('grupo', null, ['class'=>'form-control','placeholder'=>'1CM1','id'=>'grupo'])!!}
+                            </fieldset>
+                        </div>
                     </div>
 
                 </div>
@@ -359,8 +307,33 @@ Registro
     <script src="{{asset('/Template/js/lib/hide-show-password/bootstrap-show-password-init.js')}}"></script>
     <script>
     $(document).ready(function() {
-        $('#telefono').mask('(000) 000-0000', {placeholder: "Teléfono personal"});
-        $('#boleta').mask('0000 00 0000', {placeholder: "Boleta/Numero de Trabajador"});
+        String.prototype.firstUpper = function(){
+                    return this.charAt(0).toUpperCase() + this.slice(1).toLowerCase();
+        };
+        //--- Datos Personales
+        $('#edad').mask('00', {placeholder: "Edad"});
+        
+        
+        //--- Datos de domicilio
+        var calle = $(document.getElementById('calle'));  
+        var colonia = $(document.getElementById('colonia'));  
+
+        calle.focusout(function(){
+                    $(this).val($(this).val().firstUpper());
+                });
+        $('#interior').mask('000', {placeholder: "Numero Interior"});
+        $('#exterior').mask('000', {placeholder: "Numero Exterior"});
+         colonia.focusout(function(){
+                    $(this).val($(this).val().firstUpper());
+                });
+        $('#cp').mask('00000', {placeholder: "Código Postal"});
+        
+        //--- Datos de Academia
+        var grupo = $(document.getElementById('grupo'));  
+        $('#semestre').mask('00', {placeholder: "Semestre:"});
+        grupo.focusout(function(){
+                    $(this).val($(this).val().toUpperCase());
+                });
     });
 
     function mostrar(){

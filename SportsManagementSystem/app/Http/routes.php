@@ -35,4 +35,9 @@ Route::get('/user/RegistroUsuario','UserController@getRegister');
 Route::post('/user/RegistroUsuario','UserController@postRegister');
 Route::get('/user/InfoCompleta','UserController@getCompleto');
 //-----------------------------------------------------------------------------------//
+Route::get('/registro','SignupController@index');
+Route::get('/registro/RegistroUsuario','SignupController@getRegister');
+Route::post('/registro/RegistroUsuario','SignupController@postRegister');
+Route::get('/registro/InfoCompleta','SignupController@getCompleto');
+//-----------------------------------------------------------------------------------//
 Route::get('/coord','CoordController@index');

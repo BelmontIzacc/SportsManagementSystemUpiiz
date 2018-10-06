@@ -22,18 +22,24 @@
 @stop
 
 @section('popUp')
-<div class='page-center' style="height: 465px;">
+<div class="page-center">
     <div class="page-center-in">
         <div class="container-fluid">
-            <div class="row">
-                <div class="{{$classSize}}">
-                    @include('alerts.formError')
-                </div>
-            </div>
-        <div class="container-fluid">
-            <form class="sign-box">
-                    {!!Form::open(array('url'=>'/user/RegistroUsuario', 'method'=>'post'))!!}
-           
+            {!!Form::open(array('url'=>'/registro/RegistroUsuario', 'class'=>'sign-box', 'method'=>'post'))!!}
+                
+                @if(count($errors) > 0)
+    <div class="alert alert-danger alert-fill alert-close alert-dismissible fade in" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <ul>
+            @foreach($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif 
+                <form class="sign-box">
                     <div class="sign-avatar no-photo">+</div>
                     <header class="sign-title">Sign Up</header>
                     <div class="form-group">
@@ -53,7 +59,12 @@
                     </div>
                     <div class="form-group">
                         <fieldset class="form-group">
-        				    {!!Form::text('e-mail', null, ['class'=>'form-control', 'placeholder'=>'ejemplo_registro@gmail.com', 'id'=>'mail'])!!}		
+        				    {!!Form::email('email', null, ['class'=>'form-control', 'placeholder'=>'ejemplo_registro@gmail.com', 'id'=>'email'])!!}		
+        			 </fieldset>
+                    </div>
+                    <div class="form-group">
+                        <fieldset class="form-group">
+        				    {!!Form::text('boleta', null, ['class'=>'form-control', 'placeholder'=>'Boleta: 2018670001', 'id'=>'bo'])!!}		
         			 </fieldset>
                     </div>
                     <div class="form-group">
@@ -67,14 +78,14 @@
         			 </fieldset>
                     </div>
                     <button type="submit" class="btn btn-rounded btn-success sign-up">Registrarse</button>
-                    <p class="sign-note">Ya tienes una cuenta? <a href="sign-in.html">entra aqui</a></p>
+                    <p class="sign-note">Ya tienes una cuenta? <a href="/login">entra aqui</a></p>
                     <!--<button type="button" class="close">
                         <span aria-hidden="true">&times;</span>
                     </button>-->
                 </form>
 
-            </div><!--.container-fluid-->
-        </div> 
+        </div>
+    </div>
 </div>
 @stop
 @section('scripts')
@@ -91,6 +102,32 @@
 
     <script src="{{asset('/Template/js/lib/hide-show-password/bootstrap-show-password.min.js')}}"></script>
     <script src="{{asset('/Template/js/lib/hide-show-password/bootstrap-show-password-init.js')}}"></script>
-
+    <script>
+    $(document).ready(function() {
+        String.prototype.capitalizar = function(){                                
+            return this.toLowerCase().replace( /\b\w/g, function (m) {
+                return m.toUpperCase();
+            });
+        };
+        
+        var nombre = $(document.getElementById('nombre'));
+        var ap = $(document.getElementById('ap'));
+        var am = $(document.getElementById('am'));
+        var bo = $(document.getElementById('bo'));
+        
+        nombre.focusout(function(){
+                    $(this).val($(this).val().capitalizar());
+                });
+        ap.focusout(function(){
+                    $(this).val($(this).val().capitalizar());
+                });
+        am.focusout(function(){
+                    $(this).val($(this).val().capitalizar());
+                });
+        bo.focusout(function(){
+                    $(this).val($(this).val().toUpperCase());
+                });           
+    });
+    </script>
 
 @stop

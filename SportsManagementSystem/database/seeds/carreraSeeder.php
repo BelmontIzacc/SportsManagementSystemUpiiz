@@ -31,5 +31,17 @@ class carreraSeeder extends Seeder
         DB::table('carrera')->insert([
             'nombre' => 'Ingeniería en Ambiental',
         ]);
+        
+        DB::table('carrera')->insert([
+            'nombre' => 'Genérico 1',
+        ]);
+        
+        DB::table('carrera')->insert([
+            'nombre' => 'Genérico 2',
+        ]);
+        
+        DB::table('carrera')->insert([
+            'nombre' => 'Genérico 3',
+        ]);
     }
 }
