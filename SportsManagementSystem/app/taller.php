@@ -26,6 +26,7 @@ class taller extends Model
         'duracion',   
         'status',
         'lugar',
+        'participantes',
         'descripcion',
         'dias',
         'tipo_id',
@@ -33,6 +34,9 @@ class taller extends Model
 
     public function usuario(){
         return $this->belongsTo(User::class, 'usuario_id');
+    }
+    public function inscripcion() {
+        return $this->hasOne(inscripcion::class, 'taller_id');
     }
     public function tipo(){
         return $this->belongsTo(tipo::class, 'tipo_id');

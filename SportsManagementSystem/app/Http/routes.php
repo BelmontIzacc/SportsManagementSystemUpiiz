@@ -32,6 +32,7 @@ Route::post('/admin/student/add/studio/{id}', 'adminController@addTaller');
 Route::get('/admin/student/{id}/studio', 'adminController@showInfoUserTaller');
 Route::get('/admin/lists/taller/{id}', 'adminController@showTaller');
 Route::get('/admin/controlPanel', 'adminController@control');
+//Route::get('/admin/search/list/taller/{id}/getInf', 'adminController@getInf');
 //-----------------------------------------------------------------------------------//
 Route::get('/user','UserController@index');
 Route::get('/user/RegistroUsuario','UserController@getRegister');

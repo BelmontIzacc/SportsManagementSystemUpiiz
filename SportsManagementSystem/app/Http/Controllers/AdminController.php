@@ -529,4 +529,42 @@ class AdminController extends Controller
             'taller'=>$taller,
         ]);
     }
+    
+    public function getInf(Request $request, $id) {
+         $index = 1;
+
+        switch($request->opc){
+            case 2:
+                $this->validate($request, [
+                    'busqueda' => 'required'
+                ]);
+
+                $inscripcion = \App\inscripcion::where('taller_id', $request->busqueda)->get();
+                //error_log($user);
+                // $id_user = $user->nombre;
+                //$informacion = \App\informacion::where('usuario_id',$id_user)->get();
+
+                //if(count($inscripcion) == 0){
+                    //session()->flash('message', 'No se encontró ningun registro con la boleta: '.$request->busqueda);
+                    //session()->flash('type', 'danger');
+                //}
+                return view('Admin.search', ['index'=>$index, 'inscripcion'=>$inscripcion]);
+                break;
+            /*case 2:
+                $this->validate($request, [
+                    'busqueda' => 'required'
+                ]);
+                
+                //$taller = \App\taller::where('nombre', $request->busqueda)->get();
+                $taller = \App\taller::where('nombre','like','%'.$request->busqueda.'%')->get();
+                //error_log($taller);
+                
+                if(count($taller) == 0) {
+                    session()->flash('message', 'No se encontro ningun registro con el nombre: '.$request->busqueda);
+                    session()->flash('type', 'danger');
+                }
+                return view('Admin.search', ['index'=>$index, 'taller'=>$taller]);
+                break;*/
+        }
+    }
 }
