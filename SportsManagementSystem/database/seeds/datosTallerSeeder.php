@@ -14,6 +14,7 @@ class datosTallerSeeder extends Seeder
         //
         for($i = 0; $i <= 10; $i++){
                 DB::table('taller')->insert([
+                    'usuario_id' => rand(1,3),
                     'nombre' => 'Generico'.rand(1,100),
                     'tipo_id' => rand (1 , 2),
                     'duracion' => ''.rand (50 , 200),

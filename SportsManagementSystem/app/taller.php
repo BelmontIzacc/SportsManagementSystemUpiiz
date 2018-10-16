@@ -44,4 +44,7 @@ class taller extends Model
     public function asistencia(){
         return $this->belongsTo(asistencia::class, 'taller_id');
     }
+    public function stats(){
+        return $this->belongsTo(stats::class, 'taller_id');
+    }
 }
