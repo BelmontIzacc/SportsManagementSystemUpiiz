@@ -57,8 +57,15 @@
 @include('alerts.sessionAlert')
     
 <div class="row">
-    
-    
+    <div class="container-fluid">
+        <section class="card">
+            <header class="card-header"> Holi </header>
+            <div class="card-block">
+                <div id="perf_div"></div>
+                <?= Lava::render('ColumnChart', 'Finances', 'perf_div') ?>
+            </div>
+        </section>
+    </div>
 </div>
 @stop
 @section('content')

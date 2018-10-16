@@ -16,6 +16,8 @@ use App\User;
 use App\informacion;
 use App\taller;
 
+use Khill\Lavacharts\Lavacharts;
+
 class AdminController extends Controller
 {
 
@@ -93,6 +95,7 @@ class AdminController extends Controller
             'password' => bcrypt($request->password),
             'tipo' => 3,
             'completado' => 1,
+            'permisos' =>1,
         ]);
 
         $plantel = $request->plantel;
@@ -141,7 +144,7 @@ class AdminController extends Controller
             }else{
                 return redirect('/admin')
                 ->withErrors([
-                    $request->clave => 'El taller '.$t->nombre.',Ya cuenta con un coordinador asignado, no se a creado el Coordinador.',
+                    $request->clave => 'El taller '.$t->nombre.',Ya cuenta con un coordinador asignado, no se a asignado el taller.',
                 ]);
             }
 
@@ -494,6 +497,28 @@ class AdminController extends Controller
         $idStudent = $taller->usuario_id;
         $student = \App\informacion::where('usuario_id',$idStudent)->get();
         $inscripcion = \App\inscripcion::where('taller_id',$id)->get();
+
+        $lava = new Lavacharts();
+
+        $finances = \Lava::DataTable();
+
+        $finances->addDateColumn('Year')
+                 ->addNumberColumn('Sales')
+                 ->addNumberColumn('Expenses')
+                 ->setDateTimeFormat('Y')
+                 ->addRow(['2004', 1000, 400])
+                 ->addRow(['2005', 1170, 460])
+                 ->addRow(['2006', 660, 1120])
+                 ->addRow(['2007', 1030, 54]);
+
+        \Lava::ColumnChart('Finances', $finances, [
+            'title' => 'Company Performance',
+            'titleTextStyle' => [
+                'color'    => '#eb6b2c',
+                'fontSize' => 14
+            ]
+        ]);
+
         return view('Admin.tallerUsuario', 
             [
                 'id'=>$id,
@@ -501,6 +526,7 @@ class AdminController extends Controller
                 'student'=>$student,
                 'taller'=>$taller,
                 'inscripcion'=>$inscripcion,
+                'lava' => $lava,
             ]);
     }
 

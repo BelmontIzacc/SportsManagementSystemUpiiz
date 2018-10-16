@@ -13,9 +13,13 @@ class carreraSeeder extends Seeder
     {
         //
         DB::table('carrera')->insert([
+            'nombre' => 'Docente/Tecnico',
+        ]);
+
+        DB::table('carrera')->insert([
             'nombre' => 'Ingeniería en Sistemas Computacionales',
         ]);
-        
+
         DB::table('carrera')->insert([
             'nombre' => 'Ingeniería en Mecatrónica',
         ]);

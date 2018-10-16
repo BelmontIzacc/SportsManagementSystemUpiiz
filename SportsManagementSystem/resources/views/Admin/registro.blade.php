@@ -340,7 +340,9 @@
                   <div class="{{$classSizeForms}}">
                     <fieldset class="form-group">
                       <label class="form-label">Numeracion</label>
+                      <label class="form-label">Exterior</label>
                       {!!Form::text('numext', 0, ['class'=>'form-control', 'placeholder'=>'Ingresa el numero exterior', 'id'=>'numext'])!!}
+                      <label class="form-label">Interior</label>
                       {!!Form::text('numin', 0, ['class'=>'form-control', 'placeholder'=>'Ingresa el numero interior', 'id'=>'numint'])!!}  
                     </fieldset>
                   </div>

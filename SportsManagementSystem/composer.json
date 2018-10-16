@@ -9,7 +9,8 @@
         "laravel/framework": "5.1.*",
         "nesbot/carbon": "^1.22",
         "jenssegers/date": "^3.2",
-        "barryvdh/laravel-dompdf": "^0.8.2"
+        "barryvdh/laravel-dompdf": "^0.8.2",
+        "khill/lavacharts" : "3.0.*"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
