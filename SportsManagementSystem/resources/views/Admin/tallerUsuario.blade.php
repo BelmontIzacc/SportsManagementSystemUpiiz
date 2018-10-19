@@ -40,7 +40,6 @@
                                     <div class="col-lg-3 col-md-3">
                                         <a href="{{asset('/admin/lists/')}}/{{$taller->usuario->informacion->id}}" class="btn btn-rounded btn-primary btn-inline">Regresar</a>
                                     </div>
-                                    </div>
                                 </div>
                             </div>
                         </div> <!--tbl tbl-item-->

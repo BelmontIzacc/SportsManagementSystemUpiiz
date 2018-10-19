@@ -1,4 +1,3 @@
-function informacion(opc) {
-    document.getElementById("opc").value = opc;
-    document.getElementById("getInf").submit();
+function Asistentes() {
+    document.getElementById("lista_asistentes").style.display='block';
 }

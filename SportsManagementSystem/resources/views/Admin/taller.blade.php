@@ -32,7 +32,7 @@
     
     <div class="widget-user-stat hidden-md-down">
         <div class="item">
-            <div class="number">{{$taller->participantes}}</div>
+            <div class="number">{{count($inscripcion)}}</div>
             <div class="caption">Participantes</div>
         </div>
     	@unless($taller->lugar == null)
@@ -65,19 +65,15 @@
 		    <button type="button" class="btn btn-rounded btn-inline btn-warning" data-toggle="modal" data-target=".bd-example-modal-sm" onclick="">Estadisticas</button>
 		</div>
         <div class="col-lg-4 col-md-4">
-             <a class="btn btn-rounded btn-inline btn-success" target="_blank" onclick="informacion(2);">Participantes</a>
+             <a class="btn btn-rounded btn-inline btn-success" target="_blank" onclick="Asistentes();">Participantes</a>
         </div>
 	</div>
 </div>
 
-{!!Form::open(array('url'=>'/admin/search/list/taller/$taller->id/getInf', 'method'=>'post', 'id'=>'getInf'))!!}
-    <input type="hidden" id="opc" name="opc">
-{!!Form::close()!!}
-
 <div class="box-typical box-typical-padding">
 
-    @if(isset($inscripcion))
-    <div class="row">
+ 
+    <div class="row" id="lista_asistentes" style="display:none">
         <div class="col-sm-12">
             <table id="example" class="display table table-striped table-bordered dataTable" cellspacing="0" width="100%" role="grid" aria-describedby="example_info" style="width: 100%;">
                 <thead>
@@ -101,9 +97,9 @@
 						<td class="sorting_1">{{$i->usuario}}</td>
 						<td>{{$i->usuario->informacion->edad}}</td>
 						<td>@if($i->usuario->informacion->sexo==1)
-                                Mujer
-                            @else
                                 Hombre
+                            @else
+                                Mujer
                             @endif</td>
 						<td>{{$i->usuario->informacion->institucion->nombre}}</td>
 						<td>{{$i->usuario->informacion->carrera->nombre}}</td>
@@ -114,7 +110,6 @@
 				</table>
         </div>
     </div>
-    @endif
 </div> <!--End box typical-->
 
 <!-- end profile -->
