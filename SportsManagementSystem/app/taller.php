@@ -36,12 +36,15 @@ class taller extends Model
         return $this->belongsTo(User::class, 'usuario_id');
     }
     public function inscripcion() {
-        return $this->hasOne(inscripcion::class, 'taller_id');
+        return $this->belongsTo(inscripcion::class, 'taller_id');
     }
     public function tipo(){
         return $this->belongsTo(tipo::class, 'tipo_id');
     }
     public function asistencia(){
         return $this->belongsTo(asistencia::class, 'taller_id');
+    }
+    public function stats(){
+        return $this->belongsTo(stats::class, 'taller_id');
     }
 }

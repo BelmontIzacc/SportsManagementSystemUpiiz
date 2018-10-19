@@ -42,10 +42,23 @@ $index=4;
                         </div>
                     @endif 
                         <header class="sign-title">Añadir Taller a {{$user->usuario->nombre}}</header>
+                        @if(count($taller)==0)
+                        @else
+                            <div class="amount-sm">Talleres encontrados: {{count($taller)}}</div>
+                        @endif 
                         </br>
-                        <div class="form-group">
-                            {!!Form::select('taller',$taller, -1, ['class'=>'select2 form-control', 'placeholder'=>'Selecciona un Taller'])!!}
-                        </div>
+                            @if(count($taller)==0)
+                                <section class="widget widget-simple-sm">
+                                <div class="widget-simple-sm-statistic">
+                                    <div class="number">Talleres 0</div>
+                                    <div class="caption color-red">No se encuentran talleres para asignar</div>
+                                </div>
+                                </section>
+                            @else
+                                <div class="form-group">
+                                    {!!Form::select('taller',$taller, -1, ['class'=>'select2 form-control', 'placeholder'=>'Selecciona un Taller'])!!}
+                                </div>
+                            @endif 
                         </br>
                         <button type="submit" class="btn btn-rounded">Agregar</button>
                         

@@ -16,6 +16,8 @@ use App\User;
 use App\informacion;
 use App\taller;
 
+use Khill\Lavacharts\Lavacharts;
+
 class AdminController extends Controller
 {
 
@@ -93,6 +95,7 @@ class AdminController extends Controller
             'password' => bcrypt($request->password),
             'tipo' => 3,
             'completado' => 1,
+            'permisos' =>1,
         ]);
 
         $plantel = $request->plantel;
@@ -141,7 +144,7 @@ class AdminController extends Controller
             }else{
                 return redirect('/admin')
                 ->withErrors([
-                    $request->clave => 'El taller '.$t->nombre.',Ya cuenta con un coordinador asignado, no se a creado el Coordinador.',
+                    $request->clave => 'El taller '.$t->nombre.',Ya cuenta con un coordinador asignado, no se a asignado el taller.',
                 ]);
             }
 
@@ -491,16 +494,42 @@ class AdminController extends Controller
     {
         $index = 4;
         $taller = \App\taller::find($id);
-        $idStudent = $taller->usuario_id;
-        $student = \App\informacion::where('usuario_id',$idStudent)->get();
         $inscripcion = \App\inscripcion::where('taller_id',$id)->get();
+        $stats = \App\stats::where('taller_id',$id)->get();
+
+        error_log($stats);
+
+        $lava = new Lavacharts();
+
+        $finances = \Lava::DataTable();
+
+        $finances->addDateColumn('Date')
+                 ->addNumberColumn('Asistencias')
+                 ->addNumberColumn('Faltas')
+                 ->setDateTimeFormat('Y-m-d');
+                 /*->addRow(['2002-02-01', 1000, 400])
+                 ->addRow(['2004-04-03', 1170, 460])
+                 ->addRow(['2006-06-05', 660, 1120])
+                 ->addRow(['2008-08-07', 1030, 54]);*/
+
+        foreach ($stats as $st) {
+            $finances->addRow([$st->fecha,$st->asistencias,$st->faltas]);
+        }
+
+        \Lava::ColumnChart('Finances', $finances, [
+            'title' => 'Asistencias',
+            'titleTextStyle' => [
+                'color'    => '#eb6b2c',
+                'fontSize' => 14
+            ]
+        ]);
+
         return view('Admin.tallerUsuario', 
             [
-                'id'=>$id,
                 'index'=>$index,
-                'student'=>$student,
                 'taller'=>$taller,
                 'inscripcion'=>$inscripcion,
+                'lava' => $lava,
             ]);
     }
 

@@ -10,6 +10,7 @@ class asistencia extends Model
     protected $table = 'asistencia';
 
     protected $fillable = [
+        'id',
     'usuario_id',
     'taller_id',
     'fecha',

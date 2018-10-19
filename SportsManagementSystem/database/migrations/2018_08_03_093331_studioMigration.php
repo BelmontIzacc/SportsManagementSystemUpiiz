@@ -25,7 +25,6 @@ class StudioMigration extends Migration
             $table->String('duracion', 7);
             $table->String('status', 40);
             $table->String('lugar',70);
-            $table->integer('participantes')->default('0');
             $table->String('dias',70);
 
             $table->String('descripcion')->nullable();
