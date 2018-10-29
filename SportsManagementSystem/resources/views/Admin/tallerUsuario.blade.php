@@ -64,8 +64,62 @@
                 <?= Lava::render('ColumnChart', 'Finances', 'perf_div') ?>
             </div>
         </section>
+        <section class="card">
+            <header class="card-header"> </header>
+            <div class="card-block">
+                <div id="chart-div"></div>
+                <?= Lava::render('DonutChart', 'IMDB', 'chart-div') ?>
+            </div>
+        </section>
+            <section class="widget widget-accordion card" id="accordion" role="tablist" aria-multiselectable="true">
+                <article class="panel">
+                    <div class="panel-heading" role="tab" id="headingOne">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne" class="collapsed">
+                            Lista total de registros, registros: {{count($inscripcion)}}
+                            <i class="font-icon font-icon-arrow-down"></i>
+                        </a>
+                    </div>
+                    <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne" aria-expanded="false" style="height: 0px;">
+                        <div class="panel-collapse-in">
+                        <table id="table-edit" class="table table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th width="1">
+                                        #
+                                    </th>
+                                    <th>Nombre</th>
+                                    <th>Boleta</th>
+                                    <th>Carrera</th>
+                                    
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php $num=0; ?>
+                                @foreach($inscripcion as $i)
+                                <tr id="$i->usuario->id">
+                                    <td>
+                                        <span class="tabledit-span tabledit-identifier"><?php echo $num=$num+1; ?></span>
+                                        <input class="tabledit-input tabledit-identifier" type="hidden" name="id" value="1" disabled="">
+                                    </td>
+                                    <td class="tabledit-view-mode">
+                                        <span class="tabledit-span"><a href="{{asset('/admin/lists')}}/{{$i->usuario->informacion->id}}" class="semibold">{{$i->usuario}}</a></span>
+                                    </td>
+                                    <td class="color-blue-grey-lighter tabledit-view-mode">
+                                        <span class="tabledit-span">{{$i->usuario->boleta}}</span>
+                                    </td>
+                                    <td class="table-icon-cell">{{$i->usuario->informacion->carrera->nombre}}</td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                        </div>
+                    </div>
+                </article>
+        </section>
     </div>
 </div>
+
+
 @stop
 @section('content')
 panel

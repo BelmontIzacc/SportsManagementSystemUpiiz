@@ -53,6 +53,17 @@
                                 >
                                 <label for="check-toggle-2">Permisos</label>
                             </div>
+                        </div>                        
+                        <div class="col-lg-4 col-lg-offset-1 col-md-5 col-md-offset-1">
+                            <div class="checkbox-toggle">
+                                <input type="checkbox" id="check-toggle-3" name="check-toggle-3" onclick="getValue3();" 
+                                    @if($student->usuario->tipo == 3)
+                                        checked
+                                    @else
+                                    @endif
+                                >
+                                <label for="check-toggle-3">Coordinador </label>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -62,6 +73,7 @@
                 <div class="text-center">
                     <input type="hidden" id="stats" name="stats"></input>
                     <input type="hidden" id="perm" name="perm"></input>
+                    <input type="hidden" id="coord" name="coord"></input>
                     <button type="submit" class="btn btn-rounded btn-primary" id="formi">Guardar cambios</button>
                 </div>
             </div>
@@ -406,6 +418,13 @@
            var the_value = isChecked ? 1 : 0;
            //alert('permisos :'+the_value);
            document.getElementById('perm').value = the_value;
+        }
+
+        function getValue3() {
+           var isChecked = document.getElementById('check-toggle-3').checked;
+           var the_value = isChecked ? 1 : 0;
+           //alert('permisos :'+the_value);
+           document.getElementById('coord').value = the_value;
         }
     </script>
     <script src="{{asset('/Template/js/lib/bootstrap-select/bootstrap-select.min.js')}}"></script>

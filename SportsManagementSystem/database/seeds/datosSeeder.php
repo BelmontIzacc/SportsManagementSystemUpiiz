@@ -24,7 +24,7 @@ class datosSeeder extends Seeder
                     'numInterior' => ''.rand (0 , 999),
                     'colonia' => 'Generica',
                     'codigoPostal' => rand (0 , 9).rand (0 , 9).rand (0 , 99).rand (0 , 99),
-                    'sexo' => ''.rand (1 , 2),
+                    'sexo' => ''.rand (0 , 1),
                     'grupo' => '2cm3',
                     'edad' => rand (18 , 25),
                     'telefono' => rand (0 , 9).rand (0 , 9).rand (0 , 99).rand (0 , 99),

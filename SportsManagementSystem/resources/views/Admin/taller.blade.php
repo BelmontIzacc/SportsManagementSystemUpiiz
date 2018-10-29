@@ -26,8 +26,8 @@
         {{$taller->nombre}}
         <i class="font-icon font-icon-award"></i>
     </div>
-    @unless($taller->usuario_id == null)
-    <div>{{$taller->usuario_id->nombre}}</div>
+    @unless($taller->usuario == null)
+    <div>{{$taller->usuario}}</div>
     @endunless
     
     <div class="widget-user-stat hidden-md-down">

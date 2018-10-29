@@ -385,6 +385,7 @@ class AdminController extends Controller
         
         $permisos = $request->perm;
         $status = $request->stats;
+        $coordinador = $request->coord;
         $user = \App\User::find($student->usuario->id);
 
         switch($permisos){
@@ -412,6 +413,20 @@ class AdminController extends Controller
                 break;
             }
         }
+
+        switch($coordinador){
+            case '1':{
+                    //error_log($user->id);
+                    $user->tipo = 3;
+                break;
+            }
+            case '0':{
+                    //error_log($user->id);
+                    $user->tipo = 2;
+                break;
+            }
+        }
+
         $user->save();
 
         session()->flash('message', 'Se a actualizado el Usuario '.$user);
@@ -497,8 +512,6 @@ class AdminController extends Controller
         $inscripcion = \App\inscripcion::where('taller_id',$id)->get();
         $stats = \App\stats::where('taller_id',$id)->get();
 
-        error_log($stats);
-
         $lava = new Lavacharts();
 
         $finances = \Lava::DataTable();
@@ -524,6 +537,32 @@ class AdminController extends Controller
             ]
         ]);
 
+        $sexo = \Lava::DataTable();
+
+        $mujeres=0;
+        $hombres=0;
+
+        foreach ($inscripcion as $ins) {
+           if($ins->usuario->informacion->sexo == 0){
+                $hombres++;
+           }else{
+                $mujeres++;
+           }
+        }
+
+        $sexo->addStringColumn('Reasons')
+        ->addNumberColumn('Percent')
+        ->addRow(['Hombres', $hombres])
+        ->addRow(['Mujeres', $mujeres]);
+
+        \Lava::DonutChart('IMDB', $sexo, [
+            'title' => 'Sexo',
+            'titleTextStyle' => [
+                'color'    => '#eb6b2c',
+                'fontSize' => 14
+            ]
+        ]);
+
         return view('Admin.tallerUsuario', 
             [
                 'index'=>$index,
@@ -538,6 +577,7 @@ class AdminController extends Controller
         $index = 1;
         $taller = \App\taller::find($id);
         $i = \App\inscripcion::where('taller_id',$id)->get();
+
         return view('Admin.taller', [
             'index'=>$index,
             'taller'=>$taller,
