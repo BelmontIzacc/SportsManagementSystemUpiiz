@@ -13,7 +13,7 @@ class institucion extends Model
     
     public $timestamps = false;
     
-    public function institucion(){
+    public function informacion(){
         return $this->hasMany(informacion::class, 'institucion_id');
     }
 }

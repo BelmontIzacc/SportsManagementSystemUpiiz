@@ -623,12 +623,20 @@ class AdminController extends Controller
         $usuarios = \App\User::all();
         $taller = \App\taller::all();
         $carrer = \App\carrera::all();
+        $institucion = \App\institucion::all();
+        $tipo = \App\tipo::all();
+        $coord = \App\User::where('tipo','!=',2)->get();
+        $sp = \App\User::where('permisos',1)->get();
 
         return view('Admin.control',[
             'index' => $index,
             'usuarios'=>$usuarios,
             'carrer'=>$carrer,
             'taller'=>$taller,
+            'institucion' => $institucion,
+            'tipo' => $tipo,
+            'coord' => $coord,
+            'sp' => $sp,
         ]);
     }
     

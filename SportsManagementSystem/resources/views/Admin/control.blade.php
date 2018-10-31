@@ -88,7 +88,7 @@
     <div class="col-lg-4 col-md-6">
         <section class="widget">
             <header class="widget-header-dark with-btn">
-                Carreras registradas en el sistema
+                Carreras/Bachiller registradas en el sistema: {{count($carrer)}}
                 <button type="button" class="widget-header-btn" data-toggle="modal" data-target=".bd-example-modal-sm" onclick="authUser('Editar carreras', 1);">
                     <i class="font-icon font-icon-pencil"></i>
                 </button>
@@ -102,17 +102,12 @@
                                     @foreach($carrer as $c)
                                     <tr>
                                         <td class="table-check">
-                                            <div class="font-11 color-blue-grey-lighter uppercase">Carrera</div>
+                                            <div class="font-11 color-blue-grey-lighter uppercase">Carrera/Bachiller</div>
                                             {{$c->nombre}}
                                         </td>
                                         <td class="table-check">
                                             <div class="font-11 color-blue-grey-lighter uppercase">Número de alumnos</div>
                                             {{$c->informacion->count()}}
-                                           <!--<?php error_log($c->informacion->count()); ?><--></-->
-                                        </td>
-                                        <td class="table-check">
-                                            <div class="font-11 color-blue-grey-lighter uppercase">Color</div>
-                                            <button type="button" class="btn btn-inline btn-lg" style="background-color: {{$c->color}}; border-color: #D0D0D0;"></button>
                                         </td>
                                     </tr>
                                     @endforeach
@@ -138,7 +133,7 @@
     <div class="col-lg-4 col-md-6">
         <section class="widget">
             <header class="widget-header-dark with-btn">
-                Estados registrados en el sistema
+                Instituciones registradas en el sistema: {{count($institucion)}}
                 <button type="button" class="widget-header-btn" data-toggle="modal" data-target=".bd-example-modal-sm" onclick="authUser('Editar estados', 2);">
                     <i class="font-icon font-icon-pencil"></i>
                 </button>
@@ -149,7 +144,18 @@
                         <div class="pre-scrollable">
                             <table class="table table-hover">
                                 <tbody>
-								<!--foreach-->
+                                    @foreach($institucion as $ins)
+                                    <tr>
+                                        <td class="table-check">
+                                            <div class="font-11 color-blue-grey-lighter uppercase">Institucion</div>
+                                            {{$ins->nombre}}
+                                        </td>
+                                        <td class="table-check">
+                                            <div class="font-11 color-blue-grey-lighter uppercase">Número de alumnos</div>
+                                            {{$ins->informacion->count()}}
+                                        </td>
+                                    </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
@@ -175,7 +181,7 @@
     <div class="col-lg-4 col-md-6">
         <section class="widget">
             <header class="widget-header-dark with-btn">
-                Municipios registrados en el sistema
+                Talleres registrados en el sistema: {{count($taller)}}
                 <button type="button" class="widget-header-btn" data-toggle="modal" data-target=".bd-example-modal-sm" onclick="authUser('Editar Municipios', 3);">
                     <i class="font-icon font-icon-pencil"></i>
                 </button>
@@ -186,7 +192,18 @@
                         <div class="pre-scrollable">
                             <table class="table table-hover">
                                 <tbody>
-									<!--foreach-->
+                                    @foreach($taller as $ta)
+                                    <tr>
+                                        <td class="table-check">
+                                            <div class="font-11 color-blue-grey-lighter uppercase">Taller</div>
+                                            {{$ta->nombre}}
+                                        </td>
+                                        <td class="table-check">
+                                            <div class="font-11 color-blue-grey-lighter uppercase">Número de alumnos</div>
+                                            {{$ta->inscripcion->count()}}
+                                        </td>
+                                    </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
@@ -215,7 +232,7 @@
     <div class="col-lg-4 col-md-6">
         <section class="widget">
             <header class="widget-header-dark with-btn">
-                Becas Solicitadas en el sistema
+                Tipo de talleres registrados en el sistema: {{count($tipo)}}
                 <button type="button" class="widget-header-btn" data-toggle="modal" data-target=".bd-example-modal-sm" onclick="authUser('Editar Becas', 4);">
                     <i class="font-icon font-icon-pencil"></i>
                 </button>
@@ -226,7 +243,18 @@
                         <div class="pre-scrollable">
                             <table class="table table-hover">
                                 <tbody>
-									<!--foreach-->
+                                    @foreach($tipo as $ti)
+                                    <tr>
+                                        <td class="table-check">
+                                            <div class="font-11 color-blue-grey-lighter uppercase">Tipo</div>
+                                            {{$ti->nombre}}
+                                        </td>
+                                        <td class="table-check">
+                                            <div class="font-11 color-blue-grey-lighter uppercase">Número de alumnos</div>
+                                            {{$ti->taller->count()}}
+                                        </td>
+                                    </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
@@ -251,7 +279,7 @@
     <div class="col-lg-4 col-md-6">
         <section class="widget">
             <header class="widget-header-dark with-btn">
-                Transportes registrados en el sistema
+                Coordinador/Administrador registrados en el sistema: {{count($coord)}}
                 <button type="button" class="widget-header-btn" data-toggle="modal" data-target=".bd-example-modal-sm" onclick="authUser('Editar Transportes', 5);">
                     <i class="font-icon font-icon-pencil"></i>
                 </button>
@@ -262,7 +290,28 @@
                         <div class="pre-scrollable">
                             <table class="table table-hover">
                                 <tbody>
-										<!--foreach-->
+                                    @foreach($coord as $cor)
+                                    <tr>
+                                        <td class="table-check">
+                                            <div class="font-11 color-blue-grey-lighter uppercase">Coordinador/Administrador</div>
+                                            {{$cor}}
+                                        </td>
+                                        <td class="table-check">
+                                            <div class="font-11 color-blue-grey-lighter uppercase">Boleta</div>
+                                            {{$cor->boleta}}
+                                        </td>
+                                        <td class="table-check">
+                                            <div class="font-11 color-blue-grey-lighter uppercase">Tipo</div>
+                                        <?php
+                                            if($cor->tipo == 1){
+                                                echo "Administrador";
+                                            }else if($cor->tipo == 3){
+                                                echo "Coordinador";
+                                            }
+                                        ?>
+                                        </td>
+                                    </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
@@ -287,7 +336,7 @@
     <div class="col-lg-4 col-md-6">
         <section class="widget">
             <header class="widget-header-dark with-btn">
-                Tipos de Casa registradas en el sistema
+                Usuario-Coordinador registrados en el sistema: {{count($sp)}}
                 <button type="button" class="widget-header-btn" data-toggle="modal" data-target=".bd-example-modal-sm" onclick="authUser('Editar Casas', 6);">
                     <i class="font-icon font-icon-pencil"></i>
                 </button>
@@ -298,7 +347,18 @@
                         <div class="pre-scrollable">
                             <table class="table table-hover">
                                 <tbody>
-									<!--foreach-->
+                                    @foreach($sp as $s)
+                                    <tr>
+                                        <td class="table-check">
+                                            <div class="font-11 color-blue-grey-lighter uppercase">Coordinador/Administrador</div>
+                                            {{$s}}
+                                        </td>
+                                        <td class="table-check">
+                                            <div class="font-11 color-blue-grey-lighter uppercase">Boleta</div>
+                                            {{$s->boleta}}
+                                        </td>
+                                    </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
