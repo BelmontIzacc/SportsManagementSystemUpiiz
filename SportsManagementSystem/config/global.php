@@ -3,7 +3,10 @@
 return [
     //Desarrollo
     'desarrollo' => true,
-    'limite' => 20,
+    'limite' => 20, //controla la cantidad de usuarios e informacion
+    'taller' => 10, // cantidad de talleres
+    'inscri' => 30, // cantidad de inscripciones para los talleres
+    'stats' => 40, // controla las estadisticas de los talleres (fecha,asistencias,faltas,etc)
     //Fin desarrollo
 
     //Constantes

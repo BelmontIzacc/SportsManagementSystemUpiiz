@@ -11,10 +11,13 @@ class inscribirSeeder extends Seeder
      */
     public function run()
     {
-        for($i = 0; $i <= 25; $i++){
+        $taller = config('global.taller');
+        $inscri = config('global.inscri');
+        $limit = config('global.limite');
+        for($i = 0; $i <= $inscri; $i++){
             DB::table('inscripcion')->insert([
-                'usuario_id' => rand (4 , 24),
-                'taller_id' =>rand (1 , 10),
+                'usuario_id' => rand (4 , $limit),
+                'taller_id' =>rand (1 , $taller),
             ]);
         }
     }

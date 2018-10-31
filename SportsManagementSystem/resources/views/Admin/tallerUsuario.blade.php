@@ -71,6 +71,13 @@
                 <?= Lava::render('DonutChart', 'IMDB', 'chart-div') ?>
             </div>
         </section>
+        <section class="card">
+            <header class="card-header"> </header>
+            <div class="card-block">
+                <div id="chart-div1"></div>
+                <?= Lava::render('DonutChart', 'carrera', 'chart-div1') ?>
+            </div>
+        </section>
             <section class="widget widget-accordion card" id="accordion" role="tablist" aria-multiselectable="true">
                 <article class="panel">
                     <div class="panel-heading" role="tab" id="headingOne">

@@ -13,11 +13,13 @@ class asistenciaSeeder extends Seeder
     {
         //
         $limit = config('global.limite');
+        $taller = config('global.taller');
+        
         for($i = 0; $i <= $limit; $i++){
             DB::table('asistencia')->insert([
                 'usuario_id'=>$i+1,
-                'taller_id'=>rand(1,10),
-                'asistencia'=>rand(1,2),
+                'taller_id'=>rand(1,$taller),
+                'asistencia'=>rand(0,1),
             ]);
         }
     }

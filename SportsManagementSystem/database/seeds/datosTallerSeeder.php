@@ -12,7 +12,9 @@ class datosTallerSeeder extends Seeder
     public function run()
     {
         //
-        for($i = 0; $i <= 10; $i++){
+        $taller = (int)(config('global.taller'));
+
+        for($i = 0; $i <= $taller; $i++){
                 DB::table('taller')->insert([
                     'usuario_id' => rand(1,3),
                     'nombre' => 'Generico'.rand(1,100),
@@ -23,6 +25,6 @@ class datosTallerSeeder extends Seeder
                     'dias' => 'martes,miercoles',
                     'descripcion' => 'Trae tus cosas genericas para este generico curso',
                 ]);
-            }
+        }
     }
 }

@@ -542,12 +542,26 @@ class AdminController extends Controller
         $mujeres=0;
         $hombres=0;
 
+        $carrera = \App\carrera::all();
+        $array = array();
+
+        foreach($carrera as $c){
+            $array[$c->id] = 0;
+        }
+
         foreach ($inscripcion as $ins) {
            if($ins->usuario->informacion->sexo == 0){
                 $hombres++;
            }else{
                 $mujeres++;
            }
+
+           foreach ($carrera as $c) {
+               if($c->id == $ins->usuario->informacion->carrera_id){
+                    $array[$c->id] = $array[$c->id]+1;
+               }
+           }
+
         }
 
         $sexo->addStringColumn('Reasons')
@@ -556,7 +570,25 @@ class AdminController extends Controller
         ->addRow(['Mujeres', $mujeres]);
 
         \Lava::DonutChart('IMDB', $sexo, [
-            'title' => 'Sexo',
+            'title' => 'Sexo\nHombres: '.$hombres.' - Mujeres: '.$mujeres.'',
+            'titleTextStyle' => [
+                'color'    => '#eb6b2c',
+                'fontSize' => 14
+            ]
+        ]);
+
+        $carrer = \Lava::DataTable();
+        $carrer->addStringColumn('Reasons')
+        ->addNumberColumn('Percent');
+        
+        $i = 0;
+        for($i = 1 ; $i<count($array); $i++){
+            $nombre = \App\carrera::find($i);
+            $carrer->addRow([''.$nombre->nombre, $array[$i]]);
+        }
+
+        \Lava::DonutChart('carrera', $carrer, [
+            'title' => 'Carreras',
             'titleTextStyle' => [
                 'color'    => '#eb6b2c',
                 'fontSize' => 14
@@ -564,12 +596,12 @@ class AdminController extends Controller
         ]);
 
         return view('Admin.tallerUsuario', 
-            [
-                'index'=>$index,
-                'taller'=>$taller,
-                'inscripcion'=>$inscripcion,
-                'lava' => $lava,
-            ]);
+        [
+            'index'=>$index,
+            'taller'=>$taller,
+            'inscripcion'=>$inscripcion,
+            'lava' => $lava,
+        ]);
     }
 
     public function showTaller($id)
