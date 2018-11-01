@@ -31,15 +31,13 @@ function  updateInputs2(title, name, variable, id, place, number, mapa){
 //     document.getElementById("formi").formAction = "/admin/lists/"+id;
 }
 
-function  updateInputs3(title, name, variable, id, color){
+function  updateInputs3(title, name, variable, id){
     document.getElementById('windowTitle').innerHTML=title;
     document.getElementById('nombre').value = name;
     document.getElementById('idVal').value = id;
     document.getElementById('idVal2').value = id;
     document.getElementById("formButton").formAction = window.location.href; //variable
     document.getElementById("formButton2").formAction = window.location.href;
-    $("#color2").val(color);
-    $("#color2").change();
 }
 
 function authUser(title, variable){

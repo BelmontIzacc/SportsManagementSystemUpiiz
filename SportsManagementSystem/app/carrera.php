@@ -10,8 +10,6 @@ class carrera extends Model
     
     protected $fillable = ['nombre'];
     
-    public $timestamps = false;
-    
 	public function informacion(){
 	        return $this->hasMany(informacion::class, 'carrera_id');
 	}

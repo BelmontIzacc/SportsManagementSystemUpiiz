@@ -25,7 +25,7 @@ Talleres Registrados
 				<div class="widget-simple-sm-icon">
 					<i class="font-icon font-icon-facebook"></i>
 				</div>
-				<div class="widget-simple-sm-fill-caption"><a href="{{asset('/admin/search')}}">{{$t->nombre}}</a></div>
+				<div class="widget-simple-sm-fill-caption"><a href="{{asset('/admin/lists/taller/')}}/{{$t->id}}" class="semibold">{{$t->nombre}}</a></div>
 			</section><!--.widget-simple-sm-fill-->
 		</div>
 	</div>

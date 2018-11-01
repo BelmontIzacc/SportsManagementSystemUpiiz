@@ -31,9 +31,16 @@ Route::get('/admin/student/add/studio/{id}', 'adminController@addTallerUser');
 Route::post('/admin/student/add/studio/{id}', 'adminController@addTaller');
 Route::get('/admin/student/{id}/studio', 'adminController@showInfoUserTaller');
 Route::get('/admin/lists/taller/{id}', 'adminController@showTaller');
-Route::get('/admin/controlPanel', 'adminController@control');
 Route::post('/admin/search/list/taller/{id}/getInf', 'adminController@getInf');
 Route::get('/admin/search/list/taller/{id}/getInf', 'adminController@showInf');
+
+Route::get('/admin/controlPanel', 'adminController@control');
+Route::post('/admin/controlPanel/{variable}', 'adminController@checkPassword');
+Route::get('/admin/controlPanel/insert/{variable}', 'adminController@getRegisterWindow');
+Route::post('/admin/controlPanel/insert/{variable}', 'adminController@insertRegister');
+Route::patch('/admin/controlPanel/insert/{variable}', 'adminController@updateRegister');
+Route::delete('/admin/controlPanel/insert/{variable}', 'adminController@deleteRegister');
+
 //-----------------------------------------------------------------------------------//
 Route::get('/user','UserController@index');
 Route::get('/user/RegistroUsuario','UserController@getRegister');

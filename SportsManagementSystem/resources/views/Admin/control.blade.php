@@ -134,7 +134,7 @@
         <section class="widget">
             <header class="widget-header-dark with-btn">
                 Instituciones registradas en el sistema: {{count($institucion)}}
-                <button type="button" class="widget-header-btn" data-toggle="modal" data-target=".bd-example-modal-sm" onclick="authUser('Editar estados', 2);">
+                <button type="button" class="widget-header-btn" data-toggle="modal" data-target=".bd-example-modal-sm" onclick="authUser('Editar Instituciones', 2);">
                     <i class="font-icon font-icon-pencil"></i>
                 </button>
             </header>
@@ -182,7 +182,7 @@
         <section class="widget">
             <header class="widget-header-dark with-btn">
                 Talleres registrados en el sistema: {{count($taller)}}
-                <button type="button" class="widget-header-btn" data-toggle="modal" data-target=".bd-example-modal-sm" onclick="authUser('Editar Municipios', 3);">
+                <button type="button" class="widget-header-btn" data-toggle="modal" data-target=".bd-example-modal-sm" onclick="authUser('Editar Talleres', 3);">
                     <i class="font-icon font-icon-pencil"></i>
                 </button>
             </header>
@@ -233,7 +233,7 @@
         <section class="widget">
             <header class="widget-header-dark with-btn">
                 Tipo de talleres registrados en el sistema: {{count($tipo)}}
-                <button type="button" class="widget-header-btn" data-toggle="modal" data-target=".bd-example-modal-sm" onclick="authUser('Editar Becas', 4);">
+                <button type="button" class="widget-header-btn" data-toggle="modal" data-target=".bd-example-modal-sm" onclick="authUser('Editar Tipos', 4);">
                     <i class="font-icon font-icon-pencil"></i>
                 </button>
             </header>
@@ -279,8 +279,8 @@
     <div class="col-lg-4 col-md-6">
         <section class="widget">
             <header class="widget-header-dark with-btn">
-                Coordinador/Administrador registrados en el sistema: {{count($coord)}}
-                <button type="button" class="widget-header-btn" data-toggle="modal" data-target=".bd-example-modal-sm" onclick="authUser('Editar Transportes', 5);">
+                Coordinador/Administrador registrados en sistema: {{count($coord)}}
+                <button type="button" class="widget-header-btn" data-toggle="modal" data-target=".bd-example-modal-sm" onclick="authUser('Editar Coordinador/Admin', 5);">
                     <i class="font-icon font-icon-pencil"></i>
                 </button>
             </header>
@@ -336,8 +336,8 @@
     <div class="col-lg-4 col-md-6">
         <section class="widget">
             <header class="widget-header-dark with-btn">
-                Usuario-Coordinador registrados en el sistema: {{count($sp)}}
-                <button type="button" class="widget-header-btn" data-toggle="modal" data-target=".bd-example-modal-sm" onclick="authUser('Editar Casas', 6);">
+                Usuario-Coordinador registrados en sistema: {{count($sp)}}
+                <button type="button" class="widget-header-btn" data-toggle="modal" data-target=".bd-example-modal-sm" onclick="authUser('Editar Usuario-Coordinador', 6);">
                     <i class="font-icon font-icon-pencil"></i>
                 </button>
             </header>
@@ -350,7 +350,7 @@
                                     @foreach($sp as $s)
                                     <tr>
                                         <td class="table-check">
-                                            <div class="font-11 color-blue-grey-lighter uppercase">Coordinador/Administrador</div>
+                                            <div class="font-11 color-blue-grey-lighter uppercase">Usuario-Coordinador</div>
                                             {{$s}}
                                         </td>
                                         <td class="table-check">

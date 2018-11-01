@@ -639,7 +639,105 @@ class AdminController extends Controller
             'sp' => $sp,
         ]);
     }
-    
+    public function checkPassword(Request $request, $variable){
+        $this->validate($request, [
+            'clave' => 'required',
+        ]);
+
+        if(Hash::check($request->clave, Auth::user()->password)){
+            return redirect('/admin/controlPanel/insert/'.$variable);
+        } else{
+            return redirect('/admin/controlPanel')
+            ->withErrors([
+                $request->clave => 'No coinciden las contraseñas',
+            ]);
+        }
+    }
+    public function getRegisterWindow($variable){
+        $index = -1;
+
+        return view('Admin.dialogBox', ['index'=>$index, 'variable'=>$variable]);
+    }
+    public function insertRegister(Request $request, $variable){
+        //return redirect('/blocked');
+
+        $this->validate($request, [
+            'nombre' => 'required|min:3|max:255',
+        ]);
+
+
+        if($variable == 1){
+           \App\carrera::create([
+                'nombre' => $request->nombre,
+            ]);
+        } elseif($variable == 2){
+            \App\institucion::create([
+                'nombre' => $request->nombre,
+            ]);
+        }elseif($variable == 4){
+            \App\tipo::create([
+                'nombre' => $request->nombre,
+            ]);
+        }
+
+        return redirect('/admin/controlPanel/insert/'. $variable)->withErrors([
+                    $request->nombre => 'Se a creado '.$request->nombre.' exitosamente',
+                ]);
+    }
+    public function updateRegister(Request $request, $variable){
+            $this->validate($request, [
+                'nombre' => 'required',
+            ]);
+
+        if($variable == 1){
+            $carrer = \App\carrera::find($request->idVal);
+            $carrer->update([
+                'nombre' => $request->nombre,
+            ]);
+        } elseif($variable == 2){
+            $state = \App\institucion::find($request->idVal);
+            $state->update([
+                'nombre' => $request->nombre,
+            ]);
+        } elseif($variable == 3){
+            $taller = \App\taller::find($request->idVal);
+            $taller->update([
+                'nombre' => $request->nombre,
+            ]);
+        } elseif($variable == 4){
+            $place = \App\tipo::find($request->idVal);
+            $place->update([
+                'nombre' => $request->nombre,
+            ]);
+        }
+
+        return redirect('/admin/controlPanel/insert/'. $variable)->withErrors([
+                    $request->nombre => 'Se a actualizado '.$request->nombre.' exitosamente',
+                ]);
+    }
+
+    public function deleteRegister(Request $request, $variable){
+        //return redirect('/blocked');
+
+        if($variable == 1){
+            $carrer = \App\carrera::find($request->idVal2);
+            $carrer->delete();
+        } elseif($variable == 2){
+            $state = \App\institucion::find($request->idVal2);
+            $state->delete();
+        } elseif($variable == 3){
+            $taller = \App\taller::find($request->idVal2);
+            $taller->delete();
+        } elseif($variable == 4){
+            $place = \App\tipo::find($request->idVal2);
+            $place->delete();
+        }
+
+        return redirect('/admin/controlPanel/insert/'. $variable)->withErrors([
+                    $request->nombre => 'Se a eliminado el registro',
+                ]);
+    }
+
     public function getInf(Request $request,$id) {
         $index = 1;
         
