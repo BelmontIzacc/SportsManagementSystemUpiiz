@@ -148,7 +148,7 @@
                 <div class="modal-footer">
                     <div class="container text-center">
                         <div class="form-group">
-                            <h7 class="m-t-lg with-border">¿Agregar talleres al usuario?</h5>
+                            <h7 class="m-t-lg with-border">¿Agregar talleres al usuario?</h7>
                         </div>
                         <div class="row">
                             <a href="{{asset('/admin/student/add/studio/')}}/{{$student->id}}" class="btn btn-rounded btn-inline btn-success">Ver talleres</a>
@@ -380,7 +380,7 @@
 
 <div class="box-typical box-typical-padding">
 		
-	</br>
+	<br/>
 
 	<div class="row text-center">
          @if(($student->usuario->permisos == 1) || ($student->usuario->tipo != 2))

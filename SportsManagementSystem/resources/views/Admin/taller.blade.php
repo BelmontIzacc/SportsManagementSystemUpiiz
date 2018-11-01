@@ -27,7 +27,7 @@
         <i class="font-icon font-icon-award"></i>
     </div>
     @unless($taller->usuario == null)
-    <div>{{$taller->usuario}}</div>
+    <div><a href="{{asset('/admin/lists')}}/{{$taller->usuario_id}}">{{$taller->usuario}}</a></div>
     @endunless
     
     <div class="widget-user-stat hidden-md-down">
@@ -62,7 +62,7 @@
 
 	<div class="row text-center">
 		<div class="col-lg-4 col-md-4">
-		    <button type="button" class="btn btn-rounded btn-inline btn-warning" data-toggle="modal" data-target=".bd-example-modal-sm" onclick="">Estadisticas</button>
+		    <button type="button" class="btn btn-rounded btn-inline btn-warning" data-toggle="modal" data-target=".bd-example-modal-sm" onclick="Graficos();">Estadisticas</button>
 		</div>
         <div class="col-lg-4 col-md-4">
              <a class="btn btn-rounded btn-inline btn-success" target="_blank" onclick="Asistentes();">Participantes</a>
@@ -109,6 +109,41 @@
                 </tbody>
 				</table>
         </div>
+    </div>
+
+    <div id="Graficas" style="display:none" class="container-fluid">
+
+    @include('alerts.formError')
+    @include('alerts.sessionAlert')
+
+    <div class="row">
+        <div class="container-fluid">
+            <section class="card">
+                <header class="card-header"> </header>
+                <div class="card-block">
+                    <div id="perf_div"></div>
+                    <?= Lava::render('ColumnChart', 'Finances', 'perf_div') ?>
+                </div>
+            </section>
+            <section class="card">
+                <header class="card-header"> </header>
+                <div class="card-block">
+                    <div id="chart-div"></div>
+                    <?= Lava::render('DonutChart', 'IMDB', 'chart-div') ?>
+                </div>
+            </section>
+            <section class="card">
+                <header class="card-header"> </header>
+                <div class="card-block">
+                    <div id="chart-div1"></div>
+                    <?= Lava::render('DonutChart', 'carrera', 'chart-div1') ?>
+                </div>
+            </section>
+
+        </div>
+    </div>
+
+
     </div>
 </div> <!--End box typical-->
 
