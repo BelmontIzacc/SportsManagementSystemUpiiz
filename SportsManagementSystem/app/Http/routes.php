@@ -29,7 +29,12 @@ Route::post('/admin/lists/{id}', 'adminController@edit');
 Route::delete('/admin/lists/{id}', 'adminController@destroy');
 Route::get('/admin/student/add/studio/{id}', 'adminController@addTallerUser');
 Route::post('/admin/student/add/studio/{id}', 'adminController@addTaller');
+
 Route::get('/admin/student/{id}/studio', 'adminController@showInfoUserTaller');
+Route::post('/admin/student/{id}/studio', 'adminController@checkPassword2');
+Route::get('/admin/student/{id}/studio/special', 'adminController@showSpecial');
+Route::post('/admin/student/{id}/studio/special', 'adminController@special');
+
 Route::get('/admin/lists/taller/{id}', 'adminController@showTaller');
 Route::post('/admin/search/list/taller/{id}/getInf', 'adminController@getInf');
 Route::get('/admin/search/list/taller/{id}/getInf', 'adminController@showInf');

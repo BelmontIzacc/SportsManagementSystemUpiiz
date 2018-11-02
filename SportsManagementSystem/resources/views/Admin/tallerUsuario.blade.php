@@ -13,6 +13,36 @@
 @stop
 @section('popUp')
 
+<div class="modal fade bd-example-modal-sm"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="mySmallModalLabel"
+        aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="modal-close" data-dismiss="modal" aria-label="Close">
+                    <i class="font-icon-close-2"></i>
+                </button>
+                <h4 class="modal-title" id="windowTitle">Funciones Especiales</h4>
+            </div>
+            {!!Form::open(array('method'=>'post', 'id'=>'passForm'))!!}
+            <div class="modal-body">
+                <div class="form-group">
+                    <label class="form-label" for="hide-show-password">Contraseña</label>
+                    <input type="password" class="form-control" value="" name="clave" id="clave">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="text-center">
+                    <button type="submit" class="btn btn-rounded btn-danger" formaction="" id="formButton">Editar datos</button>
+                </div>
+            </div>
+            {!!Form::close()!!}
+        </div>
+    </div>
+</div><!--.modal-->
+
 <div class="box-typical">
     <header class="widgets-header">
         <div class="container-fluid">
@@ -35,6 +65,7 @@
                         <div class="tbl tbl-item">
                             <div class="tbl-row">
                                 <div class="tbl-cell">
+					                <button type="button" class="btn btn-rounded btn-inline btn-warning" data-toggle="modal" data-target=".bd-example-modal-sm">Funciones especiales</button>
                                 </div>
                                 <div class="tbl-cell tbl-cell-progress">
                                     <div class="col-lg-3 col-md-3">
@@ -78,6 +109,13 @@
                 <?= Lava::render('DonutChart', 'carrera', 'chart-div1') ?>
             </div>
         </section>
+        <section class="card">
+            <header class="card-header"> </header>
+            <div class="card-block">
+                <div id="chart-div2"></div>
+                <?= Lava::render('DonutChart', 'INS', 'chart-div2') ?>
+            </div>
+        </section>
             <section class="widget widget-accordion card" id="accordion" role="tablist" aria-multiselectable="true">
                 <article class="panel">
                     <div class="panel-heading" role="tab" id="headingOne">
@@ -95,9 +133,11 @@
                                         #
                                     </th>
                                     <th>Nombre</th>
+                                    <th>Sexo</th>
                                     <th>Boleta</th>
                                     <th>Carrera</th>
-                                    
+                                    <th>Semestre</th>
+                                    <th>Institucion</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -111,10 +151,20 @@
                                     <td class="tabledit-view-mode">
                                         <span class="tabledit-span"><a href="{{asset('/admin/lists')}}/{{$i->usuario->informacion->id}}" class="semibold">{{$i->usuario}}</a></span>
                                     </td>
+                                    <td class="table-icon-cell">
+                                        	@if($i->usuario->informacion->sexo == 0) 
+                    	 						Masculino
+						                   	@else
+						                   		Femenino
+						                    @endif
+                                        </a></span>
+                                    </td>
                                     <td class="color-blue-grey-lighter tabledit-view-mode">
                                         <span class="tabledit-span">{{$i->usuario->boleta}}</span>
                                     </td>
                                     <td class="table-icon-cell">{{$i->usuario->informacion->carrera->nombre}}</td>
+                                    <td class="table-icon-cell">{{$i->usuario->informacion->semestre}}</td>
+                                    <td class="table-icon-cell">{{$i->usuario->informacion->institucion->nombre}}</td>
                                 </tr>
                                 @endforeach
                             </tbody>

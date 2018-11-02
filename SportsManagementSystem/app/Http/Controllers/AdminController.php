@@ -543,10 +543,17 @@ class AdminController extends Controller
         $hombres=0;
 
         $carrera = \App\carrera::all();
+        $institu = \App\institucion::all();
+
         $array = array();
+        $arrayInstituciones = array();
 
         foreach($carrera as $c){
             $array[$c->id] = 0;
+        }
+
+        foreach($institu as $tu){
+            $arrayInstituciones[$tu->id] = 0;
         }
 
         foreach ($inscripcion as $ins) {
@@ -559,6 +566,12 @@ class AdminController extends Controller
            foreach ($carrera as $c) {
                if($c->id == $ins->usuario->informacion->carrera_id){
                     $array[$c->id] = $array[$c->id]+1;
+               }
+           }
+
+           foreach ($institu as $in) {
+               if($in->id == $ins->usuario->informacion->institucion_id){
+                    $arrayInstituciones[$in->id] = $arrayInstituciones[$in->id]+1;
                }
            }
 
@@ -582,13 +595,31 @@ class AdminController extends Controller
         ->addNumberColumn('Percent');
         
         $i = 0;
-        for($i = 1 ; $i<count($array); $i++){
+        for($i = 1 ; $i<=count($array); $i++){
             $nombre = \App\carrera::find($i);
             $carrer->addRow([''.$nombre->nombre, $array[$i]]);
         }
 
         \Lava::DonutChart('carrera', $carrer, [
             'title' => 'Carreras',
+            'titleTextStyle' => [
+                'color'    => '#eb6b2c',
+                'fontSize' => 14
+            ]
+        ]);
+
+        $instit = \Lava::DataTable();
+        $instit->addStringColumn('Reasons')
+        ->addNumberColumn('Percent');
+        
+        $j = 0;
+        for($j = 1 ; $j<=count($arrayInstituciones); $j++){
+            $nombre = \App\institucion::find($j);
+            $instit->addRow([''.$nombre->nombre, $arrayInstituciones[$j]]);
+        }
+
+        \Lava::DonutChart('INS', $instit, [
+            'title' => 'Institucion',
             'titleTextStyle' => [
                 'color'    => '#eb6b2c',
                 'fontSize' => 14
@@ -602,6 +633,53 @@ class AdminController extends Controller
             'inscripcion'=>$inscripcion,
             'lava' => $lava,
         ]);
+    }
+
+    public function checkPassword2(Request $request, $variable){
+        $this->validate($request, [
+            'clave' => 'required',
+        ]);
+
+        if(Hash::check($request->clave, Auth::user()->password)){
+            return redirect('/admin/student/'.$variable.'/studio/special');
+        } else{
+            return redirect('/admin/student/'.$variable.'/studio')
+            ->withErrors([
+                $request->clave => 'Contraseña Incorrecta',
+            ]);
+        }
+    }
+
+    public function showSpecial($variable){
+        $index = -1;
+
+        return view('Admin.specialFunctions', ['index'=>$index, 'variable'=>$variable]);
+    }
+
+    public function special(Request $request,$variable){
+       $inscritos = $request->stats;
+       $estadisticas = $request->perm;
+       $asistencia = $request->coord;
+
+       if($inscritos==1) {
+            $ins = \App\inscripcion::where('taller_id',$variable);
+            $ins->delete();
+       }
+
+       if($estadisticas==1){
+            $sta = \App\stats::where('taller_id',$variable);
+            $sta->delete();
+       }
+
+       if($asistencia==1){
+            $as = \App\asistencia::where('taller_id',$variable);
+            $as->delete();
+       }
+
+        return redirect('/admin/student/2/studio/special')->withErrors([
+                $request->stats => 'Se a eliminado los registros',
+        ]);
+       
     }
 
     public function showTaller($id)
@@ -681,7 +759,7 @@ class AdminController extends Controller
         ->addNumberColumn('Percent');
         
         $i = 0;
-        for($i = 1 ; $i<count($array); $i++){
+        for($i = 1 ; $i<=count($array); $i++){
             $nombre = \App\carrera::find($i);
             $carrer->addRow([''.$nombre->nombre, $array[$i]]);
         }
