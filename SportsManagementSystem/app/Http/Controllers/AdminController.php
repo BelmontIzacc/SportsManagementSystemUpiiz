@@ -544,9 +544,12 @@ class AdminController extends Controller
 
         $carrera = \App\carrera::all();
         $institu = \App\institucion::all();
+        $asisten = \App\asistencia::all();
 
         $array = array();
         $arrayInstituciones = array();
+        $faltas = array();
+        $asiste = array();
 
         foreach($carrera as $c){
             $array[$c->id] = 0;
@@ -556,12 +559,27 @@ class AdminController extends Controller
             $arrayInstituciones[$tu->id] = 0;
         }
 
+        $af=0;
         foreach ($inscripcion as $ins) {
            if($ins->usuario->informacion->sexo == 0){
                 $hombres++;
            }else{
                 $mujeres++;
            }
+
+           $asiste[$af]=0;
+           $faltas[$af]=0;
+           foreach($asisten as $asi){
+                if( ($asi->usuario_id == $ins->usuario->id) && ($asi->taller_id == $id) ){
+                    if($asi->asistencia==1){
+                        $asiste[$af]= $asiste[$af]+1;
+                    }else if($asi->asistencia==0){
+                        $faltas[$af]= $faltas[$af]+1;
+                    }
+                }
+           }
+
+           $af=$af+1;
 
            foreach ($carrera as $c) {
                if($c->id == $ins->usuario->informacion->carrera_id){
@@ -632,6 +650,8 @@ class AdminController extends Controller
             'taller'=>$taller,
             'inscripcion'=>$inscripcion,
             'lava' => $lava,
+            'asistencia' => $asiste,
+            'faltas' => $faltas,
         ]);
     }
 
@@ -899,6 +919,35 @@ class AdminController extends Controller
         return redirect('/admin/controlPanel/insert/'. $variable)->withErrors([
                     $request->nombre => 'Se a eliminado el registro',
                 ]);
+    }
+    
+    public function showInfoList($id){
+        $index = 1;
+        $taller = \App\taller::find($id);
+        $inscripcion = \App\inscripcion::where('taller_id',$id)->get();
+        $stats = \App\stats::where('taller_id',$id)->get();
+
+        return view('Admin.list',[
+            'index' => $index,
+            'variable' => $id,
+            'taller'=>$taller,
+            'inscripcion'=>$inscripcion,
+            'stats' => $stats,
+        ]);
+    }
+
+    public function showDate($id,$fecha){
+        $index = 1;
+        $asistencia = \App\asistencia::where('fecha',$fecha)->where('taller_id',$id)->get();
+        $taller = \App\taller::find($id);
+        error_log($asistencia);
+        
+        return view('Admin.verFecha',[
+            'index' => $index,
+            'variable' => $id,
+            'taller'=>$taller,
+            'asistencia' => $asistencia,
+        ]);
     }
 
     public function getInf(Request $request,$id) {

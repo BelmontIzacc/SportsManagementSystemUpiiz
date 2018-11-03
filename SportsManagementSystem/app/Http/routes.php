@@ -35,6 +35,9 @@ Route::post('/admin/student/{id}/studio', 'adminController@checkPassword2');
 Route::get('/admin/student/{id}/studio/special', 'adminController@showSpecial');
 Route::post('/admin/student/{id}/studio/special', 'adminController@special');
 
+Route::get('/admin/student/{id}/studio/list', 'adminController@showInfoList');
+Route::get('/admin/student/{id}/studio/list/date/{date}', 'adminController@showDate');
+
 Route::get('/admin/lists/taller/{id}', 'adminController@showTaller');
 Route::post('/admin/search/list/taller/{id}/getInf', 'adminController@getInf');
 Route::get('/admin/search/list/taller/{id}/getInf', 'adminController@showInf');

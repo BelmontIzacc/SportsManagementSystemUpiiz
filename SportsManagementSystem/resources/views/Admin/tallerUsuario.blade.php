@@ -64,14 +64,17 @@
                      <div class="tbl-cell">
                         <div class="tbl tbl-item">
                             <div class="tbl-row">
-                                <div class="tbl-cell">
-					                <button type="button" class="btn btn-rounded btn-inline btn-warning" data-toggle="modal" data-target=".bd-example-modal-sm">Funciones especiales</button>
-                                </div>
-                                <div class="tbl-cell tbl-cell-progress">
-                                    <div class="col-lg-3 col-md-3">
-                                        <a href="{{asset('/admin/lists/')}}/{{$taller->usuario->informacion->id}}" class="btn btn-rounded btn-primary btn-inline">Regresar</a>
+                                    <div class="row">
+                                        <div class="col-lg-3 col-lg-offset-1 col-md-12 col-md-offset-1">
+                                            <button type="button" class="btn btn-rounded btn-inline btn-warning" data-toggle="modal" data-target=".bd-example-modal-sm">Funciones especiales</button>
+                                        </div>
+                                        <div class="col-lg-3 col-lg-offset-1 col-md-12 col-md-offset-1">
+                                            <a href="{{asset('/admin/student/')}}/{{$taller->id}}/studio/list" class="btn btn-rounded btn-inline btn-success">Listas</a>
+                                        </div>                        
+                                        <div class="col-lg-3 col-lg-offset-1 col-md-12 col-md-offset-1">
+                                            <a href="{{asset('/admin/lists/')}}/{{$taller->usuario->informacion->id}}" class="btn btn-rounded btn-primary btn-inline">Regresar</a>
+                                        </div>
                                     </div>
-                                </div>
                             </div>
                         </div> <!--tbl tbl-item-->
                     </div> <!--tbl-cell-->
@@ -138,10 +141,12 @@
                                     <th>Carrera</th>
                                     <th>Semestre</th>
                                     <th>Institucion</th>
+                                    <th>Asistencias</th>
+                                    <th>Faltas</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php $num=0; ?>
+                                <?php $num=0; $index=-1; ?>
                                 @foreach($inscripcion as $i)
                                 <tr id="$i->usuario->id">
                                     <td>
@@ -165,6 +170,9 @@
                                     <td class="table-icon-cell">{{$i->usuario->informacion->carrera->nombre}}</td>
                                     <td class="table-icon-cell">{{$i->usuario->informacion->semestre}}</td>
                                     <td class="table-icon-cell">{{$i->usuario->informacion->institucion->nombre}}</td>
+                                    <?php $index=$index+1; ?>
+                                    <td class="table-icon-cell">{{$asistencia[$index]}}</td>
+                                    <td class="table-icon-cell">{{$faltas[$index]}}</td>
                                 </tr>
                                 @endforeach
                             </tbody>
