@@ -130,7 +130,6 @@
                             <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
                                 <?php  
                                     $tam = sizeof($taller);
-                                    error_log('jojojo '.$tam);
                                 ?>
                                 @if($tam == 0)
                                     <div class="dropdown-divider"></div>

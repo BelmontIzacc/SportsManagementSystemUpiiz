@@ -41,7 +41,7 @@ $index=4;
                             </ul>
                         </div>
                         @endif 
-                        <header class="sign-title">Funciones Especiales</header>
+                        <header class="sign-title">Funciones Especiales para {{$taller->nombre}}</header>
                         </br>
                             <section class="widget widget-simple-sm">
                                 <div class="widget-simple-sm-statistic">

@@ -91,15 +91,18 @@
 		<section class="card"> 
 	            <div class="card-block">
 		            <div class="row">
-		                <div class="col-lg-3 col-lg-offset-1 col-md-12 col-md-offset-1">
+		                <div class="col-lg-1 col-lg-offset-1 col-md-3 col-md-offset-1">
 		                    <button type="button" class="btn btn-rounded btn-inline btn-warning" data-toggle="modal" data-target=".bd-example-modal-sm">Funciones especiales</button>
 		                </div>
-		                <div class="col-lg-3 col-lg-offset-1 col-md-12 col-md-offset-1">
+		                <div class="col-lg-2 col-lg-offset-1 col-md-3 col-md-offset-1">
 		                    <a href="{{asset('/admin/student/')}}/{{$taller->id}}/studio/list" class="btn btn-rounded btn-inline btn-success">Listas de asistencia</a>
 		                </div>                        
-		                <div class="col-lg-3 col-lg-offset-1 col-md-12 col-md-offset-1">
+		                <div class="col-lg-2 col-lg-offset-1 col-md-3 col-md-offset-1">
 		                    <a href="{{asset('/admin/lists/')}}/{{$taller->usuario->informacion->id}}" class="btn btn-rounded btn-primary btn-inline">Regresar</a>
 		                </div>
+                        <div class="col-lg-2 col-lg-offset-1 col-md-3 col-md-offset-1">
+                            <a href="{{asset('/admin/student/')}}/{{$taller->id}}/studio/add/User" class="btn btn-rounded btn-inline btn-secondary">Agregar usuarios al taller</a>
+                        </div>
 		            </div>
 	            </div>
 		</section>
@@ -112,13 +115,6 @@
                         </a>
                     </div>
                     <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne" aria-expanded="false" style="height: 0px;">
-				            <div class="card-block">
-					            <div class="row">
-					                <div class="col-lg-2 col-lg-offset-1 col-md-12 col-md-offset-1">
-										<a href="{{asset('/admin/lists/')}}/{{$taller->usuario->informacion->id}}" class="btn btn-rounded btn-inline btn-secondary">Agregar usuarios al taller</a>
-					                </div>
-					            </div>
-				            </div>
                         <div class="panel-collapse-in">
                         <table id="table-edit" class="table table-bordered table-hover">
                             <thead>

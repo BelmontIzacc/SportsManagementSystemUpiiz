@@ -672,8 +672,9 @@ class AdminController extends Controller
 
     public function showSpecial($variable){
         $index = -1;
+        $taller = \App\taller::find($variable);
 
-        return view('Admin.specialFunctions', ['index'=>$index, 'variable'=>$variable]);
+        return view('Admin.specialFunctions', ['index'=>$index, 'variable'=>$variable,'taller'=>$taller]);
     }
 
     public function special(Request $request,$variable){
@@ -841,6 +842,54 @@ class AdminController extends Controller
             'inscripcion'=>$inscripcion,
             'stats' => $stats,
         ]);
+    }
+
+    public function addUserTaller($id){
+        $index = 1;
+        $taller = \App\taller::find($id);
+        $user = \App\User::all();
+
+        return view('Admin.addUserTaller',[
+            'index' => $index,
+            'variable' => $id,
+            'taller'=>$taller,
+            'user'=>$user,
+        ]);
+    }
+
+    public function addUserTallerGet(Request $request, $id){
+
+        $li = $request->lista;
+
+        $tam = explode( ',', $li);
+        $inscripcion = \App\inscripcion::where('taller_id',$id)->get();
+
+        $igual=0;
+        
+            for($j = 0 ; $j<count($tam); $j++){
+                $user = \App\User::find($tam[$j]);
+                foreach($inscripcion as $ins){
+                    if($ins->usuario_id == $user->id){
+                        $igual=1;
+                    }
+                }
+
+                if($igual==0){
+                    $u = \App\inscripcion::create([
+                        'usuario_id' =>$user->id,
+                        'taller_id' => $id,
+                    ]);
+                }
+
+                $igual=0;
+                
+            }
+
+
+        return redirect('/admin/student/'.$id.'/studio/add/User')->withErrors([
+                    $request->lista => 'Se a Agregado a los alumnos',
+        ]);
+
     }
 
     public function showDate($id,$fecha){

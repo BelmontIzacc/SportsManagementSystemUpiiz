@@ -13,7 +13,7 @@ class datosSeeder extends Seeder
     {
         //
         $limit = config('global.limite');
-            for($i = 0; $i <= $limit; $i++){
+            for($i = 0; $i <= $limit+3; $i++){
                 DB::table('informacion')->insert([
                     'usuario_id' => $i+1,
                     'institucion_id' => rand(1 , 2),
