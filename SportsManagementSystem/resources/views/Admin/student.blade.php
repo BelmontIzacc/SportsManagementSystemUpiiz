@@ -128,10 +128,19 @@
                         <div class="text-center">
                             <button class="btn btn-inline dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Elije el taller para ver</button>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                @foreach($taller as $t)
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="{{asset('/admin/student/')}}/{{$t->id}}/studio">{{$t->nombre}}</a>
-                                @endforeach
+                                <?php  
+                                    $tam = sizeof($taller);
+                                    error_log('jojojo '.$tam);
+                                ?>
+                                @if($tam == 0)
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item">Sin taller para mostrar</a>
+                                @else
+                                    @foreach($taller as $t)
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" href="{{asset('/admin/student/')}}/{{$t->id}}/studio">{{$t->nombre}}</a>
+                                    @endforeach
+                                @endif
                             </div>
                         </div>
                     </div>

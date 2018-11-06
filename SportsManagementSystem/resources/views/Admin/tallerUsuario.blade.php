@@ -43,47 +43,6 @@
     </div>
 </div><!--.modal-->
 
-<div class="box-typical">
-    <header class="widgets-header">
-        <div class="container-fluid">
-            <div class="tbl tbl-outer">
-                <div class="tbl-row">              
-                    <div class="tbl-cell">
-                        <div class="tbl tbl-item">
-                            <div class="tbl-row">
-                                <div class="tbl-cell">
-                                    <div class="title">Taller {{$taller->nombre}}</div>
-                                    <div class="amount-sm">Coordinador {{$taller->usuario}}</div>
-                                    <div class="amount-sm">Total Registrados {{count($inscripcion)}}</div>
-                                </div>
-                                <div class="tbl-cell tbl-cell-progress">
-                                </div>
-                            </div>
-                        </div> <!--tbl tbl-item-->
-                    </div> <!--tbl-cell-->
-                     <div class="tbl-cell">
-                        <div class="tbl tbl-item">
-                            <div class="tbl-row">
-                                    <div class="row">
-                                        <div class="col-lg-3 col-lg-offset-1 col-md-12 col-md-offset-1">
-                                            <button type="button" class="btn btn-rounded btn-inline btn-warning" data-toggle="modal" data-target=".bd-example-modal-sm">Funciones especiales</button>
-                                        </div>
-                                        <div class="col-lg-3 col-lg-offset-1 col-md-12 col-md-offset-1">
-                                            <a href="{{asset('/admin/student/')}}/{{$taller->id}}/studio/list" class="btn btn-rounded btn-inline btn-success">Listas</a>
-                                        </div>                        
-                                        <div class="col-lg-3 col-lg-offset-1 col-md-12 col-md-offset-1">
-                                            <a href="{{asset('/admin/lists/')}}/{{$taller->usuario->informacion->id}}" class="btn btn-rounded btn-primary btn-inline">Regresar</a>
-                                        </div>
-                                    </div>
-                            </div>
-                        </div> <!--tbl tbl-item-->
-                    </div> <!--tbl-cell-->
-                </div> <!--tbl-row-->
-            </div> <!--tbl tbl-outer-->
-        </div> <!--container fluid-->
-    </header>
-</div>
-
 <div class="container-fluid">
 
 @include('alerts.formError')
@@ -91,35 +50,60 @@
     
 <div class="row">
     <div class="container-fluid">
-        <section class="card">
-            <header class="card-header"> </header>
-            <div class="card-block">
-                <div id="perf_div"></div>
-                <?= Lava::render('ColumnChart', 'Finances', 'perf_div') ?>
-            </div>
-        </section>
-        <section class="card">
-            <header class="card-header"> </header>
-            <div class="card-block">
-                <div id="chart-div"></div>
-                <?= Lava::render('DonutChart', 'IMDB', 'chart-div') ?>
-            </div>
-        </section>
-        <section class="card">
-            <header class="card-header"> </header>
-            <div class="card-block">
-                <div id="chart-div1"></div>
-                <?= Lava::render('DonutChart', 'carrera', 'chart-div1') ?>
-            </div>
-        </section>
-        <section class="card">
-            <header class="card-header"> </header>
-            <div class="card-block">
-                <div id="chart-div2"></div>
-                <?= Lava::render('DonutChart', 'INS', 'chart-div2') ?>
-            </div>
-        </section>
-            <section class="widget widget-accordion card" id="accordion" role="tablist" aria-multiselectable="true">
+		<section class="card widget widget-user">
+		    <div class="widget-user-bg" style="background-image: url('{{asset('/Template/img/backgroundUser.svg')}}')"></div>
+		    <div class="widget-user-photo">
+		        <img src="{{asset('/Template/img/avatar.svg')}}">
+		    </div>
+		    <div>
+		        {{$taller->nombre}}
+		        <i class="font-icon font-icon-award"></i>
+		    </div>
+		    @unless($taller->usuario == null)
+		    <div>Coordinador <a href="{{asset('/admin/lists')}}/{{$taller->usuario_id}}">{{$taller->usuario}}</a></div>
+		    @endunless
+		    
+		    <div class="widget-user-stat hidden-md-down">
+		        <div class="item">
+		            <div class="number">{{count($inscripcion)}}</div>
+		            <div class="caption">Participantes</div>
+		        </div>
+		    	@unless($taller->lugar == null)
+		        <div class="item">
+		            <div class="number">{{$taller->lugar}}</div>
+		            <div class="caption">Lugar</div>
+		        </div>
+		        @endunless
+		        @unless($taller->dias == null)
+		        <div class="item">
+		            <div class="number">{{$taller->dias}}</div>
+		            <div class="caption">Horario</div>
+		        </div>
+		        @endunless
+		    </div>
+		    <div class="widget-user-stat">
+		        @unless($taller->descripcion == null)
+		            <div class="number">{{$taller->descripcion}}</div>
+		            <div class="caption">Descripcion</div>
+		        @endunless
+		    </div>
+		</section>
+		<section class="card"> 
+	            <div class="card-block">
+		            <div class="row">
+		                <div class="col-lg-3 col-lg-offset-1 col-md-12 col-md-offset-1">
+		                    <button type="button" class="btn btn-rounded btn-inline btn-warning" data-toggle="modal" data-target=".bd-example-modal-sm">Funciones especiales</button>
+		                </div>
+		                <div class="col-lg-3 col-lg-offset-1 col-md-12 col-md-offset-1">
+		                    <a href="{{asset('/admin/student/')}}/{{$taller->id}}/studio/list" class="btn btn-rounded btn-inline btn-success">Listas de asistencia</a>
+		                </div>                        
+		                <div class="col-lg-3 col-lg-offset-1 col-md-12 col-md-offset-1">
+		                    <a href="{{asset('/admin/lists/')}}/{{$taller->usuario->informacion->id}}" class="btn btn-rounded btn-primary btn-inline">Regresar</a>
+		                </div>
+		            </div>
+	            </div>
+		</section>
+		<section class="widget widget-accordion card" id="accordion" role="tablist" aria-multiselectable="true">
                 <article class="panel">
                     <div class="panel-heading" role="tab" id="headingOne">
                         <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne" class="collapsed">
@@ -128,6 +112,13 @@
                         </a>
                     </div>
                     <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne" aria-expanded="false" style="height: 0px;">
+				            <div class="card-block">
+					            <div class="row">
+					                <div class="col-lg-2 col-lg-offset-1 col-md-12 col-md-offset-1">
+										<a href="{{asset('/admin/lists/')}}/{{$taller->usuario->informacion->id}}" class="btn btn-rounded btn-inline btn-secondary">Agregar usuarios al taller</a>
+					                </div>
+					            </div>
+				            </div>
                         <div class="panel-collapse-in">
                         <table id="table-edit" class="table table-bordered table-hover">
                             <thead>
@@ -180,6 +171,34 @@
                         </div>
                     </div>
                 </article>
+        </section>
+        <section class="card">
+            <header class="card-header"> </header>
+            <div class="card-block">
+                <div id="perf_div"></div>
+                <?= Lava::render('ColumnChart', 'Finances', 'perf_div') ?>
+            </div>
+        </section>
+        <section class="card">
+            <header class="card-header"> </header>
+            <div class="card-block">
+                <div id="chart-div"></div>
+                <?= Lava::render('DonutChart', 'IMDB', 'chart-div') ?>
+            </div>
+        </section>
+        <section class="card">
+            <header class="card-header"> </header>
+            <div class="card-block">
+                <div id="chart-div1"></div>
+                <?= Lava::render('DonutChart', 'carrera', 'chart-div1') ?>
+            </div>
+        </section>
+        <section class="card">
+            <header class="card-header"> </header>
+            <div class="card-block">
+                <div id="chart-div2"></div>
+                <?= Lava::render('DonutChart', 'INS', 'chart-div2') ?>
+            </div>
         </section>
     </div>
 </div>

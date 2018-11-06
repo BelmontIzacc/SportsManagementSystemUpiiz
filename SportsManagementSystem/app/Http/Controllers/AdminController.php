@@ -696,7 +696,7 @@ class AdminController extends Controller
             $as->delete();
        }
 
-        return redirect('/admin/student/2/studio/special')->withErrors([
+        return redirect('/admin/student/'.$variable.'/studio/special')->withErrors([
                 $request->stats => 'Se a eliminado los registros',
         ]);
        
@@ -704,100 +704,7 @@ class AdminController extends Controller
 
     public function showTaller($id)
     {
-        $index = 1;
-        $taller = \App\taller::find($id);
-        $inscripcion = \App\inscripcion::where('taller_id',$id)->get();
-        $stats = \App\stats::where('taller_id',$id)->get();
-
-        $lava = new Lavacharts();
-
-        $finances = \Lava::DataTable();
-
-        $finances->addDateColumn('Date')
-                 ->addNumberColumn('Asistencias')
-                 ->addNumberColumn('Faltas')
-                 ->setDateTimeFormat('Y-m-d');
-                 /*->addRow(['2002-02-01', 1000, 400])
-                 ->addRow(['2004-04-03', 1170, 460])
-                 ->addRow(['2006-06-05', 660, 1120])
-                 ->addRow(['2008-08-07', 1030, 54]);*/
-
-        foreach ($stats as $st) {
-            $finances->addRow([$st->fecha,$st->asistencias,$st->faltas]);
-        }
-
-        \Lava::ColumnChart('Finances', $finances, [
-            'title' => 'Asistencias',
-            'titleTextStyle' => [
-                'color'    => '#eb6b2c',
-                'fontSize' => 14
-            ]
-        ]);
-
-        $sexo = \Lava::DataTable();
-
-        $mujeres=0;
-        $hombres=0;
-
-        $carrera = \App\carrera::all();
-        $array = array();
-
-        foreach($carrera as $c){
-            $array[$c->id] = 0;
-        }
-
-        foreach ($inscripcion as $ins) {
-           if($ins->usuario->informacion->sexo == 0){
-                $hombres++;
-           }else{
-                $mujeres++;
-           }
-
-           foreach ($carrera as $c) {
-               if($c->id == $ins->usuario->informacion->carrera_id){
-                    $array[$c->id] = $array[$c->id]+1;
-               }
-           }
-
-        }
-
-        $sexo->addStringColumn('Reasons')
-        ->addNumberColumn('Percent')
-        ->addRow(['Hombres', $hombres])
-        ->addRow(['Mujeres', $mujeres]);
-
-        \Lava::DonutChart('IMDB', $sexo, [
-            'title' => 'Sexo\nHombres: '.$hombres.' - Mujeres: '.$mujeres.'',
-            'titleTextStyle' => [
-                'color'    => '#eb6b2c',
-                'fontSize' => 14
-            ]
-        ]);
-
-        $carrer = \Lava::DataTable();
-        $carrer->addStringColumn('Reasons')
-        ->addNumberColumn('Percent');
-        
-        $i = 0;
-        for($i = 1 ; $i<=count($array); $i++){
-            $nombre = \App\carrera::find($i);
-            $carrer->addRow([''.$nombre->nombre, $array[$i]]);
-        }
-
-        \Lava::DonutChart('carrera', $carrer, [
-            'title' => 'Carreras',
-            'titleTextStyle' => [
-                'color'    => '#eb6b2c',
-                'fontSize' => 14
-            ]
-        ]);
-        
-        return view('Admin.taller', [
-            'index'=>$index,
-            'taller'=>$taller,
-            'inscripcion'=>$inscripcion,
-            'lava'=>$lava
-        ]);
+        return redirect('/admin/student/'.$id.'/studio');
     }
 
     public function control()
@@ -951,15 +858,6 @@ class AdminController extends Controller
     }
 
     public function getInf(Request $request,$id) {
-        $index = 1;
-        
-        $t = \App\taller::find($id);
-        $i = \App\inscripcion::where('taller_id',$id)->get();
-        return view('Admin.taller',[
-            'index' => $index,
-            'taller' => $t,
-            'inscritos' => $t,
-        ]);
-        
+        return redirect('/admin/student/'.$id.'/studio');
     }
 }
