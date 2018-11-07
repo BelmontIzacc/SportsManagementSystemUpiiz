@@ -88,24 +88,29 @@
 		        @endunless
 		    </div>
 		</section>
-		<section class="card"> 
-	            <div class="card-block">
-		            <div class="row">
-		                <div class="col-lg-1 col-lg-offset-1 col-md-3 col-md-offset-1">
-		                    <button type="button" class="btn btn-rounded btn-inline btn-warning" data-toggle="modal" data-target=".bd-example-modal-sm">Funciones especiales</button>
-		                </div>
-		                <div class="col-lg-2 col-lg-offset-1 col-md-3 col-md-offset-1">
-		                    <a href="{{asset('/admin/student/')}}/{{$taller->id}}/studio/list" class="btn btn-rounded btn-inline btn-success">Listas de asistencia</a>
-		                </div>                        
-		                <div class="col-lg-2 col-lg-offset-1 col-md-3 col-md-offset-1">
-		                    <a href="{{asset('/admin/lists/')}}/{{$taller->usuario->informacion->id}}" class="btn btn-rounded btn-primary btn-inline">Regresar</a>
-		                </div>
-                        <div class="col-lg-2 col-lg-offset-1 col-md-3 col-md-offset-1">
-                            <a href="{{asset('/admin/student/')}}/{{$taller->id}}/studio/add/User" class="btn btn-rounded btn-inline btn-secondary">Agregar usuarios al taller</a>
-                        </div>
-		            </div>
-	            </div>
-		</section>
+        <section class="card">
+            <div class="card-block">
+                    <div class="row text-center">
+                            <tr>
+                                <th>
+                                    <button type="button" class="btn btn-rounded btn-inline btn-warning" data-toggle="modal" data-target=".bd-example-modal-sm">Funciones especiales</button>
+                                </th>
+                                <th>
+                                    <a href="{{asset('/admin/student/')}}/{{$taller->id}}/studio/list" class="btn btn-rounded btn-inline btn-success">Listas de asistencia</a>
+                                </th>
+                                <th>
+                                    <a href="{{asset('/admin/lists/')}}/{{$taller->usuario->informacion->id}}" class="btn btn-rounded btn-primary btn-inline">Regresar</a>
+                                </th>
+                                <th>
+                                    <a href="{{asset('/admin/student/')}}/{{$taller->id}}/studio/add/User" class="btn btn-rounded btn-inline btn-secondary">Agregar usuarios al taller</a>
+                                </th>
+                                <th>
+                                    <a href="{{asset('/admin/student/')}}/{{$taller->id}}/studio/delete/User" class="btn btn-rounded btn-inline btn-info">Eliminar usuarios del taller</a>
+                                </th>
+                            </tr>
+                    </div>
+            </div>
+        </section>
 		<section class="widget widget-accordion card" id="accordion" role="tablist" aria-multiselectable="true">
                 <article class="panel">
                     <div class="panel-heading" role="tab" id="headingOne">

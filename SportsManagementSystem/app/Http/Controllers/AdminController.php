@@ -857,39 +857,80 @@ class AdminController extends Controller
         ]);
     }
 
+    public function deleteUserTaller($id){
+        $index = 1;
+        $taller = \App\taller::find($id);
+        $inscripcion = \App\inscripcion::where('taller_id',$id)->get();
+
+        return view('Admin.deleteUserTaller',[
+            'index' => $index,
+            'variable' => $id,
+            'taller'=>$taller,
+            'user'=>$inscripcion,
+        ]);
+    }
+
+    public function deleteUserTallerGet(Request $request, $id){
+
+        $li = $request->lista;
+
+        if(strlen($li)==0){
+            return back();
+        }else{
+            $tam = explode( ',', $li);
+            $inscripcion = \App\inscripcion::where('taller_id',$id)->get();
+
+            for($j = 0 ; $j<count($tam); $j++){
+
+                foreach($inscripcion as $ins){
+                    if($ins->usuario_id == $tam[$j]){
+                        $ins->delete();
+                    }
+                }
+                
+            }
+            return redirect('/admin/student/'.$id.'/studio/delete/User')->withErrors([
+                                $request->lista => 'Se a Eliminado a los alumnos',
+                    ]);
+        }
+    }
+
     public function addUserTallerGet(Request $request, $id){
 
         $li = $request->lista;
 
-        $tam = explode( ',', $li);
-        $inscripcion = \App\inscripcion::where('taller_id',$id)->get();
+        if(strlen($li)==0){
+            return back();
+        }else{
+            $tam = explode( ',', $li);
+            $inscripcion = \App\inscripcion::where('taller_id',$id)->get();
 
-        $igual=0;
-        
-            for($j = 0 ; $j<count($tam); $j++){
-                $user = \App\User::find($tam[$j]);
-                foreach($inscripcion as $ins){
-                    if($ins->usuario_id == $user->id){
-                        $igual=1;
+            $igual=0;
+            
+                for($j = 0 ; $j<count($tam); $j++){
+                    $user = \App\User::find($tam[$j]);
+                    foreach($inscripcion as $ins){
+                        if($ins->usuario_id == $user->id){
+                            $igual=1;
+                        }
                     }
+
+                    if($igual==0){
+                        $u = \App\inscripcion::create([
+                            'usuario_id' =>$user->id,
+                            'taller_id' => $id,
+                        ]);
+                    }
+
+                    $igual=0;
+                    
                 }
 
-                if($igual==0){
-                    $u = \App\inscripcion::create([
-                        'usuario_id' =>$user->id,
-                        'taller_id' => $id,
-                    ]);
-                }
 
-                $igual=0;
-                
-            }
-
-
-        return redirect('/admin/student/'.$id.'/studio/add/User')->withErrors([
-                    $request->lista => 'Se a Agregado a los alumnos',
-        ]);
-
+            return redirect('/admin/student/'.$id.'/studio/add/User')->withErrors([
+                        $request->lista => 'Se a Agregado a los alumnos',
+            ]);
+        }
     }
 
     public function showDate($id,$fecha){

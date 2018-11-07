@@ -23,7 +23,7 @@ $index=4;
                                 <div class="tbl-cell">
                                     <div class="title">Taller {{$taller->nombre}}</div>
                                     <div class="amount-sm">Coordinador {{$taller->usuario}}</div>
-                                    <div class="amount-sm">Agregar Usuarios del taller</div>
+                                    <div class="amount-sm">Eliminar Usuarios del taller</div>
                                 </div>
                                 <div class="tbl-cell tbl-cell-progress">
 
@@ -42,7 +42,7 @@ $index=4;
                                     {!!Form::open(array('method'=>'post', 'id'=>'forms'))!!}
                                     <input type="hidden" id="lista" name="lista"></input>
                                     <div class="col-lg-12 col-lg-offset-1 col-md-12 col-md-offset-1">
-                                        <button onclick="setValue();" class="btn btn-rounded btn-inline btn-success" id="boton">Guardar cambios</button>
+                                        <button onclick="setValue();" class="btn btn-rounded btn-inline btn-success" id="boton">Eliminar</button>
                                     </div>
                                     {!!Form::close()!!}
                             </div>
@@ -72,24 +72,24 @@ $index=4;
                             <th class="text-center">Nombre</th>
                             <th class="text-center">Carrera/Bachiller</th>
                             <th class="text-center">Semestre</th>
-                            <th class="text-center">Añadir</th>
+                            <th class="text-center">Eliminar</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php $num=0; ?>
                         @foreach($user as $u)
-                            <tr id="{{$u->id}}" class="text-center">
+                            <tr id="{{$u->usuario->id}}" class="text-center">
                                 <td>
                                     <span class="tabledit-span tabledit-identifier"><?php echo $num=$num+1; ?></span>
                                 </td>
-                                <td class="table-icon-cell">{{$u->boleta}}</td>
-                                <td class="table-icon-cell">{{$u}}</td>
-                                <td class="table-icon-cell">{{$u->informacion->carrera->nombre}}</td>
-                                <td class="table-icon-cell">{{$u->informacion->semestre}}</td>
+                                <td class="table-icon-cell">{{$u->usuario->boleta}}</td>
+                                <td class="table-icon-cell">{{$u->usuario}}</td>
+                                <td class="table-icon-cell">{{$u->usuario->informacion->carrera->nombre}}</td>
+                                <td class="table-icon-cell">{{$u->usuario->informacion->semestre}}</td>
                                 <td class="table-icon-cell">                             
                                     <div class="checkbox-toggle">
-                                        <input type="checkbox" id="check-toggle-{{$u->id}}" name="check-toggle-{{$u->id}}" onclick="getValue({{$u->id}});">
-                                        <label for="check-toggle-{{$u->id}}"></label>
+                                        <input type="checkbox" id="check-toggle-{{$u->usuario->id}}" name="check-toggle-{{$u->id}}" onclick="getValue({{$u->usuario->id}});">
+                                        <label for="check-toggle-{{$u->usuario->id}}"></label>
                                     </div>
                                 </td>
                             </tr>

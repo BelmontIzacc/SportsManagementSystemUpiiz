@@ -38,6 +38,9 @@ Route::post('/admin/student/{id}/studio/special', 'adminController@special');
 Route::get('/admin/student/{id}/studio/add/User', 'adminController@addUserTaller');
 Route::post('/admin/student/{id}/studio/add/User', 'adminController@addUserTallerGet');
 
+Route::get('/admin/student/{id}/studio/delete/User', 'adminController@deleteUserTaller');
+Route::post('/admin/student/{id}/studio/delete/User', 'adminController@deleteUserTallerGet');
+
 Route::get('/admin/student/{id}/studio/list', 'adminController@showInfoList');
 Route::get('/admin/student/{id}/studio/list/date/{date}', 'adminController@showDate');
 
