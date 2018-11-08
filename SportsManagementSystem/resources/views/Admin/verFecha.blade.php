@@ -49,6 +49,18 @@ $classSizeForms = "col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3 col-sm-6 co
                         </div> <!--tbl tbl-item-->
                     </div> <!--tbl-cell-->
                 </header>
+                        @if(count($errors) > 0)
+                        <div class="alert alert-success alert-icon alert-close alert-dismissible fade in" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <ul>
+                                @foreach($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                        @endif 
 <div class="col-md-6">
     <section class="widget widget-accordion card" id="accordion" role="tablist" aria-multiselectable="true">
         <article class="panel">

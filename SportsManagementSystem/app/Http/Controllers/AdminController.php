@@ -957,12 +957,36 @@ class AdminController extends Controller
         $index=4;
         
         $list = $request->lista;
+        $date = $request->Date;
+        $fech = $fecha;
+
+        if(strlen($date)==0){
+
+        }else if(strlen($date)>=8){
+            $input2 = 'd-m-Y'; 
+            $date2 = $date;
+            $output2 = 'Y-m-d';
+
+            $dateFormated = Carbon::createFromFormat($input2, $date2)->format($output2);
+
+            $asistencia = \App\asistencia::where('fecha',$fecha)->where('taller_id',$id)->get();
+
+            foreach ($asistencia as $asiste) {
+                $asiste->update([
+                    'fecha' => $dateFormated,
+                ]);
+            }
+
+            $fech = $dateFormated;
+        }
+
 
         if(strlen($list)==0){
             return back();
         }else{
             $tam = explode( ',', $list);
-            $asistencia = \App\asistencia::where('fecha',$fecha)->where('taller_id',$id)->get();
+
+            $asistencia = \App\asistencia::where('fecha',$fech)->where('taller_id',$id)->get();
 
                 for($j = 0 ; $j<count($tam); $j++){
                     $user = \App\User::find($tam[$j]);
@@ -970,11 +994,12 @@ class AdminController extends Controller
 
                     foreach($asistencia as $ins){
                         if($ins->usuario_id == $user->id){
+
                             $igual=1;
                             if($ins->asistencia==1){
-                                $a=1;
-                            }else if($ins->asistencia==0){
                                 $a=0;
+                            }else if($ins->asistencia==0){
+                                $a=1;
                             }
 
                             $ins->update([
@@ -987,7 +1012,11 @@ class AdminController extends Controller
                     
                 }
 
-        }
+        }   
+
+        return redirect('/admin/student/'.$id.'/studio/list/date/'.$fech)->withErrors([
+                        $request->lista => 'Se a Actualizado los registros',
+        ]);
 
     }
 
