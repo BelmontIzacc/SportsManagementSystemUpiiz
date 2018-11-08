@@ -934,17 +934,61 @@ class AdminController extends Controller
     }
 
     public function showDate($id,$fecha){
-        $index = 1;
+        $index=4;
         $asistencia = \App\asistencia::where('fecha',$fecha)->where('taller_id',$id)->get();
         $taller = \App\taller::find($id);
-        error_log($asistencia);
+
+        $input2 = 'Y-m-d'; 
+        $date2 = $fecha;
+        $output2 ='d-m-Y';
+
+        $dateFormated = Carbon::createFromFormat($input2, $date2)->format($output2);
         
         return view('Admin.verFecha',[
             'index' => $index,
             'variable' => $id,
             'taller'=>$taller,
             'asistencia' => $asistencia,
+            'fecha' => $dateFormated,
         ]);
+    }
+
+    public function showDatePost(Request $request,$id,$fecha){
+        $index=4;
+        
+        $list = $request->lista;
+
+        if(strlen($list)==0){
+            return back();
+        }else{
+            $tam = explode( ',', $list);
+            $asistencia = \App\asistencia::where('fecha',$fecha)->where('taller_id',$id)->get();
+
+                for($j = 0 ; $j<count($tam); $j++){
+                    $user = \App\User::find($tam[$j]);
+                    $a=-1;
+
+                    foreach($asistencia as $ins){
+                        if($ins->usuario_id == $user->id){
+                            $igual=1;
+                            if($ins->asistencia==1){
+                                $a=1;
+                            }else if($ins->asistencia==0){
+                                $a=0;
+                            }
+
+                            $ins->update([
+                                'asistencia' => $a,
+                            ]);
+
+                            break ;
+                        }
+                    }
+                    
+                }
+
+        }
+
     }
 
     public function getInf(Request $request,$id) {

@@ -43,6 +43,7 @@ Route::post('/admin/student/{id}/studio/delete/User', 'adminController@deleteUse
 
 Route::get('/admin/student/{id}/studio/list', 'adminController@showInfoList');
 Route::get('/admin/student/{id}/studio/list/date/{date}', 'adminController@showDate');
+Route::post('/admin/student/{id}/studio/list/date/{date}', 'adminController@showDatePost');
 
 Route::get('/admin/lists/taller/{id}', 'adminController@showTaller');
 Route::post('/admin/search/list/taller/{id}/getInf', 'adminController@getInf');
