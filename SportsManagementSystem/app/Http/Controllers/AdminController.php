@@ -920,12 +920,22 @@ class AdminController extends Controller
                             'usuario_id' =>$user->id,
                             'taller_id' => $id,
                         ]);
+
+                        $stats = \App\stats::where('taller_id',$id)->get();
+
+                        foreach ($stats as $st) {
+                            $s = \App\asistencia::create([
+                                'usuario_id' =>$user->id,
+                                'taller_id' => $id,
+                                'fecha' => $st->fecha,
+                                'asistencia' => 0,
+                            ]);
+                        }
                     }
 
                     $igual=0;
                     
                 }
-
 
             return redirect('/admin/student/'.$id.'/studio/add/User')->withErrors([
                         $request->lista => 'Se a Agregado a los alumnos',
@@ -955,7 +965,9 @@ class AdminController extends Controller
 
     public function showDatePost(Request $request,$id,$fecha){
         $index=4;
-        
+        $flag=0;
+        $timer=0;
+
         $list = $request->lista;
         $date = $request->Date;
         $fech = $fecha;
@@ -963,6 +975,7 @@ class AdminController extends Controller
         if(strlen($date)==0){
 
         }else if(strlen($date)>=8){
+            $flag=1;
             $input2 = 'd-m-Y'; 
             $date2 = $date;
             $output2 = 'Y-m-d';
@@ -978,12 +991,14 @@ class AdminController extends Controller
             }
 
             $fech = $dateFormated;
+            $timer=1;
         }
 
-
+        
         if(strlen($list)==0){
-            return back();
+            
         }else{
+            $flag=1;
             $tam = explode( ',', $list);
 
             $asistencia = \App\asistencia::where('fecha',$fech)->where('taller_id',$id)->get();
@@ -1012,11 +1027,52 @@ class AdminController extends Controller
                     
                 }
 
-        }   
+            $faltas=0;
+            $asistencias=0;
 
-        return redirect('/admin/student/'.$id.'/studio/list/date/'.$fech)->withErrors([
+            $ast = \App\asistencia::where('fecha',$fech)->where('taller_id',$id)->get();
+            
+            foreach($ast as $at){
+                if($at->asistencia==1){
+                    $asistencias++;
+                }else if($at->asistencia==0){
+                    $faltas++;
+                }
+            }
+
+            if($timer==1){
+                $stats = \App\stats::where('taller_id',$id)->where('fecha',$fecha)->get();
+
+                foreach ($stats as $s) {
+                    $s->update([
+                        'fecha' => $fech,
+                        'asistencias' => $asistencias,
+                        'faltas' => $faltas,
+                    ]);
+                }
+
+            }else if($timer==0){
+                $stats = \App\stats::where('taller_id',$id)->where('fecha',$fecha)->get();
+
+                foreach ($stats as $s) {
+                    $s->update([
+                        'asistencias' => $asistencias,
+                        'faltas' => $faltas,
+                    ]);
+                }
+            }
+
+        }
+
+        if($flag==1){
+            return redirect('/admin/student/'.$id.'/studio/list/date/'.$fech)->withErrors([
                         $request->lista => 'Se a Actualizado los registros',
-        ]);
+            ]);
+        }else{
+            return back();
+        }
+
+        
 
     }
 
