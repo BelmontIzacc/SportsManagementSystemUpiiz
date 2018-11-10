@@ -30,6 +30,9 @@ Route::delete('/admin/lists/{id}', 'adminController@destroy');
 Route::get('/admin/student/add/studio/{id}', 'adminController@addTallerUser');
 Route::post('/admin/student/add/studio/{id}', 'adminController@addTaller');
 
+Route::get('/admin/list/{id}/addTaller', 'adminController@showTallerAdd');
+Route::post('/admin/list/{id}/addTaller', 'adminController@showTallerAddGet');
+
 Route::get('/admin/student/{id}/studio', 'adminController@showInfoUserTaller');
 Route::post('/admin/student/{id}/studio', 'adminController@checkPassword2');
 Route::get('/admin/student/{id}/studio/special', 'adminController@showSpecial');

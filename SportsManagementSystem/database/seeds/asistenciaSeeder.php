@@ -20,6 +20,7 @@ class asistenciaSeeder extends Seeder
                 'usuario_id'=>$i+1,
                 'taller_id'=>rand(1,$taller),
                 'asistencia'=>rand(0,1),
+                'fecha' => '2018-'.rand(1,5).'-'.rand(1,30),
             ]);
         }
     }

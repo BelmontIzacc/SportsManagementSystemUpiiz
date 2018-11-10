@@ -1079,4 +1079,69 @@ class AdminController extends Controller
     public function getInf(Request $request,$id) {
         return redirect('/admin/student/'.$id.'/studio');
     }
+
+    public function showTallerAdd($id){
+        $index=4;
+        $taller = \App\taller::all();
+        $user = \App\User::find($id);
+        
+        return view('Admin.listTallerAdd',[
+            'index' => $index,
+            'variable' => $id,
+            'taller'=>$taller,
+            'user' => $user,
+        ]);
+    }
+
+    public function showTallerAddGet(Request $request,$id){
+        $index=4;
+        $list = $request->lista;
+        
+        if(strlen($list)==0){
+            return back();        
+        }else{
+            $tam = explode( ',', $list);
+            $registrado=0;
+
+            for($j = 0 ; $j<count($tam); $j++){
+
+                $inscripcion = \App\inscripcion::where('taller_id',$tam[$j])->get();
+                $a=-1;
+
+                foreach($inscripcion as $ins){
+                    if($ins->usuario_id == $id){
+                        $registrado=1;
+                        break ;
+                    }
+                }
+
+                if($registrado==1){
+
+                }else{
+                    $u = \App\inscripcion::create([
+                        'usuario_id' =>$id,
+                        'taller_id' => $tam[$j],
+                    ]);
+
+                    $stats = \App\stats::where('taller_id',$tam[$j])->get();
+
+                    foreach ($stats as $st) {
+                        $s = \App\asistencia::create([
+                            'usuario_id' =>$id,
+                            'taller_id' => $tam[$j],
+                            'fecha' => $st->fecha,
+                            'asistencia' => 0,
+                        ]);
+                    }
+                }
+
+                $registrado==0;
+                
+            }
+
+            return back()->withErrors([
+                        $request->lista => 'Se a agregado el usuario a los talleres',
+            ]);
+        }
+    }
 }

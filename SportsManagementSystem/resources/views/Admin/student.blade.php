@@ -392,19 +392,25 @@
 
 	<div class="row text-center">
          @if(($student->usuario->permisos == 1) || ($student->usuario->tipo != 2))
-		<div class="col-lg-6 col-md-6">
+		<div class="col-lg-4 col-md-4">
 		    <button type="button" class="btn btn-rounded btn-inline btn-warning" data-toggle="modal" data-target=".bd-example-modal-sm" onclick="updateInputsProfile({{$student->id}}, '{{$student->user}}');">Editar</button>
 		</div>
-        <div class="col-lg-6 col-md-6">
+        <div class="col-lg-4 col-md-4">
             <button type="button" class="btn btn-rounded btn-inline btn-success" data-toggle="modal" data-target=".bd-example-modal-lg" onclick="updateInputsProfile({{$student->id}}, '{{$student->user}}');">Talleres</button>
         </div>
         <!--<div class="col-lg-6 col-md-6">
              <a href="{{asset('/admin/student/')}}/{{$student->id}}/studio" class="btn btn-rounded btn-inline btn-success">Ver talleres</a>
         </div>
             -->
+        <div class="col-lg-4 col-md-4">
+            <a href="{{asset('/admin/list/')}}/{{$student->id}}/addTaller" class="btn btn-rounded btn-info">Registrar en un taller</a>
+        </div>
         @else
-        <div class="col-lg-12 col-md-12">
+        <div class="col-lg-6 col-md-6">
             <button type="button" class="btn btn-rounded btn-inline btn-warning" data-toggle="modal" data-target=".bd-example-modal-sm" onclick="updateInputsProfile({{$student->id}}, '{{$student->user}}');">Editar</button>
+        </div>
+        <div class="col-lg-6 col-md-6">
+            <a href="{{asset('/admin/list/')}}/{{$student->id}}/addTaller" class="btn btn-rounded btn-info">Registrar en un taller</a>
         </div>
         @endif
 	</div>
