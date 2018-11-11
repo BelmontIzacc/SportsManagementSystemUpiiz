@@ -110,7 +110,13 @@
 	                <i class="font-icon font-icon-users"></i>
 	                <span class="lbl">Panel de control</span>
 	            </a>
-	        </li>           
+	        </li>  
+	        <li class="grey">
+	            <a href="{{asset('/admin/Register/userList')}}">
+	                <i class="font-icon font-icon-list-square"></i>
+	                <span class="lbl">Usuarios registrados</span>
+	            </a>
+	        </li>      
 	    </ul>
 	</nav><!--.side-menu-->
 

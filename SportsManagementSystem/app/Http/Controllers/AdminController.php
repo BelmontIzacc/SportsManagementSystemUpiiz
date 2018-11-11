@@ -1292,7 +1292,15 @@ class AdminController extends Controller
         ->withErrors([
             $request->clave => 'No coinciden las contraseñas d:',
         ]);
+        }
     }
-}
+
+    public function pagination(){
+        $index = -1;
+
+        $user = \App\User::where('tipo','!=',1)->paginate(12);
+
+        return view('Admin.pagination', ['index'=>$index, 'user'=> $user]);
+    }
 
 }
