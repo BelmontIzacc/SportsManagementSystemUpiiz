@@ -53,11 +53,15 @@ Route::post('/admin/search/list/taller/{id}/getInf', 'adminController@getInf');
 Route::get('/admin/search/list/taller/{id}/getInf', 'adminController@showInf');
 
 Route::get('/admin/controlPanel', 'adminController@control');
+Route::post('/admin/controlPanel', 'adminController@checkControl');
 Route::post('/admin/controlPanel/{variable}', 'adminController@checkPassword');
 Route::get('/admin/controlPanel/insert/{variable}', 'adminController@getRegisterWindow');
 Route::post('/admin/controlPanel/insert/{variable}', 'adminController@insertRegister');
 Route::patch('/admin/controlPanel/insert/{variable}', 'adminController@updateRegister');
 Route::delete('/admin/controlPanel/insert/{variable}', 'adminController@deleteRegister');
+
+Route::get('/admin/controlPanel/special/select', 'adminController@controlspecial');
+Route::post('/admin/controlPanel/special/select', 'adminController@controlSpecialGet');
 
 //-----------------------------------------------------------------------------------//
 Route::get('/user','UserController@index');

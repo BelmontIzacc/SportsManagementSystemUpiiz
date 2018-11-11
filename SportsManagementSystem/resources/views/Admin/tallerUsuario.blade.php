@@ -98,9 +98,16 @@
                                 <th>
                                     <a href="{{asset('/admin/student/')}}/{{$taller->id}}/studio/list" class="btn btn-rounded btn-inline btn-success">Listas de asistencia</a>
                                 </th>
-                                <th>
-                                    <a href="{{asset('/admin/lists/')}}/{{$taller->usuario->informacion->id}}" class="btn btn-rounded btn-primary btn-inline">Regresar</a>
-                                </th>
+                                @unless($taller->usuario == null)
+                                    <th>
+                                        <a href="{{asset('/admin/lists/')}}/{{$taller->usuario->informacion->id}}" class="btn btn-rounded btn-primary btn-inline">Regresar</a>
+                                    </th>
+                                @endunless
+                                @unless($taller->usuario != null)
+                                    <th>
+                                        <a href="{{asset('/admin')}}" class="btn btn-rounded btn-primary btn-inline">Regresar</a>
+                                    </th>
+                                @endunless
                                 <th>
                                     <a href="{{asset('/admin/student/')}}/{{$taller->id}}/studio/add/User" class="btn btn-rounded btn-inline btn-secondary">Agregar usuarios al taller</a>
                                 </th>

@@ -735,6 +735,7 @@ class AdminController extends Controller
             'clave' => 'required',
         ]);
 
+
         if(Hash::check($request->clave, Auth::user()->password)){
             return redirect('/admin/controlPanel/insert/'.$variable);
         } else{
@@ -1144,4 +1145,154 @@ class AdminController extends Controller
             ]);
         }
     }
+
+    public function controlspecial(){
+        $index = -1;
+
+        return view('Admin.controlSpecialFunctions', ['index'=>$index]);
+    }
+
+    public function controlSpecialGet(Request $request){
+
+        $usuario = $request->usuarios;
+        $coordinador = $request->coordinador;
+        $usuarioP = $request->usuariosP;
+        $todo = $request->todo;
+        
+        
+        if($todo==1){
+
+            $u = \App\User::where('tipo','!=',1)->get();
+            foreach ($u as $key) {
+                $informacion = \App\informacion::where('usuario_id',$key->id)->get();
+                foreach ($informacion as $inf) {
+                    $inf->delete();
+                }
+                $asistencia = \App\asistencia::where('usuario_id',$key->id)->get();
+                foreach ($asistencia as $as) {
+                    $as->delete();
+                }
+                $inscripcion = \App\inscripcion::where('usuario_id',$key->id)->get();
+                foreach ($inscripcion as $insc) {
+                    $insc->delete();
+                }
+                $key->delete();
+            }
+
+            
+        }else{
+            if($usuario==1){
+                $u = \App\User::where('tipo',2)->get();
+                foreach ($u as $key) {
+                    $informacion = \App\informacion::where('usuario_id',$key->id)->get();
+                    foreach ($informacion as $inf) {
+                        $inf->delete();
+                    }
+                    $asistencia = \App\asistencia::where('usuario_id',$key->id)->get();
+                    foreach ($asistencia as $as) {
+                        $as->delete();
+                    }
+                    $inscripcion = \App\inscripcion::where('usuario_id',$key->id)->get();
+                    foreach ($inscripcion as $insc) {
+                        $insc->delete();
+                    }
+
+                    if($key->taller !=null){
+
+                        $idTaller = $key->taller->id;
+                        $taller = \App\taller::find($idTaller);
+                        $taller->update([
+                            'usuario_id' => null,
+                            'status'=>3,
+                        ]); 
+                        
+                    }
+
+                    $key->delete();
+                }
+            }
+            if($coordinador==1){
+                $u = \App\User::where('tipo',3)->get();
+                foreach ($u as $key) {
+                    $informacion = \App\informacion::where('usuario_id',$key->id)->get();
+                    foreach ($informacion as $inf) {
+                        $inf->delete();
+                    }
+                    $asistencia = \App\asistencia::where('usuario_id',$key->id)->get();
+                    foreach ($asistencia as $as) {
+                        $as->delete();
+                    }
+                    $inscripcion = \App\inscripcion::where('usuario_id',$key->id)->get();
+                    foreach ($inscripcion as $insc) {
+                        $insc->delete();
+                    }
+
+                    if($key->taller !=null){
+
+                        $idTaller = $key->taller->id;
+                        $taller = \App\taller::find($idTaller);
+                        $taller->update([
+                            'usuario_id' => null,
+                            'status'=>3,
+                        ]); 
+                        
+                    }
+
+                    $key->delete();
+                }
+            }
+            if($usuarioP==1){
+                $u = \App\User::where('tipo',2)->where('permisos',1)->get();
+                foreach ($u as $key) {
+                    $informacion = \App\informacion::where('usuario_id',$key->id)->get();
+                    foreach ($informacion as $inf) {
+                        $inf->delete();
+                    }
+                    $asistencia = \App\asistencia::where('usuario_id',$key->id)->get();
+                    foreach ($asistencia as $as) {
+                        $as->delete();
+                    }
+                    $inscripcion = \App\inscripcion::where('usuario_id',$key->id)->get();
+                    foreach ($inscripcion as $insc) {
+                        $insc->delete();
+                    }
+
+                     if($key->taller !=null){
+
+                        $idTaller = $key->taller->id;
+                        $taller = \App\taller::find($idTaller);
+                        $taller->update([
+                            'usuario_id' => null,
+                            'status'=>3,
+                        ]); 
+                        
+                    }
+
+                    $key->delete();
+                }
+            }
+
+        }
+       
+        return back()->withErrors([
+                        $request->usuario => 'Se a eliminado los registros',
+        ]);
+
+    }
+
+    public function checkControl(Request $request){
+        $this->validate($request, [
+            'clave' => 'required',
+        ]);
+
+    if(Hash::check($request->clave, Auth::user()->password)){
+        return redirect('/admin/controlPanel/special/select');
+    } else{
+        return redirect('/admin/controlPanel')
+        ->withErrors([
+            $request->clave => 'No coinciden las contraseñas d:',
+        ]);
+    }
+}
+
 }

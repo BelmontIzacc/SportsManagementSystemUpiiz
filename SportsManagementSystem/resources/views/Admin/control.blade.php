@@ -12,6 +12,37 @@
 <link rel="stylesheet" href="{{asset('/Template/css/lib/clockpicker/bootstrap-clockpicker.min.css')}}"/>
 @stop
 @section('popUp')
+
+<div class="modal fade bd-example1-modal-sm"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="mySmallModalLabel1"
+        aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="modal-close" data-dismiss="modal" aria-label="Close">
+                    <i class="font-icon-close-2"></i>
+                </button>
+                <h4 class="modal-title" id="windowTitle1">Funciones Especiales</h4>
+            </div>
+            {!!Form::open(array('method'=>'post', 'id'=>'passForm2'))!!}
+            <div class="modal-body">
+                <div class="form-group">
+                    <label class="form-label" for="hide-show-password">Contraseña</label>
+                    <input type="password" class="form-control" value="" name="clave" id="clave">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="text-center">
+                    <button type="submit" class="btn btn-rounded btn-danger" formaction="" id="formButton2">Aceptar</button>
+                </div>
+            </div>
+            {!!Form::close()!!}
+        </div>
+    </div>
+</div><!--.modal-->
+
 <div class="modal fade bd-example-modal-sm"
         tabindex="-1"
         role="dialog"
@@ -64,11 +95,13 @@
                                 <div class="tbl-cell">
                                 </div>
                                 <div class="tbl-cell tbl-cell-progress">
-                                    <div class="col-lg-3 col-md-3">
+                                    <div class="col-lg-6 col-md-6">
                      <a href="{{asset('/admin')}}" class="btn btn-rounded btn-primary btn-inline">Regresar</a>
-                                    </div>
-                                    </div>
+                                    </div> 
                                 </div>
+                                <div class="col-lg-6 col-md-6">
+                     <button type="button" class="btn btn-rounded btn-inline btn-warning" data-toggle="modal" data-target=".bd-example1-modal-sm">Funciones especiales</button>
+                                </div> 
                             </div>
                         </div> <!--tbl tbl-item-->
                     </div> <!--tbl-cell-->
