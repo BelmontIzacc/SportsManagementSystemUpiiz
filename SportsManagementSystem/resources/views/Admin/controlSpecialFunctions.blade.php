@@ -140,21 +140,21 @@ $index=4;
         $('.swal-btn-cancel').click(function(e){
                 e.preventDefault();
                 swal({
-                            title: "Are you sure?",
-                            text: "You will not be able to recover this imaginary file!",
+                            title: "Estas seguro?",
+                            text: "No podras recobrar la informacion despues de esto!",
                             type: "warning",
                             showCancelButton: true,
                             confirmButtonClass: "btn-danger",
-                            confirmButtonText: "Yes, delete it!",
-                            cancelButtonText: "No, cancel plx!",
+                            confirmButtonText: "Si, Eliminar!",
+                            cancelButtonText: "No, cancelar!",
                             closeOnConfirm: false,
                             closeOnCancel: false
                         },
                         function(isConfirm) {
                             if (isConfirm) {
                                 swal({
-                                    title: "Deleted!",
-                                    text: "Your imaginary file has been deleted.",
+                                    title: "Eliminando!",
+                                    text: "Tu informacion va a ser eliminada.",
                                     type: "success",
                                     confirmButtonClass: "btn-success"
                                 },function() {
@@ -162,8 +162,8 @@ $index=4;
                                 });
                             } else {
                                 swal({
-                                    title: "Cancelled",
-                                    text: "Your imaginary file is safe :)",
+                                    title: "Cancelado",
+                                    text: "Tu informacion esta segura :)",
                                     type: "error",
                                     confirmButtonClass: "btn-danger"
                                 });
