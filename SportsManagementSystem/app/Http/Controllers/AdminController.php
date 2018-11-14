@@ -1303,4 +1303,88 @@ class AdminController extends Controller
         return view('Admin.pagination', ['index'=>$index, 'user'=> $user]);
     }
 
+    public function profile()
+    {
+        $index = 4;
+        $user = Auth::user();
+
+          return view('Admin.profile', [
+              'index'=>$index,
+              'user' => $user,
+          ]);
+
+    }
+
+    public function profilePassword(Request $request)
+    {
+        $this->validate($request, [
+            'clave' => 'required',
+        ]);
+
+        if(Hash::check($request->clave, Auth::user()->password)){
+            $index = 4;
+
+            $edit = true;
+            $user = Auth::user();
+
+          return view('Admin.profile', [
+              'index'=>$index,
+              'user'=>$user,
+              'edit'=>$edit,
+          ]);
+
+        } else{
+            return redirect('/admin/profile/')
+            ->withErrors([
+                $request->clave => 'No coinciden las contraseñas',
+            ]);
+        }
+    }
+
+    public function editProfile(Request $request)
+    {
+        $this->validate($request, [
+            'nombre' => 'required|min:3|max:50',
+            'apellidoPaterno' => 'required|min:3|max:50',
+            'apellidoMaterno' => 'required|min:3|max:50',
+            'email'           => 'required|min:8|max:28',
+            'boleta' => 'required|max:12|:min:3',
+            'pass' => 'required',
+        ]);
+
+        $user = Auth::user();
+
+        if($request->pass=='1'){
+            $this->validate($request,[
+                'clave' => 'required|same:clave2|min:3|max:30',
+                'clave2' => 'required',
+            ]);
+
+        $user->update([
+            'nombre' => $request->nombre,
+            'apellidoPaterno' => $request->apellidoPaterno,
+            'apellidoMaterno' => $request->apellidoMaterno,
+            'boleta' => $request->boleta,
+            'email' => $request->email,
+            'password' => bcrypt($request->clave),
+        ]);
+
+        }else{
+
+        $user->update([
+            'nombre' => $request->nombre,
+            'apellidoPaterno' => $request->apellidoPaterno,
+            'apellidoMaterno' => $request->apellidoMaterno,
+            'boleta' => $request->boleta,
+            'email' => $request->email,
+        ]);
+
+        }
+
+        session()->flash('message', 'Usuario '.$user. ' actualizado correctamente');
+        session()->flash('type', 'success');
+
+        return redirect('/admin/profile/');
+    }
+
 }

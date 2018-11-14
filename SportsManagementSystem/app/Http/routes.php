@@ -66,6 +66,9 @@ Route::post('/admin/controlPanel/special/select', 'adminController@controlSpecia
 Route::get('/admin/Register/userList', 'adminController@pagination');
 
 Route::get('/admin/Register/userList/ExportExcelAll','ExcelController@All');
+Route::get('/admin/profile', 'adminController@profile');
+Route::post('/admin/profile', 'adminController@profilePassword');
+Route::patch('/admin/profile', 'adminController@editProfile');
 //-----------------------------------------------------------------------------------//
 Route::get('/user','UserController@index');
 Route::get('/user/RegistroUsuario','UserController@getRegister');
