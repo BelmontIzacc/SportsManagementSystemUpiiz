@@ -14,8 +14,13 @@
 @section('popUp')
 @stop
 @section('content')
-<h3 class="m-t-lg with-border">Bienvenidos al sistema de talleres de UPIIZ</h3>
-Estudiante: {{$user}}
+
+<h5 class="m-t-lg with-border">¿Deseas entrar al Taller:  {{$taller->nombre}}?</h5>
+<div class="row">
+    <div class="col-lg-6 col-md-6 col-sm-6">
+        <button type="submit" class="btn btn-rounded btn-inline"> Sí </button>
+    </div>
+</div>
 
 @stop
 @section('scripts')

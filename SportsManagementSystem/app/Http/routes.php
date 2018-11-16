@@ -74,6 +74,14 @@ Route::get('/user','UserController@index');
 Route::get('/user/RegistroUsuario','UserController@getRegister');
 Route::post('/user/RegistroUsuario','UserController@postRegister');
 Route::get('/user/InfoCompleta','UserController@getCompleto');
+
+Route::get('/user/Profile','UserController@getProfile');
+
+Route::get('/user/Info','UserController@getInfo');
+
+Route::get('/user/search','UserController@getSearch');
+Route::post('/user/search','UserController@postSearch');
+Route::get('/user/inscripcion/taller/{id}', 'UserController@showTaller');
 //-----------------------------------------------------------------------------------//
 Route::get('/registro','SignupController@index');
 Route::get('/registro/RegistroUsuario','SignupController@getRegister');

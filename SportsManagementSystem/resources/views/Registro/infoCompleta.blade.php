@@ -57,7 +57,7 @@
     </div>
   </div>
 
-{!!Form::open(array('url'=>'/user/InfoCompleta', 'method'=>'post'))!!}
+{!!Form::open(array('url'=>'/registro/InfoCompleta', 'method'=>'post'))!!}
 <a href="{{asset('/user')}}"><button type="button" class="close"><span aria-hidden="true">&times;</span></button></a>
     <div class="row details1 text-center" style="display:block">
         <div class="{{$classSize}}">

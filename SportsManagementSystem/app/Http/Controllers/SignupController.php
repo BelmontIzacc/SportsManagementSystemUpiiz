@@ -27,7 +27,7 @@ class SignupController extends Controller
     
     public function getRegister(){
         $index = 4;
-        return view('User.RegistroUsuario', ['index'=>$index]);
+        return view('Registro.RegistroUsuario', ['index'=>$index]);
     }
     
     public function postRegister(Request $request){
@@ -48,9 +48,9 @@ class SignupController extends Controller
             'email' => $request->email,
             'boleta' => $request->boleta,
             'password' => bcrypt($request->password),
-            'tipo' => 2,
+            'tipo' => 3,
             'completado' => 1,
-            'permisos' => 3,
+            'permisos' => 0,
         ]);
         
         session()->flash('message', 'Alumno '. $request->boleta. ' actualizado correctamente '.$request->nombre);
@@ -69,7 +69,7 @@ class SignupController extends Controller
         $boleta = \App\User::where('tipo', 2 )->lists('boleta','id');
              
              
-        return view('User.infoCompleta',[
+        return view('Registro.infoCompleta',[
         'index' => $index,
         'tlista' => $tlista,
         'tlistac' => $tlistac,
