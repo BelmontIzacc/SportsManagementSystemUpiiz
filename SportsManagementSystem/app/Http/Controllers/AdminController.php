@@ -1285,14 +1285,204 @@ class AdminController extends Controller
             'clave' => 'required',
         ]);
 
-    if(Hash::check($request->clave, Auth::user()->password)){
-        return redirect('/admin/controlPanel/special/select');
-    } else{
-        return redirect('/admin/controlPanel')
-        ->withErrors([
-            $request->clave => 'No coinciden las contraseñas d:',
-        ]);
+        $opc = $request->control;
+
+        if($opc == '1'){ //funcion de borrado
+
+            if(Hash::check($request->clave, Auth::user()->password)){
+                return redirect('/admin/controlPanel/special/select');
+            } else{
+                return redirect('/admin/controlPanel')
+                ->withErrors([
+                    $request->clave => 'No coinciden las contraseñas d:',
+                ]);
+            }
+        }else if($opc == '2'){ //control de registros
+            
+            if(Hash::check($request->clave, Auth::user()->password)){
+                return redirect('/admin/controlPanel/control/register');
+            } else{
+                return redirect('/admin/controlPanel')
+                ->withErrors([
+                    $request->clave => 'No coinciden las contraseñas d:',
+                ]);
+            }
+
         }
+
+    }
+
+    public function controlRegister(){
+        $index = 4;
+        $RS = \App\inicioFin::where('id',1)->get();
+        $RT = \App\inicioFin::where('id',2)->get();
+
+        $dRS1;
+        $dRS2;
+
+        foreach ($RS as $s) {
+            $input = 'Y-m-d';
+            $date = $s->fechaInicio;
+            $output = 'd-m-Y';
+
+            $input2 = 'Y-m-d';
+            $date2 = $s->fechaFin;
+            $output2 = 'd-m-Y';
+
+            $dRS1 = Carbon::createFromFormat($input, $date)->format($output);
+            $dRS2 = Carbon::createFromFormat($input2, $date2)->format($output2);
+        }
+
+        $dRT1;
+        $dRT2;
+
+        foreach ($RT as $t) {
+            $input = 'Y-m-d';
+            $date = $t->fechaInicio;
+            $output = 'd-m-Y';
+
+            $input2 = 'Y-m-d';
+            $date2 = $t->fechaFin;
+            $output2 = 'd-m-Y';
+
+            $dRT1 = Carbon::createFromFormat($input, $date)->format($output);
+            $dRT2 = Carbon::createFromFormat($input2, $date2)->format($output2);
+        }
+
+        return view('Admin.controlRegister', ['index'=>$index, 'RS1'=>$dRS1, 'RS2'=>$dRS2, 'RT1'=>$dRT1, 'RT2'=>$dRT2 ]);
+    }
+
+    public function controlRegisterPost(Request $request){
+
+        $RS = \App\inicioFin::where('id',1)->get();
+        $RT = \App\inicioFin::where('id',2)->get();
+
+        $dRS1='-1';
+        $dRS2='-1';
+
+        foreach ($RS as $s) {
+
+            $input = 'd-m-Y';
+            $output = 'Y-m-d';
+
+            $dr1 = $s->fechaInicio;
+            $dr2 = $s->fechaFin;
+
+            $rdrs1 = ''.$request->DateRS1;
+            $rdrs2 = ''.$request->DateRS2;
+
+            $ddr1 = Carbon::createFromFormat($input, $rdrs1)->format($output);
+            $ddr2 = Carbon::createFromFormat($input, $rdrs2)->format($output);
+
+            if($ddr1 == $dr1){
+                //error_log('Igual fecha inicio');
+            }else{
+                //error_log('Diferente fecha inicio');
+                $dRS1 = $ddr1;
+            }
+
+            if($ddr2 == $dr2){
+                //error_log('Igual fecha fin');
+            }else{
+                //error_log('Diferente fecha fin');
+                $dRS2 = $ddr2;
+            }
+        }
+
+
+        $dRT1='-1';
+        $dRT2='-1';
+
+        foreach ($RT as $s) {
+
+            $input = 'd-m-Y';
+            $output = 'Y-m-d';
+
+            $dr1 = $s->fechaInicio;
+            $dr2 = $s->fechaFin;
+
+            $rdrs1 = ''.$request->DateRT1;
+            $rdrs2 = ''.$request->DateRT2;
+
+            $ddr1 = Carbon::createFromFormat($input, $rdrs1)->format($output);
+            $ddr2 = Carbon::createFromFormat($input, $rdrs2)->format($output);
+
+            if($ddr1 == $dr1){
+                //error_log('Igual fecha inicio');
+            }else{
+                //error_log('Diferente fecha inicio');
+                $dRT1 = $ddr1;
+            }
+
+            if($ddr2 == $dr2){
+                //error_log('Igual fecha fin');
+            }else{
+                //error_log('Diferente fecha fin');
+                $dRT2 = $ddr2;
+            }
+        }
+
+        if($dRS1 != '-1'){
+            foreach ($RS as $s) {
+                $s->update([
+                    'fechaInicio' => $dRS1,
+                ]);
+            }
+        }
+
+        if($dRS2 != '-1'){
+            foreach ($RS as $s) {
+                $s->update([
+                    'fechaFin' => $dRS2,
+                ]);
+            }
+        }
+
+        if($dRT1 != '-1'){
+            foreach ($RT as $s) {
+                $s->update([
+                    'fechaInicio' => $dRT1,
+                ]);
+            }
+        }
+
+        if($dRT2 != '-1'){
+            foreach ($RT as $s) {
+                $s->update([
+                    'fechaFin' => $dRT2,
+                ]);
+            }
+        }
+
+        $b = $request->usuarios;
+        $b2 = $request->usuarios2;
+
+        if($b == 1){
+            $user = \App\User::where('tipo','!=',1)->get();
+
+            foreach ($user as $u) {
+                $u->update([
+                    'completado' => 0,
+                ]);
+            }
+
+        }
+
+        if($b2 == 1){
+            $user = \App\User::where('tipo','!=',1)->get();
+
+            foreach ($user as $u) {
+                $u->update([
+                    'completado' => 1,
+                ]);
+            }
+
+        }
+
+        return back()->withErrors([
+                    $request->usuarios => 'Se a actualizado los datos correctamente',
+                ]);;
+
     }
 
     public function pagination(){

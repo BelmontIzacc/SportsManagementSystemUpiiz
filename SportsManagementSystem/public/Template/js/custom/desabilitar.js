@@ -80,4 +80,16 @@ $(function() {
         locale: 'es',
         viewMode: 'years'
     });
+    $('#date_box3').datetimepicker({
+        format: 'DD-MM-YYYY',
+        //format: 'YYYY-MM-DD',
+        locale: 'es',
+        viewMode: 'years'
+    });
+    $('#date_box4').datetimepicker({
+        format: 'DD-MM-YYYY',
+        //format: 'YYYY-MM-DD',
+        locale: 'es',
+        viewMode: 'years'
+    });
 });
