@@ -71,9 +71,9 @@
             <div class="modal-footer">
 <!--                 <button type="button" class="btn btn-rounded btn-default" data-dismiss="modal">Close</button> -->
                 <div class="text-center">
-                    <input type="hidden" id="stats" name="stats"></input>
-                    <input type="hidden" id="perm" name="perm"></input>
-                    <input type="hidden" id="coord" name="coord"></input>
+                    <input type="hidden" id="stats" name="stats">
+                    <input type="hidden" id="perm" name="perm">
+                    <input type="hidden" id="coord" name="coord">
                     <button type="submit" class="btn btn-rounded btn-primary" id="formi">Guardar cambios</button>
                 </div>
             </div>
@@ -172,6 +172,35 @@
     </div>
 </div><!--.modal-->
 
+<div class="modal fade bd-example-modal-rp"
+     tabindex="-1"
+     role="dialog"
+     aria-labelledby="mySmallModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" style="width:350px">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="modal-close" data-dismiss="modal" aria-label="Close">
+                    <i class="font-icon-close-2"></i>
+                </button>
+                <h4 class="modal-title" id="mySmallModalLabel">Seleccione un taller</h4>
+            </div>
+            
+            <div class="modal-body">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-11 col-lg-offset-0 col-md-11 col-md-offset-0">
+                            @foreach($taller as $t)
+                                {{$t->nombre}}&nbsp;&nbsp;&nbsp;&nbsp;
+                                <button class="btn btn-rounded btn-inline">Generar reporte</button>
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 @stop
 
@@ -392,24 +421,30 @@
 
 	<div class="row text-center">
          @if(($student->usuario->permisos == 1) || ($student->usuario->tipo != 2))
-		<div class="col-lg-4 col-md-4">
+		<div class="col-lg-3 col-md-3">
 		    <button type="button" class="btn btn-rounded btn-inline btn-warning" data-toggle="modal" data-target=".bd-example-modal-sm" onclick="updateInputsProfile({{$student->id}}, '{{$student->user}}');">Editar</button>
 		</div>
-        <div class="col-lg-4 col-md-4">
+        <div class="col-lg-3 col-md-3">
+            <button type="button" class="btn btn-rounded btn-inline btn-succes" data-toggle="modal" data-target=".bd-example-modal-rp" onclick="">Generar Reporte</button>
+        </div>
+        <div class="col-lg-3 col-md-3">
             <button type="button" class="btn btn-rounded btn-inline btn-success" data-toggle="modal" data-target=".bd-example-modal-lg" onclick="updateInputsProfile({{$student->id}}, '{{$student->user}}');">Talleres</button>
         </div>
         <!--<div class="col-lg-6 col-md-6">
              <a href="{{asset('/admin/student/')}}/{{$student->id}}/studio" class="btn btn-rounded btn-inline btn-success">Ver talleres</a>
         </div>
             -->
-        <div class="col-lg-4 col-md-4">
+        <div class="col-lg-3 col-md-3">
             <a href="{{asset('/admin/list/')}}/{{$student->id}}/addTaller" class="btn btn-rounded btn-info">Registrar en un taller</a>
         </div>
         @else
-        <div class="col-lg-6 col-md-6">
+        <div class="col-lg-4 col-md-4">
             <button type="button" class="btn btn-rounded btn-inline btn-warning" data-toggle="modal" data-target=".bd-example-modal-sm" onclick="updateInputsProfile({{$student->id}}, '{{$student->user}}');">Editar</button>
         </div>
-        <div class="col-lg-6 col-md-6">
+        <div class="col-lg-4 col-md-4">
+            <button type="button" class="btn btn-rounded btn-inline btn-succes" data-toggle="modal" data-target=".bd-example-modal-rp" onclick="">Generar Reporte</button>
+        </div>
+        <div class="col-lg-4 col-md-4">
             <a href="{{asset('/admin/list/')}}/{{$student->id}}/addTaller" class="btn btn-rounded btn-info">Registrar en un taller</a>
         </div>
         @endif
