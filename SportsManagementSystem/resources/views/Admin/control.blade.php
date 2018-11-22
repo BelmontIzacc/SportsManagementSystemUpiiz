@@ -36,6 +36,38 @@
             <div class="modal-footer">
                 <div class="text-center">
                     <button type="submit" class="btn btn-rounded btn-danger" formaction="" id="formButton2">Aceptar</button>
+                    <input type="hidden" id="control" name="control" value="1"></input>
+                </div>
+            </div>
+            {!!Form::close()!!}
+        </div>
+    </div>
+</div><!--.modal-->
+
+<div class="modal fade bd-example2-modal-sm"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="mySmallModalLabel2"
+        aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="modal-close" data-dismiss="modal" aria-label="Close">
+                    <i class="font-icon-close-2"></i>
+                </button>
+                <h4 class="modal-title" id="windowTitle2">Control de Registros</h4>
+            </div>
+            {!!Form::open(array('method'=>'post', 'id'=>'passForm2'))!!}
+            <div class="modal-body">
+                <div class="form-group">
+                    <label class="form-label" for="hide-show-password">Contraseña</label>
+                    <input type="password" class="form-control" value="" name="clave" id="clave">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="text-center">
+                    <button type="submit" class="btn btn-rounded btn-danger" formaction="" id="formButton3">Aceptar</button>
+                    <input type="hidden" id="control" name="control" value="2"></input>
                 </div>
             </div>
             {!!Form::close()!!}
@@ -100,7 +132,10 @@
                                     </div> 
                                 </div>
                                 <div class="col-lg-6 col-md-6">
-                     <button type="button" class="btn btn-rounded btn-inline btn-warning" data-toggle="modal" data-target=".bd-example1-modal-sm">Funciones especiales</button>
+                     <button type="button" class="btn btn-rounded btn-inline btn-warning" data-toggle="modal" data-target=".bd-example1-modal-sm">Funciones de borrado</button>
+                                </div> 
+                                <div class="col-lg-6 col-md-6">
+                     <button type="button" class="btn btn-rounded btn-inline btn-info" data-toggle="modal" data-target=".bd-example2-modal-sm">Control registros</button>
                                 </div> 
                             </div>
                         </div> <!--tbl tbl-item-->

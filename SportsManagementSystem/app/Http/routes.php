@@ -63,6 +63,9 @@ Route::delete('/admin/controlPanel/insert/{variable}', 'adminController@deleteRe
 Route::get('/admin/controlPanel/special/select', 'adminController@controlspecial');
 Route::post('/admin/controlPanel/special/select', 'adminController@controlSpecialGet');
 
+Route::get('/admin/controlPanel/control/register', 'adminController@controlRegister');
+Route::post('/admin/controlPanel/control/register', 'adminController@controlRegisterPost');
+
 Route::get('/admin/Register/userList', 'adminController@pagination');
 
 Route::get('/admin/Register/userList/ExportExcelAll','ExcelController@All');
