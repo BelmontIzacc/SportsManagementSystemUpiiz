@@ -79,6 +79,8 @@ Route::post('/user/RegistroUsuario','UserController@postRegister');
 Route::get('/user/InfoCompleta','UserController@getCompleto');
 
 Route::get('/user/Profile','UserController@getProfile');
+Route::get('/user/EditProfile','UserController@getEdit');
+Route::post('/user/EditProfile','UserController@postEdit');
 
 Route::get('/user/Info','UserController@getInfo');
 

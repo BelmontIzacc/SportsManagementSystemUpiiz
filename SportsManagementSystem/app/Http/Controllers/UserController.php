@@ -99,10 +99,46 @@ class UserController extends Controller
     {
         $index=1;
         $user = Auth::user();
+        $student = \App\informacion::find($user->id);
+        $iduser = $student->usuario->id;
+        
         return view('User.perfil',[
             'index' => $index,
-            'user' => $user
+            'user' => $user,
+            'student'=> $student,
+            'iduser'=> $iduser
+            
         ]);
+    }
+    
+    public function getEdit()
+    {
+        $index=1;
+        $user = Auth::user();
+        $student = \App\informacion::find($user->id);
+        $iduser = $student->usuario->id;
+        
+        return view('User.EditarPerfil',[
+            'index' => $index,
+            'user' => $user,
+            'student'=> $student,
+            'iduser'=> $iduser
+            
+        ]);
+    }
+    
+    public function postEdit(Request $request)
+    {
+        $this->validate($request, [
+            'nombre' => 'required',
+            'apellidoPaterno' => 'required',
+            'apellidoMaterno' => 'required',
+            'email' => 'required',
+            'boleta' => 'required',
+            'telefono' => 'required',
+            ]);
+        
+            
     }
     
     
@@ -110,7 +146,7 @@ class UserController extends Controller
     {
         $index=1;
         $user = Auth::user();
-        $info = \App\informacion::where('id_usuario','==', $user->id);
+        $info = \App\informacion::find($user->id);
         
         return view('User.informacion',[
             'index' => $index,

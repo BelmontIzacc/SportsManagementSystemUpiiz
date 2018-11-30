@@ -16,7 +16,6 @@
 @section('popUp')
 @stop
 @section('content')
-
 <section class="widget widget-user">
     <div class="widget-user-bg" style="background-image: url('{{asset('/Template/img/backgroundUser.svg')}}')"></div>
     <div class="widget-user-photo">
@@ -50,66 +49,54 @@
 
     </div>
 </section>
+ {!!Form::open(array('url'=>'/user/EditProfile', 'class'=>'patata', 'method'=>'post'))!!}
 <div class="box-typical box-typical-padding">
-
     <h5 class="m-t-lg with-border">Informacion</h5>
-
+    <form class="patata">
     <div class="row">
-        @unless($user->nombre == null)
         <div class="{{$classSize}}">
             <fieldset class="form-group">
                 <label class="form-label" for="exampleInputDisabled2">Nombre</label>
-                <input type="text" readonly class="form-control" value="{{$user->nombre}}">
+                    {!!Form::text('nombre', null, ['class'=>'form-control', 'placeholder'=> $user->nombre, 'id'=>'nombre'])!!}
             </fieldset>
         </div>
-        
-        @endunless($user->apellidoPaterno == null)
         <div class="{{$classSize}}">
             <fieldset class="form-group">
                 <label class="form-label" for="exampleInputDisabled2">Apellido Paterno</label>
-                <input type="text" readonly class="form-control" value="{{$user->apellidoPaterno}}">    
+                    {!!Form::text('nombre', null, ['class'=>'form-control', 'placeholder'=> $user->apellidoPaterno, 'id'=>'ap'])!!}
             </fieldset>
         </div>
-         @unless($user->apellidoMaterno == null)
         <div class="{{$classSize}}">
             <fieldset class="form-group">
                 <label class="form-label" for="exampleInputDisabled2">Apellido Materno</label>
-                <input type="text" readonly class="form-control" value="{{$user->apellidoMaterno}}">
+                    {!!Form::text('nombre', null, ['class'=>'form-control', 'placeholder'=> $user->apellidoMaterno, 'id'=>'am'])!!}
             </fieldset>
         </div>
-        @endunless
     </div>
     <div class="row">
-        @unless($user->boleta == null)
         <div class="{{$classSize}}">
             <fieldset class="form-group">
-                <label class="form-label" for="exampleInputDisabled2">boleta</label>
-                <input type="text" readonly class="form-control" value="{{$user->boleta}}">
+                <label class="form-label" for="exampleInputDisabled2">Boleta</label>
+                    {!!Form::text('boleta', null, ['class'=>'form-control', 'placeholder'=>$user->boleta, 'id'=>'bo'])!!}
             </fieldset>
         </div>
         <div class="{{$classSize}}">
             <fieldset class="form-group">
-                <label class="form-label" for="exampleInputDisabled2">email</label>
-                <input type="text" readonly class="form-control" value="{{$user->email}}">
-            </fieldset>
-        </div>
-        @endunless
-        @unless($student->telefono == null)
-        <div class="{{$classSize}}">
-            <fieldset class="form-group">
-                <label class="form-label" for="exampleInputDisabled2">Teléfono</label>
-                <input type="text" readonly class="form-control" value="{{$student->telefono}}">
+                <label class="form-label" for="exampleInputDisabled2">Email</label>
+                    {!!Form::email('email', null, ['class'=>'form-control', 'placeholder'=>$user->email, 'id'=>'email'])!!}	
             </fieldset>
         </div>
         
-       
-                
-        @endunless
+        <div class="{{$classSize}}">
+            <fieldset class="form-group">
+                <label class="form-label" for="exampleInputDisabled2">Teléfono</label>
+                    {!!Form::text('telefono', null, ['class'=>'form-control', 'placeholder'=>$student->telefono, 'id'=>'tel'])!!}
+            </fieldset>
+        </div>
     </div>
+    </form>
 </div>
-<a href="/user/EditProfile">
-<button type="button" class="btn btn-rounded btn-warning patata" data-toggle="modal" data-target=".bd-example-modal-sm">Editar perfíl</button>
-</a>
+    <button type="button" class="btn btn-rounded btn-warning" data-toggle="modal" data-target=".bd-example-modal-sm">Editar perfíl</button>
 
 @stop
 @section('scripts')
