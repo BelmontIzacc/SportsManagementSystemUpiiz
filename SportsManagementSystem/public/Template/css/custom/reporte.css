@@ -1,0 +1,36 @@
+.SEP {
+    height: 1.5cm;
+    width: 4.91cm;
+    position: absolute;
+    left: 0.75cm;
+    top: 0.23cm;
+}
+.IPN {
+    height: 1.5cm;
+    width: 1.01cm;
+    position:absolute;
+    right: 0.75cm;
+}
+.UPIIZ {
+    height: 1.3cm;
+    width: 1.3cm;
+    position: absolute;
+    right: 0.75cm;
+    top: 1.85cm;
+}
+.nombres {
+    text-align: right;
+    position: absolute;
+    right: 2.3cm;
+    top: 0.25cm;
+}
+.fecha {
+    font-family: thimes-new-roman;
+    text-align: right;
+    position: absolute;
+    top: 4cm;
+    right: 0.75cm;
+}
+.cuerpo {
+    font-size: 12pt;
+}

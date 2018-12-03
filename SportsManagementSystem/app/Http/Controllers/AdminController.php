@@ -17,6 +17,7 @@ use App\informacion;
 use App\taller;
 
 use Khill\Lavacharts\Lavacharts;
+use PDF;
 
 class AdminController extends Controller
 {
@@ -58,7 +59,7 @@ class AdminController extends Controller
             'carrera'=>$carrera,
         ]);
     }
-    
+
     public function postCoord(Request $request){
         $this->validate($request, [
             'nombre' => 'required',
@@ -140,7 +141,7 @@ class AdminController extends Controller
             if($t->usuario_id==null){
                $t->update([
                 'usuario_id' => $user->id,
-                ]); 
+                ]);
             }else{
                 return redirect('/admin')
                 ->withErrors([
@@ -290,7 +291,7 @@ class AdminController extends Controller
             }
 
             if($idPc!=null){
-                $val++;   
+                $val++;
             }
             //error_log('coordinador : '.$idc.' pcoordinador : '.$idPc.' valor : '.$val);
 
@@ -344,11 +345,11 @@ class AdminController extends Controller
                 $this->validate($request, [
                     'busqueda' => 'required'
                 ]);
-                
+
                 //$taller = \App\taller::where('nombre', $request->busqueda)->get();
                 $taller = \App\taller::where('nombre','like','%'.$request->busqueda.'%')->get();
                 //error_log($taller);
-                
+
                 if(count($taller) == 0) {
                     session()->flash('message', 'No se encontro ningun registro con el nombre: '.$request->busqueda);
                     session()->flash('type', 'danger');
@@ -382,7 +383,7 @@ class AdminController extends Controller
     public function edit(Request $request, $id)
     {
         $student = \App\informacion::find($id);
-        
+
         $permisos = $request->perm;
         $status = $request->stats;
         $coordinador = $request->coord;
@@ -434,14 +435,14 @@ class AdminController extends Controller
 
         return back();
     }
-    
+
     public function destroy(Request $request)
     {
         //abort(500);
 
         $student = \App\informacion::find($request->idVal2);
         $user = \App\User::find($student->usuario->id);
-        
+
         if($user->taller !=null){
 
             $idTaller = $user->taller->id;
@@ -449,8 +450,8 @@ class AdminController extends Controller
             $taller->update([
                 'usuario_id' => null,
                 'status'=>3,
-            ]); 
-            
+            ]);
+
         }
 
         $user->delete();
@@ -478,7 +479,7 @@ class AdminController extends Controller
         $index = 4;
         $iduser = $id;
         $user = \App\informacion::find($id);
-        return view('Admin.addTallerUsuario', 
+        return view('Admin.addTallerUsuario',
             [
                 'user'=>$user,
                 'id'=>$iduser,
@@ -489,7 +490,7 @@ class AdminController extends Controller
 
     public function addTaller(Request $request, $id){
         $student = \App\informacion::find($id);
-        
+
         $this->validate($request, [
             'taller' => 'required',
         ]);
@@ -611,7 +612,7 @@ class AdminController extends Controller
         $carrer = \Lava::DataTable();
         $carrer->addStringColumn('Reasons')
         ->addNumberColumn('Percent');
-        
+
         $i = 0;
         for($i = 1 ; $i<=count($array); $i++){
             $nombre = \App\carrera::find($i);
@@ -629,7 +630,7 @@ class AdminController extends Controller
         $instit = \Lava::DataTable();
         $instit->addStringColumn('Reasons')
         ->addNumberColumn('Percent');
-        
+
         $j = 0;
         for($j = 1 ; $j<=count($arrayInstituciones); $j++){
             $nombre = \App\institucion::find($j);
@@ -644,7 +645,7 @@ class AdminController extends Controller
             ]
         ]);
 
-        return view('Admin.tallerUsuario', 
+        return view('Admin.tallerUsuario',
         [
             'index'=>$index,
             'taller'=>$taller,
@@ -700,7 +701,7 @@ class AdminController extends Controller
         return redirect('/admin/student/'.$variable.'/studio/special')->withErrors([
                 $request->stats => 'Se a eliminado los registros',
         ]);
-       
+
     }
 
     public function showTaller($id)
@@ -829,7 +830,7 @@ class AdminController extends Controller
                     $request->nombre => 'Se a eliminado el registro',
                 ]);
     }
-    
+
     public function showInfoList($id){
         $index = 1;
         $taller = \App\taller::find($id);
@@ -888,7 +889,7 @@ class AdminController extends Controller
                         $ins->delete();
                     }
                 }
-                
+
             }
             return redirect('/admin/student/'.$id.'/studio/delete/User')->withErrors([
                                 $request->lista => 'Se a Eliminado a los alumnos',
@@ -907,7 +908,7 @@ class AdminController extends Controller
             $inscripcion = \App\inscripcion::where('taller_id',$id)->get();
 
             $igual=0;
-            
+
                 for($j = 0 ; $j<count($tam); $j++){
                     $user = \App\User::find($tam[$j]);
                     foreach($inscripcion as $ins){
@@ -935,7 +936,7 @@ class AdminController extends Controller
                     }
 
                     $igual=0;
-                    
+
                 }
 
             return redirect('/admin/student/'.$id.'/studio/add/User')->withErrors([
@@ -949,12 +950,12 @@ class AdminController extends Controller
         $asistencia = \App\asistencia::where('fecha',$fecha)->where('taller_id',$id)->get();
         $taller = \App\taller::find($id);
 
-        $input2 = 'Y-m-d'; 
+        $input2 = 'Y-m-d';
         $date2 = $fecha;
         $output2 ='d-m-Y';
 
         $dateFormated = Carbon::createFromFormat($input2, $date2)->format($output2);
-        
+
         return view('Admin.verFecha',[
             'index' => $index,
             'variable' => $id,
@@ -977,7 +978,7 @@ class AdminController extends Controller
 
         }else if(strlen($date)>=8){
             $flag=1;
-            $input2 = 'd-m-Y'; 
+            $input2 = 'd-m-Y';
             $date2 = $date;
             $output2 = 'Y-m-d';
 
@@ -995,9 +996,9 @@ class AdminController extends Controller
             $timer=1;
         }
 
-        
+
         if(strlen($list)==0){
-            
+
         }else{
             $flag=1;
             $tam = explode( ',', $list);
@@ -1025,14 +1026,14 @@ class AdminController extends Controller
                             break ;
                         }
                     }
-                    
+
                 }
 
             $faltas=0;
             $asistencias=0;
 
             $ast = \App\asistencia::where('fecha',$fech)->where('taller_id',$id)->get();
-            
+
             foreach($ast as $at){
                 if($at->asistencia==1){
                     $asistencias++;
@@ -1073,7 +1074,7 @@ class AdminController extends Controller
             return back();
         }
 
-        
+
 
     }
 
@@ -1085,7 +1086,7 @@ class AdminController extends Controller
         $index=4;
         $taller = \App\taller::all();
         $user = \App\User::find($id);
-        
+
         return view('Admin.listTallerAdd',[
             'index' => $index,
             'variable' => $id,
@@ -1097,9 +1098,9 @@ class AdminController extends Controller
     public function showTallerAddGet(Request $request,$id){
         $index=4;
         $list = $request->lista;
-        
+
         if(strlen($list)==0){
-            return back();        
+            return back();
         }else{
             $tam = explode( ',', $list);
             $registrado=0;
@@ -1137,7 +1138,7 @@ class AdminController extends Controller
                 }
 
                 $registrado==0;
-                
+
             }
 
             return back()->withErrors([
@@ -1158,8 +1159,8 @@ class AdminController extends Controller
         $coordinador = $request->coordinador;
         $usuarioP = $request->usuariosP;
         $todo = $request->todo;
-        
-        
+
+
         if($todo==1){
 
             $u = \App\User::where('tipo','!=',1)->get();
@@ -1179,7 +1180,7 @@ class AdminController extends Controller
                 $key->delete();
             }
 
-            
+
         }else{
             if($usuario==1){
                 $u = \App\User::where('tipo',2)->get();
@@ -1204,8 +1205,8 @@ class AdminController extends Controller
                         $taller->update([
                             'usuario_id' => null,
                             'status'=>3,
-                        ]); 
-                        
+                        ]);
+
                     }
 
                     $key->delete();
@@ -1234,8 +1235,8 @@ class AdminController extends Controller
                         $taller->update([
                             'usuario_id' => null,
                             'status'=>3,
-                        ]); 
-                        
+                        ]);
+
                     }
 
                     $key->delete();
@@ -1264,8 +1265,8 @@ class AdminController extends Controller
                         $taller->update([
                             'usuario_id' => null,
                             'status'=>3,
-                        ]); 
-                        
+                        ]);
+
                     }
 
                     $key->delete();
@@ -1273,7 +1274,7 @@ class AdminController extends Controller
             }
 
         }
-       
+
         return back()->withErrors([
                         $request->usuario => 'Se a eliminado los registros',
         ]);
@@ -1298,7 +1299,7 @@ class AdminController extends Controller
                 ]);
             }
         }else if($opc == '2'){ //control de registros
-            
+
             if(Hash::check($request->clave, Auth::user()->password)){
                 return redirect('/admin/controlPanel/control/register');
             } else{
@@ -1577,4 +1578,20 @@ class AdminController extends Controller
         return redirect('/admin/profile/');
     }
 
+    public function Reportes($idT,$idU) {
+        $detalles = ['title'=>"prueba"];
+        $pdf = \App::make('dompdf.wrapper');
+        $pdf->loadView('Admin.reporte',$detalles);
+        return $pdf->stream();
+    }
+
+    public function pruebaReporte() {
+        $detalles = ['title'=>"prueba"];
+        $pdf = PDF::loadView('Admin.reporte',$detalles);
+        return $pdf->download('prueba.pdf');
+    }
+
+    public function htmlView() {
+        return view('Admin.reporte');
+    }
 }
