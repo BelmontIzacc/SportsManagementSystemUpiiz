@@ -831,6 +831,110 @@ class AdminController extends Controller
                 ]);
     }
 
+    public function showInfoListAdd($id){
+
+        $index=4;
+        $asistencia = \App\inscripcion::where('taller_id',$id)->get();
+        $taller = \App\taller::find($id);
+
+        return view('Admin.addverFecha',[
+            'index' => $index,
+            'variable' => $id,
+            'taller'=>$taller,
+            'asistencia' => $asistencia,
+        ]);
+    }
+
+    public function showInfoListAddPOST(Request $request, $id){
+        $this->validate($request, [
+            'Date' => 'required'
+        ]);
+
+        if(strlen($request->list)==0){
+
+            $fecha = $request->Date;
+
+            $input2 = 'd-m-Y';
+            $date2 = $fecha;
+            $output2 = 'Y-m-d';
+
+            $dateFormated = Carbon::createFromFormat($input2, $date2)->format($output2);
+
+            $inscripcion = \App\inscripcion::where('taller_id',$id)->get();
+
+            foreach($inscripcion as $ins){
+                $s = \App\asistencia::create([
+                    'usuario_id' =>$ins->usuario_id,
+                    'taller_id' => $id,
+                    'fecha' => $dateFormated,
+                    'asistencia' => 0,
+                ]);
+            }
+
+        }else{
+            $list = $request->list;
+            $tam = explode( ',', $list);
+            $fecha = $request->Date;
+
+            $input2 = 'd-m-Y';
+            $date2 = $fecha;
+            $output2 = 'Y-m-d';
+
+            $dateFormated = Carbon::createFromFormat($input2, $date2)->format($output2);
+
+            $inscripcion = \App\inscripcion::where('taller_id',$id)->get();
+
+                foreach($inscripcion as $ins){
+                    $s = \App\asistencia::create([
+                        'usuario_id' =>$ins->usuario_id,
+                        'taller_id' => $id,
+                        'fecha' => $dateFormated,
+                        'asistencia' => 0,
+                    ]);
+                }
+
+                $asistencia = \App\asistencia::where('taller_id',$id)->where('fecha',$dateFormated)->get();
+
+                for($j = 0 ; $j<count($tam); $j++){
+                    $user = \App\User::find($tam[$j]);
+
+                    foreach($asistencia as $ins){
+                        if($ins->usuario_id == $user->id){
+
+                            $ins->update([
+                                'asistencia' => 1,
+                            ]);
+
+                            break ;
+                        }
+                    }
+
+                }
+        }
+
+        $faltas=0;
+        $asistencias=0;
+
+        $ast = \App\asistencia::where('fecha',$dateFormated)->where('taller_id',$id)->get();
+
+        foreach($ast as $at){
+            if($at->asistencia==1){
+                $asistencias++;
+            }else if($at->asistencia==0){
+                $faltas++;
+            }
+        }
+
+
+        $stas = \App\stats::create([
+            'taller_id' => $id,
+            'fecha' => $dateFormated,
+            'asistencias' => $asistencias,
+            'faltas' => $faltas,
+        ]);
+
+    }
+
     public function showInfoList($id){
         $index = 1;
         $taller = \App\taller::find($id);

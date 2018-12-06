@@ -35,8 +35,11 @@ $index=4;
                         <div class="tbl tbl-item">
                             <div class="tbl-row">
                                     <div class="tbl-cell">                     
-                                        <div class="col-lg-12 col-lg-offset-1 col-md-12 col-md-offset-1">
+                                        <div class="col-lg-6 col-lg-offset-1 col-md-6 col-md-offset-1">
                                             <a href="{{asset('/admin/student/')}}/{{$variable}}/studio" class="btn btn-rounded btn-primary btn-inline">Regresar</a>
+                                        </div>
+                                        <div class="col-lg-6 col-lg-offset-1 col-md-6 col-md-offset-1">
+                                            <a href="{{asset('/admin/student/')}}/{{$variable}}/studio/list/add" class="btn btn-rounded btn-inline btn-success">Agregar lista de asistencia</a>
                                         </div>
                                     </div>
                             </div>
