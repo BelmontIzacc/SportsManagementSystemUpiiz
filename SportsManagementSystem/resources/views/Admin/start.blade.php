@@ -17,32 +17,61 @@
 Talleres Registrados
 @stop
 @section('content')
-@foreach($taller as $t)
-<div class="col-md-2">
-	<div class="row">
-		<div class="col-xs-12">
-			<section class="widget widget-simple-sm-fill green">
-				<div class="widget-simple-sm-icon">
-					<i class="font-icon font-icon-facebook"></i>
+<!--
+
+-->
+
+
+<div class="container-fluid">
+			<section class="box-typical box-typical-full-height-with-header">
+		@foreach($taller as $t)
+		<!--<div class="col-md-2">
+			<div class="row">
+				<div class="col-xs-12">
+					<section class="widget widget-simple-sm-fill green">
+						<div class="widget-simple-sm-icon">
+							<i class="font-icon font-icon-facebook"></i>
+						</div>
+						<div class="widget-simple-sm-fill-caption"><a href="{{asset('/admin/lists/taller/')}}/{{$t->id}}" class="semibold">{{$t->nombre}}</a></div>
+					</section>
 				</div>
-				<div class="widget-simple-sm-fill-caption"><a href="{{asset('/admin/lists/taller/')}}/{{$t->id}}" class="semibold">{{$t->nombre}}</a></div>
-			</section><!--.widget-simple-sm-fill-->
+			</div>
+		</div>-->
+
+
+		<div class="gallery-col col-md-3">
+			<article class="gallery-item" style="height: 188px; width:auto;">
+				<img class="gallery-picture" src="{{asset('/Template/img/Stickmen/StickmenSVG/sports2(4).svg')}}" alt="" height="188" >
+				<div class="gallery-hover-layout">
+					<div class="gallery-hover-layout-in">
+						<p class="gallery-item-title">{{$t->nombre}}</p>
+						<p>{{$t->usuario}}</p>
+						<div class="btn-group">
+							<a class="btn" href="{{asset('/admin/lists/taller/')}}/{{$t->id}}">
+								<i class="font-icon font-icon-eye"></i>
+							</a>
+						</div>
+						<p>{{$t->tipo->nombre}}</p>
+					</div>
+				</div>
+			</article>
+		</div><!--.gallery-col-->
+
+		@endforeach
+			</section><!--.box-typical-->
 		</div>
-	</div>
-</div>
-@endforeach
 
 @stop
 @section('scripts')
 
-    <script src="{{asset('/Template/js/lib/bootstrap-sweetalert/sweetalert.min.js')}}"></script>
-    <script src="{{asset('/Template/js/custom/desabilitar.js')}}"></script>
+    <script src="{{asset('/Template/js/custom/search.js')}}"></script>
 
-    <script src="{{asset('/Template/js/lib/bootstrap-select/bootstrap-select.min.js')}}"></script>
-    <script src="{{asset('/Template/js/lib/select2/select2.full.min.js')}}"></script>
-
-    <script src="{{asset('/Template/js/lib/clockpicker/bootstrap-clockpicker.min.js')}}"></script>
-    <script src="{{asset('/Template/js/lib/clockpicker/bootstrap-clockpicker-init.js')}}"></script>
-    <script src="{{asset('/Template/js/lib/daterangepicker/daterangepicker.js')}}"></script>
+    <script>
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+    </script>
 
 @stop
