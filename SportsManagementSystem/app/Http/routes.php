@@ -75,7 +75,7 @@ Route::patch('/admin/profile', 'adminController@editProfile');
 
 Route::get('/admin/{idT}/{idU}/reporte', 'adminController@Reportes');
 Route::get('admin/reporte', 'adminController@pruebaReporte');
-Route::get('admin/pdf', 'adminController@htmlView');
+Route::get('admin/{idT}/{idU}/pdf', 'adminController@htmlView');
 //-----------------------------------------------------------------------------------//
 Route::get('/user','UserController@index');
 Route::get('/user/RegistroUsuario','UserController@getRegister');

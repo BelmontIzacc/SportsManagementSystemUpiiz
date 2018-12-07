@@ -8,9 +8,9 @@ use Sofa\Eloquence\Eloquence;
 class taller extends Model
 {
     //
-    
+
     use Eloquence;
-    
+
     protected $table = 'taller';
 
     /**
@@ -19,11 +19,12 @@ class taller extends Model
      * @var array
      */
         protected $fillable = [
+        'id',
         'usuario_id',
         'nombre',
         'fechaInicio',
         'fechaFin',
-        'duracion',   
+        'duracion',
         'status',
         'lugar',
         'participantes',

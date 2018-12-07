@@ -3,7 +3,7 @@
 ?>
 <!DOCTYPE html>
 <html>
-    <body>
+    <body background="https://i.imgur.com/1kKMCdT.png" style="background-position: center center; background-repeat: no-repeat;">
         <div class="Header">
             <img src="https://i.imgur.com/aCLHQwE.png" class="SEP">
             <div class="Insituciones">
@@ -26,8 +26,8 @@
         </div>
         <div class="fecha cuerpo">
             <p>
-                Zacatecas, Zac. <!--fecha--> <br>
-                Constancia No. UPIIZ/DSE/
+                Zacatecas, Zac. {{$dia}} de {{$mes}} de {{$anio}}<br>
+                Constancia No. UPIIZ/DSE//{{$anio}}
             </p>
         </div>
         <div class="reporte cuerpo">
@@ -36,22 +36,36 @@
                 <br>
                 A QUIEN CORRESPONDA
                 <br><br>
-                El que suscribe hace constar que <!--el/la--> estudiante:
-                <br>
-                <h4 class="alumno cuerpo"> <!--nombre del usuario--> </h4>
-                <br>
-                Con número de boleta <!--boleta-->, el cual se encuentra inscrito en este plantel, <h4> en el programa academico de
-                    <!-- programa academico--></h4>, participo en el taller  de <!--nombre del taller--> con un total de <!--no. de horas-->
-                    en el periodo escolas <!--periodo escolar-->.
-                    <br><br>
-                    A petición del interesado  y para los fines legales que convengan, se extiende la presente en la Ciudad de Zacatecas, Zac. a
-                    los <!-- no. dias --> dias del mes de <!--mes--> del año <!--año formato escrito -->.
+                @foreach($user as $u)
+                @foreach($taller as $t)
+                    El que suscribe hace constar que
+                    @if($u->sexo==0)
+                        el
+                    @else
+                        la
+                    @endif
+                    estudiante:
+
+                    <br>
+
+                        <h3 class="alumno cuerpo centrado"> {{$u}} </h3>
+
+                    Con número de boleta {{$u->boleta}}, el cual se encuentra inscrito en este plantel, <span class="blod">en el programa academico de
+                        {{$u->informacion->carrera->nombre}}</span>, participo en el taller  de {{$t->nombre}} con un total de {{$t->duracion}} horas
+                        en el periodo escolar {{$periodo}}.
+                        <br><br>
+                        A petición del interesado  y para los fines legales que convengan, se extiende la presente en la Ciudad de Zacatecas, Zac. a
+                        los {{$fecha}}.
+                @endforeach
+                @endforeach
             </p>
         </div>
         <div class="firma cuerpo centrado">
-            <h4>ATENTAMENTE</h4>
-            <h3>"La técnica al servicio de la patria"</h3>
-            <br>
+            <div>
+                <span class="blod">ATENTAMENTE <br>
+                    "La técnica al servicio de la patria"</span>
+            </div>
+            <br><br><br><br>
             ________________________________________________
             <br>
             M. en C. Oscar Javier Ramos Herrera
@@ -114,6 +128,9 @@
         }
         .cuerpo {
             font-size: 12pt;
+        }
+        .blod  {
+            font-weight:bold;
         }
         .centrado {
             text-align: center;

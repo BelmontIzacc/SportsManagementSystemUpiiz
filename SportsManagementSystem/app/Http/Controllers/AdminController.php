@@ -1579,19 +1579,108 @@ class AdminController extends Controller
     }
 
     public function Reportes($idT,$idU) {
-        $detalles = ['title'=>"prueba"];
+
+        $user = \App\User::where('id',$idU)->get();
+        $taller = \App\Taller::where('id',$idT)->get();
+        $dia = date('d');
+        $mes = date('m');
+        $anio = date('Y');
+
+        if($mes>=1&&$mes<=6) {
+            $periodo = date('y').'-2';
+        } else if($mes>=7&&$mes<=12){
+            $ye = date('y');
+            $ye = $ye+1;
+            $periodo = ($ye.'-1');
+        }
+        switch ($mes) {
+            case 1:
+                $mes = 'Enero';
+                break;
+            case 2:
+                $mes = 'Febrero';
+                break;
+            case 3:
+                $mes = 'Marzo';
+                break;
+            case 4:
+                $mes = 'Abril';
+                break;
+            case 5:
+                $mes = 'Mayo';
+                break;
+            case 6:
+                $mes = 'Junio';
+                break;
+            case 7:
+                $mes = 'Jiluo';
+                break;
+            case 8:
+                $mes = 'Agosto';
+                break;
+            case 9:
+                $mes = 'Septiembre';
+                brek;
+            case 10:
+                $mes = 'Octubre';
+                break;
+            case 11:
+                $mes = 'Noviembre';
+                break;
+            case 12:
+                $mes = 'Diciembre';
+                break;
+        }
+
+        $d = date('l', strtotime($dia));
+        $y = strtotime($anio);
+
+        $fecha = $this->fecha();
+
+        $detalles = ['user'=>$user,
+                     'taller'=>$taller,
+                     'dia'=> $dia,
+                     'mes'=>$mes,
+                     'anio'=>$anio,
+                     'periodo'=>$periodo,
+                     'anio'=>date('Y'),
+                     'fecha'=>$fecha
+                    ];
+
         $pdf = \App::make('dompdf.wrapper');
         $pdf->loadView('Admin.reporte',$detalles);
         return $pdf->stream();
     }
 
-    public function pruebaReporte() {
-        $detalles = ['title'=>"prueba"];
-        $pdf = PDF::loadView('Admin.reporte',$detalles);
-        return $pdf->download('prueba.pdf');
+    public function fecha() {
+        $dias = ["uno","un","dos","tres","cuatro","cinco","seis","ocho","nuve","diez","once","doce","trece","catorce","quince",
+                 "dieciséis","deicisiete", "dieciocho","diecinueve","veinte","veintiuno","veintidos","veintres","veinticuatro",
+                 "veinticinco","veintiséis","veintisiete","veintiocho","veintinueve","treinta","treintaiuno"];
+
+        $cientos = [" "," ciento "," doscientos "," trescientos "," cuatrocientos "," quinietnos "," seiscientos "," setecientos ",
+                    " ochocientos "," novecientos "];
+
+        $meses = ["","enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","disiembre"];
+
+        $dia = date('d');
+        $mes = date('m');
+        $anio = date("Y");
+        $auxAnio;
+
+        if(substr($dia,-2,1)==0) {
+            $dia = substr($dia,-1);
+        }
+        if(substr($mes,-2,1)==0) {
+            $mes = substr($mes,-1);
+        }
+        if(substr($anio,-2,1)==0) {
+            $auxAnio = substr($anio,-1);
+        } else {
+            $auxAnio = substr($anio,-2);
+        }
+
+
+        return $dias[$dia]." dias de ".$meses[$mes]." de ".$dias[substr($anio,-4,1)]." mil".$cientos[substr($anio,-3,1)].$dias[$auxAnio];
     }
 
-    public function htmlView() {
-        return view('Admin.reporte');
-    }
 }

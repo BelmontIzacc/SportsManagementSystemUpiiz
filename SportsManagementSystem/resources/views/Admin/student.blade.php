@@ -28,13 +28,13 @@
                 <h4 class="modal-title" id="mySmallModalLabel">Edición del perfil</h4>
             </div>
             {!!Form::open(array('method'=>'post', 'id'=>'forms'))!!}
-             
+
             <div class="modal-body">
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-4 col-lg-offset-1 col-md-5 col-md-offset-1">
                             <div class="checkbox-toggle">
-                                    <input type="checkbox" id="check-toggle-1" name="check-toggle-1" onclick="getValue();"  
+                                    <input type="checkbox" id="check-toggle-1" name="check-toggle-1" onclick="getValue();"
                                         @if($student->usuario->completado == 1)
                                             checked
                                         @else
@@ -45,7 +45,7 @@
                         </div>
                         <div class="col-lg-4 col-lg-offset-1 col-md-5 col-md-offset-1">
                             <div class="checkbox-toggle">
-                                <input type="checkbox" id="check-toggle-2" name="check-toggle-2" onclick="getValue2();" 
+                                <input type="checkbox" id="check-toggle-2" name="check-toggle-2" onclick="getValue2();"
                                     @if($student->usuario->permisos == 1)
                                         checked
                                     @else
@@ -53,10 +53,10 @@
                                 >
                                 <label for="check-toggle-2">Permisos</label>
                             </div>
-                        </div>                        
+                        </div>
                         <div class="col-lg-4 col-lg-offset-1 col-md-5 col-md-offset-1">
                             <div class="checkbox-toggle">
-                                <input type="checkbox" id="check-toggle-3" name="check-toggle-3" onclick="getValue3();" 
+                                <input type="checkbox" id="check-toggle-3" name="check-toggle-3" onclick="getValue3();"
                                     @if($student->usuario->tipo == 3)
                                         checked
                                     @else
@@ -78,13 +78,13 @@
                 </div>
             </div>
             {!!Form::close()!!}
-            
+
              <div class="modal-footer">
                 <div class="text-center">
                     <a onclick="toggle2();" id="more2">Mostrar más</a>
                 </div>
             </div>
-            
+
             {!!Form::open(array('method'=>'delete', 'style'=>'display:none', 'class'=>'details2'))!!}
                 <input type="hidden" name="idVal2" id="idVal2" value="{{$student->id}}">
                 <div class="modal-footer">
@@ -121,14 +121,14 @@
                 </button>
                 <h4 class="modal-title" id="mySmallModalLabel">Talleres</h4>
             </div>
-             
+
             <div class="modal-body">
                 <div class="container">
                     <div class="row">
                         <div class="text-center">
                             <button class="btn btn-inline dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Elije el taller para ver</button>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                <?php  
+                                <?php
                                     $tam = sizeof($taller);
                                 ?>
                                 @if($tam == 0)
@@ -150,7 +150,7 @@
                     <a onclick="toggle();" id="more">Mostrar más</a>
                 </div>
             </div>
-            
+
             {!!Form::open(array( 'style'=>'display:none', 'class'=>'details'))!!}
                 <input type="hidden" name="idVal2" id="idVal2" value="{{$student->id}}">
                 <div class="modal-footer">
@@ -185,14 +185,14 @@
                 </button>
                 <h4 class="modal-title" id="mySmallModalLabel">Seleccione un taller</h4>
             </div>
-            
+
             <div class="modal-body">
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-11 col-lg-offset-0 col-md-11 col-md-offset-0">
                             @foreach($taller as $t)
                                 {{$t->nombre}}&nbsp;&nbsp;&nbsp;&nbsp;
-                                <button class="btn btn-rounded btn-inline">Generar reporte</button>
+                                <a class="btn btn-rounded btn-inline" href="{{asset('/admin/')}}/{{$t->id}}/{{$student->id}}/reporte">Generar reporte</a>
                             @endforeach
                         </div>
                     </div>
@@ -254,21 +254,21 @@
         <div class="{{$classSize}}">
             <fieldset class="form-group">
                 <label class="form-label" for="exampleInputDisabled2">Tipo de usuario</label>
-                    @if($student->usuario->tipo == 1) 
+                    @if($student->usuario->tipo == 1)
                     	 <input type="text" readonly class="form-control" value="Administrador">
-                   	@elseif($student->usuario->tipo == 3) 
+                   	@elseif($student->usuario->tipo == 3)
                    		 <input type="text" readonly class="form-control" value="Coordinador">
                    	@else
                    		<input type="text" readonly class="form-control" value="Usuario">
                     @endif
-               
+
             </fieldset>
         </div>
         @unless($student->sexo == null)
         <div class="{{$classSize}}">
             <fieldset class="form-group">
                 <label class="form-label" for="exampleInputDisabled2">Sexo</label>
-                    @if($student->sexo == 0) 
+                    @if($student->sexo == 0)
                     	 <input type="text" readonly class="form-control" value="Masculino">
                    	@else
                    		 <input type="text" readonly class="form-control" value="Femenino">
@@ -287,7 +287,7 @@
         <div class="{{$classSize}}">
             <fieldset class="form-group">
                 <label class="form-label" for="exampleInputDisabled2">Estatus</label>
-                    @if($student->usuario->completado == 1) 
+                    @if($student->usuario->completado == 1)
                     	 <input type="text" readonly class="form-control" value="Completo">
                    	@else
                    		 <input type="text" readonly class="form-control" value="Incompleto">
@@ -305,7 +305,7 @@
         <div class="{{$classSize}}">
             <fieldset class="form-group">
                 <label class="form-label" for="exampleInputDisabled2">Estatus</label>
-                    @if($student->usuario->permisos == 1) 
+                    @if($student->usuario->permisos == 1)
                          <input type="text" readonly class="form-control" value="Permisos de Coordinador">
                     @else
                          <input type="text" readonly class="form-control" value="Sin Permisos de Coordinador">
@@ -416,7 +416,7 @@
 
 
 <div class="box-typical box-typical-padding">
-		
+
 	<br/>
 
 	<div class="row text-center">
