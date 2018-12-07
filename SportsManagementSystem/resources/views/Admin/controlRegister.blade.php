@@ -152,7 +152,7 @@ $index=4;
                                             </br>
                                                 <div class="checkbox-toggle">
                                                         <input type="checkbox" id="check-toggle-1" name="check-toggle-1" onclick="getValue();">
-                                                        <label for="check-toggle-1">Reset</label>
+                                                        <label for="check-toggle-1">Incompleto</label>
                                                 </div>
                                             </div>
                                             <div class="col-lg-12 col-lg-offset-1 col-md-12 col-md-offset-1 center-block">
