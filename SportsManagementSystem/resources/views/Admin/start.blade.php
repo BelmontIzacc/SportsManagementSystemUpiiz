@@ -41,7 +41,9 @@ Talleres Registrados
 
 		<div class="gallery-col col-md-3">
 			<article class="gallery-item" style="height: 188px; width:auto;">
-				<img class="gallery-picture" src="{{asset('/Template/img/Stickmen/StickmenSVG/sports2(4).svg')}}" alt="" height="188" >
+				<img class="gallery-picture" src="{{asset('/Template/img/Stickmen/StickmenSVG/sports2(
+					6
+				).svg')}}" alt="" height="188" >
 				<div class="gallery-hover-layout">
 					<div class="gallery-hover-layout-in">
 						<p class="gallery-item-title">{{$t->nombre}}</p>

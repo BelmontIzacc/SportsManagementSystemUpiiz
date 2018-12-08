@@ -34,8 +34,8 @@
 	<header class="site-header">
 	    <div class="container-fluid">
 	        <a href="#" class="site-logo">
-	            <img class="hidden-md-down" src="" alt="">
-	            <img class="hidden-lg-up" src="" alt="">
+	            <img class="hidden-md-down" src="{{asset('/Template/img/Stickmen/LogoSRDpng2.png')}}" alt="" style="height:60px;width:auto;">
+	            <img class="hidden-lg-up" src="{{asset('/Template/img/Stickmen/LogoSRDpng2.png')}}" alt="" >
 	        </a>
 	        <button class="hamburger hamburger--htla">
 	            <span>toggle menu</span>
@@ -46,7 +46,7 @@
 	                <div class="site-header-shown">
 	                    <div class="dropdown user-menu">
 	                        <button class="dropdown-toggle" id="dd-user-menu" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-	                            <img src="{{asset('/Template/img/avatar-2-64.png')}}" alt="">
+	                            <img src="{{asset('/Template/img/Stickmen/LogoDeporte.png')}}" alt="" style="height:40px;width:auto;">
 	                        </button>
 	                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dd-user-menu">
 	                            <a class="dropdown-item" href="/admin/profile"><span class="font-icon glyphicon glyphicon-user"></span>Perfil</a>
@@ -81,7 +81,7 @@
 	<nav class="side-menu">
 	    <div class="side-menu-avatar">
 	        <div class="avatar-preview avatar-preview-100">
-	            <img src="{{asset('/Template/img/avatar-1-256.png')}}" alt="">
+	            <img src="{{asset('/Template/img/Stickmen/LogoDeporte.png')}}" alt="" style="height:130px;width:auto;">
 	        </div>
 	    </div>
 	    <ul class="side-menu-list">

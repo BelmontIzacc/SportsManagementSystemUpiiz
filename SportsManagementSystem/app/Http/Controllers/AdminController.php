@@ -37,9 +37,21 @@ class AdminController extends Controller
     {
         $index=1;
         $taller = \App\taller::all();
+
+        $array = array();
+        $i=0;
+        
+        foreach ($taller as $t) {
+            $num = rand ( 1 , 25 );
+            $array[$i] = ''.$num;
+            $i=$i+1;
+        }
+       
+
         return view('Admin.start',[
         'index' => $index,
         'taller'=>$taller,
+        'img' => $array,
         ]);
     }
 

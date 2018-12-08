@@ -53,7 +53,7 @@
 		<section class="card widget widget-user">
 		    <div class="widget-user-bg" style="background-image: url('{{asset('/Template/img/backgroundUser.svg')}}')"></div>
 		    <div class="widget-user-photo">
-		        <img src="{{asset('/Template/img/avatar.svg')}}">
+		        <img src="{{asset('/Template/img/Stickmen/LogoSRDpng2.png')}}" alt="" style="height:120px;width:auto;">
 		    </div>
 		    <div>
 		        {{$taller->nombre}}

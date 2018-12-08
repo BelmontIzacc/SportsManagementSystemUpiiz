@@ -10,7 +10,7 @@
 <link  href="{{asset('/Template/css/lib/cropper/cropper.css')}}" rel="stylesheet">
 <style>
   img {
-    max-width: 100%;
+    max-width: 120%;
   }
 </style>
 <style type="text/css">
@@ -65,7 +65,7 @@
           @if(isset($edit))
           {!!Form::model($user, array('method'=>'patch', 'class'=>'sign-box'))!!}
               <div class="sign-avatar">
-                  <a data-toggle="modal" data-target="#photoModal"><img src="{{asset('/Template/img/circular.svg')}}" alt=""></a>
+                  <a data-toggle="modal" data-target="#photoModal"><img src="{{asset('/Template/img/Stickmen/LogoSRDpng2.png')}}" alt="" ></a>
               </div>
               <small class="text-muted">Actualiza tu informacion</small>
               <br/>
@@ -145,7 +145,7 @@
             <div class="padre">
               <form class="sign-box">
                 <div class="sign-avatar">
-                    <img src="{{asset('/Template/img/circular.svg')}}" alt="">
+                    <img src="{{asset('/Template/img/Stickmen/LogoSRDpng2.png')}}" alt="" style="height:120px;width:auto;">
                 </div>
                 <header class="sign-title">{{$user}}</header>
 

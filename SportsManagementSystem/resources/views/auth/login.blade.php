@@ -14,7 +14,7 @@
         <div class="container-fluid">
             {!!Form::open(array('url'=>'/login', 'class'=>'sign-box', 'method'=>'post'))!!}
                 <div class="sign-avatar">
-                    <img src="{{asset('Template/img/circular.svg')}}" alt="" style="height:100px;width:auto;">
+                    <img src="{{asset('Template/img/Stickmen/LogoSRDpng2.png')}}" alt="" style="height:125px;width:auto;">
                 </div>
                 
                 @if(count($errors) > 0)
