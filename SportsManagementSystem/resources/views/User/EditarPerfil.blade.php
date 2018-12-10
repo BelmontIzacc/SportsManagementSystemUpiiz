@@ -63,13 +63,13 @@
         <div class="{{$classSize}}">
             <fieldset class="form-group">
                 <label class="form-label" for="exampleInputDisabled2">Apellido Paterno</label>
-                    {!!Form::text('nombre', null, ['class'=>'form-control', 'placeholder'=> $user->apellidoPaterno, 'id'=>'ap'])!!}
+                    {!!Form::text('apellidoPaterno', null, ['class'=>'form-control', 'placeholder'=> $user->apellidoPaterno, 'id'=>'ap'])!!}
             </fieldset>
         </div>
         <div class="{{$classSize}}">
             <fieldset class="form-group">
                 <label class="form-label" for="exampleInputDisabled2">Apellido Materno</label>
-                    {!!Form::text('nombre', null, ['class'=>'form-control', 'placeholder'=> $user->apellidoMaterno, 'id'=>'am'])!!}
+                    {!!Form::text('apellidoMaterno', null, ['class'=>'form-control', 'placeholder'=> $user->apellidoMaterno, 'id'=>'am'])!!}
             </fieldset>
         </div>
     </div>
@@ -94,9 +94,9 @@
             </fieldset>
         </div>
     </div>
+        <button type="submit" class="btn btn-rounded btn-success sign-up">Editar perfíl</button>
     </form>
 </div>
-    <button type="button" class="btn btn-rounded btn-warning" data-toggle="modal" data-target=".bd-example-modal-sm">Editar perfíl</button>
 
 @stop
 @section('scripts')
@@ -110,5 +110,33 @@
     <script src="{{asset('/Template/js/lib/clockpicker/bootstrap-clockpicker.min.js')}}"></script>
     <script src="{{asset('/Template/js/lib/clockpicker/bootstrap-clockpicker-init.js')}}"></script>
     <script src="{{asset('/Template/js/lib/daterangepicker/daterangepicker.js')}}"></script>
+
+    <script>
+    $(document).ready(function() {
+        String.prototype.capitalizar = function(){                                
+            return this.toLowerCase().replace( /\b\w/g, function (m) {
+                return m.toUpperCase();
+            });
+        };
+        
+        var nombre = $(document.getElementById('nombre'));
+        var ap = $(document.getElementById('ap'));
+        var am = $(document.getElementById('am'));
+        var bo = $(document.getElementById('bo'));
+        
+        nombre.focusout(function(){
+                    $(this).val($(this).val().capitalizar());
+                });
+        ap.focusout(function(){
+                    $(this).val($(this).val().capitalizar());
+                });
+        am.focusout(function(){
+                    $(this).val($(this).val().capitalizar());
+                });
+        bo.focusout(function(){
+                    $(this).val($(this).val().toUpperCase());
+                });           
+    });
+    </script>
 
 @stop

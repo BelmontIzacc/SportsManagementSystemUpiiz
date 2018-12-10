@@ -135,10 +135,28 @@ class UserController extends Controller
             'apellidoMaterno' => 'required',
             'email' => 'required',
             'boleta' => 'required',
+            
             'telefono' => 'required',
+            
             ]);
         
-            
+         $user = Auth::user();
+         $infoUser = \App\informacion::find($user->id);
+        
+        $user->update([
+            'nombre' => $request->nombre,
+            'apellidoPaterno' => $request->apellidoPaterno,
+            'apellidoMaterno' => $request->apellidoMaterno,
+            'boleta' => $request->boleta,
+            'email' => $request->email
+        ]);
+        
+        $infoUser-> update([
+            'telefono' => $request->telefono
+        ]);
+
+        
+        return redirect('/user/Profile');    
     }
     
     

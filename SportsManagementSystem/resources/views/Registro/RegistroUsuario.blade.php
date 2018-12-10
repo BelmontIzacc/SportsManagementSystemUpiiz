@@ -102,6 +102,7 @@
 
     <script src="{{asset('/Template/js/lib/hide-show-password/bootstrap-show-password.min.js')}}"></script>
     <script src="{{asset('/Template/js/lib/hide-show-password/bootstrap-show-password-init.js')}}"></script>
+
     <script>
     $(document).ready(function() {
         String.prototype.capitalizar = function(){                                
@@ -122,7 +123,7 @@
                     $(this).val($(this).val().capitalizar());
                 });
         am.focusout(function(){
-                    $(this).val($(this).val().capitalizar());
+                    $(this).val($(this).val().toUpperCase());
                 });
         bo.focusout(function(){
                     $(this).val($(this).val().toUpperCase());
