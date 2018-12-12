@@ -212,11 +212,11 @@
                               <label class="col-sm-12">Pertenece a: </label>
                               <div class="col-sm-12">
                                 <div class="rdio rdio-primary">
-                                  <input type="radio" name="taller" value="Upiiz" id="tlist" onclick="mostrar();">
+                                  <input type="radio" name="insti" value="UPIIZ" id="tlist" onclick="mostrar();">
                                   <label>UPIIZ</label>
                                 </div>
                                 <div class="rdio rdio-primary">
-                                  <input type="radio" name="taller" value="Cecyt" id="tlistt" onclick="mostrar();">
+                                  <input type="radio" name="insti" value="Cecyt" id="tlistt" onclick="mostrar();">
                                   <label>CECyT</label>
                                 </div>
                               </div>
@@ -264,8 +264,16 @@
                                     {!!Form::text('grupo', null, ['class'=>'form-control','placeholder'=>'1CM1','id'=>'grupo'])!!}
                             </fieldset>
                         </div>
+                         <div>
+                            <fieldset class="form-group">
+                                  <label class="form-label">Confirmación de Boleta</label>
+                                   {!!Form::select('user',$user, 0, ['class'=>'bootstrap-select bootstrap-select-arrow form-control', 'id'=>'user'])!!}
+                              </fieldset>
+                        </div>
                     </div>
-
+                    
+                   
+                                
                 </div>
 
                 <br/>
