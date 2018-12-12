@@ -101,3 +101,5 @@ Route::post('/registro/RegistroUsuario','SignupController@postRegister');
 Route::get('/registro/InfoCompleta','SignupController@getCompleto');
 //-----------------------------------------------------------------------------------//
 Route::get('/coord','CoordController@index');
+Route::get('/coord/User','CoordController@index2');
+Route::post('/coord','CoordController@indexPost');

@@ -25,7 +25,7 @@
     <link rel="stylesheet" href="{{asset('/Template/css/lib/font-awesome/font-awesome.min.css')}}">
     <link rel="stylesheet" href="{{asset('/Template/css/main.css')}}">
 	
-	<style type="text/css">.fancybox-margin{margin-right:0px;}</style>
+	<style type="text/css">.fancybox-margin{margin-right:0px;}</style></head>
 	@yield('css')
 </head>
 @yield('popUp')
@@ -51,9 +51,9 @@
 	                            <img src="{{asset('/Template/img/Stickmen/LogoDeporte.png')}}" alt="" style="height:40px;width:auto;">
 	                        </button>
 	                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dd-user-menu">
-	                            <a class="dropdown-item" href="{{asset('/admin/profile')}}"><span class="font-icon glyphicon glyphicon-user"></span>Perfil</a>
+	                            <a class="dropdown-item" href="{{asset('#')}}"><span class="font-icon glyphicon glyphicon-user"></span>Perfil</a>
 	                            <div class="dropdown-divider"></div>
-	                            <a class="dropdown-item" href="{{asset('/admin')}}"><span class="font-icon font-icon-home"></span>Home</a>
+	                            <a class="dropdown-item" href="{{asset('/coord/User')}}"><span class="font-icon font-icon-home"></span>Home</a>
 	                            <a class="dropdown-item" href="{{asset('/logout')}}"><span class="font-icon glyphicon glyphicon-log-out"></span>Logout</a>
 	                        </div>
 	                    </div>
@@ -88,36 +88,37 @@
 	    </div>
 	</br>
 	    <ul class="side-menu-list">
-	        <li class="blue">
-	            <a href="{{asset('/admin/registerCoord')}}">
-	                <i class="font-icon font-icon-user"></i>
-	                <span class="lbl">Registrar un Nuevo Coordinador</span>
-	            </a>
-	        </li>
 	        <li class="brown">
-	            <a href="{{asset('/admin/registerStudio')}}">
-	                <i class="font-icon font-icon-award"></i>
-	                <span class="lbl">Registrar un Taller</span>
+	            <a href="#">
+	                <i class="font-icon font-icon-home"></i>
+	                <span class="lbl">Ejemplo1</span>
 	            </a>
 	        </li>
-	        <li class="red">
-	            <a href="{{asset('/admin/search')}}">
-	                <i class="font-icon font-icon-search"></i>
-	                <span class="lbl">Buscar</span>
+	        <li class="green">
+	            <a href="#">
+	                <i class="font-icon font-icon-cart"></i>
+	                <span class="lbl">Ejemplo2</span>
 	            </a>
 	        </li>
-	        <li class="black">
-	            <a href="{{asset('/admin/controlPanel')}}">
+	        <li class="gold opened">
+	            <a href="#">
+	                <i class="font-icon font-icon-speed"></i>
+	                <span class="lbl">Ejemplo3</span>
+	            </a>
+	        </li>
+	        <li class="blue">
+	            <a href="#">
 	                <i class="font-icon font-icon-users"></i>
-	                <span class="lbl">Panel de control</span>
+	                <span class="lbl">Ejemplo4</span>
 	            </a>
-	        </li>  
-	        <li class="grey">
-	            <a href="{{asset('/admin/Register/userList')}}">
-	                <i class="font-icon font-icon-list-square"></i>
-	                <span class="lbl">Usuarios registrados</span>
-	            </a>
-	        </li>      
+	        </li>
+			</br>
+			<li class="text-center">
+                <div class="checkbox-toggle">
+                        <input type="checkbox" id="check-toggle-1" name="check-toggle-1" onclick="getValue();">
+                        <label for="check-toggle-1">Vista Coordinador</label>
+                </div>
+			</li>
 	    </ul>
 	</nav><!--.side-menu-->
 
@@ -132,10 +133,10 @@
 
 	@endunless
 
-	<script src="{{asset('/Template/js/lib/tether/tether.min.js')}}"></script>
 	<script src="{{asset('/Template/js/lib/jquery/jquery.min.js')}}"></script>
+	<script src="{{asset('/Template/js/lib/tether/tether.min.js')}}"></script>
 	<script src="{{asset('/Template/js/lib/bootstrap/bootstrap.min.js')}}"></script>
-    <script src="{{asset('/Template/js/app.js')}}"></script>
+	<script src="{{asset('/Template/js/plugins.js')}}"></script>
 
 	@yield('scripts')
 

@@ -49,9 +49,8 @@ class AdminController extends Controller
 
 
         return view('Admin.start',[
-        'index' => $index,
-        'taller'=>$taller,
-        'img' => $array,
+            'index' => $index,
+            'taller'=>$taller
         ]);
     }
 
