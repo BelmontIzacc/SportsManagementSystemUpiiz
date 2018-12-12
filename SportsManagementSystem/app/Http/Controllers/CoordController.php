@@ -33,8 +33,38 @@ class CoordController extends Controller
     public function index()
     {
         $index=1;
+        $taller = \App\taller::where('usuario_id',Auth::user()->id)->get();
+
         return view('Coord.start',[
-        'index' => $index,
+            'index' => $index,
+            'taller'=>$taller,
         ]);
+    }
+
+    public function index2()
+    {
+        $index=1;
+        $taller = \App\inscripcion::where('usuario_id',Auth::user()->id)->get();
+
+        return view('Coord.start_user',[
+            'index' => $index,
+            'taller'=>$taller,
+        ]);
+    }
+
+    public function indexPost(Request $request)
+    {
+        $value = $request->stats;
+        if($value == 0){ // vista usuario
+            session()->flash('message', 'Menu de Usuario');
+            session()->flash('type', 'info');
+
+            return redirect('/coord/User');
+        }else if($value == 1){ //vista coordinador
+            session()->flash('message', 'Menu de Coordinador');
+            session()->flash('type', 'info');
+
+            return redirect('/coord');
+        }
     }
 }

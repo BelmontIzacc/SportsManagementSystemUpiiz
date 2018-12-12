@@ -1,15 +1,16 @@
-@extends('Admin.layout')
+@extends('Coord.layout_user')
 <?php
   $classSizeForms = "col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2";
 ?>
 
 @section('title')
-<title>Inicio Servicio Admin</title>
+<title>Inicio Servicio Usuario</title>
 @stop
 
 @section('css')
 <link rel="stylesheet" href="{{asset('/Template/css/lib/bootstrap-sweetalert/sweetalert.css')}}"/>
 <link rel="stylesheet" href="{{asset('/Template/css/lib/clockpicker/bootstrap-clockpicker.min.css')}}"/>
+
 @stop
 @section('popUp')
 @stop
@@ -17,27 +18,9 @@
 Talleres Registrados
 @stop
 @section('content')
-<!--
-
--->
-
-
-<div class="container-fluid">
+<div class="container-fluid" >
 			<section class="box-typical box-typical-full-height-with-header">
 		@foreach($taller as $t)
-		<!--<div class="col-md-2">
-			<div class="row">
-				<div class="col-xs-12">
-					<section class="widget widget-simple-sm-fill green">
-						<div class="widget-simple-sm-icon">
-							<i class="font-icon font-icon-facebook"></i>
-						</div>
-						<div class="widget-simple-sm-fill-caption"><a href="{{asset('/admin/lists/taller/')}}/{{$t->id}}" class="semibold">{{$t->nombre}}</a></div>
-					</section>
-				</div>
-			</div>
-		</div>-->
-
 		<?php
 			$i = 0;
 			$num = rand ( 1 , 25 );
@@ -45,18 +28,18 @@ Talleres Registrados
 			$url = '/Template/img/Stickmen/StickmenSVG/sports2(	'.$num.').svg';  ?>
 		<div class="gallery-col col-md-3">
 			<article class="gallery-item" style="height: 188px; width:auto;">
-				<font size=4><p style="color:#1B38E3";>{{$t->nombre}}</p></font>
+				<font size=4><p style="color:#1B38E3";>{{$t->taller->nombre}}</p></font>
 				<img class="gallery-picture" src="{{asset($url)}}" alt="" height="188" >
 				<div class="gallery-hover-layout">
 					<div class="gallery-hover-layout-in">
-						<p class="gallery-item-title">{{$t->nombre}}</p>
-						<p>{{$t->usuario}}</p>
+						<p class="gallery-item-title">{{$t->taller->nombre}}</p>
+						<p>{{$t->taller->usuario}}</p>
 						<div class="btn-group">
-							<a class="btn" href="{{asset('/admin/lists/taller/')}}/{{$t->id}}">
+							<a class="btn" href="{{asset('#')}}">
 								<i class="font-icon font-icon-eye"></i>
 							</a>
 						</div>
-						<p>{{$t->tipo->nombre}}</p>
+						<p>{{$t->taller->tipo->nombre}}</p>
 					</div>
 				</div>
 			</article>
@@ -66,8 +49,25 @@ Talleres Registrados
 			</section><!--.box-typical-->
 		</div>
 
+
+{!!Form::open(array('url'=>'/coord', 'method'=>'post', 'id'=>'forms'))!!}
+	<input type="hidden" id="stats" name="stats"></input>
+{!!Form::close()!!}
+
 @stop
 @section('scripts')
+
+
+    <script type="text/javascript">
+        var array = [];
+        function getValue() {
+           var isChecked = document.getElementById('check-toggle-1').checked;
+           var the_value = isChecked ? 1 : 0;
+           //alert('status :'+the_value);
+           document.getElementById('stats').value = the_value;
+           document.getElementById("forms").submit();
+        }
+    </script>
 
     <script src="{{asset('/Template/js/custom/search.js')}}"></script>
 
