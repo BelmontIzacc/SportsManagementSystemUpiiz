@@ -40,13 +40,13 @@ class AdminController extends Controller
 
         $array = array();
         $i=0;
-        
+
         foreach ($taller as $t) {
             $num = rand ( 1 , 25 );
             $array[$i] = ''.$num;
             $i=$i+1;
         }
-       
+
 
         return view('Admin.start',[
         'index' => $index,
@@ -1698,6 +1698,27 @@ class AdminController extends Controller
 
         $user = \App\User::where('id',$idU)->get();
         $taller = \App\Taller::where('id',$idT)->get();
+        $constancia = \App\Constancia::all();
+
+        $compAnio = date('Y');
+        $ind;
+        foreach ($constancia as $c) {
+            if(substr($c->modificado,-12,4)==$compAnio) {
+                $ind = $c->index+1;
+            } else {
+                $ind = 1;
+
+            }
+            $c = \App\Constancia::find(1);
+            $c->index = $ind;
+            $c->modificado = date('Y-m-d');
+            $c->save();
+        }
+        if(strlen($ind)==1) {
+            $ind = "00".$ind;
+        } else if(strlen($ind)==2) {
+            $ind = "0".$ind;
+        }
         $dia = date('d');
         $mes = date('m');
         $anio = date('Y');
@@ -1760,7 +1781,8 @@ class AdminController extends Controller
                      'anio'=>$anio,
                      'periodo'=>$periodo,
                      'anio'=>date('Y'),
-                     'fecha'=>$fecha
+                     'fecha'=>$fecha,
+                     'index'=>$ind
                     ];
 
         $pdf = \App::make('dompdf.wrapper');

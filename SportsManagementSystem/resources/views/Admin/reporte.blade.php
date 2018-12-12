@@ -27,7 +27,7 @@
         <div class="fecha cuerpo">
             <p>
                 Zacatecas, Zac. {{$dia}} de {{$mes}} de {{$anio}}<br>
-                Constancia No. UPIIZ/DSE//{{$anio}}
+                Constancia No. UPIIZ/DEAE/{{$index}}/{{$anio}}
             </p>
         </div>
         <div class="reporte cuerpo">
@@ -68,9 +68,9 @@
             <br><br><br><br>
             ________________________________________________
             <br>
-            M. en C. Oscar Javier Ramos Herrera
+            Dra. Mónica Eunice Ruiz Rodríguez
             <br>
-            Jefe del Departamento de Servicios Estudintiles.
+            Jefa del Departamento de Extención y Apoyos Educativos
         </div>
         <div class="coletilla">
             c.c.p L.O.D. Páblo César Urrutia Arroyo - Coordinador de Deporte y Cultura
