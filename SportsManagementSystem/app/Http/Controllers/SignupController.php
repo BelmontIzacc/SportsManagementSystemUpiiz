@@ -48,32 +48,36 @@ class SignupController extends Controller
             'email' => $request->email,
             'boleta' => $request->boleta,
             'password' => bcrypt($request->password),
-            'tipo' => 3,
+            'tipo' => 2,
             'completado' => 1,
             'permisos' => 0,
         ]);
+     
+        
+        
         
         session()->flash('message', 'Alumno '. $request->boleta. ' actualizado correctamente '.$request->nombre);
         session()->flash('type', 'success');   
-        return redirect('/registro/InfoCompleta');
+        
+        return redirect('/registro/InfoCompleta/'.$request->boleta);
           
     }
    
     
-    public function getCompleto(){
+    public function getCompleto($B){
         
         $index=4;
         $tlista = \App\carrera::where('id','<=',5)->lists('nombre','id');
         $tlistac = \App\carrera::where('id','>',5)->lists('nombre','id');
         
-        $boleta = \App\User::where('tipo', 2 )->lists('boleta','id');
+        $user = \App\User::where('boleta','=',$B)->lists('boleta','id');
              
              
         return view('Registro.infoCompleta',[
         'index' => $index,
         'tlista' => $tlista,
         'tlistac' => $tlistac,
-            
+        'user' => $user
         ]);
         
     }
@@ -90,9 +94,57 @@ class SignupController extends Controller
             'cp' => 'required',
             
             'insti' => 'required',
+            'semestre'=> 'required',
+            'grupo'=> 'required',
+            'user'=> 'required',
+            'tlista'=>'',
+            'tlistac'=>'',
         ]); 
         
-        return redirect('/user');
+        
+        
+        
+        if($request->insti=="UPIIZ"){
+        
+            informacion::create([
+                'usuario_id' => $request->user,
+                'institucion_id' => 1,
+                'carrera_id' => $request->tlista,
+                
+                'sexo' => $request->sexo,
+                'edad' => $request->edad,
+            
+                'calle' => $request->calle,
+                'numExterior' => $request->ext,
+                'numInterior' => $request->inter,
+                'colonia' => $request->colonia,
+                'codigoPostal' => $request->cp,
+            
+                'semestre' => $request->semestre,
+                'grupo' => $request->grupo,
+                
+        ]);
+        }else{
+           informacion::create([
+                'usuario_id' => $request->user,
+                'institucion_id' => 2,
+                'carrera_id' => $request->tlistac,
+                
+                'sexo' => $request->sexo,
+                'edad' => $request->edad,
+            
+                'calle' => $request->calle,
+                'numExterior' => $request->ext,
+                'numInterior' => $request->inter,
+                'colonia' => $request->colonia,
+                'codigoPostal' => $request->cp,
+            
+                'semestre' => $request->semestre,
+                'grupo' => $request->grupo,
+                
+        ]); 
+        }
+        return redirect('/login');
           
     }
 }

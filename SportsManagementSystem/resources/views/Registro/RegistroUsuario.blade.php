@@ -123,7 +123,7 @@
                     $(this).val($(this).val().capitalizar());
                 });
         am.focusout(function(){
-                    $(this).val($(this).val().toUpperCase());
+                    $(this).val($(this).val().capitalizar());
                 });
         bo.focusout(function(){
                     $(this).val($(this).val().toUpperCase());

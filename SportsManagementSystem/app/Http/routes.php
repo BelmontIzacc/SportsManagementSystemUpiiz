@@ -98,7 +98,8 @@ Route::get('/user/inscripcion/taller/{id}', 'UserController@showTaller');
 Route::get('/registro','SignupController@index');
 Route::get('/registro/RegistroUsuario','SignupController@getRegister');
 Route::post('/registro/RegistroUsuario','SignupController@postRegister');
-Route::get('/registro/InfoCompleta','SignupController@getCompleto');
+Route::get('/registro/InfoCompleta/{B}','SignupController@getCompleto');
+Route::post('/registro/InfoCompleta/','SignupController@postCompleto');
 //-----------------------------------------------------------------------------------//
 Route::get('/coord','CoordController@index');
 Route::get('/coord/User','CoordController@index2');
