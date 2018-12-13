@@ -15,7 +15,7 @@ class inscripcion extends Model
 	    'usuario_id',
 	    'taller_id',
     ];
-    
+
     public function usuario(){
         return $this->belongsTo(User::class, 'usuario_id');
     }

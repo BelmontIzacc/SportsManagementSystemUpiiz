@@ -190,9 +190,9 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-11 col-lg-offset-0 col-md-11 col-md-offset-0">
-                            @foreach($taller as $t)
-                                {{$t->nombre}}&nbsp;&nbsp;&nbsp;&nbsp;
-                                <a class="btn btn-rounded btn-inline" href="{{asset('/admin/')}}/{{$t->id}}/{{$student->id}}/reporte">Generar reporte</a>
+                            @foreach($student->usuario->inscripcion as $i)
+                                {{$i->taller->nombre}}&nbsp;&nbsp;&nbsp;&nbsp;
+                                <a class="btn btn-rounded btn-inline" href="{{asset('/admin/')}}/{{$i->taller_id}}/{{$student->id}}/reporte" target="_blank">Generar reporte</a>
                             @endforeach
                         </div>
                     </div>
@@ -441,7 +441,7 @@
         <div class="col-lg-4 col-md-4">
             <button type="button" class="btn btn-rounded btn-inline btn-warning" data-toggle="modal" data-target=".bd-example-modal-sm" onclick="updateInputsProfile({{$student->id}}, '{{$student->user}}');">Editar</button>
         </div>
-        <div class="col-lg-4 col-md-4">
+		<div class="col-lg-3 col-md-3">
             <button type="button" class="btn btn-rounded btn-inline btn-succes" data-toggle="modal" data-target=".bd-example-modal-rp" onclick="">Generar Reporte</button>
         </div>
         <div class="col-lg-4 col-md-4">
