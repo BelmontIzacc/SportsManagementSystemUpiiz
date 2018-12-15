@@ -94,7 +94,7 @@
             </fieldset>
         </div>
     </div>
-        <button type="submit" class="btn btn-rounded btn-success sign-up">Editar perfíl</button>
+        <button type="submit" class="btn btn-rounded btn-correct sign-up">Enviar</button>
     </form>
 </div>
 

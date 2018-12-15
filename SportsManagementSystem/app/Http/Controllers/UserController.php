@@ -43,58 +43,7 @@ class UserController extends Controller
         'user' => $user,
         ]);
     }
-    public function getRegister(){
-        $index = 4;
-        return view('User.RegistroUsuario', ['index'=>$index]);
-    }
-    public function postRegister(Request $request){
-        $this->validate($request, [
-            'nombre' => 'required',
-            'apellidoPaterno' => 'required',
-            'apellidoMaterno' => 'required',
-            'e-mail' => 'required',
-            'boleta' => 'required',
-            'contraseña' => 'required',
-            'verContra' => 'required',
-        ]);
-
-        if($request->contraseña == $request->verContra){
-            session()->flash('type', 'success');
-            return redirect('/user/InfoCompleta');      
-        }
-        session()->flash('type', 'error');
-        return redirect('#');   
-    }
     
-    public function getCompleto(){
-         {
-        $index=4;
-        $tlista = \App\carrera::lists('nombre','id');
-        return view('User.infoCompleta',[
-        'index' => $index,
-        'tlista' => $tlista,
-        ]);
-        }
-    }
-    
-    public function postCompleto(Request $request){ //aun no elavorado 
-        $this->validate($request, [
-            'nombre' => 'required',
-            'apellidoPaterno' => 'required',
-            'apellidoMaterno' => 'required',
-            'e-mail' => 'required',
-            'boleta' => 'required',
-            'contraseña' => 'required',
-            'verContra' => 'required',
-        ]);
-
-        if($request->contraseña == $request->verContra){
-            session()->flash('type', 'success');
-            return redirect('/user/RegistroCompleto');      
-        }
-        session()->flash('type', 'error');
-        return redirect('#');   
-    }
     public function getProfile()
     {
         $index=1;

@@ -81,10 +81,6 @@ Route::get('admin/reporte', 'adminController@pruebaReporte');
 Route::get('admin/{idT}/{idU}/pdf', 'adminController@htmlView');
 //-----------------------------------------------------------------------------------//
 Route::get('/user','UserController@index');
-Route::get('/user/RegistroUsuario','UserController@getRegister');
-Route::post('/user/RegistroUsuario','UserController@postRegister');
-Route::get('/user/InfoCompleta','UserController@getCompleto');
-
 Route::get('/user/Profile','UserController@getProfile');
 Route::get('/user/EditProfile','UserController@getEdit');
 Route::post('/user/EditProfile','UserController@postEdit');
