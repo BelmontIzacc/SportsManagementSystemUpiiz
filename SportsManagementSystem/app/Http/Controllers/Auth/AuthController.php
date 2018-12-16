@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\user;
+use App\User as user;
 use Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -49,11 +49,10 @@ class AuthController extends Controller
                 'nombre'=>'required|min:1|max:50',
                 'apellidoPaterno'=>'required|min:1|max:50',
                 'apellidoMaterno'=>'required|min:1|max:50',
-                'edad'=>'required|integer|between:0,100',
-                'boleta'=>'required|between:2010000000,2500000000|integer|unique:usuario',
-                'carrera'=>'required',
-                'grupo'=>'required|max:4',
-                'semestre'=>'required|integer',
+                'email'=>'required|min:8|max:90',
+                'boleta'=>'required',
+                'password' => 'required', 
+                'password2' => 'required',
             //]);
         ]);
     }
@@ -70,21 +69,20 @@ class AuthController extends Controller
             'nombre' => $data['nombre'],
             'apellidoPaterno'=>$data['apellidoPaterno'],
             'apellidoMaterno'=>$data['apellidoMaterno'],
-            'edad'=>$data['edad'],
+            'email'=>$data['email'],
             'boleta'=>$data['boleta'],
-            'carrera_id'=>$data['carrera'],
-            'grupo'=>$data['grupo'],
-            'semestre'=>$data['semestre'],
+            'password' => bcrypt($data['password']),
+            'tipo' => 2,
+            'permisos' => 0,
+            'completado' => 0,
         ]);
     }
 
     //---------------------------------------------------------------------------------------------//
 
     public function getRegister(){
-        $carrera = \App\carrer::lists('nombre', 'id');
-        $usuario = \App\user::all();
         $index = 4;
-        return view('registro',['index'=>$index,'carrera'=>$carrera,'usuario'=>$usuario]);
+        return view('Registro.RegistroUsuario', ['index'=>$index]);
     }
 
     public function getLogin()

@@ -92,8 +92,11 @@ Route::post('/user/search','UserController@postSearch');
 Route::get('/user/inscripcion/taller/{id}', 'UserController@showTaller');
 //-----------------------------------------------------------------------------------//
 Route::get('/registro','SignupController@index');
-Route::get('/registro/RegistroUsuario','SignupController@getRegister');
-Route::post('/registro/RegistroUsuario','SignupController@postRegister');
+//Route::get('/registro/RegistroUsuario','SignupController@getRegister');
+//Route::post('/registro/RegistroUsuario','SignupController@postRegister');
+Route::get('/registro/RegistroUsuario','Auth\AuthController@getRegister');
+Route::post('/registro/RegistroUsuario','Auth\AuthController@postRegister');
+
 Route::get('/registro/InfoCompleta/{B}','SignupController@getCompleto');
 Route::post('/registro/InfoCompleta/','SignupController@postCompleto');
 //-----------------------------------------------------------------------------------//

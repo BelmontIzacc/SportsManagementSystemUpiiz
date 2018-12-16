@@ -69,12 +69,12 @@
                     </div>
                     <div class="form-group">
                         <fieldset class="form-group">
-        				    {!!Form::password('contraseña', ['class'=>'form-control', 'placeholder'=>'contraseña', 'id'=>'contra'])!!}		
+        				    {!!Form::password('password', ['class'=>'form-control', 'placeholder'=>'contraseña', 'id'=>'contra'])!!}		
         			 </fieldset>
                     </div>
                     <div class="form-group">
                         <fieldset class="form-group">
-        				    {!!Form::password('verContra', ['class'=>'form-control', 'placeholder'=>'confirmar contraseña', 'id'=>'contra2'])!!}		
+        				    {!!Form::password('password2', ['class'=>'form-control', 'placeholder'=>'confirmar contraseña', 'id'=>'contra2'])!!}		
         			 </fieldset>
                     </div>
                     <button type="submit" class="btn btn-rounded btn-success sign-up">Registrarse</button>

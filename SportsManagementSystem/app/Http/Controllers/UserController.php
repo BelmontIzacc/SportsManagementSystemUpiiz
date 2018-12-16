@@ -34,14 +34,28 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index()
     {
         $index=1;
         $user = Auth::user();
-        return view('User.start',[
-        'index' => $index,
-        'user' => $user,
-        ]);
+        if($user->completado==1){
+            return view('User.start',[
+                        'index' => $index,
+                        'user' => $user,
+                    ]);
+        }else{
+            $index=4;
+            $tlista = \App\carrera::where('id','<=',5)->lists('nombre','id');
+            $tlistac = \App\carrera::where('id','>',5)->lists('nombre','id');
+                 
+            return view('Registro.infoCompleta',[
+                'index' => $index,
+                'tlista' => $tlista,
+                'tlistac' => $tlistac,
+                'user' => $user
+            ]);
+        }
     }
     
     public function getProfile()
