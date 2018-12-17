@@ -95,6 +95,14 @@
                     </fieldset>
                   </div>
                 </div>
+                <div class="row">
+                <div class="{{$classSizeForms}}">
+                    <fieldset class="form-group">
+                      <label class="form-label">Sexo</label>
+                       {!!Form::text('telefono', null, ['class'=>'form-control','placeholder'=>'Telefono', 'id'=>'telefono'])!!}
+                    </fieldset>
+                  </div>
+                </div>
 
                 <div class="row">
                     <div class="col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3">
@@ -320,6 +328,7 @@ Registro
         };
         //--- Datos Personales
         $('#edad').mask('00', {placeholder: "Edad"});
+        $('#edad').mask('000 000 0000', {placeholder: "Edad"});
         
         
         //--- Datos de domicilio
