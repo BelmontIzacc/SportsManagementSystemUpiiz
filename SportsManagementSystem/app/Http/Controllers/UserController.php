@@ -70,7 +70,7 @@ class UserController extends Controller
     {
         $index=1;
         $user = Auth::user();
-        $student = \App\informacion::find($user->id);
+        $student = \App\informacion::where('usuario_id','=',$user->id)->first();
         
         return view('User.perfil',[
             'index' => $index,
@@ -84,7 +84,7 @@ class UserController extends Controller
     {
         $index=1;
         $user = Auth::user();
-        $student = \App\informacion::find($user->id);
+        $student = \App\informacion::where('usuario_id','=',$user->id)->first();
         
         return view('User.EditarPerfil',[
             'index' => $index,
@@ -131,7 +131,7 @@ class UserController extends Controller
     {
         $index=1;
         $user = Auth::user();
-        $info = \App\informacion::find($user->id);
+        $info = \App\informacion::where('usuario_id','=',$user->id)->first();
         
         return view('User.informacion',[
             'index' => $index,
@@ -144,7 +144,7 @@ class UserController extends Controller
     {
         $index=1;
         $user = Auth::user();
-        $info = \App\informacion::find($user->id);
+        $info = \App\informacion::where('usuario_id','=',$user->id)->first();
         $tlista = \App\carrera::where('id','<=',6)->lists('nombre','id');
         $tlistac = \App\carrera::where('id','>',6)->lists('nombre','id');
         
