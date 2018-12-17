@@ -40,22 +40,29 @@ class UserController extends Controller
     {
         $index=1;
         $user = Auth::user();
-        if($user->completado==1){
-            return view('User.start',[
-                        'index' => $index,
-                        'user' => $user,
-                    ]);
-        }else{
+        if($user->completado!=1){
+            
             $index=4;
             $tlista = \App\carrera::where('id','<=',5)->lists('nombre','id');
-            $tlistac = \App\carrera::where('id','>',5)->lists('nombre','id');
-                 
+            $tlistac = \App\carrera::where('id','>',6)->lists('nombre','id');
+        
+            $wop = \App\User::where('boleta','=',$user->boleta)->lists('boleta','id');
+             
+             
             return view('Registro.infoCompleta',[
                 'index' => $index,
                 'tlista' => $tlista,
                 'tlistac' => $tlistac,
-                'user' => $user
+                'user' => $wop
             ]);
+            
+        }else{
+             $index=1;
+             $user = Auth::user();
+             return view('User.start',[
+                        'index' => $index,
+                        'user' => $user,
+                    ]);
         }
     }
     
@@ -64,13 +71,11 @@ class UserController extends Controller
         $index=1;
         $user = Auth::user();
         $student = \App\informacion::find($user->id);
-        $iduser = $student->usuario->id;
         
         return view('User.perfil',[
             'index' => $index,
             'user' => $user,
             'student'=> $student,
-            'iduser'=> $iduser
             
         ]);
     }
@@ -80,13 +85,11 @@ class UserController extends Controller
         $index=1;
         $user = Auth::user();
         $student = \App\informacion::find($user->id);
-        $iduser = $student->usuario->id;
         
         return view('User.EditarPerfil',[
             'index' => $index,
             'user' => $user,
             'student'=> $student,
-            'iduser'=> $iduser
             
         ]);
     }

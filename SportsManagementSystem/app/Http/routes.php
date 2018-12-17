@@ -95,8 +95,6 @@ Route::get('/user/inscripcion/taller/{id}', 'UserController@showTaller');
 //-----------------------------------------------------------------------------------//
 Route::get('/registro','SignupController@index');
 
-
-
 Route::get('/registro/InfoCompleta/{B}','SignupController@getCompleto');
 Route::post('/registro/InfoCompleta/','SignupController@postCompleto');
 //-----------------------------------------------------------------------------------//

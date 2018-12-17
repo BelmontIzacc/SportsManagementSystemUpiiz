@@ -65,7 +65,11 @@ class SignupController extends Controller
         ]); 
         
         
+        $Usuario = \App\User::find($request->user);
         
+        $Usuario->update([
+            'completado' => 1,
+        ]);
         
         if($request->insti=="UPIIZ"){
         
@@ -107,7 +111,9 @@ class SignupController extends Controller
                 
         ]); 
         }
-        return redirect('/login');
+        
+        
+        return redirect('/user');
           
     }
 }
