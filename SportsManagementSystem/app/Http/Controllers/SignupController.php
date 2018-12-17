@@ -24,44 +24,7 @@ class SignupController extends Controller
         'index' => $index
         ]);
     }
-    
-    public function getRegister(){
-        $index = 4;
-        return view('Registro.RegistroUsuario', ['index'=>$index]);
-    }
-    
-    public function postRegister(Request $request){
-        $this->validate($request, [
-            'nombre' => 'required',
-            'apellidoPaterno' => 'required',
-            'apellidoMaterno' => 'required',
-            'email' => 'required',
-            'boleta' => 'required',
-            'contraseña' => 'required',
-            'verContra' => 'required|same:contraseña',
-        ]);        
-        
-        User::create([
-            'nombre' =>$request->nombre,
-            'apellidoPaterno' =>$request->apellidoPaterno,
-            'apellidoMaterno' =>$request->apellidoMaterno,
-            'email' => $request->email,
-            'boleta' => $request->boleta,
-            'password' => bcrypt($request->password),
-            'tipo' => 2,
-            'completado' => 1,
-            'permisos' => 0,
-        ]);
-     
-        
-        
-        
-        session()->flash('message', 'Alumno '. $request->boleta. ' actualizado correctamente '.$request->nombre);
-        session()->flash('type', 'success');   
-        
-        return redirect('/registro/InfoCompleta/'.$request->boleta);
-          
-    }
+
    
     
     public function getCompleto($B){
