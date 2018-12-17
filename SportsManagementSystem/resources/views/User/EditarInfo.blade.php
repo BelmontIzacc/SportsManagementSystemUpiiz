@@ -4,6 +4,12 @@
   $classSize = "col-lg-4 col-md-4 col-sm-6";
   $classSizeModal = "col-lg-6 col-md-6";
   
+  $sexos = array(
+        'Seleccionar',
+        'Masculino',
+        'Femenino',
+    );
+  
 ?>
 
 @section('title')
@@ -13,8 +19,15 @@
 @section('css')
 <link rel="stylesheet" href="{{asset('/Template/css/lib/bootstrap-sweetalert/sweetalert.css')}}"/>
 <link rel="stylesheet" href="{{asset('/Template/css/lib/clockpicker/bootstrap-clockpicker.min.css')}}"/>
+
 @stop
 @section('popUp')
+<div class="container-fluid">
+  <div class="row">
+    <div class="{{$classSize}}">
+      @include('alerts.formError')
+    </div>
+  </div>
 @stop
 @section('content')
 
@@ -53,21 +66,17 @@
 
     </div>
 </section>
-
+{!!Form::open(array('url'=>'/user/EditInfo', 'class'=>'patata', 'method'=>'post'))!!}
 <div class="box-typical box-typical-padding">
 
     <h5 class="m-t-lg with-border">Datos personales</h5>
-
+    <form class="patata">
     <div class="row">
         @unless($info->sexo == null)
         <div class="{{$classSize}}">
             <fieldset class="form-group">
-                <label class="form-label" for="exampleInputDisabled2">Sexo</label>
-                    @if($info->sexo == 0)
-                    	 <input type="text" readonly class="form-control" value="Masculino">
-                   	@else
-                   		 <input type="text" readonly class="form-control" value="Femenino">
-                    @endif
+              <label class="form-label">Sexo</label>
+              {!!Form::select('sexo',$sexos, 0, ['class'=>'bootstrap-select bootstrap-select-arrow form-control','id'=>'sexo'])!!}   
             </fieldset>
         </div>
         @endunless
@@ -75,24 +84,26 @@
         <div class="{{$classSize}}">
             <fieldset class="form-group">
                 <label class="form-label" for="exampleInputDisabled2">Teléfono</label>
-                <input type="text" readonly class="form-control" value="{{$info->telefono}}">
+                {!!Form::text('telefono', null, ['class'=>'form-control','placeholder'=>$info->telefono, 'id'=>'telefono'])!!}
             </fieldset>
         </div>
          @endunless
         
         @unless($info->edad == null)
         <div class="{{$classSize}}">
-            <fieldset class="form-group">
-                <label class="form-label" for="exampleInputDisabled2">Edad</label>
-                <input type="text" readonly class="form-control" value="{{$info->edad}}">
+           <fieldset class="form-group">
+                <label class="form-label">Edad</label>
+				{!!Form::number('edad', null, ['class'=>'form-control','placeholder'=>$info->edad, 'id'=>'edad'])!!}
             </fieldset>
         </div>
         @endunless
-        @unless($user->email == null)
-    	<div class="{{$classSize}} hidden-lg-up">
+        </div>
+    <div class="row">
+    @unless($user->email == null)
+    	<div class="{{$classSize}}">
             <fieldset class="form-group">
                 <label class="form-label" for="exampleInputDisabled2">Correo</label>
-                <input type="text" readonly class="form-control" value="{{$user->email}}">
+                {!!Form::email('email', null, ['class'=>'form-control', 'placeholder'=>$user->email, 'id'=>'email'])!!}	
             </fieldset>
         </div>
         @endunless
@@ -101,33 +112,52 @@
     <h5 class="m-t-lg with-border">Datos de escolares</h5>
 
     <div class="row">
-    	<div class="{{$classSize}} hidden-lg-up">
+    	<div class="{{$classSize}}">
             <fieldset class="form-group">
                 <label class="form-label" for="exampleInputDisabled2">Boleta</label>
-                <input type="text" readonly class="form-control" value="{{$user->boleta}}">
+                 {!!Form::text('boleta', null, ['class'=>'form-control', 'placeholder'=>$user->boleta, 'id'=>'bo'])!!}
             </fieldset>
         </div>
         @unless($info->institucion->nombre == null)
         <div class="{{$classSize}}">
             <fieldset class="form-group">
                 <label class="form-label" for="exampleInputDisabled2">Platel</label>
-                <input type="text" readonly class="form-control" value="{{$info->institucion->nombre}}">
+                <div class="rdio rdio-primary">
+                                  <input type="radio" name="insti" value="UPIIZ" id="tlist" onclick="mostrar();"> UPIIZ
+                                </div>
+                                <div class="rdio rdio-primary">
+                                  <input type="radio" name="insti" value="Cecyt" id="tlistt" onclick="mostrar();"> CECyT
+                                </div>
             </fieldset>
         </div>
         @endunless
         @unless($info->carrera->nombre == null)
-        <div class="{{$classSize}}">
+        
+         <!--Bloque Oculto-->
+                            
+        <div id="tlistF" class="{{$classSize}}" style="display:none;">
             <fieldset class="form-group">
                 <label class="form-label" for="exampleInputDisabled2">Carrera</label>
-                <input type="text" readonly class="form-control" value="{{$info->carrera->nombre}}">
+                {!!Form::select('tlista',$tlista, 0, ['class'=>'bootstrap-select bootstrap-select-arrow form-control', 'placeholder'=>'Seleccionar carrera','id'=>'tlista'])!!}
+            </fieldset>
+        </div>    
+                              <!--Bloque Oculto-->
+        <div id="tlistM" class="{{$classSize}}" style="display:none;">
+            <fieldset class="form-group">
+                <label class="form-label" for="exampleInputDisabled2">Carrera</label>
+                {!!Form::select('tlistac',$tlistac, 0, ['class'=>'bootstrap-select bootstrap-select-arrow form-control', 'placeholder'=>'Seleccionar carrera','id'=>'tlistac'])!!}
             </fieldset>
         </div>
+                              <!--Bloque Oculto-->
+        
         @endunless
+    </div>
+    <div class="row">
         @unless($info->semestre == null)
         <div class="{{$classSize}}">
             <fieldset class="form-group">
                 <label class="form-label" for="exampleInputDisabled2">Semestre</label>
-                <input type="text" readonly class="form-control" value="{{$info->semestre}}">
+                {!!Form::number('semestre', null, ['class'=>'form-control','placeholder'=>$info->semestre,'id'=>'semestre'])!!}
             </fieldset>
         </div>
         @endunless
@@ -135,7 +165,7 @@
         <div class="{{$classSize}}">
             <fieldset class="form-group">
                 <label class="form-label" for="exampleInputDisabled2">Grupo</label>
-                <input type="text" readonly class="form-control" value="{{$info->grupo}}">
+                {!!Form::text('grupo', null, ['class'=>'form-control','placeholder'=>$info->grupo,'id'=>'grupo'])!!}
             </fieldset>
         </div>
         @endunless
@@ -148,7 +178,7 @@
         <div class="{{$classSize}}">
             <fieldset class="form-group">
                 <label class="form-label" for="exampleInputDisabled2">Calle</label>
-                <input type="text" readonly class="form-control" value="{{$info->calle}}">
+                {!!Form::text('calle', null, ['class'=>'form-control','placeholder'=>$info->calle, 'id'=>'calle'])!!}
             </fieldset>
         </div>
         @endunless
@@ -156,7 +186,7 @@
         <div class="{{$classSize}}">
             <fieldset class="form-group">
                 <label class="form-label" for="exampleInputDisabled2">Número exterior</label>
-                <input type="text" readonly class="form-control" value="{{$info->numExterior}}">
+                {!!Form::number('ext', null, ['class'=>'form-control', 'placeholder'=>$info->numExterior, 'id'=>'exterior'])!!}
             </fieldset>
         </div>
         @endunless
@@ -164,7 +194,7 @@
         <div class="{{$classSize}}">
             <fieldset class="form-group">
                 <label class="form-label" for="exampleInputDisabled2">Número interior</label>
-                <input type="text" readonly class="form-control" value="{{$info->numInterior}}">
+                {!!Form::number('inter', null, ['class'=>'form-control', 'placeholder'=>$info->numInterior, 'id'=>'interior'])!!}
             </fieldset>
         </div>
         @endunless
@@ -172,7 +202,7 @@
         <div class="{{$classSize}}">
             <fieldset class="form-group">
                 <label class="form-label" for="exampleInputDisabled2">Colonia</label>
-                <input type="text" readonly class="form-control" value="{{$info->colonia}}">
+                 {!!Form::text('colonia', null, ['class'=>'form-control','placeholder'=>$info->colonia,'id'=>'colonia'])!!}
             </fieldset>
         </div>
         @endunless
@@ -180,33 +210,22 @@
         <div class="{{$classSize}}">
             <fieldset class="form-group">
                 <label class="form-label" for="exampleInputDisabled2">Código postal</label>
-                <input type="text" readonly class="form-control" value="{{$info->codigoPostal}}">
+                 {!!Form::text('cp', null, ['class'=>'form-control','placeholder'=>$info->codigoPostal, 'id'=>'cp'])!!}
             </fieldset>
         </div>
         @endunless
     </div>
-
+    
+    <div class="col-lg-3 col-md-3">
+        <button type="submit" class="btn btn-rounded btn-correct sign-up">Enviar</button>
+    </div>
+        
+    </form>
 </div> <!--End box typical-->
+</div>
 
 <!-- end profile -->
 
-<div class="box-typical box-typical-padding">
-
-
-
-	<div class="row text-center">
-         <a href="/user/Profile">
-		<div class="col-lg-3 col-md-3">
-		    <button type="button" class="btn btn-rounded btn-inline btn-success" data-toggle="modal" data-target=".bd-example-modal-sm">Ir a perfíl</button>
-		</div>
-        </a>
-        <a href="/user/EditProfile">
-        <div class="col-lg-3 col-md-3">
-            <button type="button" class="btn btn-rounded btn-inline btn-warning" data-toggle="modal" data-target=".bd-example-modal-rp">Editar info</button>
-        </div>
-        </a>
-	</div>
-</div>
 
 @stop
 @section('scripts')
@@ -223,5 +242,61 @@
 
     <script src="{{asset('/Template/js/lib/hide-show-password/bootstrap-show-password.min.js')}}"></script>
     <script src="{{asset('/Template/js/lib/hide-show-password/bootstrap-show-password-init.js')}}"></script>
+    <script>
+    $(document).ready(function() {
+        String.prototype.firstUpper = function(){
+                    return this.charAt(0).toUpperCase() + this.slice(1).toLowerCase();
+        };
+        //--- Datos Personales
+        $('#edad').mask('00', {placeholder: "Edad"});
+        $('#telefono').mask('0000000000', {placeholder: "Telefono"});
+        
+        //--- Datos de domicilio
+        var calle = $(document.getElementById('calle'));  
+        var colonia = $(document.getElementById('colonia'));  
+
+        calle.focusout(function(){
+                    $(this).val($(this).val().firstUpper());
+                });
+        $('#interior').mask('000', {placeholder: "Numero Interior"});
+        $('#exterior').mask('000', {placeholder: "Numero Exterior"});
+         colonia.focusout(function(){
+                    $(this).val($(this).val().firstUpper());
+                });
+        $('#cp').mask('00000', {placeholder: "Código Postal"});
+        
+        
+        //--- Datos de Academia
+        var grupo = $(document.getElementById('grupo'));  
+        $('#semestre').mask('00', {placeholder: "Semestre:"});
+        grupo.focusout(function(){
+                    $(this).val($(this).val().toUpperCase());
+                });
+    });
+</script>
+
+<script>
+    function mostrar(){
+      e = document.getElementById("tlistF");
+      c = document.getElementById("tlist");
+
+      a = document.getElementById("tlistM");
+      l = document.getElementById("tlistt");
+
+      if (c.checked) {
+        e.style.display = 'block';
+      }
+      else{
+        e.style.display = 'none';
+      }
+
+      if(l.checked){
+        a.style.display = 'block';
+      }else{
+        a.style.display = 'none';
+      }
+    }
+
+    </script>
 
 @stop

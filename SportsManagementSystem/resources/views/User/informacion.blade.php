@@ -89,7 +89,7 @@
         </div>
         @endunless
         @unless($user->email == null)
-    	<div class="{{$classSize}} hidden-lg-up">
+    	<div class="{{$classSize}}">
             <fieldset class="form-group">
                 <label class="form-label" for="exampleInputDisabled2">Correo</label>
                 <input type="text" readonly class="form-control" value="{{$user->email}}">
@@ -101,7 +101,7 @@
     <h5 class="m-t-lg with-border">Datos de escolares</h5>
 
     <div class="row">
-    	<div class="{{$classSize}} hidden-lg-up">
+    	<div class="{{$classSize}}">
             <fieldset class="form-group">
                 <label class="form-label" for="exampleInputDisabled2">Boleta</label>
                 <input type="text" readonly class="form-control" value="{{$user->boleta}}">
@@ -200,7 +200,7 @@
 		    <button type="button" class="btn btn-rounded btn-inline btn-success" data-toggle="modal" data-target=".bd-example-modal-sm">Ir a perfíl</button>
 		</div>
         </a>
-        <a href="/user/EditProfile">
+        <a href="/user/EditInfo">
         <div class="col-lg-3 col-md-3">
             <button type="button" class="btn btn-rounded btn-inline btn-warning" data-toggle="modal" data-target=".bd-example-modal-rp">Editar info</button>
         </div>

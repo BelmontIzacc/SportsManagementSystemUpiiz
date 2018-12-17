@@ -1,8 +1,8 @@
 @extends('User.layout')
 <?php
-    $classSizeForms = "col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2";
-    $classSize = "col-lg-4 col-md-4 col-sm-6";
-	$classSizeModal = "col-lg-6 col-md-6";
+  $classSizeForms = "col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2";
+  $classSize = "col-lg-4 col-md-4 col-sm-6";
+  $classSizeModal = "col-lg-6 col-md-6";
 ?>
 
 @section('title')
@@ -87,6 +87,8 @@
                 <input type="text" readonly class="form-control" value="{{$user->boleta}}">
             </fieldset>
         </div>
+         @endunless
+        @unless($user->email == null)
         <div class="{{$classSize}}">
             <fieldset class="form-group">
                 <label class="form-label" for="exampleInputDisabled2">email</label>
@@ -107,10 +109,21 @@
         @endunless
     </div>
 </div>
-<a href="/user/EditProfile">
-<button type="button" class="btn btn-rounded btn-warning patata" data-toggle="modal" data-target=".bd-example-modal-sm">Editar perfíl</button>
-</a>
 
+<div class="box-typical box-typical-padding">
+	<div class="row text-center">
+        <a href="/user/Info">
+		<div class="col-lg-3 col-md-3">
+		    <button type="button" class="btn btn-rounded btn-inline btn-success" data-toggle="modal" data-target=".bd-example-modal-sm">Informacion completa</button>
+		</div>
+        </a>
+        <a href="/user/EditProfile">
+        <div class="col-lg-3 col-md-3">
+            <button type="button" class="btn btn-rounded btn-warning patata" data-toggle="modal" data-target=".bd-example-modal-sm">Editar perfíl</button>
+        </div>
+        </a>
+	</div>
+</div>
 @stop
 @section('scripts')
 

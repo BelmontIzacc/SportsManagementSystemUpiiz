@@ -86,6 +86,8 @@ Route::get('/user/EditProfile','UserController@getEdit');
 Route::post('/user/EditProfile','UserController@postEdit');
 
 Route::get('/user/Info','UserController@getInfo');
+Route::get('/user/EditInfo','UserController@getEditInfo');
+Route::post('/user/EditInfo','UserController@postEditInfo');
 
 Route::get('/user/search','UserController@getSearch');
 Route::post('/user/search','UserController@postSearch');

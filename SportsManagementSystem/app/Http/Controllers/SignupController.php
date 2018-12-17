@@ -31,7 +31,7 @@ class SignupController extends Controller
         
         $index=4;
         $tlista = \App\carrera::where('id','<=',5)->lists('nombre','id');
-        $tlistac = \App\carrera::where('id','>',5)->lists('nombre','id');
+        $tlistac = \App\carrera::where('id','>',6)->lists('nombre','id');
         
         $user = \App\User::where('boleta','=',$B)->lists('boleta','id');
              

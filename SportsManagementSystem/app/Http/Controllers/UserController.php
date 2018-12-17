@@ -14,6 +14,7 @@ use Carbon\Carbon;
 
 use App\User;
 use App\informacion;
+use App\institucion;
 use App\taller;
 
 class UserController extends Controller
@@ -134,6 +135,104 @@ class UserController extends Controller
             'user' => $user,
             'info'=> $info
         ]);
+    }
+    
+    public function getEditInfo()
+    {
+        $index=1;
+        $user = Auth::user();
+        $info = \App\informacion::find($user->id);
+        $tlista = \App\carrera::where('id','<=',6)->lists('nombre','id');
+        $tlistac = \App\carrera::where('id','>',6)->lists('nombre','id');
+        
+        return view('User.EditarInfo',[
+            'index' => $index,
+            
+            'user' => $user,
+            
+            'info'=> $info,
+            
+            'tlista'=> $tlista,
+            
+            'tlistac'=> $tlistac
+        ]);
+    }
+    
+   public function postEditInfo (Request $request)
+    {
+        
+        
+        $this->validate($request, [
+            'sexo' => 'required',
+            'edad' => 'required',
+            'telefono' => 'required',
+            
+            'calle' => 'required',
+            'ext' => 'required',
+            'inter' => 'required',
+            'colonia' => 'required',
+            'cp' => 'required',
+            
+            'insti' => 'required',
+            'semestre'=> 'required',
+            'grupo'=> 'required',
+            'boleta'=> 'required',
+            'email'=> 'required',
+            'tlista'=>'',
+            'tlistac'=>'',
+        ]); 
+        
+        
+        
+        $user = Auth::user();
+        $infoUser = \App\informacion::find($user->id);
+       
+        if($request->insti=="UPIIZ"){
+            
+            $infoUser-> update([
+                'institucion_id' => 1,
+                'carrera_id' => $request->tlista,
+            
+                'edad' => $request->edad,
+                'telefono' => $request->telefono,
+                'sexo' => $request->sexo -1,
+            
+                'calle' => $request->calle,
+                'numExterior' => $request->ext,
+                'numInterior' => $request->inter,
+                'colonia' => $request->colonia,
+                'codigoPostal' => $request->cp,
+            
+                'semestre' => $request->semestre,
+                'grupo' => $request->grupo,
+                
+        ]);
+        }else{
+           $infoUser->update([
+                'institucion_id' => 2,
+                'carrera_id' => $request->tlistac,
+                
+                'edad' => $request->edad,
+               'telefono' => $request->telefono,
+               'sexo' => $request->sexo -1,
+            
+                'calle' => $request->calle,
+                'numExterior' => $request->ext,
+                'numInterior' => $request->inter,
+                'colonia' => $request->colonia,
+                'codigoPostal' => $request->cp,
+            
+                'semestre' => $request->semestre,
+                'grupo' => $request->grupo,
+                
+        ]);     
+        }
+            $user-> update([
+                'boleta' => $request->boleta,
+                'email'  => $request->email
+            ]);
+       
+       return redirect('/user/Info');  
     }
     
     
