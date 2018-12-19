@@ -1,4 +1,4 @@
-@extends('Admin.layout')
+@extends('Coord.coor.layout')
 
 @section('title')
 <title>Perfíl servicio Deportes</title>
@@ -38,7 +38,7 @@
               <button type="button" class="modal-close" data-dismiss="modal" aria-label="Close">
                   <i class="font-icon-close-2"></i>
               </button>
-              <h4 class="modal-title" id="myModalLabel">¿Desea editar el perfíl de administrador?</h4>
+              <h4 class="modal-title" id="myModalLabel">¿Desea editar el perfíl de coordinador?</h4>
           </div>
           {!!Form::open(array('method'=>'post'))!!}
           <div class="modal-body">
@@ -137,7 +137,7 @@
 
               <button type="submit" class="btn btn-rounded btn-danger" data-toggle="modal" data-target=".bd-example-modal-sm">Actualizar perfíl</button>
 
-              <a href="{{asset('/admin/profile')}}"><button type="button" class="close">
+              <a href="{{asset('/coord/profile')}}"><button type="button" class="close">
                   <span aria-hidden="true">&times;</span>
               </button></a>
           {!!Form::close()!!}
@@ -147,7 +147,6 @@
                 <div class="sign-avatar">
                     <img src="{{asset('/Template/img/Stickmen/LogoSRDpng2.png')}}" alt="" style="height:120px;width:auto;">
                 </div>
-                </br>
                 <header class="sign-title">{{$user}}</header>
 
                 @include('alerts.formError')
@@ -155,7 +154,7 @@
 
                 <div class="form-group">
                     <label class="form-label" for="exampleInputDisabled2">Tipo de usuario</label>
-                    <input type="text" class="form-control" readonly placeholder="" value="Administrador"/>
+                    <input type="text" class="form-control" readonly placeholder="" value="Coordinador"/>
                 </div>
                 <div class="form-group">
                     <label class="form-label" for="exampleInputDisabled2">Identificación</label>
@@ -166,7 +165,7 @@
 
                 <button type="button" class="btn btn-rounded btn-warning" data-toggle="modal" data-target=".bd-example-modal-sm">Editar perfíl</button>
 
-                <a href="{{asset('/admin')}}"><button type="button" class="close">
+                <a href="{{asset('/coord')}}"><button type="button" class="close">
                     <span aria-hidden="true">&times;</span>
                 </button></a>
             </form>

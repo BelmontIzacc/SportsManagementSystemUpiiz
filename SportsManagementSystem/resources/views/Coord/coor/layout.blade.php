@@ -51,7 +51,7 @@
 	                            <img src="{{asset('/Template/img/Stickmen/LogoDeporte.png')}}" alt="" style="height:40px;width:auto;">
 	                        </button>
 	                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dd-user-menu">
-	                            <a class="dropdown-item" href="{{asset('#')}}"><span class="font-icon glyphicon glyphicon-user"></span>Perfil</a>
+	                            <a class="dropdown-item" href="{{asset('/coord/profile')}}"><span class="font-icon glyphicon glyphicon-user"></span>Perfil</a>
 	                            <div class="dropdown-divider"></div>
 	                            <a class="dropdown-item" href="{{asset('/coord')}}"><span class="font-icon font-icon-home"></span>Home</a>
 	                            <a class="dropdown-item" href="{{asset('/logout')}}"><span class="font-icon glyphicon glyphicon-log-out"></span>Logout</a>

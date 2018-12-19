@@ -102,3 +102,14 @@ Route::post('/registro/InfoCompleta/','SignupController@postCompleto');
 Route::get('/coord','CoordController@index');
 Route::get('/coord/User','CoordController@index2');
 Route::post('/coord','CoordController@indexPost');
+Route::get('/coord/profile', 'CoordController@profile');
+Route::post('/coord/profile', 'CoordController@profilePassword');
+Route::patch('/coord/profile', 'CoordController@editProfile');
+//-----------------------------------------------------------------------------------//
+// Password reset link request routes...
+Route::get('/password/email', 'Auth\PasswordController@getEmail');
+Route::post('/password/email', 'Auth\PasswordController@postEmail');
+// Password reset routes...
+Route::get('/password/reset/{token}', 'Auth\PasswordController@getReset');
+Route::post('/password/reset', 'Auth\PasswordController@postReset');
+//-----------------------------------------------------------------------------------//

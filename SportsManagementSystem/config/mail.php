@@ -59,7 +59,8 @@ return [
     */
 
     //'from' => ['address' => 'jisagiizacc@gmail.com', 'name' => 'Izacc'],
-    'from' => ['address' => 'serviciobecasupiiz@gmail.com', 'name' => 'Not Reply'],
+    'from' => ['address' => 'serviciodeporteupiiz@gmail.com', 'name' => 'Not Reply'],
+    //serviciodeporteupiiz upiiz2018 opsgoowmehowqdix
     //'from' => ['address' => null, 'name' => null],
 
     /*
@@ -88,7 +89,7 @@ return [
     */
 
     //'username' => env('MAIL_USERNAME'),
-    'username' => 'serviciobecasupiiz@gmail.com',
+    'username' => 'serviciodeporteupiiz@gmail.com',
 
     /*
     |--------------------------------------------------------------------------
@@ -102,7 +103,7 @@ return [
     */
 
     //'password' => env('MAIL_PASSWORD'),
-    'password' => 'pmdrykxfbbtwfiii',
+    'password' => 'opsgoowmehowqdix',
     //pmdrykxfbbtwfiii
 
     /*
