@@ -281,4 +281,30 @@ class UserController extends Controller
             'taller'=>$taller
         ]);
     }
+    
+    public function postShowTaller(Request $request,$id)
+    {
+        $taller = \App\taller::find($id);
+        
+        switch($taller->status){
+            case 2:
+            case 4:
+                \App\inscripcion::create([
+                'usuario_id' => Auth::user()->id,
+                'taller_id' => $id
+                
+            ]);
+            return view('User.perfil',[
+            'index' => 1,
+            'user' => Auth::user(),
+            'student'=> \App\informacion::where('usuario_id','=',Auth::user()->id)->first(),
+            
+        ]);
+                break;
+                
+            default:
+                
+                break;
+        }
+    }
 }

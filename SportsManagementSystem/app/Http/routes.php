@@ -92,6 +92,7 @@ Route::post('/user/EditInfo','UserController@postEditInfo');
 Route::get('/user/search','UserController@getSearch');
 Route::post('/user/search','UserController@postSearch');
 Route::get('/user/inscripcion/taller/{id}', 'UserController@showTaller');
+Route::post('/user/inscripcion/taller/{id}', 'UserController@postShowTaller');
 //-----------------------------------------------------------------------------------//
 Route::get('/registro','SignupController@index');
 Route::get('/registro/RegistroUsuario','Auth\AuthController@getRegister');

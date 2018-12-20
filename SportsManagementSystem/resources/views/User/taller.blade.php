@@ -17,11 +17,13 @@
 
 <h5 class="m-t-lg with-border">¿Deseas entrar al Taller:  {{$taller->nombre}}?</h5>
 <div class="row">
+    {!!Form::open(array('url'=>'/user/inscripcion/taller/'.$taller->id, 'class'=>'patata', 'method'=>'post'))!!}
+    <form class="patata">
     <div class="col-lg-6 col-md-6 col-sm-6">
         <button type="submit" class="btn btn-rounded btn-inline"> Sí </button>
     </div>
+    </form>
 </div>
-
 @stop
 @section('scripts')
 
