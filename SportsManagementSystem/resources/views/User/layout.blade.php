@@ -4,9 +4,9 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 	<meta http-equiv="x-ua-compatible" content="ie=edge">
-	
+
 	@yield('title')
-	
+
 	<link href="{{asset('/Template/img/favicon.144x144.png')}}" rel="apple-touch-icon" type="/image/png" sizes="144x144">
 	<link href="{{asset('/Template/img/favicon.114x114.png')}}" rel="apple-touch-icon" type="/image/png" sizes="114x114">
 	<link href="{{asset('/Template/img/favicon.72x72.png')}}" rel="apple-touch-icon" type="/image/png" sizes="72x72">
@@ -22,7 +22,7 @@
 	<![endif]-->
     <link rel="stylesheet" href="{{asset('/Template/css/lib/font-awesome/font-awesome.min.css')}}">
     <link rel="stylesheet" href="{{asset('/Template/css/main.css')}}">
-	
+
 	<style type="text/css">.fancybox-margin{margin-right:0px;}</style>
 	@yield('css')
 </head>
@@ -57,7 +57,7 @@
 	                            <a class="dropdown-item" href="{{asset('/logout')}}"><span class="font-icon glyphicon glyphicon-log-out"></span>Salir</a>
 	                        </div>
 	                    </div>
-	
+
 	                </div><!--.site-header-shown-->
 				@endif
 	                <div class="mobile-menu-right-overlay"></div>
@@ -104,7 +104,15 @@
 	                <i class="font-icon font-icon-search"></i>
 	                <span class="lbl">Buscar taller</span>
 	            </a>
-	        </li>          
+	        </li>
+			@if($user->tipo==3)
+			<li class="green">
+				<a href="{{asset('/coord')}}">
+					<i class="font-icon"></i>
+					<span class="lbl">Vista Coordinador</span>
+				</a>
+			</li>
+			@endif
 	    </ul>
 	</nav><!--.side-menu-->
 

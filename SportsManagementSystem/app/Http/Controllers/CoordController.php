@@ -45,10 +45,12 @@ class CoordController extends Controller
     {
         $index=1;
         $taller = \App\inscripcion::where('usuario_id',Auth::user()->id)->get();
+        $user = Auth::user();
 
-        return view('Coord.user.start_user',[
+        return view('User.start',[
             'index' => $index,
             'taller'=>$taller,
+            'user'=>$user
         ]);
     }
 
@@ -59,7 +61,7 @@ class CoordController extends Controller
             session()->flash('message', 'Menu de Usuario');
             session()->flash('type', 'info');
 
-            return redirect('/coord/User');
+            return redirect('user');
         }else if($value == 1){ //vista coordinador
             session()->flash('message', 'Menu de Coordinador');
             session()->flash('type', 'info');
