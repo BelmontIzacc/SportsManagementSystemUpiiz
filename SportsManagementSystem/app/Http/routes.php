@@ -106,6 +106,10 @@ Route::post('/coord','CoordController@indexPost');
 Route::get('/coord/profile', 'CoordController@profile');
 Route::post('/coord/profile', 'CoordController@profilePassword');
 Route::patch('/coord/profile', 'CoordController@editProfile');
+
+Route::get('/coord/taller/{id}', 'CoordController@mostrarTaller');
+Route::get('/coord/taller/{id}/studio/list', 'CoordController@asistenciaTaller');
+Route::post('/coord/taller/{id}/studio/list', 'CoordController@guardarAsistencia');
 //-----------------------------------------------------------------------------------//
 // Password reset link request routes...
 Route::get('/password/email', 'Auth\PasswordController@getEmail');

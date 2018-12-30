@@ -88,30 +88,9 @@
 	    </div>
 	</br>
 	    <ul class="side-menu-list">
-	        <li class="brown">
-	            <a href="#">
-	                <i class="font-icon font-icon-home"></i>
-	                <span class="lbl">Ejemplo1</span>
-	            </a>
-	        </li>
-	        <li class="green">
-	            <a href="#">
-	                <i class="font-icon font-icon-cart"></i>
-	                <span class="lbl">Ejemplo2</span>
-	            </a>
-	        </li>
-	        <li class="gold opened">
-	            <a href="#">
-	                <i class="font-icon font-icon-speed"></i>
-	                <span class="lbl">Ejemplo3</span>
-	            </a>
-	        </li>
-	        <li class="blue">
-	            <a href="#">
-	                <i class="font-icon font-icon-users"></i>
-	                <span class="lbl">Ejemplo4</span>
-	            </a>
-	        </li>
+			</br>
+			</br>
+			</br>
 			</br>
 			<li>
 				<a href="{{asset('/coord/User')}}">

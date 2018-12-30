@@ -12,6 +12,8 @@ use Illuminate\Database\Eloquent\Collection;
 use Hash;
 use Carbon\Carbon;
 
+use Khill\Lavacharts\Lavacharts;
+
 class CoordController extends Controller
 {
     /**
@@ -151,5 +153,261 @@ class CoordController extends Controller
         session()->flash('type', 'success');
 
         return redirect('/coord/profile');
+    }
+
+    public function mostrarTaller($id){
+        $index = 1;
+        $taller = \App\taller::find($id);
+        $inscripcion = \App\inscripcion::where('taller_id',$id)->get();
+        $stats = \App\stats::where('taller_id',$id)->get();
+
+        $lava = new Lavacharts();
+
+        $finances = \Lava::DataTable();
+
+        $finances->addDateColumn('Date')
+                 ->addNumberColumn('Asistencias')
+                 ->addNumberColumn('Faltas')
+                 ->setDateTimeFormat('Y-m-d');
+                 /*->addRow(['2002-02-01', 1000, 400])
+                 ->addRow(['2004-04-03', 1170, 460])
+                 ->addRow(['2006-06-05', 660, 1120])
+                 ->addRow(['2008-08-07', 1030, 54]);*/
+
+        foreach ($stats as $st) {
+            $finances->addRow([$st->fecha,$st->asistencias,$st->faltas]);
+        }
+
+        \Lava::ColumnChart('Finances', $finances, [
+            'title' => 'Asistencias',
+            'titleTextStyle' => [
+                'color'    => '#eb6b2c',
+                'fontSize' => 14
+            ]
+        ]);
+
+        $sexo = \Lava::DataTable();
+
+        $mujeres=0;
+        $hombres=0;
+
+        $carrera = \App\carrera::all();
+        $institu = \App\institucion::all();
+        $asisten = \App\asistencia::all();
+
+        $array = array();
+        $arrayInstituciones = array();
+        $faltas = array();
+        $asiste = array();
+
+        foreach($carrera as $c){
+            $array[$c->id] = 0;
+        }
+
+        foreach($institu as $tu){
+            $arrayInstituciones[$tu->id] = 0;
+        }
+
+        $af=0;
+        foreach ($inscripcion as $ins) {
+           if($ins->usuario->informacion->sexo == 0){
+                $hombres++;
+           }else{
+                $mujeres++;
+           }
+
+           $asiste[$af]=0;
+           $faltas[$af]=0;
+           foreach($asisten as $asi){
+                if( ($asi->usuario_id == $ins->usuario->id) && ($asi->taller_id == $id) ){
+                    if($asi->asistencia==1){
+                        $asiste[$af]= $asiste[$af]+1;
+                    }else if($asi->asistencia==0){
+                        $faltas[$af]= $faltas[$af]+1;
+                    }
+                }
+           }
+
+           $af=$af+1;
+
+           foreach ($carrera as $c) {
+               if($c->id == $ins->usuario->informacion->carrera_id){
+                    $array[$c->id] = $array[$c->id]+1;
+               }
+           }
+
+           foreach ($institu as $in) {
+               if($in->id == $ins->usuario->informacion->institucion_id){
+                    $arrayInstituciones[$in->id] = $arrayInstituciones[$in->id]+1;
+               }
+           }
+
+        }
+
+        $sexo->addStringColumn('Reasons')
+        ->addNumberColumn('Percent')
+        ->addRow(['Hombres', $hombres])
+        ->addRow(['Mujeres', $mujeres]);
+
+        \Lava::DonutChart('IMDB', $sexo, [
+            'title' => 'Sexo\nHombres: '.$hombres.' - Mujeres: '.$mujeres.'',
+            'titleTextStyle' => [
+                'color'    => '#eb6b2c',
+                'fontSize' => 14
+            ]
+        ]);
+
+        $carrer = \Lava::DataTable();
+        $carrer->addStringColumn('Reasons')
+        ->addNumberColumn('Percent');
+
+        $i = 0;
+        for($i = 1 ; $i<=count($array); $i++){
+            $nombre = \App\carrera::find($i);
+            $carrer->addRow([''.$nombre->nombre, $array[$i]]);
+        }
+
+        \Lava::DonutChart('carrera', $carrer, [
+            'title' => 'Carreras',
+            'titleTextStyle' => [
+                'color'    => '#eb6b2c',
+                'fontSize' => 14
+            ]
+        ]);
+
+        $instit = \Lava::DataTable();
+        $instit->addStringColumn('Reasons')
+        ->addNumberColumn('Percent');
+
+        $j = 0;
+        for($j = 1 ; $j<=count($arrayInstituciones); $j++){
+            $nombre = \App\institucion::find($j);
+            $instit->addRow([''.$nombre->nombre, $arrayInstituciones[$j]]);
+        }
+
+        \Lava::DonutChart('INS', $instit, [
+            'title' => 'Institucion',
+            'titleTextStyle' => [
+                'color'    => '#eb6b2c',
+                'fontSize' => 14
+            ]
+        ]);
+
+        return view('Coord.coor.taller',
+        [
+            'index'=>$index,
+            'taller'=>$taller,
+            'inscripcion'=>$inscripcion,
+            'lava' => $lava,
+            'asistencia' => $asiste,
+            'faltas' => $faltas,
+        ]);
+    }
+
+    public function asistenciaTaller($id){
+        $index=4;
+        $asistencia = \App\inscripcion::where('taller_id',$id)->get();
+        $taller = \App\taller::find($id);
+
+        return view('Coord.coor.addverFecha',[
+            'index' => $index,
+            'variable' => $id,
+            'taller'=>$taller,
+            'asistencia' => $asistencia,
+        ]);
+    }
+
+    public function guardarAsistencia(Request $request, $id){
+        $this->validate($request, [
+            'Date' => 'required'
+        ]);
+
+        if(strlen($request->list)==0){
+
+            $fecha = $request->Date;
+
+            $input2 = 'd-m-Y';
+            $date2 = $fecha;
+            $output2 = 'Y-m-d';
+
+            $dateFormated = Carbon::createFromFormat($input2, $date2)->format($output2);
+
+            $inscripcion = \App\inscripcion::where('taller_id',$id)->get();
+
+            foreach($inscripcion as $ins){
+                $s = \App\asistencia::create([
+                    'usuario_id' =>$ins->usuario_id,
+                    'taller_id' => $id,
+                    'fecha' => $dateFormated,
+                    'asistencia' => 0,
+                ]);
+            }
+
+        }else{
+            $list = $request->list;
+            $tam = explode( ',', $list);
+            $fecha = $request->Date;
+
+            $input2 = 'd-m-Y';
+            $date2 = $fecha;
+            $output2 = 'Y-m-d';
+
+            $dateFormated = Carbon::createFromFormat($input2, $date2)->format($output2);
+
+            $inscripcion = \App\inscripcion::where('taller_id',$id)->get();
+
+                foreach($inscripcion as $ins){
+                    $s = \App\asistencia::create([
+                        'usuario_id' =>$ins->usuario_id,
+                        'taller_id' => $id,
+                        'fecha' => $dateFormated,
+                        'asistencia' => 0,
+                    ]);
+                }
+
+                $asistencia = \App\asistencia::where('taller_id',$id)->where('fecha',$dateFormated)->get();
+
+                for($j = 0 ; $j<count($tam); $j++){
+                    $user = \App\User::find($tam[$j]);
+
+                    foreach($asistencia as $ins){
+                        if($ins->usuario_id == $user->id){
+
+                            $ins->update([
+                                'asistencia' => 1,
+                            ]);
+
+                            break ;
+                        }
+                    }
+
+                }
+        }
+
+        $faltas=0;
+        $asistencias=0;
+
+        $ast = \App\asistencia::where('fecha',$dateFormated)->where('taller_id',$id)->get();
+
+        foreach($ast as $at){
+            if($at->asistencia==1){
+                $asistencias++;
+            }else if($at->asistencia==0){
+                $faltas++;
+            }
+        }
+
+
+        $stas = \App\stats::create([
+            'taller_id' => $id,
+            'fecha' => $dateFormated,
+            'asistencias' => $asistencias,
+            'faltas' => $faltas,
+        ]);
+
+        //return back();
+        session()->flash('message', 'Se a tomado la asistencia correctamente');
+        session()->flash('type', 'success');
+        return redirect('/coord/taller/'.$id.'');
     }
 }

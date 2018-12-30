@@ -35,7 +35,7 @@ Talleres Registrados
 						<p class="gallery-item-title">{{$t->nombre}}</p>
 						<p>{{$t->usuario}}</p>
 						<div class="btn-group">
-							<a class="btn" href="{{asset('#')}}">
+							<a class="btn" href="{{asset('/coord/taller/')}}/{{$t->id}}">
 								<i class="font-icon font-icon-eye"></i>
 							</a>
 						</div>

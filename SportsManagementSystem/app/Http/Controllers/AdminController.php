@@ -944,6 +944,7 @@ class AdminController extends Controller
             'faltas' => $faltas,
         ]);
 
+        return back();
     }
 
     public function showInfoList($id){

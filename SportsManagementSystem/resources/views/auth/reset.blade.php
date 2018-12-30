@@ -3,7 +3,7 @@
 $index=4;
 ?>
 @section('title')
-<title>Inicio Servicio Becas</title>
+<title>Servicio Deporte</title>
 @stop
 
 @section('css')
