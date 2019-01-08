@@ -46,7 +46,7 @@ class CoordController extends Controller
     public function index2()
     {
         $index=1;
-        $taller = \App\inscripcion::where('usuario_id',Auth::user()->id)->get();
+        $taller = \App\taller::where(inscripcion()->usuario(),Auth::user()->id)->get();
         $user = Auth::user();
 
         return view('User.start',[

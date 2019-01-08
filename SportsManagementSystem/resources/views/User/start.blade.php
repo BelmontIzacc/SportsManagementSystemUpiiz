@@ -15,8 +15,35 @@
 @stop
 @section('content')
 <h3 class="m-t-lg with-border">Bienvenidos al sistema de talleres de UPIIZ</h3>
-Estudiante: {{$user}}
-
+<div class="container-fluid" >
+    <section class="box-typical box-typical-full-height-with-header">
+        @foreach($inscripcion as $I)
+        <?php
+            $i = 0;
+            $num = rand ( 1 , 25 );
+            $i = $i +1;
+            $url = '/Template/img/Stickmen/StickmenSVG/sports2(	'.$num.').svg';  ?>
+        <div class="gallery-col col-md-3">
+            <article class="gallery-item" style="height: 188px; width:auto;">
+                <font size=4><p style="color:#1B38E3";>{{$I->taller->nombre}}</p></font>
+                <img class="gallery-picture" src="{{asset($url)}}" alt="" height="188" >
+                <div class="gallery-hover-layout">
+                    <div class="gallery-hover-layout-in">
+                        <p class="gallery-item-title">{{$I->taller->nombre}}</p>
+                        <p>{{$I->taller->nombre}}</p>
+                        <div class="btn-group">
+                            <a class="btn" href="{{asset('/coord/taller/')}}/{{$I->taller->id}}">
+                                <i class="font-icon font-icon-eye"></i>
+                            </a>
+                        </div>
+                        <p>{{$I->taller->tipo->nombre}}</p>
+                    </div>
+                </div>
+            </article>
+        </div><!--.gallery-col-->
+        @endforeach
+    </section>
+</div>
 @stop
 @section('scripts')
 
