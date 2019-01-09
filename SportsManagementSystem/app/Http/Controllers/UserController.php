@@ -291,27 +291,42 @@ class UserController extends Controller
 
     public function postShowTaller(Request $request,$id)
     {
+        $user = Auth::User();
         $taller = \App\taller::find($id);
+        $inscripcion = \App\inscripcion::where('taller_id',$id)->get();
 
-        switch($taller->status){
+        $mensaje = "";
+
+        switch($taller->status) {
             case 2:
             case 4:
-                \App\inscripcion::create([
-                'usuario_id' => Auth::user()->id,
-                'taller_id' => $id
+                $ins=0;
+                foreach ($inscripcion as $ins) {
+                    if($ins->usuario_id == $user->id) {
+                        $ins = 1;
+                    }
+                }
+                if($ins==0) {
+                    \App\inscripcion::create([
+                        'usuario_id' => $user->id,
+                        'taller_id' => $id
+                    ]);
+                    $mensaje = "Inscripcion realizada";
+                } else {
+                    $mensaje = "Error: Ya estás inscrito a este taller";
+                }
 
-            ]);
-            return view('User.perfil',[
-            'index' => 1,
-            'user' => Auth::user(),
-            'student'=> \App\informacion::where('usuario_id','=',Auth::user()->id)->first(),
-
-        ]);
                 break;
 
             default:
-
+                $mensaje = "Error al inscribirte al taller";
                 break;
         }
+        return view('User.resultado',[
+            'index' => 1,
+            'user' => $user,
+            'mensaje' => $mensaje,
+            'student'=> \App\informacion::where('usuario_id','=',$user->id)->first(),
+        ]);
     }
 }
