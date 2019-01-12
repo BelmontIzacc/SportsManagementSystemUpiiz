@@ -110,7 +110,7 @@ class UserController extends Controller
             ]);
 
          $user = Auth::user();
-         $infoUser = \App\informacion::find($user->id);
+         $infoUser = \App\informacion::find($user->informacion->id);
 
         $user->update([
             'nombre' => $request->nombre,
@@ -190,7 +190,7 @@ class UserController extends Controller
 
 
         $user = Auth::user();
-        $infoUser = \App\informacion::find($user->id);
+        $infoUser = \App\informacion::find($user->informacion->id);
 
         if($request->insti=="UPIIZ"){
 
