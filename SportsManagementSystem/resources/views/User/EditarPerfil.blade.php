@@ -57,19 +57,19 @@
         <div class="{{$classSize}}">
             <fieldset class="form-group">
                 <label class="form-label" for="exampleInputDisabled2">Nombre</label>
-                    {!!Form::text('nombre', null, ['class'=>'form-control', 'placeholder'=> $user->nombre, 'id'=>'nombre'])!!}
+                    {!!Form::text('nombre', $user->nombre, ['class'=>'form-control', 'id'=>'nombre'])!!}
             </fieldset>
         </div>
         <div class="{{$classSize}}">
             <fieldset class="form-group">
                 <label class="form-label" for="exampleInputDisabled2">Apellido Paterno</label>
-                    {!!Form::text('apellidoPaterno', null, ['class'=>'form-control', 'placeholder'=> $user->apellidoPaterno, 'id'=>'ap'])!!}
+                    {!!Form::text('apellidoPaterno', $user->apellidoPaterno, ['class'=>'form-control', 'id'=>'ap'])!!}
             </fieldset>
         </div>
         <div class="{{$classSize}}">
             <fieldset class="form-group">
                 <label class="form-label" for="exampleInputDisabled2">Apellido Materno</label>
-                    {!!Form::text('apellidoMaterno', null, ['class'=>'form-control', 'placeholder'=> $user->apellidoMaterno, 'id'=>'am'])!!}
+                    {!!Form::text('apellidoMaterno', $user->apellidoMaterno, ['class'=>'form-control', 'id'=>'am'])!!}
             </fieldset>
         </div>
     </div>
@@ -77,20 +77,20 @@
         <div class="{{$classSize}}">
             <fieldset class="form-group">
                 <label class="form-label" for="exampleInputDisabled2">Boleta</label>
-                    {!!Form::text('boleta', null, ['class'=>'form-control', 'placeholder'=>$user->boleta, 'id'=>'bo'])!!}
+                    {!!Form::text('boleta', $user->boleta, ['class'=>'form-control', 'id'=>'bo'])!!}
             </fieldset>
         </div>
         <div class="{{$classSize}}">
             <fieldset class="form-group">
                 <label class="form-label" for="exampleInputDisabled2">Email</label>
-                    {!!Form::email('email', null, ['class'=>'form-control', 'placeholder'=>$user->email, 'id'=>'email'])!!}	
+                    {!!Form::email('email', $user->email, ['class'=>'form-control', 'id'=>'email'])!!}
             </fieldset>
         </div>
-        
+
         <div class="{{$classSize}}">
             <fieldset class="form-group">
                 <label class="form-label" for="exampleInputDisabled2">Teléfono</label>
-                    {!!Form::text('telefono', null, ['class'=>'form-control', 'placeholder'=>$student->telefono, 'id'=>'tel'])!!}
+                    {!!Form::text('telefono', $student->telefono, ['class'=>'form-control', 'id'=>'tel'])!!}
             </fieldset>
         </div>
     </div>
@@ -113,17 +113,17 @@
 
     <script>
     $(document).ready(function() {
-        String.prototype.capitalizar = function(){                                
+        String.prototype.capitalizar = function(){
             return this.toLowerCase().replace( /\b\w/g, function (m) {
                 return m.toUpperCase();
             });
         };
-        
+
         var nombre = $(document.getElementById('nombre'));
         var ap = $(document.getElementById('ap'));
         var am = $(document.getElementById('am'));
         var bo = $(document.getElementById('bo'));
-        
+
         nombre.focusout(function(){
                     $(this).val($(this).val().capitalizar());
                 });
@@ -135,7 +135,7 @@
                 });
         bo.focusout(function(){
                     $(this).val($(this).val().toUpperCase());
-                });           
+                });
     });
     </script>
 
