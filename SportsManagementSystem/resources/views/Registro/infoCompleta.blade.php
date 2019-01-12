@@ -45,7 +45,7 @@
 <style>
 #nombre,#apellidoPaterno,#apellidoMaterno,#nombreTaller{
   text-transform: capitalize;
-} 
+}
 </style>
 
 @stop
@@ -82,11 +82,11 @@
                   <div class="{{$classSizeForms}}">
                     <fieldset class="form-group">
                       <label class="form-label">Sexo</label>
-                        {!!Form::select('sexo',$sexos, 0, ['class'=>'bootstrap-select bootstrap-select-arrow form-control','id'=>'sexo'])!!}   
+                        {!!Form::select('sexo',$sexos, 0, ['class'=>'bootstrap-select bootstrap-select-arrow form-control','id'=>'sexo'])!!}
                     </fieldset>
                   </div>
                 </div>
-                
+
                 <div class="row">
                   <div class="{{$classSizeForms}}">
                     <fieldset class="form-group">
@@ -98,7 +98,7 @@
                 <div class="row">
                 <div class="{{$classSizeForms}}">
                     <fieldset class="form-group">
-                      <label class="form-label">Sexo</label>
+                      <label class="form-label">Telefono</label>
                        {!!Form::text('telefono', null, ['class'=>'form-control','placeholder'=>'Telefono', 'id'=>'telefono'])!!}
                     </fieldset>
                   </div>
@@ -168,7 +168,7 @@
                   </div>
                   <div class="{{$classSizeForms}} immsOnly">
                     <fieldset class="form-group">
-                      
+
                     </fieldset>
                   </div>
                   <div class="{{$classSizeForms}}">
@@ -245,7 +245,7 @@
                                 </div>
                               </div>
                               <!--Bloque Oculto-->
-                        
+
                               <!--Bloque Oculto-->
                               <div id="tlistM" class="col-sm-12" style="display:none;">
                                 <h5 class="m-t-lg with-border">CECyT</h5>
@@ -255,20 +255,20 @@
                                            {!!Form::select('tlistac',$tlistac, 0, ['class'=>'bootstrap-select bootstrap-select-arrow form-control', 'placeholder'=>'Seleccionar carrera','id'=>'tlistac'])!!}
                                       </fieldset>
                                 </div>
-                                
+
                               </div>
                               <!--Bloque Oculto-->
                         </fieldset>
-                        
+
                         <div>
                             <fieldset class="form-group">
-                                <label class="form-label">Semestre</label>   
+                                <label class="form-label">Semestre</label>
                                     {!!Form::number('semestre', null, ['class'=>'form-control','placeholder'=>'Semestre','id'=>'semestre'])!!}
                             </fieldset>
                         </div>
                         <div>
                             <fieldset class="form-group">
-                                <label class="form-label">Grupo</label>   
+                                <label class="form-label">Grupo</label>
                                     {!!Form::text('grupo', null, ['class'=>'form-control','placeholder'=>'1CM1','id'=>'grupo'])!!}
                             </fieldset>
                         </div>
@@ -279,9 +279,9 @@
                               </fieldset>
                         </div>
                     </div>
-                    
-                   
-                                
+
+
+
                 </div>
 
                 <br/>
@@ -329,11 +329,11 @@ Registro
         //--- Datos Personales
         $('#edad').mask('00', {placeholder: "Edad"});
         $('#edad').mask('000 000 0000', {placeholder: "Edad"});
-        
-        
+
+
         //--- Datos de domicilio
-        var calle = $(document.getElementById('calle'));  
-        var colonia = $(document.getElementById('colonia'));  
+        var calle = $(document.getElementById('calle'));
+        var colonia = $(document.getElementById('colonia'));
 
         calle.focusout(function(){
                     $(this).val($(this).val().firstUpper());
@@ -344,9 +344,9 @@ Registro
                     $(this).val($(this).val().firstUpper());
                 });
         $('#cp').mask('00000', {placeholder: "Código Postal"});
-        
+
         //--- Datos de Academia
-        var grupo = $(document.getElementById('grupo'));  
+        var grupo = $(document.getElementById('grupo'));
         $('#semestre').mask('00', {placeholder: "Semestre:"});
         grupo.focusout(function(){
                     $(this).val($(this).val().toUpperCase());
