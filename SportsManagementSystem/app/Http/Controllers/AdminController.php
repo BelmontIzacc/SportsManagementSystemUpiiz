@@ -185,18 +185,27 @@ class AdminController extends Controller
         $dateFormated2 = Carbon::createFromFormat($input2, $date2)->format($output2);
 
         $dias=" ";
+        $i=0;
+        $tu = count($request->dia);
         foreach($request->dia as $d){
             //$dias = $dias.' , '.$d;
             if($d=='0'){
-                $dias='Lunes';
+                $dias='lunes';
             }else if ($d=='1') {
-                $dias=$dias.',Martes';
+                $dias=$dias.'martes';
             }else if ($d=='2') {
-                $dias=$dias.',Miercoles';
+                $dias=$dias.'miercoles';
             }else if ($d=='3') {
-                $dias=$dias.',Jueves';
+                $dias=$dias.'jueves';
             }else if ($d=='4') {
-                $dias=$dias.',Viernes';
+                $dias=$dias.'viernes';
+            }
+
+            $i=$i+1;
+            if($tu!=$i){
+                $dias=$dias.',';
+            }else{
+                
             }
         }
 
@@ -259,18 +268,27 @@ class AdminController extends Controller
         $dateFormated2 = Carbon::createFromFormat($input2, $date2)->format($output2);
 
         $dias=" ";
+        $i=0;
+        $tu = count($request->dia);
         foreach($request->dia as $d){
             //$dias = $dias.' , '.$d;
             if($d=='0'){
-                $dias='Lunes';
+                $dias='lunes';
             }else if ($d=='1') {
-                $dias=$dias.',Martes';
+                $dias=$dias.'martes';
             }else if ($d=='2') {
-                $dias=$dias.',Miercoles';
+                $dias=$dias.'miercoles';
             }else if ($d=='3') {
-                $dias=$dias.',Jueves';
+                $dias=$dias.'jueves';
             }else if ($d=='4') {
-                $dias=$dias.',Viernes';
+                $dias=$dias.'viernes';
+            }
+
+            $i=$i+1;
+            if($tu!=$i){
+                $dias=$dias.',';
+            }else{
+                
             }
         }
 
@@ -1821,4 +1839,177 @@ class AdminController extends Controller
         return $dias[$dia]." dias de ".$meses[$mes]." de ".$dias[substr($anio,-4,1)]." mil".$cientos[substr($anio,-3,1)].$dias[$auxAnio];
     }
 
+    public function editTaller($id)
+    {
+        $index = 1;
+
+        $taller = \App\taller::find($id);
+        $inscripcion = \App\inscripcion::where('taller_id',$id)->get();
+        $total = count($inscripcion);
+        $tilista = \App\tipo::lists('nombre','id');
+        $coord = \App\User::where('tipo','!=',2)->lists('boleta','id');
+        $Pcoord = \App\User::where('permisos', 1)->lists('boleta','id');
+
+        $unico = explode(",", $taller->dias);
+        $tu = count($unico);
+        $i=1;
+        $j=0;
+        
+        $dias="";
+        $array = array();
+
+        foreach($unico as $u){
+            //$dias = $dias.' , '.$d;
+            if($u=='lunes'){
+                $dias='0';
+                $array[$j] = 0;
+            }else if ($u=='martes') {
+                $dias=$dias.'1';
+                $array[$j] = 1;
+            }else if ($u=='miercoles') {
+                $dias=$dias.'2';
+                $array[$j] = 2;
+            }else if ($u=='jueves') {
+                $dias=$dias.'3';
+                $array[$j] = 3;
+            }else if ($u=='viernes') {
+                $dias=$dias.'4';
+                $array[$j] = 4;
+            }
+
+            $i=$i+1;
+            $j=$j+1;
+
+            if($tu!=$i){
+
+            }else{
+               $dias=$dias.','; 
+            }
+
+        }
+
+        $input = 'Y-m-d';
+        $date = $taller->fechaInicio;
+        $output = 'd-m-Y'; 
+        $dF = Carbon::createFromFormat($input, $date)->format($output);
+
+        $input2 = 'Y-m-d';
+        $date2 = $taller->fechaFin;
+        $output2 = 'd-m-Y'; 
+        $dF2 = Carbon::createFromFormat($input2, $date2)->format($output2);
+
+        return view('Admin.editTaller', [
+            'index'=>$index,
+            'taller'=>$taller,
+            'total' => $total,
+            'tilista' => $tilista,
+            'coord' => $coord,
+            'Pcoord' => $Pcoord,
+            'tDi' =>$array,
+            'dF' => $dF,
+            'dF2' => $dF2,
+        ]);
+    }
+
+    public function postEdit(Request $request)
+    {
+        $this->validate($request, [
+            'nombre' => 'required',
+            'duracion' => 'required',
+            'tipo' => 'required',
+            'dia' => 'required',
+            'lugar' => 'required',
+            'Date1'=>'required',
+            'Date2'=>'required',
+            'taller'=>'required',
+            'descri' =>'required',
+        ]);
+
+        $input = 'd-m-Y';
+        $date = $request->input('Date1');
+        $output = 'Y-m-d';
+
+        $input2 = 'd-m-Y';
+        $date2 = $request->input('Date2');
+        $output2 = 'Y-m-d';
+
+        $dateFormated = Carbon::createFromFormat($input, $date)->format($output);
+        $dateFormated2 = Carbon::createFromFormat($input2, $date2)->format($output2);
+
+        $dias=" ";
+        $i=0;
+        $tu = count($request->dia);
+        foreach($request->dia as $d){
+            //$dias = $dias.' , '.$d;
+            if($d=='0'){
+                $dias='lunes';
+            }else if ($d=='1') {
+                $dias=$dias.'martes';
+            }else if ($d=='2') {
+                $dias=$dias.'miercoles';
+            }else if ($d=='3') {
+                $dias=$dias.'jueves';
+            }else if ($d=='4') {
+                $dias=$dias.'viernes';
+            }
+
+            $i=$i+1;
+            if($tu!=$i){
+                $dias=$dias.',';
+            }else{
+                
+            }
+        }
+
+       $taller = \App\taller::find($request->idTaller);
+       $taller->update([
+            'nombre' =>$request->nombre,
+            'fechaInicio' =>$dateFormated,
+            'fechaFin'=>$dateFormated2,
+            'duracion' =>$request->duracion,
+            'descripcion'=>$request->descri,
+            'status' => $request->status,
+            'lugar' => $request->lugar,
+            'dias' => $dias,
+            'tipo_id' => $request->tipo,
+            'descripcion' => $request->descri,
+            ]);
+
+        $opc_taller = $request->taller;
+
+        if($opc_taller=='si'){
+            $this->validate($request, [
+                //'coordinador'=>'required',
+                //'Pcoordinador'=>'required',
+            ]);
+
+            $idc = $request->coordinador;
+            $idPc = $request->Pcoordinador;
+            $val=0;
+            if($idc!=null){
+                $val++;
+            }
+
+            if($idPc!=null){
+                $val++;
+            }
+            //error_log('coordinador : '.$idc.' pcoordinador : '.$idPc.' valor : '.$val);
+
+            if($val==2){
+                $val=0;
+                return back()->withErrors([
+                $request->coordinador => 'Seleccione solo un Coordinador',
+            ]);;
+            }
+            $u =  \App\User::find($request->coordinador);
+            $taller->update([
+                'usuario_id' => $u->id,
+            ]);
+        }
+
+        session()->flash('message', 'Se a editado el taller '.$request->nombre.' ');
+        session()->flash('type', 'success');
+        return redirect('/admin');
+
+    }
 }

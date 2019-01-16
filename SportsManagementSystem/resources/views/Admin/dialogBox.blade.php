@@ -132,7 +132,7 @@ Ej: Acuatico
                     @elseif($variable == 2)
                         Instituciones registrados
                     @elseif($variable == 3)
-                        Talleres registradas
+                        Talleres registrados
                     @elseif($variable == 4)
                         Tipo registrados
                     @elseif($variable == 5)
@@ -209,6 +209,10 @@ Ej: Acuatico
                                                     data-target=".bd-example-modal-sm" onclick="updateInputs('Editar Taller', '{{$institute->nombre}}', 3, {{$institute->id}});">
                                                     <span class="font-icon font-icon-pencil"></span>
                                         </button>
+                                        <div class="font-11 color-blue-grey-lighter uppercase">Avanzado</div>
+                                        <a href="{{asset('/admin/edit/')}}/{{$institute->id}}" class="btn btn-inline btn-sm btn-secondary">
+                                            <span class="font-icon font-icon-list-square"></span>
+                                        </a>
                                     </td>
                                 </tr>
                                 @endforeach

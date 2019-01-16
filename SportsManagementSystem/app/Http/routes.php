@@ -63,6 +63,9 @@ Route::post('/admin/controlPanel/insert/{variable}', 'adminController@insertRegi
 Route::patch('/admin/controlPanel/insert/{variable}', 'adminController@updateRegister');
 Route::delete('/admin/controlPanel/insert/{variable}', 'adminController@deleteRegister');
 
+Route::get('/admin/edit/{variable}', 'adminController@editTaller');
+Route::post('admin/edit/{variable}', 'adminController@postEdit');
+
 Route::get('/admin/controlPanel/special/select', 'adminController@controlspecial');
 Route::post('/admin/controlPanel/special/select', 'adminController@controlSpecialGet');
 
