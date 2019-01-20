@@ -1,4 +1,4 @@
-@extends('User.layout')
+@extends('Coord.layout')
 <?php
   $classSizeForms = "col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2";
 ?>
@@ -14,6 +14,7 @@
 @section('popUp')
 @stop
 @section('content')
+
 <div class="text-center">
     <h3 class="m-t-lg with-border">Bienvenidos al sistema de talleres de UPIIZ</h3>
 </div>
@@ -36,7 +37,7 @@
                         <p class="gallery-item-title">{{$t->nombre}}</p>
                         <p>{{$t->usuario}}</p>
                         <div class="btn-group">
-                            <a class="btn" href="{{asset('/user/inscripcion/taller/')}}/{{$t->id}}">
+                            <a class="btn" href="{{asset('/coord/user/inscripcion/taller/')}}/{{$t->id}}">
                                 <i class="font-icon font-icon-eye"></i>
                             </a>
                         </div>

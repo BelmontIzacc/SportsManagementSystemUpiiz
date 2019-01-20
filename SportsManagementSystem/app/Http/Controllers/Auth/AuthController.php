@@ -11,6 +11,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 
+use Carbon\Carbon;
+    
 class AuthController extends Controller
 {
     /*
@@ -95,7 +97,25 @@ class AuthController extends Controller
 
         $index = 4;
 
-        return view('auth.login', ['index'=>$index]);
+        /////// control de registro al sistema
+
+        $dateSE = \App\inicioFin::all();
+        $dateA = Carbon::now();
+        $dateA = $dateA->format('Y-m-d');
+
+        
+
+         $fecha_inicio = strtotime($dateSE->find(1)->fechaInicio);
+         $fecha_fin = strtotime($dateSE->find(1)->fechaFin);
+         $fecha = strtotime($dateA);
+
+         $valor;
+         if(($fecha >= $fecha_inicio) && ($fecha <= $fecha_fin))
+            $valor=1;
+         else
+             $valor=2;
+
+        return view('auth.login', ['index'=>$index, 'valor'=>$valor]);
     }
 
     public function postLogin(Request $request)

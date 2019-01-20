@@ -48,6 +48,42 @@
 		        </div>
 		        @endunless
 		    </div>
+            <div class="widget-user-stat">
+                <div class="item">
+                    <div class="number">{{$fechaI}}</div>
+                    <div class="caption">Inicia</div>
+                </div>
+
+                <div class="item">
+                    <div class="number">{{$fechaF}}</div>
+                    <div class="caption">Termina</div>
+                </div>
+
+                @unless($taller->dias == null)
+                <div class="item hidden-md-down">
+                    <div class="number">{{$taller->duracion}} hrs</div>
+                    <div class="caption">Duracion total</div>
+                </div>
+                @endunless
+            </div>
+
+            <div class="widget-user-stat">
+                @unless($taller->status == null)
+                </br>
+                    <div class="number">
+                        @if($t == 1)
+                            Inactivo
+                        @elseif($t == 2)
+                            Activo
+                        @elseif($t == 3)
+                            Suspendido temporalmente
+                        @elseif($t == 4)
+                            Sin Coordinador
+                        @endif 
+                    </div>
+                    <div class="caption">Estatus</div>
+                @endunless
+            </div>
 		    <div class="widget-user-stat">
 		        @unless($taller->descripcion == null)
 		            <div class="number">{{$taller->descripcion}}</div>

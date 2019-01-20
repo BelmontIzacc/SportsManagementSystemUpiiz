@@ -59,15 +59,61 @@ class UserController extends Controller
         }else{
              $index=1;
              $user = Auth::User();
-             $inscripcion = \App\inscripcion::where('usuario_id',$user->id)->get();
+             $taller = \App\taller::all();
              return view('User.start',[
                         'index' => $index,
                         'user' => $user,
-                        'inscripcion'=> $inscripcion,
+                        'taller'=> $taller,
                     ]);
         }
     }
 
+    public function tallerInfo()
+    {
+         $index=1;
+         $user = Auth::User();
+         $inscripcion = \App\inscripcion::where('usuario_id',$user->id)->get();
+         $total = count($inscripcion);
+         return view('User.tallerInfo',[
+                    'index' => $index,
+                    'user' => $user,
+                    'inscripcion'=> $inscripcion,
+                    'total' => $total,
+                ]);
+    }
+
+    public function tallerInfoRegister($id)
+    {
+         $index=1;
+         $user = Auth::User();
+         $taller = \App\taller::find($id);
+         $inscripcion = \App\inscripcion::where('taller_id',$id)->get();
+         $total = count($inscripcion);
+
+        $input =  'Y-m-d';
+        $date = $taller->fechaInicio;
+        $output = 'd-m-Y';
+
+        $dF = Carbon::createFromFormat($input, $date)->format($output);
+
+        $input2 = 'Y-m-d';
+        $date2 = $taller->fechaFin;
+        $output2 = 'd-m-Y';
+
+        $dF2 = Carbon::createFromFormat($input2, $date2)->format($output2);
+
+        $t = $taller->status; 
+
+         return view('User.tallerRe',[
+                    'index' => $index,
+                    'user' => $user,
+                    'taller'=> $taller,
+                    'total' => $total,
+                    'fechaI' => $dF,
+                    'fechaF' => $dF2,
+                    't' => $t,
+                ]);
+    }
     public function getProfile()
     {
         $index=1;
@@ -168,6 +214,9 @@ class UserController extends Controller
 
 
         $this->validate($request, [
+            'nombre' => 'required',
+            'apellidoP' => 'required',
+            'apellidoM' => 'required',
             'sexo' => 'required',
             'edad' => 'required',
             'telefono' => 'required',
@@ -233,6 +282,9 @@ class UserController extends Controller
         ]);
         }
             $user-> update([
+                'nombre' => $request->nombre,
+                'apellidoPaterno' => $request->apellidoP,
+                'apellidoMaterno' => $request->apellidoM,
                 'boleta' => $request->boleta,
                 'email'  => $request->email
             ]);
@@ -280,12 +332,49 @@ class UserController extends Controller
         $index = 1;
         $user = Auth::User();
         $taller = \App\taller::find($id);
+        $inscripcion = \App\inscripcion::where('taller_id',$id)->get();
+        $total = count($inscripcion);
 
+        $input =  'Y-m-d';
+        $date = $taller->fechaInicio;
+        $output = 'd-m-Y';
 
+        $dF = Carbon::createFromFormat($input, $date)->format($output);
+
+        $input2 = 'Y-m-d';
+        $date2 = $taller->fechaFin;
+        $output2 = 'd-m-Y';
+
+        $dF2 = Carbon::createFromFormat($input2, $date2)->format($output2);
+
+        /////// control de registro de taller
+
+        $dateSE = \App\inicioFin::all();
+        $dateA = Carbon::now();
+        $dateA = $dateA->format('Y-m-d');
+
+        
+
+         $fecha_inicio = strtotime($dateSE->find(2)->fechaInicio);
+         $fecha_fin = strtotime($dateSE->find(2)->fechaFin);
+         $fecha = strtotime($dateA);
+
+         $valor;
+         if(($fecha >= $fecha_inicio) && ($fecha <= $fecha_fin))
+            $valor=1;
+         else
+             $valor=2;
+
+        $t = $taller->status; 
         return view('User.taller', [
             'index'=>$index,
             'taller'=>$taller,
             'user'=>$user,
+            'total' => $total,
+            'fechaI' => $dF,
+            'fechaF' => $dF2,
+            'valor' => $valor,
+            't' => $t,
         ]);
     }
 
@@ -295,38 +384,26 @@ class UserController extends Controller
         $taller = \App\taller::find($id);
         $inscripcion = \App\inscripcion::where('taller_id',$id)->get();
 
-        $mensaje = "";
 
-        switch($taller->status) {
-            case 2:
-            case 4:
-                $ins=0;
+                $insc=0;
                 foreach ($inscripcion as $ins) {
                     if($ins->usuario_id == $user->id) {
-                        $ins = 1;
+                        $insc = 1;
                     }
                 }
-                if($ins==0) {
+                if($insc==0) {
                     \App\inscripcion::create([
                         'usuario_id' => $user->id,
                         'taller_id' => $id
                     ]);
-                    $mensaje = "Inscripcion realizada";
+
                 } else {
-                    $mensaje = "Error: Ya estás inscrito a este taller";
+                    
                 }
 
-                break;
+        session()->flash('message', 'Se a inscrito al taller '.$taller->nombre.' ');
+        session()->flash('type', 'success');
 
-            default:
-                $mensaje = "Error al inscribirte al taller";
-                break;
-        }
-        return view('User.resultado',[
-            'index' => 1,
-            'user' => $user,
-            'mensaje' => $mensaje,
-            'student'=> \App\informacion::where('usuario_id','=',$user->id)->first(),
-        ]);
+        return redirect('/user');
     }
 }

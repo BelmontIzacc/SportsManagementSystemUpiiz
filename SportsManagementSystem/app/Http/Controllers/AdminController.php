@@ -1449,8 +1449,8 @@ class AdminController extends Controller
 
     public function controlRegister(){
         $index = 4;
-        $RS = \App\inicioFin::where('id',1)->get();
-        $RT = \App\inicioFin::where('id',2)->get();
+        $RS = \App\inicioFin::where('id',1)->get(); //sistema
+        $RT = \App\inicioFin::where('id',2)->get(); //talleres
 
         $dRS1;
         $dRS2;

@@ -88,6 +88,12 @@
 	    </div>
 	</br>
 	    <ul class="side-menu-list">
+	    	<li class="blue">
+                <span class="lbl">{{$user}}</span>
+	        </li>
+	    	<li class="blue">
+                <span class="lbl">{{$user->boleta}}</span>
+	        </li>
 			</br>
 			</br>
 			</br>

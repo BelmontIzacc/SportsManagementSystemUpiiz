@@ -1,4 +1,4 @@
-@extends('User.layout')
+@extends('Coord.layout')
 <?php
   $classSizeForms = "col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2";
 
@@ -108,7 +108,7 @@
 
                 <div class="row text-center">
                     <div class="col-lg-12 col-md-12">
-                    {!!Form::open(array('url'=>'/user/inscripcion/taller/'.$taller->id, 'class'=>'patata', 'method'=>'post'))!!}
+                    {!!Form::open(array('url'=>'/coord/user/inscripcion/taller/'.$taller->id, 'class'=>'patata', 'method'=>'post'))!!}
                         <label class="form-label">¿Deseas entrar al Taller:  {{$taller->nombre}}?</label>
                         <button type="submit" class="btn btn-rounded btn-inline" 
                             @if($valor == 2)

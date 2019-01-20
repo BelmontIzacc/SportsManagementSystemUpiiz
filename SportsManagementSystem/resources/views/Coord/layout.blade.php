@@ -49,9 +49,9 @@
 	                            <img src="{{asset('/Template/img/Stickmen/LogoDeporte.png')}}" alt="" style="height:40px;width:auto;">
 	                        </button>
 	                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dd-user-menu">
-	                            <a class="dropdown-item" href="{{asset('/user/Info')}}"><span class="font-icon glyphicon glyphicon-user"></span>Perfil</a>
+	                            <a class="dropdown-item" href="{{asset('/coord/user/Info')}}"><span class="font-icon glyphicon glyphicon-user"></span>Perfil</a>
 	                            <div class="dropdown-divider"></div>
-	                            <a class="dropdown-item" href="{{asset('/user')}}"><span class="font-icon font-icon-home"></span>Hogar</a>
+	                            <a class="dropdown-item" href="{{asset('/coord/User')}}"><span class="font-icon font-icon-home"></span>Hogar</a>
 	                            <a class="dropdown-item" href="{{asset('/logout')}}"><span class="font-icon glyphicon glyphicon-log-out"></span>Salir</a>
 	                        </div>
 	                    </div>
@@ -85,9 +85,15 @@
 	        </div>
 	    </div>
 	    <ul class="side-menu-list">
+	    	<li class="blue">
+                <span class="lbl">{{$user}}</span>
+	        </li>
+	    	<li class="blue">
+                <span class="lbl">{{$user->boleta}}</span>
+	        </li>
 	    </br>
 	        <li class="blue">
-	            <a href="{{asset('/user/taller')}}">
+	            <a href="{{asset('/coord/user/taller')}}">
 	                <i class="font-icon font-icon-user"></i>
 	                <span class="lbl">Talleres en los que estoy registrado</span>
 	            </a>

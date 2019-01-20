@@ -44,8 +44,24 @@
                 </div>
                 <button type="submit" class="btn btn-rounded">Entrar</button>
                 
-                <p class="sign-note">¿Nuevo en el sitio? <a href="/registro/RegistroUsuario">Registrarme</a></p>
-                
+                <p class="sign-note">¿Nuevo en el sitio? <a  
+                    @if($valor == 2)
+                        disabled=""
+                    @elseif($valor == 1)
+                        href="/registro/RegistroUsuario"
+                    @endif 
+                >Registrarme</a></p>
+                @if($valor == 2)
+                    <div class="alert alert-danger alert-icon alert-close alert-dismissible fade in" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                            <i class="font-icon font-icon-warning"></i>
+                            Se a pasado el tiempo de registro al sistema, para mas informacion ir con el encargado del area de deportes.
+                    </div>
+                @elseif($valor == 1)
+                    
+                @endif 
             {!!Form::close()!!}
         </div>
     </div>

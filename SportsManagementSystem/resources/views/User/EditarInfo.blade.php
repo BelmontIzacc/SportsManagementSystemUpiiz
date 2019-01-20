@@ -72,6 +72,24 @@
     <h5 class="m-t-lg with-border">Datos personales</h5>
     <form class="patata">
     <div class="row">
+        <div class="{{$classSize}}">
+            <fieldset class="form-group">
+              <label class="form-label">Nombre</label>
+              {!!Form::text('nombre', $user->nombre, ['class'=>'form-control', 'id'=>'nombre','placeholder'=>'$user->nombre'])!!}
+            </fieldset>
+        </div>
+        <div class="{{$classSize}}">
+            <fieldset class="form-group">
+              <label class="form-label">Nombre</label>
+              {!!Form::text('apellidoP', $user->apellidoPaterno, ['class'=>'form-control', 'id'=>'nombre','placeholder'=>'$user->apellidoPaterno'])!!}
+            </fieldset>
+        </div>
+        <div class="{{$classSize}}">
+            <fieldset class="form-group">
+              <label class="form-label">Nombre</label>
+              {!!Form::text('apellidoM', $user->apellidoMaterno, ['class'=>'form-control', 'id'=>'nombre','placeholder'=>'$user->apellidoMaterno'])!!}
+            </fieldset>
+        </div>
         @unless($info->usuario_id == null)
         <div class="{{$classSize}}">
             <fieldset class="form-group">
@@ -99,14 +117,12 @@
         @endunless
         </div>
     <div class="row">
-    @unless($user->email == null)
     	<div class="{{$classSize}}">
             <fieldset class="form-group">
                 <label class="form-label" for="exampleInputDisabled2">Correo</label>
                 {!!Form::email('email', $user->email, ['class'=>'form-control', 'id'=>'email'])!!}
             </fieldset>
         </div>
-        @endunless
     </div>
 
     <h5 class="m-t-lg with-border">Datos de escolares</h5>
@@ -123,10 +139,23 @@
             <fieldset class="form-group">
                 <label class="form-label" for="exampleInputDisabled2">Platel</label>
                 <div class="rdio rdio-primary">
-                    <input type="radio" name="insti" value="UPIIZ" id="tlist" onclick="mostrar();"> UPIIZ
+                    <?php $inst = $info->institucion_id ?> 
+                    <input type="radio" name="insti" value="UPIIZ" id="tlist" onclick="mostrar();" 
+                        @if($inst == 1)
+                            checked=""
+                        @else 
+
+                        @endif
+                    > UPIIZ
                 </div>
                 <div class="rdio rdio-primary">
-                      <input type="radio" name="insti" value="Cecyt" id="tlistt" onclick="mostrar();"> CECyT
+                      <input type="radio" name="insti" value="Cecyt" id="tlistt" onclick="mostrar();"
+                        @if($inst == 2)
+                            checked=""
+                        @else 
+
+                        @endif
+                      > CECyT
                 </div>
             </fieldset>
         </div>
@@ -134,18 +163,18 @@
         @unless($info->carrera->nombre == null)
 
          <!--Bloque Oculto-->
-
+        <?php $ins = $info->carrera_id ?>
         <div id="tlistF" class="{{$classSize}}" style="display:none;">
             <fieldset class="form-group">
                 <label class="form-label" for="exampleInputDisabled2">Carrera</label>
-                {!!Form::select('tlista',$tlista, 0, ['class'=>'bootstrap-select bootstrap-select-arrow form-control', 'placeholder'=>'Seleccionar carrera','id'=>'tlista'])!!}
+                {!!Form::select('tlista',$tlista, $ins, ['class'=>'bootstrap-select bootstrap-select-arrow form-control', 'placeholder'=>'Seleccionar carrera','id'=>'tlista'])!!}
             </fieldset>
         </div>
                               <!--Bloque Oculto-->
         <div id="tlistM" class="{{$classSize}}" style="display:none;">
             <fieldset class="form-group">
                 <label class="form-label" for="exampleInputDisabled2">Carrera</label>
-                {!!Form::select('tlistac',$tlistac, 0, ['class'=>'bootstrap-select bootstrap-select-arrow form-control', 'placeholder'=>'Seleccionar carrera','id'=>'tlistac'])!!}
+                {!!Form::select('tlistac',$tlistac, $ins, ['class'=>'bootstrap-select bootstrap-select-arrow form-control', 'placeholder'=>'Seleccionar carrera','id'=>'tlistac'])!!}
             </fieldset>
         </div>
                               <!--Bloque Oculto-->
@@ -157,7 +186,8 @@
         <div class="{{$classSize}}">
             <fieldset class="form-group">
                 <label class="form-label" for="exampleInputDisabled2">Semestre</label>
-                {!!Form::number('semestre', null, ['class'=>'form-control', 'placeholder'=>$info->semestre, 'id'=>'semestre'])!!}
+                <?php $sem = $info->semestre ?>
+                {!!Form::number('semestre', $sem, ['class'=>'form-control', 'placeholder'=>$info->semestre, 'id'=>'semestre'])!!}
             </fieldset>
         </div>
         @endunless
@@ -165,7 +195,8 @@
         <div class="{{$classSize}}">
             <fieldset class="form-group">
                 <label class="form-label" for="exampleInputDisabled2">Grupo</label>
-                {!!Form::text('grupo', null, ['class'=>'form-control', 'placeholder'=>$info->grupo, 'id'=>'grupo'])!!}
+                <?php $g = $info->grupo ?>
+                {!!Form::text('grupo', $g, ['class'=>'form-control', 'placeholder'=>$info->grupo, 'id'=>'grupo'])!!}
             </fieldset>
         </div>
         @endunless
@@ -186,7 +217,7 @@
         <div class="{{$classSize}}">
             <fieldset class="form-group">
                 <label class="form-label" for="exampleInputDisabled2">Número exterior</label>
-                {!!Form::number('ext', $info->numExterior, ['class'=>'form-control', 'id'=>'exterior'])!!}
+                {!!Form::text('ext', $info->numExterior, ['class'=>'form-control', 'id'=>'exterior'])!!}
             </fieldset>
         </div>
         @endunless
@@ -194,7 +225,7 @@
         <div class="{{$classSize}}">
             <fieldset class="form-group">
                 <label class="form-label" for="exampleInputDisabled2">Número interior</label>
-                {!!Form::number('inter', $info->numInterior, ['class'=>'form-control', 'id'=>'interior'])!!}
+                {!!Form::text('inter', $info->numInterior, ['class'=>'form-control', 'id'=>'interior'])!!}
             </fieldset>
         </div>
         @endunless
@@ -215,18 +246,21 @@
         </div>
         @endunless
     </div>
-
-    <div class="col-lg-3 col-md-3">
-        <button type="submit" class="btn btn-rounded btn-correct sign-up">Enviar</button>
-    </div>
-
-    </form>
 </div> <!--End box typical-->
 </div>
 
 <!-- end profile -->
 
+<div class="box-typical box-typical-padding">
 
+    <div class="row text-center">
+        <div class="col-lg-12 col-md-12">
+            <button type="submit" class="btn btn-rounded btn-correct sign-up">Confirmar</button>
+        </div>
+    </div>
+</div>
+
+{!!Form::close()!!}
 @stop
 @section('scripts')
 

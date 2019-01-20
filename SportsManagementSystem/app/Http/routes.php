@@ -88,6 +88,9 @@ Route::get('/user/Profile','UserController@getProfile');
 Route::get('/user/EditProfile','UserController@getEdit');
 Route::post('/user/EditProfile','UserController@postEdit');
 
+Route::get('/user/taller','UserController@tallerInfo');
+Route::get('/user/taller/registro/{id}','UserController@tallerInfoRegister');
+
 Route::get('/user/Info','UserController@getInfo');
 Route::get('/user/EditInfo','UserController@getEditInfo');
 Route::post('/user/EditInfo','UserController@postEditInfo');
@@ -113,6 +116,16 @@ Route::patch('/coord/profile', 'CoordController@editProfile');
 Route::get('/coord/taller/{id}', 'CoordController@mostrarTaller');
 Route::get('/coord/taller/{id}/studio/list', 'CoordController@asistenciaTaller');
 Route::post('/coord/taller/{id}/studio/list', 'CoordController@guardarAsistencia');
+
+Route::get('/coord/user/inscripcion/taller/{id}', 'CoordController@showTaller');
+Route::post('/coord/user/inscripcion/taller/{id}', 'CoordController@postShowTaller');
+
+Route::get('/coord/user/taller','CoordController@tallerInfo');
+Route::get('/coord/user/taller/registro/{id}','CoordController@tallerInfoRegister');
+
+Route::get('/coord/user/Info','CoordController@getInfo');
+Route::get('/coord/user/EditInfo','CoordController@getEditInfo');
+Route::post('/coord/user/EditInfo','CoordController@postEditInfo');
 //-----------------------------------------------------------------------------------//
 // Password reset link request routes...
 Route::get('/password/email', 'Auth\PasswordController@getEmail');

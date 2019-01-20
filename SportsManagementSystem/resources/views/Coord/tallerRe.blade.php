@@ -1,14 +1,6 @@
-@extends('User.layout')
+@extends('Coord.layout')
 <?php
   $classSizeForms = "col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2";
-
-
-      $status = array(
-        'Inactivo',
-        'Activo',
-        'Suspendido temporalmente',
-        'Sin Coordinador',
-    );
 ?>
 
 @section('title')
@@ -108,22 +100,8 @@
 
                 <div class="row text-center">
                     <div class="col-lg-12 col-md-12">
-                    {!!Form::open(array('url'=>'/user/inscripcion/taller/'.$taller->id, 'class'=>'patata', 'method'=>'post'))!!}
-                        <label class="form-label">¿Deseas entrar al Taller:  {{$taller->nombre}}?</label>
-                        <button type="submit" class="btn btn-rounded btn-inline" 
-                            @if($valor == 2)
-                                disabled=""
-                            @elseif($valor == 1)
-                                
-                            @endif 
-                        > Sí </button>
-                    {!!Form::close()!!}
+                        Si deseas salir del taller, favor de ir con el encargado del area de deportes.
                     </div>
-                            @if($valor == 2)
-                                Se a pasado el tiempo de registro del taller, para más informacion ir con el encargado del area de deporte.
-                            @elseif($valor == 1)
-                                
-                            @endif 
                 </div>
             </div>
         </section>
