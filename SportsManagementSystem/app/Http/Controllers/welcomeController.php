@@ -102,4 +102,14 @@ class welcomeController extends Controller
     {
         //
     }
+    
+     public function creditos()
+    {
+        $index=4;
+        return view('Credits.Creditos', [
+        'index'=>$index,
+        ]);
+        
+        return redirect('/');
+    }
 }
