@@ -249,42 +249,90 @@
                     </ul>
                 </div>
 
-                <h5 class="m-t-lg with-border">Llenado de información Escolar</h5>
+                <h5 class="m-t-lg with-border">Coordinador</h5>
                 <div class="row">
-                  <div class="{{$classSizeForms}}">
-                    <fieldset class="form-group">
-                    <label class="form-label">Plantel</label>
-                      {!!Form::select('plantel',$inst, 0, ['class'=>'select2 form-control', 'placeholder'=>'Selecciona un Plantel','id'=>'plantel'])!!}
-                    </fieldset>
-                  </div>
-                  <div class="{{$classSizeForms}}">
-                    <fieldset class="form-group">
-                    <label class="form-label">Carrera/Bachiller/Cargo</label>
-                      {!!Form::select('carrera',$carrera, 0, ['class'=>'select2 form-control', 'placeholder'=>'Selecciona una Carrera/Bachiller','id'=>'carrera'])!!}
-                    </fieldset>
-                  </div>
-                  <div class="{{$classSizeForms}}">
-                    <fieldset class="form-group">
-                      <label class="form-label">Semestre</label>
-                        {!!Form::number('semestre',0, ['class'=>'form-control', 'placeholder'=>'Semestre actual', 'id'=>'semestre'])!!}  
-                    </fieldset>
-                  </div>
-                  <div class="{{$classSizeForms}}">
-                    <fieldset class="form-group">
-                      <label class="form-label">Grupo</label>
-                        {!!Form::text('grupo',' ', ['class'=>'form-control', 'placeholder'=>'Grupo actual', 'id'=>'grupo'])!!}  
-                    </fieldset>
-                  </div>
-                  <div class="{{$classSizeForms}}">
-                    <fieldset class="form-group">
+                    <div class="{{$classSizeForms}}">
+                        <fieldset class="form-group">
+                            <label class="form-label"></label>
+                            <div class="form-group">
+                              <label class="col-sm-12">¿El coordinador es externo a la institución?</label>
+                              <div class="col-sm-12">
+                                <div class="rdio rdio-primary">
+                                  <input type="radio" name="plantell" value="no" id="splantel" onclick="mostrar2();">
+                                  <label>No</label>
+                                </div>
+                                <div class="rdio rdio-primary">
+                                  <input type="radio" name="plantell" value="si" id="nplantel" onclick="mostrar2();">
+                                  <label>Sí</label>
+                                </div>
+                              </div>
+                            </div>
+                        </fieldset>
+                    </div>
 
-                    </fieldset>
-                  </div>
-                  <div class="{{$classSizeForms}}">
-                    <fieldset class="form-group">
+                    <div class="{{$classSizeForms}}">
+                        <fieldset class="form-group">
+                            <label class="form-label"></label>
+                              <!--Bloque Oculto-->
+                              <div id="lplantelF" style="display:none;">
+                                <div>
+                                  <h5 >Llenado de información Escolar</h5>
+                                  <div class="row">
+                                    <div >
+                                      <fieldset class="form-group">
+                                      <label class="form-label">Plantel</label>
+                                        {!!Form::select('plantel',$inst, 0, ['class'=>'select2 form-control', 'placeholder'=>'Selecciona un Plantel','id'=>'plantel'])!!}
+                                      </fieldset>
+                                    </div>
+                                    <div >
+                                      <fieldset class="form-group">
+                                      <label class="form-label">Carrera/Bachiller/Cargo</label>
+                                        {!!Form::select('carrera',$carrera, 0, ['class'=>'select2 form-control', 'placeholder'=>'Selecciona una Carrera/Bachiller','id'=>'carrera'])!!}
+                                      </fieldset>
+                                    </div>
+                                    <div >
+                                      <fieldset class="form-group">
+                                        <label class="form-label">Semestre</label>
+                                          {!!Form::number('semestre',0, ['class'=>'form-control', 'placeholder'=>'Semestre actual', 'id'=>'semestre'])!!}  
+                                      </fieldset>
+                                    </div>
+                                    <div >
+                                      <fieldset class="form-group">
+                                        <label class="form-label">Grupo</label>
+                                          {!!Form::text('grupo',' ', ['class'=>'form-control', 'placeholder'=>'Grupo actual', 'id'=>'grupo'])!!}  
+                                      </fieldset>
+                                    </div>
+                                    <div class="{{$classSizeForms}}">
+                                      <fieldset class="form-group">
 
-                    </fieldset>
-                  </div>
+                                      </fieldset>
+                                    </div>
+                                    <div class="{{$classSizeForms}}">
+                                      <fieldset class="form-group">
+
+                                      </fieldset>
+                                    </div>
+                                </div>
+                              </div>
+                            </div>
+                              <!--Bloque Oculto-->
+                              <!--Bloque Oculto-->
+                              <div id="lplantelm" class="col-sm-12" style="display:none;">
+                                <h5 class="m-t-lg with-border">Grado de estudios</h5>
+                                  <div>
+                                      <fieldset class="form-group">
+                                      <label class="form-label">Carrera/Bachiller/Cargo</label>
+                                        {!!Form::select('carrera',$carrera, 0, ['class'=>'select2 form-control', 'placeholder'=>'Selecciona una Carrera/Bachiller','id'=>'carrera'])!!}
+                                      </fieldset>
+                                  </div>
+
+                              </div>
+                              <!--Bloque Oculto-->
+                        </fieldset>
+                    </div>
+                </div>
+
+
                 </div>
 
                 <div class="row">
@@ -560,6 +608,27 @@ Registro
         //$('#boleta').mask('0000 00 0000', {placeholder: "Boleta/Numero de Trabajador"});
     });
 
+    function mostrar2(){
+      e = document.getElementById("lplantelF");
+      c = document.getElementById("splantel");
+
+      a = document.getElementById("lplantelm");
+      l = document.getElementById("nplantel");
+
+      if (c.checked) {
+        e.style.display = 'block';
+      }
+      else{
+        e.style.display = 'none';
+      }
+
+      if(l.checked){
+        a.style.display = 'block';
+      }else{
+        a.style.display = 'none';
+      }
+    }
+
     function mostrar(){
       e = document.getElementById("tlistF");
       c = document.getElementById("tlist");
@@ -580,7 +649,6 @@ Registro
         a.style.display = 'none';
       }
     }
-
     </script>
 
 @stop

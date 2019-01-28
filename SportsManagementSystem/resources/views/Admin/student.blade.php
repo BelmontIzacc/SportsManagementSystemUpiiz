@@ -32,7 +32,7 @@
             <div class="modal-body">
                 <div class="container">
                     <div class="row">
-                        <div class="col-lg-4 col-lg-offset-1 col-md-5 col-md-offset-1">
+                        <div class="col-lg-6 col-lg-offset-1 col-md-5 col-md-offset-1">
                             <div class="checkbox-toggle">
                                     <input type="checkbox" id="check-toggle-1" name="check-toggle-1" onclick="getValue();"
                                         @if($student->usuario->completado == 1)
@@ -43,9 +43,15 @@
                                     <label for="check-toggle-1">Estatus</label>
                             </div>
                         </div>
-                        <div class="col-lg-4 col-lg-offset-1 col-md-5 col-md-offset-1">
+                        <div class="col-lg-6 col-lg-offset-1 col-md-5 col-md-offset-1">
                             <div class="checkbox-toggle">
-                                <input type="checkbox" id="check-toggle-2" name="check-toggle-2" onclick="getValue2();"
+                                <input 
+                                    @if(($student->usuario->tipo == 3) || ($student->usuario->tipo == 1))
+                                        disabled=""
+                                    @else
+
+                                    @endif
+                                type="checkbox" id="check-toggle-2" name="check-toggle-2" onclick="getValue2();"
                                     @if($student->usuario->permisos == 1)
                                         checked
                                     @else
@@ -54,7 +60,7 @@
                                 <label for="check-toggle-2">Permisos</label>
                             </div>
                         </div>
-                        <div class="col-lg-4 col-lg-offset-1 col-md-5 col-md-offset-1">
+                        <div class="col-lg-6 col-lg-offset-1 col-md-5 col-md-offset-1">
                             <div class="checkbox-toggle">
                                 <input type="checkbox" id="check-toggle-3" name="check-toggle-3" onclick="getValue3();"
                                     @if($student->usuario->tipo == 3)
@@ -63,6 +69,17 @@
                                     @endif
                                 >
                                 <label for="check-toggle-3">Coordinador </label>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-lg-offset-1 col-md-5 col-md-offset-1">
+                            <div class="checkbox-toggle">
+                                <input type="checkbox" id="check-toggle-4" name="check-toggle-4" onclick="getValue4();"
+                                    @if($student->usuario->tipo == 1)
+                                        checked
+                                    @else
+                                    @endif
+                                >
+                                <label for="check-toggle-4">Administrador </label>
                             </div>
                         </div>
                     </div>
@@ -74,6 +91,7 @@
                     <input type="hidden" id="stats" name="stats">
                     <input type="hidden" id="perm" name="perm">
                     <input type="hidden" id="coord" name="coord">
+                    <input type="hidden" id="admin" name="admin">
                     <button type="submit" class="btn btn-rounded btn-primary" id="formi">Guardar cambios</button>
                 </div>
             </div>
@@ -217,6 +235,7 @@
     <div class="widget-user-photo">
         <img src="{{asset('/Template/img/Stickmen/LogoSRDpng2.png')}}" alt="" style="height:130px;width:auto;">
     </div>
+    </br>
     <div class="widget-user-name">
         {{$student->usuario}}
         <i class="font-icon font-icon-award"></i>
@@ -304,13 +323,17 @@
         @endunless
         <div class="{{$classSize}}">
             <fieldset class="form-group">
-                <label class="form-label" for="exampleInputDisabled2">Estatus</label>
+                <label class="form-label" for="exampleInputDisabled2">Permisos</label>
                     @if($student->usuario->permisos == 1)
                          <input type="text" readonly class="form-control" value="Permisos de Coordinador">
                     @else
                          <input type="text" readonly class="form-control" value="Sin Permisos de Coordinador">
                     @endif
             </fieldset>
+            <div class="alert alert-success alert-icon alert-close alert-dismissible fade in" role="alert">
+                <i class="font-icon font-icon-warning"></i>
+                    Los permisos de coordinador permite al usuario impartir o no un taller
+            </div>
         </div>
         @unless($student->usuario->email == null)
     	<div class="{{$classSize}} hidden-lg-up">
@@ -474,6 +497,13 @@
            var the_value = isChecked ? 1 : 0;
            //alert('permisos :'+the_value);
            document.getElementById('coord').value = the_value;
+        }
+
+        function getValue4() {
+           var isChecked = document.getElementById('check-toggle-4').checked;
+           var the_value = isChecked ? 1 : 0;
+           //alert('permisos :'+the_value);
+           document.getElementById('admin').value = the_value;
         }
     </script>
     <script src="{{asset('/Template/js/lib/bootstrap-select/bootstrap-select.min.js')}}"></script>

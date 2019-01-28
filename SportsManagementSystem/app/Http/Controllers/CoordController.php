@@ -567,10 +567,11 @@ class CoordController extends Controller
         $tlista = \App\carrera::where('id','<=',6)->lists('nombre','id');
         $tlistac = \App\carrera::where('id','>',6)->lists('nombre','id');
 
-        return view('User.EditarInfo',[
+        return view('Coord.EditarInfo',[
             'index' => $index,
 
             'user' => $user,
+            'userI' => $user,
 
             'info'=> $info,
 

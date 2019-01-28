@@ -196,7 +196,7 @@
 
     <div class="row text-center">
         <div class="col-lg-12 col-md-12">
-            <a href="/user/EditInfo" class="btn btn-rounded btn-inline btn-warning">Editar info</a>
+            <a href="{{asset('/user/EditInfo')}}" class="btn btn-rounded btn-inline btn-warning">Editar info</a>
         </div>
     </div>
 </div>

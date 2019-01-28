@@ -33,7 +33,7 @@
  @unless($index == 4)
 	<header class="site-header">
 	    <div class="container-fluid">
-	        <a href="#" class="site-logo">
+	        <a href="{{asset('/user')}}" class="site-logo"> 
 	            <img class="hidden-md-down" src="{{asset('/Template/img/Stickmen/LogoSRDpng2.png')}}" alt="" style="height:60px;width:auto;">
 	            <img class="hidden-lg-up" src="{{asset('/Template/img/Stickmen/LogoSRDpng2.png')}}" alt="" >
 	        </a>
@@ -46,7 +46,9 @@
 	                <div class="site-header-shown">
 	                    <div class="dropdown user-menu">
 	                        <button class="dropdown-toggle" id="dd-user-menu" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	                        	<a href="{{asset('/user')}}"> 
 	                            <img src="{{asset('/Template/img/Stickmen/LogoDeporte.png')}}" alt="" style="height:40px;width:auto;">
+	                           	</a>
 	                        </button>
 	                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dd-user-menu">
 	                            <a class="dropdown-item" href="{{asset('/user/Info')}}"><span class="font-icon glyphicon glyphicon-user"></span>Perfil</a>
@@ -81,11 +83,19 @@
 	<nav class="side-menu">
 	    <div class="side-menu-avatar">
 	        <div class="avatar-preview avatar-preview-100">
+	        	<a href="{{asset('/user')}}">
 	            <img src="{{asset('/Template/img/Stickmen/LogoDeporte.png')}}" alt="" style="height:130px;width:auto;">
+	        	</a>
 	        </div>
 	    </div>
 	    <ul class="side-menu-list">
 	    </br>
+	        <li>
+                <span class="lbl">{{$userI}}</span>
+	        </li>
+	        <li>
+                <span class="lbl">{{$userI->boleta}}</span>
+	        </li>
 	        <li class="blue">
 	            <a href="{{asset('/user/taller')}}">
 	                <i class="font-icon font-icon-user"></i>

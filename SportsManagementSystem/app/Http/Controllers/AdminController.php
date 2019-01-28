@@ -38,6 +38,8 @@ class AdminController extends Controller
         $index=1;
         $taller = \App\taller::all();
 
+        $user = Auth::user();
+
         $array = array();
         $i=0;
 
@@ -50,7 +52,8 @@ class AdminController extends Controller
 
         return view('Admin.start',[
             'index' => $index,
-            'taller'=>$taller
+            'taller'=>$taller,
+            'userI' => $user,
         ]);
     }
 
@@ -72,6 +75,7 @@ class AdminController extends Controller
     }
 
     public function postCoord(Request $request){
+
         $this->validate($request, [
             'nombre' => 'required',
             'apellidoPaterno' => 'required',
@@ -85,9 +89,7 @@ class AdminController extends Controller
             'password' => 'required',
             'password2' => 'required',
 
-            'plantel' => 'required',
-            'carrera' => 'required',
-            'semestre' => 'required',
+            'plantell' => 'required',
 
             'col' => 'required',
             'cal' => 'required',
@@ -97,6 +99,20 @@ class AdminController extends Controller
 
             'taller' => 'required',
         ]);
+
+        $lugar = $request->plantell;
+
+        if($lugar == 'si'){
+            $this->validate($request, [
+                'carrera' => 'required',
+            ]);
+        }else if($lugar == 'no'){
+            $this->validate($request, [
+                'plantel' => 'required',
+                'carrera' => 'required',
+                'semestre' => 'required|numeric|between:1,15',
+            ]);
+        }
 
         $user = User::create([
             'nombre' =>$request->nombre,
@@ -125,21 +141,42 @@ class AdminController extends Controller
             $grupo = null;
         }
 
-        \App\informacion::create([
-            'usuario_id' => $user->id,
-            'institucion_id' => $plantel,
-            'semestre' => $semestre,
-            'carrera_id' => $request->carrera,
-            'calle' => $request->cal,
-            'numExterior' => $request->numext,
-            'numInterior' => $request->numin,
-            'colonia' => $request->col,
-            'codigoPostal' => $request->postal,
-            'sexo' => $request->sexo,
-            'grupo' => $grupo,
-            'edad' => $request->edad,
-            'telefono' => $request->telefono,
-        ]);
+        if($lugar == 'si'){
+
+            \App\informacion::create([
+                'usuario_id' => $user->id,
+                'institucion_id' => null,
+                'semestre' => null,
+                'carrera_id' => $request->carrera,
+                'calle' => $request->cal,
+                'numExterior' => $request->numext,
+                'numInterior' => $request->numin,
+                'colonia' => $request->col,
+                'codigoPostal' => $request->postal,
+                'sexo' => $request->sexo,
+                'grupo' => null,
+                'edad' => $request->edad,
+                'telefono' => $request->telefono,
+            ]);
+
+        }else if($lugar == 'no'){
+
+            \App\informacion::create([
+                'usuario_id' => $user->id,
+                'institucion_id' => $plantel,
+                'semestre' => $semestre,
+                'carrera_id' => $request->carrera,
+                'calle' => $request->cal,
+                'numExterior' => $request->numext,
+                'numInterior' => $request->numin,
+                'colonia' => $request->col,
+                'codigoPostal' => $request->postal,
+                'sexo' => $request->sexo,
+                'grupo' => $grupo,
+                'edad' => $request->edad,
+                'telefono' => $request->telefono,
+            ]);
+        }
 
         $opc_taller = $request->taller;
 
@@ -253,7 +290,6 @@ class AdminController extends Controller
             'lugar' => 'required',
             'Date1'=>'required',
             'Date2'=>'required',
-            'taller'=>'required',
         ]);
 
         $input = 'd-m-Y';
@@ -304,9 +340,6 @@ class AdminController extends Controller
             'tipo_id' => $request->tipo,
             ]);
 
-        $opc_taller = $request->taller;
-
-        if($opc_taller=='si'){
             $this->validate($request, [
                 //'coordinador'=>'required',
                 //'Pcoordinador'=>'required',
@@ -327,14 +360,23 @@ class AdminController extends Controller
             if($val==2){
                 $val=0;
                 return back()->withErrors([
-                $request->coordinador => 'Seleccione solo un Coordinador',
-            ]);;
+                    $request->coordinador => 'Seleccione solo un Coordinador',
+                ]);
             }
-            $u =  \App\User::find($request->coordinador);
-            $taller->update([
-                'usuario_id' => $u->id,
-            ]);
-        }
+
+            if($idc==null){
+                $u =  \App\User::find($request->Pcoordinador);
+                $taller->update([
+                    'usuario_id' => $u->id,
+                ]);
+            }
+
+            if($idPc==null){
+                $u =  \App\User::find($request->coordinador);
+                $taller->update([
+                    'usuario_id' => $u->id,
+                ]);
+            }
 
         session()->flash('message', 'Se a creado el taller '.$request->nombre.' ');
         session()->flash('type', 'success');
@@ -345,8 +387,10 @@ class AdminController extends Controller
     public function search()
     {
         $index=1;
+        $user = Auth::user();
         return view('Admin.search',[
             'index' => $index,
+            'userI' => $user,
         ]);
     }
 
@@ -395,11 +439,13 @@ class AdminController extends Controller
         $student = \App\informacion::find($id);
         $iduser = $student->usuario->id;
         $taller = \App\taller::where('usuario_id',$iduser)->get();
+        $u = Auth::User();
 
         return view('Admin.student', [
             'index'=>$index,
             'student'=>$student,
             'taller'=>$taller,
+            'userI' => $u,
         ]);
     }
 
@@ -416,7 +462,17 @@ class AdminController extends Controller
         $permisos = $request->perm;
         $status = $request->stats;
         $coordinador = $request->coord;
+        $admin = $request->admin;
+
         $user = \App\User::find($student->usuario->id);
+
+        $userActual = Auth::User();
+
+        if($user->id == $userActual->id){
+            session()->flash('message', 'No se puede quitar los permisos de administrador del usuario logeado');
+            session()->flash('type', 'danger');
+            return back();
+        }
 
         switch($permisos){
             case '1':{
@@ -444,15 +500,58 @@ class AdminController extends Controller
             }
         }
 
+        switch($admin){
+            case '1':{
+                    //error_log($user->id);
+                    $user->tipo = 1;
+                    $user->permisos = 1;
+
+                $user->save();
+                
+                session()->flash('message', 'Se a actualizado el Usuario '.$user.' a Administrador');
+                session()->flash('type', 'success');
+
+                return back();
+
+                break;
+            }
+            case '0':{
+                //error_log($user->id);
+                $user->tipo = 3;
+                $user->permisos = 1;
+
+                $user->save();
+
+                session()->flash('message', 'Se a actualizado el Usuario '.$user.' a Coordinador');
+                session()->flash('type', 'success');
+
+                return back();
+
+                break;
+            }
+        }
+
         switch($coordinador){
             case '1':{
                     //error_log($user->id);
                     $user->tipo = 3;
+                    $user->permisos = 1;
                 break;
             }
             case '0':{
                     //error_log($user->id);
                     $user->tipo = 2;
+                    $user->permisos = 0;
+
+                    $id = $user->id;
+                    $taller = \App\taller::where('usuario_id',$id)->get(); 
+
+                    foreach ($taller as $ta) {
+                        $ta->update([
+                            'usuario_id' => null,
+                        ]);
+                    }
+
                 break;
             }
         }
@@ -674,11 +773,14 @@ class AdminController extends Controller
             ]
         ]);
 
+        $total = count($inscripcion);
+
         return view('Admin.tallerUsuario',
         [
             'index'=>$index,
             'taller'=>$taller,
             'inscripcion'=>$inscripcion,
+            'total' => $total,
             'lava' => $lava,
             'asistencia' => $asiste,
             'faltas' => $faltas,
@@ -720,9 +822,7 @@ class AdminController extends Controller
        if($estadisticas==1){
             $sta = \App\stats::where('taller_id',$variable);
             $sta->delete();
-       }
 
-       if($asistencia==1){
             $as = \App\asistencia::where('taller_id',$variable);
             $as->delete();
        }
@@ -969,7 +1069,7 @@ class AdminController extends Controller
         $index = 1;
         $taller = \App\taller::find($id);
         $inscripcion = \App\inscripcion::where('taller_id',$id)->get();
-        $stats = \App\stats::where('taller_id',$id)->get();
+        $stats = \App\stats::where('taller_id',$id)->orderBy('fecha', 'desc')->get();
 
         return view('Admin.list',[
             'index' => $index,
@@ -1074,7 +1174,7 @@ class AdminController extends Controller
                 }
 
             return redirect('/admin/student/'.$id.'/studio/add/User')->withErrors([
-                        $request->lista => 'Se a Agregado a los alumnos',
+                        $request->lista => 'Se a agregado los alumnos al taller',
             ]);
         }
     }
@@ -1624,8 +1724,9 @@ class AdminController extends Controller
         $index = -1;
 
         $user = \App\User::where('tipo','!=',1)->paginate(12);
+        $u = Auth::User();
 
-        return view('Admin.pagination', ['index'=>$index, 'user'=> $user]);
+        return view('Admin.pagination', ['index'=>$index, 'user'=> $user, 'userI'=>$u]);
     }
 
     public function profile()
@@ -1898,6 +1999,8 @@ class AdminController extends Controller
         $output2 = 'd-m-Y'; 
         $dF2 = Carbon::createFromFormat($input2, $date2)->format($output2);
 
+        $u = Auth::User();
+
         return view('Admin.editTaller', [
             'index'=>$index,
             'taller'=>$taller,
@@ -1908,6 +2011,7 @@ class AdminController extends Controller
             'tDi' =>$array,
             'dF' => $dF,
             'dF2' => $dF2,
+            'userI'=>$u,
         ]);
     }
 

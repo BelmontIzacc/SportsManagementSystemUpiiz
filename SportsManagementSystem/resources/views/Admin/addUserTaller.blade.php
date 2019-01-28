@@ -24,6 +24,10 @@ $index=4;
                                     <div class="title">Taller {{$taller->nombre}}</div>
                                     <div class="amount-sm">Coordinador {{$taller->usuario}}</div>
                                     <div class="amount-sm">Agregar Usuarios del taller</div>
+                                    <div class="alert alert-success alert-icon alert-close alert-dismissible fade in" role="alert">
+                                        <i class="font-icon font-icon-warning"></i>
+                                        Selecciona añadir sobre los alumnos que deseas agregar al taller
+                                    </div>
                                 </div>
                                 <div class="tbl-cell tbl-cell-progress">
 

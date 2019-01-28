@@ -48,7 +48,7 @@
                     @if($valor == 2)
                         disabled=""
                     @elseif($valor == 1)
-                        href="/registro/RegistroUsuario"
+                        href="{{asset('/registro/RegistroUsuario')}}"
                     @endif 
                 >Registrarme</a></p>
                 @if($valor == 2)

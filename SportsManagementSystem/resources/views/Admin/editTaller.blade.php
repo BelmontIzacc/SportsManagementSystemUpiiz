@@ -186,11 +186,23 @@
                   <div class="col-sm-12">
                     <div class="rdio rdio-primary">
                       </br>
-                      <input type="radio" name="taller" value="si" id="tlist" onclick="mostrar();">
+                      <input type="radio" name="taller" value="si" id="tlist" onclick="mostrar();"
+                        @if($taller->usuario_id != null)
+                            checked=""
+                        @else
+                            
+                        @endif
+                      >
                       <label>Si</label>
                     </div>
                     <div class="rdio rdio-primary">
-                      <input type="radio" name="taller" value="no" id="tlistt" onclick="mostrar();" checked="">
+                      <input type="radio" name="taller" value="no" id="tlistt" onclick="mostrar();" 
+                        @if($taller->usuario_id == null)
+                            checked=""
+                        @else
+                            
+                        @endif
+                      >
                       <label>No</label>
                     </div>
                   </div>
@@ -207,7 +219,7 @@
                           <fieldset class="form-group">
                             </br>
                               <label class="form-label">Coordinadores</br></label>
-                                {!!Form::select('coordinador',$coord, -1, ['class'=>'select2 form-control', 'placeholder'=>'Selecciona un usuario'])!!}
+                                {!!Form::select('coordinador',$coord, $taller->usuario_id, ['class'=>'select2 form-control', 'placeholder'=>'Selecciona un usuario'])!!}
                           </fieldset>
                           @unless(count($Pcoord)==0)
                           <fieldset class="form-group">
