@@ -63,6 +63,7 @@ class UserController extends Controller
              return view('User.start',[
                         'index' => $index,
                         'user' => $user,
+                        'userI' => $user,
                         'taller'=> $taller,
                     ]);
         }
@@ -77,6 +78,7 @@ class UserController extends Controller
          return view('User.tallerInfo',[
                     'index' => $index,
                     'user' => $user,
+                    'userI' => $user,
                     'inscripcion'=> $inscripcion,
                     'total' => $total,
                 ]);
@@ -107,6 +109,7 @@ class UserController extends Controller
          return view('User.tallerRe',[
                     'index' => $index,
                     'user' => $user,
+                    'userI' => $user,
                     'taller'=> $taller,
                     'total' => $total,
                     'fechaI' => $dF,
@@ -184,6 +187,7 @@ class UserController extends Controller
         return view('User.informacion',[
             'index' => $index,
             'user' => $user,
+            'userI' => $user,
             'info'=> $info
         ]);
     }
@@ -200,6 +204,7 @@ class UserController extends Controller
             'index' => $index,
 
             'user' => $user,
+            'userI' => $user,
 
             'info'=> $info,
 
@@ -370,6 +375,7 @@ class UserController extends Controller
             'index'=>$index,
             'taller'=>$taller,
             'user'=>$user,
+            'userI'=>$user,
             'total' => $total,
             'fechaI' => $dF,
             'fechaF' => $dF2,

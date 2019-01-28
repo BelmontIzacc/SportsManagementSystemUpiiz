@@ -45,8 +45,8 @@ $index=4;
                         <header class="sign-title">Funciones Especiales</header>
                         <div class="alert alert-info alert-icon alert-close alert-dismissible fade in" role="alert">
                             <i class="font-icon font-icon-warning"></i>
-                            Nota: sera borrada toda la informacion relacionada con los usuarios 
-                            ( asistencias, inscripciones, informacion, etc... ).
+                            Nota: Sera borrada toda la información relacionada con los usuarios 
+                            ( asistencias, inscripciones, información, etc... ).
                         </div>
                             <section class="widget widget-simple-sm">
                                 <div class="widget-simple-sm-statistic">

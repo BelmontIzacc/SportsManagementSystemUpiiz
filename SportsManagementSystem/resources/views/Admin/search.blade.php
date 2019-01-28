@@ -54,7 +54,7 @@ Busqueda de registro
                         <div class="user-card-row">
                             <div class="tbl-row">
                                 <div class="tbl-cell tbl-cell-photo">
-                                    
+                                    <img src="{{asset('/Template/img/Stickmen/LogoSRDpng2.png')}}" alt="" style="height:130px;width:auto;">
                                 </div>
                                 <div class="tbl-cell">
                                     @unless($u->informacion == null)
@@ -123,7 +123,7 @@ Busqueda de registro
                         <div class="user-card-row">
                             <div class="tbl-row">
                                 <div class="tbl-cell tbl-cell-photo">
-                                
+                                    <img src="{{asset('/Template/img/Stickmen/LogoSRDpng2.png')}}" alt="" style="height:130px;width:auto;">
                                 </div>
                                 <div class="tbl-cell">
                                     @unless($t->nombre == null)

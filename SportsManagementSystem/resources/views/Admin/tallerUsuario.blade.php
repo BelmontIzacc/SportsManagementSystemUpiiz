@@ -65,7 +65,7 @@
 		    
 		    <div class="widget-user-stat hidden-md-down">
 		        <div class="item">
-		            <div class="number">{{count($inscripcion)}}</div>
+		            <div class="number">{{$total}}</div>
 		            <div class="caption">Participantes</div>
 		        </div>
 		    	@unless($taller->lugar == null)
@@ -122,7 +122,7 @@
                 <article class="panel">
                     <div class="panel-heading" role="tab" id="headingOne">
                         <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne" class="collapsed">
-                            Lista total de registros, registros: {{count($inscripcion)}}
+                            Lista total de registros, registros: {{$total}}
                             <i class="font-icon font-icon-arrow-down"></i>
                         </a>
                     </div>

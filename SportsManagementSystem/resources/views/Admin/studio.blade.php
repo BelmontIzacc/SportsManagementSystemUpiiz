@@ -131,31 +131,12 @@
                       </fieldset>
                     </div>
 
-                    <div class="{{$classSizeForms}}">
-                        <fieldset class="form-group">
-                            <label class="form-label"></label>
-                            <div class="form-group">
-                              <label class="col-sm-12">¿Esta Registrado el Coordinador?</label>
-                              <div class="col-sm-12">
-                                <div class="rdio rdio-primary">
-                                  </br>
-                                  <input type="radio" name="taller" value="si" id="tlist" onclick="mostrar();">
-                                  <label>Si</label>
-                                </div>
-                                <div class="rdio rdio-primary">
-                                  <input type="radio" name="taller" value="no" id="tlistt" onclick="mostrar();">
-                                  <label>No</label>
-                                </div>
-                              </div>
-                            </div>
-                        </fieldset>
-                    </div>
 
                     <div class="{{$classSizeForms}}">
                         <fieldset class="form-group">
                             <label class="form-label"</label>
                               <!--Bloque Oculto-->
-                              <div id="tlistF" style="display:none;">
+                              <div>
                                 <label>¿Seleccione el Coordinador?</label>
                                 <div>
                                       <fieldset class="form-group">

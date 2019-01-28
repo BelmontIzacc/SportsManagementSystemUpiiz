@@ -55,15 +55,9 @@ $index=4;
                                         <div class="col-lg-12 col-lg-offset-1 col-md-12 col-md-offset-1">
                                             <div class="checkbox-toggle">
                                                 <input type="checkbox" id="check-toggle-2" name="check-toggle-2" onclick="getValue2();">
-                                                <label for="check-toggle-2">Borrar estadisticas</label>
+                                                <label for="check-toggle-2">Borrar asistencias</label>
                                             </div>
                                         </div>                        
-                                        <div class="col-lg-12 col-lg-offset-1 col-md-12 col-md-offset-1">
-                                            <div class="checkbox-toggle">
-                                                <input type="checkbox" id="check-toggle-3" name="check-toggle-3" onclick="getValue3();">
-                                                <label for="check-toggle-3">Borrar asistencias </label>
-                                            </div>
-                                        </div>
                                     </div>
                                 </div>                                    
                             </section>
