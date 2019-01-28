@@ -396,6 +396,7 @@ class AdminController extends Controller
 
     public function getSearch(Request $request){
         $index = 1;
+        $user = Auth::user();
 
         switch($request->opc){
             case 1:
@@ -412,7 +413,7 @@ class AdminController extends Controller
                     session()->flash('message', 'No se encontró ningun registro con la boleta: '.$request->busqueda);
                     session()->flash('type', 'danger');
                 }
-                return view('Admin.search', ['index'=>$index, 'user'=>$user]);
+                return view('Admin.search', ['index'=>$index, 'user'=>$user,'userI' => $user,]);
                 break;
             case 2:
                 $this->validate($request, [
@@ -427,7 +428,7 @@ class AdminController extends Controller
                     session()->flash('message', 'No se encontro ningun registro con el nombre: '.$request->busqueda);
                     session()->flash('type', 'danger');
                 }
-                return view('Admin.search', ['index'=>$index, 'taller'=>$taller]);
+                return view('Admin.search', ['index'=>$index, 'taller'=>$taller,'userI' => $user,]);
                 break;
         }
     }
