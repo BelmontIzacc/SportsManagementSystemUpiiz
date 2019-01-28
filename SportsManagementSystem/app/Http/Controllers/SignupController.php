@@ -11,6 +11,7 @@ use App\Http\Controllers\Controller;
 
 use App\User;
 use App\informacion;
+use App\contactos;
 
 class SignupController extends Controller
 {
@@ -52,16 +53,30 @@ class SignupController extends Controller
 
             'calle' => 'required',
             'ext' => 'required',
-            'inter' => 'required',
+            'inter' => '',
             'colonia' => 'required',
             'cp' => 'required',
 
-            'insti' => 'required',
-            'semestre'=> 'required',
-            'grupo'=> 'required',
+            'insti' => '',
+            'semestre'=> '',
+            'grupo'=> '',
             'user'=> 'required',
             'tlista'=>'',
             'tlistac'=>'',
+
+            'alergia'=>'required',
+            'alergias'=>'',
+            'estatura'=>'required',
+            'peso'=>'required',
+            'sangre'=>'required',
+
+            'segMed'=>'required',
+            'segIns'=>'required',
+
+            'nomCon1'=>'required',
+            'nomCon2'=>'',
+            'telCon1'=>'required',
+            'telCon2'=>'',
         ]);
 
 
@@ -91,7 +106,31 @@ class SignupController extends Controller
                 'semestre' => $request->semestre,
                 'grupo' => $request->grupo,
 
-        ]);
+                'alergias' => $request->alergias,
+                'estatura' => $request->estatura,
+                'peso' => $request->peso,
+                'sangre' => $request->sangre,
+
+                'segMed' => $request->segMed,
+                'regIns' => $request->segIns,
+
+            ]);
+
+            contactos::create([
+                'usuario_id' => $request->user,
+
+                'nombre' => $request->nomCon1,
+                'telefono' => $request->telCon1,
+            ]);
+
+            if (!empty($request->nomCon2) && !empty($request->telCon2)) {
+                contactos::create([
+                    'usuario_id' => $request->user,
+
+                    'nombre' => $request->nomCon2,
+                    'telefono' => $request->telCon2,
+                ]);
+            }
         }else{
            informacion::create([
                 'usuario_id' => $request->user,
@@ -110,7 +149,30 @@ class SignupController extends Controller
                 'semestre' => $request->semestre,
                 'grupo' => $request->grupo,
 
-        ]);
+                'alergias' => $request->alergias,
+                'estatura' => $request->estatura,
+                'peso' => $request->peso,
+                'sangre' => $request->sangre,
+
+                'segMed' => $request->segMed,
+                'regIns' => $request->segIns,
+            ]);
+
+            contactos::create([
+                'usuario_id' => $request->user,
+
+                'nombre' => $request->nomCon1,
+                'telefono' => $request->telCon1,
+            ]);
+
+            if (!empty($request->nomCon2) && !empty($request->telCon2)) {
+                contactos::create([
+                    'usuario_id' => $request->user,
+
+                    'nombre' => $request->nomCon2,
+                    'telefono' => $request->telCon2,
+                ]);
+            }
         }
 
 

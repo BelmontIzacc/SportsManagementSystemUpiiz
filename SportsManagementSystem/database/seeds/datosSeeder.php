@@ -28,6 +28,12 @@ class datosSeeder extends Seeder
                     'grupo' => '2cm3',
                     'edad' => rand (18 , 25),
                     'telefono' => rand (0 , 9).rand (0 , 9).rand (0 , 99).rand (0 , 99),
+                    'alergias' => 'cacahuate,polvo',
+                    'estatura' => rand (15,18),
+                    'peso' => rand (45,68),
+                    'sangre' => 'A+',
+                    'segMed' => rand (0,1),
+                    'segIns' => rand (0,1),
                 ]);
             }
     }

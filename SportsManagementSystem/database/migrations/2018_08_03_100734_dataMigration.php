@@ -32,11 +32,18 @@ class DataMigration extends Migration
             $table->string('numExterior', 8)->nullable();
             $table->string('numInterior', 8)->default(0);
             $table->string('colonia', 50)->nullable();
-            $table->integer('codigoPostal')->nullable();    
-            $table->string('telefono',20)->nullable();    
+            $table->integer('codigoPostal')->nullable();
+            $table->string('telefono',20)->nullable();
+
+            $table->string('alergias',100)->nullable();
+            $table->string('estatura',5)->nullable();
+            $table->string('peso',10)->nullable();
+            $table->string('sangre',5)->nullable();
+            $table->integer('segMed')->nullable();
+            $table->integer('segIns')->nullable();
 
             $table->timestamps();
-            
+
         });
     }
 
@@ -53,7 +60,7 @@ class DataMigration extends Migration
             $table->dropForeign(['institucion_id']);
             $table->dropForeign(['carrera_id']);
         });
-        
+
         Schema::drop('informacion');
     }
 }

@@ -24,6 +24,7 @@ class DatabaseSeeder extends Seeder
         $this->call(statsSeeder::class);
         $this->call(inicioFinSeeder::class);
         $this->call(ConstanciaSeeder::class);
+        $this->call(contactosSeeder::class);
 
         Model::reguard();
     }

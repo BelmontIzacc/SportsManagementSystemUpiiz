@@ -27,6 +27,14 @@
     <div class="caption hidden-sm-down">Académico</div>
   ';
 
+  $Salud = '
+      <div class="icon">
+          <i class="font-icon font-icon-heart"></i>
+      </div>
+      <div class="caption hidden-md-up">-4-</div>
+      <div class="caption hidden-sm-down">Salud</div>
+  ';
+
   $sexos = array(
         'Seleccionar',
         'Masculino',
@@ -74,6 +82,9 @@
                         <li>
                             {!!$Academicos!!}
                         </li>
+                        <li>
+                            {!!$Salud!!}
+                        </li>
                     </ul>
                 </div>
 
@@ -98,7 +109,7 @@
                 <div class="row">
                 <div class="{{$classSizeForms}}">
                     <fieldset class="form-group">
-                      <label class="form-label">Telefono</label>
+                      <label class="form-label">Teléfono</label>
                        {!!Form::text('telefono', null, ['class'=>'form-control','placeholder'=>'Telefono', 'id'=>'telefono'])!!}
                     </fieldset>
                   </div>
@@ -130,6 +141,9 @@
                       </li>
                       <li>
                           {!!$Academicos!!}
+                      </li>
+                      <li>
+                          {!!$Salud!!}
                       </li>
                     </ul>
                 </div>
@@ -208,6 +222,9 @@
                         <li class="active">
                             {!!$Academicos!!}
                         </li>
+                        <li>
+                            {!!$Salud!!}
+                        </li>
                     </ul>
                 </div>
 
@@ -226,6 +243,10 @@
                                 <div class="rdio rdio-primary">
                                   <input type="radio" name="insti" value="Cecyt" id="tlistt" onclick="mostrar();">
                                   <label>CECyT</label>
+                                </div>
+                                <div class="rdio rdio-primary">
+                                    <input type="radio" name="insti" value="Otro" id="otro" onclick="mostrar();">
+                                    <label>Otro</label>
                                 </div>
                               </div>
                             </div>
@@ -260,21 +281,23 @@
                               <!--Bloque Oculto-->
                         </fieldset>
 
-                        <div>
-                            <fieldset class="form-group">
-                                <label class="form-label">Semestre</label>
+                        <div id="academico">
+                            <div>
+                                <fieldset class="form-group">
+                                    <label class="form-label">Semestre</label>
                                     {!!Form::number('semestre', null, ['class'=>'form-control','placeholder'=>'Semestre','id'=>'semestre'])!!}
-                            </fieldset>
-                        </div>
-                        <div>
-                            <fieldset class="form-group">
-                                <label class="form-label">Grupo</label>
+                                </fieldset>
+                            </div>
+                            <div>
+                                <fieldset class="form-group">
+                                    <label class="form-label">Grupo</label>
                                     {!!Form::text('grupo', null, ['class'=>'form-control','placeholder'=>'1CM1','id'=>'grupo'])!!}
-                            </fieldset>
+                                </fieldset>
+                            </div>
                         </div>
                          <div>
                             <fieldset class="form-group">
-                                  <label class="form-label">Confirmación de Boleta</label>
+                                  <label class="form-label">Confirmación de Boleta o Usuario</label>
                                    {!!Form::select('user',$user, 0, ['class'=>'bootstrap-select bootstrap-select-arrow form-control', 'id'=>'user'])!!}
                               </fieldset>
                         </div>
@@ -289,16 +312,159 @@
                     <div class="col-lg-6 col-md-6 col-sm-6">
                         <button type="button" class="btn btn-rounded btn-grey btn-inline" onclick="toggle2();">← Atrás</button>
                     </div>
-                    <div class="col-lg-6 col-md-6 col-sm-6">
-                        <button type="submit" class="btn btn-rounded btn-inline btn-warning">
-                            Finalizar
-                        </button>
-                    </div>
+                    <button type="button" class="btn btn-rounded btn-inline" onclick="toggle1();">
+                        Siguiente →
+                    </button>
                 </div>
 
             </section><!--.steps-icon-block-->
         </div>
+    </div><!--.row-->
 
+    <div class="row">
+        <div class="row details4 text-center" style="display:none;">
+            <div class="{{$classSize}}">
+                <a href="{{asset('/admin')}}"><button type="button" class="close"><span aria-hidden="true">&nbsp;&times;&nbsp;</span></button></a>
+                <section class="box-typical">
+                    <div class="steps-icon-progress" style="padding:30px;">
+                        <ul>
+                            <li class="active">
+                                {!!$Personales!!}
+                            </li>
+                            <li class="active">
+                                {!!$Domicilio!!}
+                            </li>
+                            <li class="active">
+                                {!!$Academicos!!}
+                            </li>
+                            <li class="active">
+                                {!!$Salud!!}
+                            </li>
+                        </ul>
+                    </div>
+
+                    <h5 class="m-t-lg with-border">Llenado de información de salud</h5>
+                    <div class="row">
+                        <div class="{{$classSizeForms}}">
+                            <fieldset class="form-group">
+                                <label class="form-label"></label>
+                                <div class="form-group">
+                                    <label class="col-sm-12">¿Tienes alguna alergia?</label>
+                                    <div class="col-sm-12">
+                                        <div class="rdio rdio-primary">
+                                            <input type="radio" name="alergia" value="1" id="alergiaSi" onclick="mostrar();">
+                                            <label>Si</label>
+                                        </div>
+                                        <div class="rdio rdio-primary">
+                                            <input type="radio" name="alergia" value="0" id="alergiaNo" onclick="mostrar();">
+                                            <label>No</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </div>
+
+                        <!--Bloque Oculto-->
+                        <div id="alg" class="{{$classSizeForms}}" style="display:none">
+                            <fieldset class="form-group">
+                                <div>
+                                    <h5>¿Cual? o ¿Cuales?</h5>
+                                    <div>
+                                        <fieldset class="form-group">
+                                            {!!Form::text('alergias',null,['class'=>'form-control','placeholder'=>'Alergias','id'=>'alergias'])!!}
+                                        </fieldset>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </div>
+
+                        <div class="{{$classSizeForms}}">
+                            <fieldset class="form-group">
+                                <label class="form-label">Estatura </br> (esriba unicamente el número)</label>
+                                {!!Form::text('estatura',null,['class'=>'form-control','placeholder'=>'Ejemplo: 1.64','id'=>'estatura'])!!}
+                            </fieldset>
+                        </div>
+
+                        <div class="{{$classSizeForms}}">
+                            <fieldset class="form-group">
+                                <label class="form-label">Peso <br> (escriba unicamente el número)</label>
+                                {!!Form::text('peso',null,['class'=>'form-control','placeholder'=>'Ejemplo: 54','id'=>'peso'])!!}
+                            </fieldset>
+                        </div>
+
+                        <div class="{{$classSizeForms}}">
+                            <fieldset class="form-group">
+                                <label class="form-label">Tipo de sangre</label>
+                                {!!Form::text('sangre',null,['class'=>'form-control','placeholder'=>'Tipo de sangre','id'=>'sangre'])!!}
+                            </fieldset>
+                        </div>
+
+                        <div class="{{$classSizeForms}}">
+                            <fieldset class="form-group">
+                                <label class="col-sm-12">¿Cuentas con seguro médico?</label>
+                                <div class="rdio rdio-primary">
+                                    <input type="radio" name="segMed" value="1" id="segMedSi">
+                                    <label>Si</label>
+                                </div>
+                                <div class="rdio rdio-primary">
+                                    <input type="radio" name="segMed" value="0" id="segMedNo">
+                                    <label>No</label>
+                                </div>
+                            </fieldset>
+                        </div>
+
+                        <div class="{{$classSizeForms}}">
+                            <fieldset class="form-group">
+                                <label class="col-sm-12">¿Cuentas con seguro de vida institucional?</label>
+                                <div class="rdio rdio-primary">
+                                    <input type="radio" name="segIns" value="1" id="segInsSi">
+                                    <label>Si</label>
+                                </div>
+                                <div class="rdio rdio-primary">
+                                    <input type="radio" name="segIns" value="0" id="segInsNo">
+                                    <label>No</label>
+                                </div>
+                            </fieldset>
+                        </div>
+
+                        <div class="{{$classSizeForms}}">
+                            <h5>Contactos de emergencia</h5>
+                            <label>Contacto 1</label>
+                            <div>
+                                <fieldset class="form-group">
+                                    <label class="form-label">Nombre</label>
+                                    {!!Form::text('nomCon1',null,['class'=>'form-control','placeholder'=>'Nombre del primer contacto','id'=>'nomCon1'])!!}
+                                    <label class="form-label">Teléfono</label>
+                                    {!!Form::text('telCon1',null,['class'=>'form-control','placeholder'=>'Teléfono del primer contacto','id'=>'telCon1'])!!}
+                                </fieldset>
+                            </div>
+
+                            <div>
+                                <label>Contacto 2</label>
+                                <fieldset class="fomr-group">
+                                    <label class="form-label">Nombre</label>
+                                    {!!Form::text('nomCon2',null,['class'=>'form-control','placeholder'=>'Nombre del segundo contacto','id'=>'nomCon2'])!!}
+                                    <label class="form-label">Teléfono</label>
+                                    {!!Form::text('telCon2',null,['class'=>'form-control','placeholder'=>'Teléfono del segundo contacto','id'=>'telCon2'])!!}
+                                </fieldset>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                <button type="button" class="btn btn-rounded btn-grey btn-inline" onclick="toggle2();">← Atrás</button>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                <button type="submit" class="btn btn-rounded btn-inline btn-warning">
+                                    Finalizar
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+                </section>
+            </div>
+        </div>
     </div><!--.row-->
 {!!Form::close()!!}
 
@@ -360,6 +526,12 @@ Registro
       a = document.getElementById("tlistM");
       l = document.getElementById("tlistt");
 
+      d = document.getElementById("academico");
+      o = document.getElementById("otro");
+
+      b = document.getElementById("alg");
+      f = document.getElementById("alergiaSi");
+
       if (c.checked) {
         e.style.display = 'block';
       }
@@ -371,6 +543,18 @@ Registro
         a.style.display = 'block';
       }else{
         a.style.display = 'none';
+      }
+
+      if(o.checked) {
+          d.style.display = 'none';
+      } else {
+          d.style.display = 'block';
+      }
+
+      if(f.checked) {
+          b.style.display = 'block';
+      } else {
+          b.style.display = 'none';
       }
     }
 

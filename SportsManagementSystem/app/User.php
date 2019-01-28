@@ -39,7 +39,7 @@ class User extends Model implements AuthenticatableContract,
         'boleta',
         'email',
         'tipo',
-        'password',   
+        'password',
         'apellidoPaterno',
         'apellidoMaterno',
         'completado',
@@ -73,5 +73,8 @@ class User extends Model implements AuthenticatableContract,
     }
     public function tipo(){
         return $this->getOriginal('tipo');
+    }
+    public function contactos(){
+      return $this->hasMany(contactos::class, 'usuario_id');
     }
 }
