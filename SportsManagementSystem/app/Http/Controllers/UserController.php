@@ -109,6 +109,7 @@ class UserController extends Controller
          return view('User.tallerRe',[
                     'index' => $index,
                     'user' => $user,
+                    'userI' => $user,
                     'taller'=> $taller,
                     'total' => $total,
                     'fechaI' => $dF,
@@ -203,6 +204,7 @@ class UserController extends Controller
             'index' => $index,
 
             'user' => $user,
+            'userI' => $user,
 
             'info'=> $info,
 
