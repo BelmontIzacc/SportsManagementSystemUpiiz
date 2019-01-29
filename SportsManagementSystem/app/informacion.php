@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class informacion extends Model
 {
     use Eloquence;
-    
+
     protected $table = 'informacion';
 
     /**
@@ -18,20 +18,26 @@ class informacion extends Model
      */
         protected $fillable = [
             'id',
-        'usuario_id',
-        'institucion_id',
-        'carrera_id',
-        'edad',
-        'grupo',
-        'sexo',
-        'semestre',   
-        'calle',
-        'numExterior',
-        'numInterior',
-        'colonia',
-        'codigoPostal',
-        'telefono',
-    ];
+            'usuario_id',
+            'institucion_id',
+            'carrera_id',
+            'edad',
+            'grupo',
+            'sexo',
+            'semestre',
+            'calle',
+            'numExterior',
+            'numInterior',
+            'colonia',
+            'codigoPostal',
+            'telefono',
+            'alerias',
+            'estatura',
+            'peso',
+            'sangre',
+            'segMed',
+            'segIns',
+        ];
 
     public function usuario(){
         return $this->belongsTo(User::class, 'usuario_id');

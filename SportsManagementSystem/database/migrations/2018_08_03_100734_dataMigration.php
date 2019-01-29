@@ -24,7 +24,7 @@ class DataMigration extends Migration
             $table->integer('carrera_id')->unsigned()->index()->nullable();
             $table->foreign('carrera_id')->references('id')->on('carrera')->onDelete('set null');
 
-            $table->integer('edad');
+            $table->date('edad');
             $table->string('grupo',5)->nullable();
             $table->string('sexo',2);
             $table->integer('semestre')->nullable();

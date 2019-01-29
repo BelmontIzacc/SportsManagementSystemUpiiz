@@ -80,13 +80,13 @@
         </div>
         <div class="{{$classSize}}">
             <fieldset class="form-group">
-              <label class="form-label">Nombre</label>
+              <label class="form-label">Apelldo paterno</label>
               {!!Form::text('apellidoP', $user->apellidoPaterno, ['class'=>'form-control', 'id'=>'nombre','placeholder'=>'$user->apellidoPaterno'])!!}
             </fieldset>
         </div>
         <div class="{{$classSize}}">
             <fieldset class="form-group">
-              <label class="form-label">Nombre</label>
+              <label class="form-label">Apellido materno</label>
               {!!Form::text('apellidoM', $user->apellidoMaterno, ['class'=>'form-control', 'id'=>'nombre','placeholder'=>'$user->apellidoMaterno'])!!}
             </fieldset>
         </div>
@@ -108,14 +108,20 @@
          @endunless
 
         @unless($info->usuario_id == null)
-        <div class="{{$classSize}}">
-           <fieldset class="form-group">
-                <label class="form-label">Edad</label>
-				{!!Form::number('edad', $info->edad, ['class'=>'form-control', 'id'=>'edad'])!!}
+         <div class="{{$classSize}}">
+            <fieldset class="form-group">
+                <label class="form-label">Fecha de nacimieto</label>
+                <div class="input-group date">
+                    {!!Form::text('edad', $info->edad, ['class'=>'form-control', 'id'=>'date_box'])!!}
+                    <span class="input-group-addon">
+                        <i class="font-incon font-icon-calend"></i>
+                    </span>
+                </div>
             </fieldset>
         </div>
         @endunless
-        </div>
+    </div>
+
     <div class="row">
     	<div class="{{$classSize}}">
             <fieldset class="form-group">
@@ -139,11 +145,11 @@
             <fieldset class="form-group">
                 <label class="form-label" for="exampleInputDisabled2">Platel</label>
                 <div class="rdio rdio-primary">
-                    <?php $inst = $info->institucion_id ?> 
-                    <input type="radio" name="insti" value="UPIIZ" id="tlist" onclick="mostrar();" 
+                    <?php $inst = $info->institucion_id ?>
+                    <input type="radio" name="insti" value="UPIIZ" id="tlist" onclick="mostrar();"
                         @if($inst == 1)
                             checked=""
-                        @else 
+                        @else
 
                         @endif
                     > UPIIZ
@@ -152,7 +158,7 @@
                       <input type="radio" name="insti" value="Cecyt" id="tlistt" onclick="mostrar();"
                         @if($inst == 2)
                             checked=""
-                        @else 
+                        @else
 
                         @endif
                       > CECyT
@@ -225,10 +231,15 @@
         <div class="{{$classSize}}">
             <fieldset class="form-group">
                 <label class="form-label" for="exampleInputDisabled2">Número interior</label>
-                {!!Form::text('inter', $info->numInterior, ['class'=>'form-control', 'id'=>'interior'])!!}
+                @if($info->numInterior == null)
+                    {!!Form::text('inter',null, ['class'=>'form-control', 'placeholder'=>'-', 'id'=>'interior'])!!}
+                @else
+                    {!!Form::text('inter', $info->numInterior, ['class'=>'form-control', 'id'=>'interior'])!!}
+                @endif
             </fieldset>
         </div>
         @endunless
+
         @unless($info->usuario_id == null)
         <div class="{{$classSize}}">
             <fieldset class="form-group">
@@ -246,6 +257,73 @@
         </div>
         @endunless
     </div>
+
+    <h5 class="m-t-lg with-border">Datos de salud</h5>
+
+    <div class="row">
+        @unless($info->usuario_id == null)
+        <div class="{{$classSize}}">
+            <fieldset class="form-group">
+                <label class="form-label" for="exampleInputDisabled2">Alergias</label>
+                {!!Form::text('alergias',$info->alergias,['class'=>'form-control', 'placeholder'=>'Alergias', 'id'=>'alergias'])!!}
+            </fieldset>
+        </div>
+        @endunless
+
+        @unless($info->usuario_id == null)
+        <div class="{{$classSize}}">
+            <fieldset class="form->group">
+                <label class="fomr-label" for="exampleInputDisabled2">Estatura</label>
+                {!!Form::text('estatura',$info->estatura,['class'=>'form-control', 'id'=>'Estatura'])!!}
+            </fieldset>
+        </div>
+        @endunless
+
+        @unless($info->usuario_id == null)
+        <div class="{{$classSize}}">
+            <fieldset class="form-group">
+                <label class="form-label" for="exampleInputDisabled2">Peso</label>
+                {!!Form::text('peso',$info->peso,['class'=>'form-control', 'id'=>'peso'])!!}
+            </fieldset>
+        </div>
+        @endunless
+
+        @unless($info->usuario_id == null)
+        <div class="{{$classSize}}">
+            <fieldset class="form-group">
+                <label class="form-label" for="exampleInputDisabled2">Tipo de Sangre</label>
+                {!!Form::text('sangre',$info->sangre,['class'=>'form-control', 'id'=>'sangre'])!!}
+            </fieldset>
+        </div>
+        @endunless
+
+        @unless($info->usuario_id == null)
+        <div class="{{$classSize}}">
+            <fieldset class="form-group">
+                <label class="form-label" for="exampleInputDisabled2">¿Cuentas con seguro médico caca?</label>
+                @if($info->segMed == 1)
+                    <input type="text" readonly class="form-control" value="Si">
+                @else
+                    <input type="text" readonly class="form-control" value="No">
+                @endif
+            </fieldset>
+        </div>
+        @endunless
+
+        @unless($info->usuario_id == null)
+        <div class="{{$classSize}}">
+            <fieldset class="form-group">
+                <label class="form-label" for="exampleInputDisabled2">¿Cuentas con seguro de vida institucioal?</label>
+                @if($info->segIns == 1)
+                    <input type="text" readonly class="form-control" value="Si">
+                @else
+                    <input type="text" readonly class="form-control" value="No">
+                @endif
+            </fieldset>
+        </div>
+        @endunless
+    </div>
+
 </div> <!--End box typical-->
 </div>
 

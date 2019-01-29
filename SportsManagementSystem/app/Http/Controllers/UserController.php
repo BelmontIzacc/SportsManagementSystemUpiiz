@@ -104,7 +104,7 @@ class UserController extends Controller
 
         $dF2 = Carbon::createFromFormat($input2, $date2)->format($output2);
 
-        $t = $taller->status; 
+        $t = $taller->status;
 
          return view('User.tallerRe',[
                     'index' => $index,
@@ -183,12 +183,14 @@ class UserController extends Controller
         $index=1;
         $user = Auth::user();
         $info = \App\informacion::where('usuario_id','=',$user->id)->first();
+        $cont = \App\contactos::where('usuario_id',$user->id)->get();
 
         return view('User.informacion',[
             'index' => $index,
             'user' => $user,
             'userI' => $user,
-            'info'=> $info
+            'info'=> $info,
+            'cont'=> $cont,
         ]);
     }
 
@@ -199,6 +201,7 @@ class UserController extends Controller
         $info = \App\informacion::where('usuario_id','=',$user->id)->first();
         $tlista = \App\carrera::where('id','<=',6)->lists('nombre','id');
         $tlistac = \App\carrera::where('id','>',6)->lists('nombre','id');
+        $cont = \App\contactos::where('usuario_id',$user->id)->get();
 
         return view('User.EditarInfo',[
             'index' => $index,
@@ -210,7 +213,9 @@ class UserController extends Controller
 
             'tlista'=> $tlista,
 
-            'tlistac'=> $tlistac
+            'tlistac'=> $tlistac,
+
+            'cont'=> $cont,
         ]);
     }
 
@@ -358,7 +363,7 @@ class UserController extends Controller
         $dateA = Carbon::now();
         $dateA = $dateA->format('Y-m-d');
 
-        
+
 
          $fecha_inicio = strtotime($dateSE->find(2)->fechaInicio);
          $fecha_fin = strtotime($dateSE->find(2)->fechaFin);
@@ -370,7 +375,7 @@ class UserController extends Controller
          else
              $valor=2;
 
-        $t = $taller->status; 
+        $t = $taller->status;
         return view('User.taller', [
             'index'=>$index,
             'taller'=>$taller,
@@ -404,7 +409,7 @@ class UserController extends Controller
                     ]);
 
                 } else {
-                    
+
                 }
 
         session()->flash('message', 'Se a inscrito al taller '.$taller->nombre.' ');

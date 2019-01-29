@@ -12,6 +12,7 @@ use App\Http\Controllers\Controller;
 use App\User;
 use App\informacion;
 use App\contactos;
+use Carbon\Carbon;
 
 class SignupController extends Controller
 {
@@ -86,6 +87,9 @@ class SignupController extends Controller
             'completado' => 1,
         ]);
 
+        $dateA = Carbon::parse($request->edad);
+        $dateA = $dateA->format('Y-m-d');
+
         if($request->insti=="UPIIZ"){
 
             informacion::create([
@@ -94,7 +98,7 @@ class SignupController extends Controller
                 'carrera_id' => $request->tlista,
 
                 'sexo' => $request->sexo -1,
-                'edad' => $request->edad,
+                'edad' => $dateA,
 
                 'calle' => $request->calle,
                 'numExterior' => $request->ext,
@@ -112,7 +116,7 @@ class SignupController extends Controller
                 'sangre' => $request->sangre,
 
                 'segMed' => $request->segMed,
-                'regIns' => $request->segIns,
+                'segIns' => $request->segIns,
 
             ]);
 
@@ -138,7 +142,7 @@ class SignupController extends Controller
                 'carrera_id' => $request->tlistac,
 
                 'sexo' => $request->sexo,
-                'edad' => $request->edad,
+                'edad' => $dateA,
 
                 'calle' => $request->calle,
                 'numExterior' => $request->ext,

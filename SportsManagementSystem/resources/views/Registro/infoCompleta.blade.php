@@ -101,11 +101,17 @@
                 <div class="row">
                   <div class="{{$classSizeForms}}">
                     <fieldset class="form-group">
-                        <label class="form-label">Edad</label>
-        				{!!Form::number('edad', null, ['class'=>'form-control','placeholder'=>'Edad', 'id'=>'edad'])!!}
+                        <label class="form-label">Fecha de nacimieto</label>
+                        <div class="input-group date">
+                            {!!Form::text('edad', null, ['class'=>'form-control','placeholder'=>'00/00/0000', 'id'=>'date_box'])!!}
+                            <span class="input-group-addon">
+                                <i class="font-incon font-icon-calend"></i>
+                            </span>
+                        </div>
                     </fieldset>
                   </div>
                 </div>
+
                 <div class="row">
                 <div class="{{$classSizeForms}}">
                     <fieldset class="form-group">

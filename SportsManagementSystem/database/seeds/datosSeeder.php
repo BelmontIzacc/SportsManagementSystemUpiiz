@@ -26,7 +26,7 @@ class datosSeeder extends Seeder
                     'codigoPostal' => rand (0 , 9).rand (0 , 9).rand (0 , 99).rand (0 , 99),
                     'sexo' => ''.rand (0 , 1),
                     'grupo' => '2cm3',
-                    'edad' => rand (18 , 25),
+                    'edad' => '1999-01-05',
                     'telefono' => rand (0 , 9).rand (0 , 9).rand (0 , 99).rand (0 , 99),
                     'alergias' => 'cacahuate,polvo',
                     'estatura' => rand (15,18),
