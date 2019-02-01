@@ -14,6 +14,10 @@ class CarrerMigration extends Migration
     {
         Schema::create('carrera', function (Blueprint $table){
             $table->increments('id');
+
+            $table->integer('institucion_id')->unsigned()->index();
+            $table->foreign('institucion_id')->references('id')->on('institucion')->onDelete('cascade');
+
             $table->string('nombre');
             $table->timestamps();
         });
@@ -29,4 +33,3 @@ class CarrerMigration extends Migration
         Schema::drop('carrera');
     }
 }
-

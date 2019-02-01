@@ -13,8 +13,8 @@ class DatabaseSeeder extends Seeder
     {
         Model::unguard();
 
-        $this->call(carreraSeeder::class);
         $this->call(institutoSeeder::class);
+        $this->call(carreraSeeder::class);
         $this->call(tipoSeeder::class);
         $this->call(usuarioSeeder::class);
         $this->call(datosTallerSeeder::class);
