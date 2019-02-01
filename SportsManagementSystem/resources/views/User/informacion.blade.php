@@ -214,7 +214,7 @@
         @unless($info->usuario_id == null)
         <div class="{{$classSize}}">
             <fieldset class="form-group">
-                <label class="form-label" for="exampleInputDisabled2">Peso caca</label>
+                <label class="form-label" for="exampleInputDisabled2">Peso</label>
                 <input type="text" readonly class="form-control" value="{{$info->peso}}kg">
             </fieldset>
         </div>
