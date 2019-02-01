@@ -241,13 +241,14 @@
                             <label class="form-label"></label>
                             <div class="form-group">
                               <label class="col-sm-12">Pertenece a: </label>
+                              <label>Si bienes de fuera del IPN selecciona Otro, de lo contrario selecciona UPIIZ o CECyT</label>
                               <div class="col-sm-12">
                                 <div class="rdio rdio-primary">
                                   <input type="radio" name="insti" value="UPIIZ" id="tlist" onclick="mostrar();">
                                   <label>UPIIZ</label>
                                 </div>
                                 <div class="rdio rdio-primary">
-                                  <input type="radio" name="insti" value="Cecyt" id="tlistt" onclick="mostrar();">
+                                  <input type="radio" name="insti" value="CECyT" id="tlistt" onclick="mostrar();">
                                   <label>CECyT</label>
                                 </div>
                                 <div class="rdio rdio-primary">
@@ -434,7 +435,7 @@
                         </div>
 
                         <div class="{{$classSizeForms}}">
-                            <h5>Contactos de emergencia</h5>
+                            <h5>Contactos de emergencia <br> (minimo 1) </h5>
                             <label>Contacto 1</label>
                             <div>
                                 <fieldset class="form-group">

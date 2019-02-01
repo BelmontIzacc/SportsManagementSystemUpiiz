@@ -16,7 +16,7 @@
 <style>
 #nombre,#ap,#am{
   text-transform: capitalize;
-} 
+}
 </style>
 
 @stop
@@ -26,7 +26,7 @@
     <div class="page-center-in">
         <div class="container-fluid">
             {!!Form::open(array('url'=>'/registro/RegistroUsuario', 'class'=>'sign-box', 'method'=>'post'))!!}
-                
+
                 @if(count($errors) > 0)
     <div class="alert alert-danger alert-fill alert-close alert-dismissible fade in" role="alert">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -38,43 +38,43 @@
             @endforeach
         </ul>
     </div>
-@endif 
+@endif
                 <form class="sign-box">
                     <div class="sign-avatar no-photo">+</div>
                     <header class="sign-title">Sign Up</header>
                     <div class="form-group">
                         <fieldset class="form-group">
-        				    {!!Form::text('nombre', null, ['class'=>'form-control', 'placeholder'=>'Nombre', 'id'=>'nombre'])!!}		
+        				    {!!Form::text('nombre', null, ['class'=>'form-control', 'placeholder'=>'Nombre', 'id'=>'nombre'])!!}
         			     </fieldset>
                     </div>
                     <div class="form-group">
                         <fieldset class="form-group">
-        				    {!!Form::text('apellidoPaterno', null, ['class'=>'form-control', 'placeholder'=>'Apellido paterno', 'id'=>'ap'])!!}		
+        				    {!!Form::text('apellidoPaterno', null, ['class'=>'form-control', 'placeholder'=>'Apellido paterno', 'id'=>'ap'])!!}
         			 </fieldset>
                     </div>
                     <div class="form-group">
                         <fieldset class="form-group">
-        				    {!!Form::text('apellidoMaterno', null, ['class'=>'form-control', 'placeholder'=>'Apellido materno', 'id'=>'am'])!!}		
+        				    {!!Form::text('apellidoMaterno', null, ['class'=>'form-control', 'placeholder'=>'Apellido materno', 'id'=>'am'])!!}
         			 </fieldset>
                     </div>
                     <div class="form-group">
                         <fieldset class="form-group">
-        				    {!!Form::email('email', null, ['class'=>'form-control', 'placeholder'=>'ejemplo_registro@gmail.com', 'id'=>'email'])!!}		
+        				    {!!Form::email('email', null, ['class'=>'form-control', 'placeholder'=>'ejemplo_registro@gmail.com', 'id'=>'email'])!!}
         			 </fieldset>
                     </div>
                     <div class="form-group">
                         <fieldset class="form-group">
-        				    {!!Form::text('boleta', null, ['class'=>'form-control', 'placeholder'=>'Boleta: 2018670001', 'id'=>'bo'])!!}		
+        				    {!!Form::text('boleta', null, ['class'=>'form-control', 'placeholder'=>'Boleta/No. de empleado o Nombre de usuario (solo para personas fuera del IPN)', 'id'=>'bo'])!!}		
         			 </fieldset>
                     </div>
                     <div class="form-group">
                         <fieldset class="form-group">
-        				    {!!Form::password('password', ['class'=>'form-control', 'placeholder'=>'contraseña', 'id'=>'contra'])!!}		
+        				    {!!Form::password('password', ['class'=>'form-control', 'placeholder'=>'contraseña', 'id'=>'contra'])!!}
         			 </fieldset>
                     </div>
                     <div class="form-group">
                         <fieldset class="form-group">
-        				    {!!Form::password('password2', ['class'=>'form-control', 'placeholder'=>'confirmar contraseña', 'id'=>'contra2'])!!}		
+        				    {!!Form::password('password2', ['class'=>'form-control', 'placeholder'=>'confirmar contraseña', 'id'=>'contra2'])!!}
         			 </fieldset>
                     </div>
                     <button type="submit" class="btn btn-rounded btn-success sign-up">Registrarse</button>
@@ -105,17 +105,17 @@
 
     <script>
     $(document).ready(function() {
-        String.prototype.capitalizar = function(){                                
+        String.prototype.capitalizar = function(){
             return this.toLowerCase().replace( /\b\w/g, function (m) {
                 return m.toUpperCase();
             });
         };
-        
+
         var nombre = $(document.getElementById('nombre'));
         var ap = $(document.getElementById('ap'));
         var am = $(document.getElementById('am'));
         var bo = $(document.getElementById('bo'));
-        
+
         nombre.focusout(function(){
                     $(this).val($(this).val().capitalizar());
                 });
@@ -127,7 +127,7 @@
                 });
         bo.focusout(function(){
                     $(this).val($(this).val().toUpperCase());
-                });           
+                });
     });
     </script>
 
