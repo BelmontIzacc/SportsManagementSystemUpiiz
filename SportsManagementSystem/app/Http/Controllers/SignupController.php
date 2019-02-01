@@ -32,8 +32,8 @@ class SignupController extends Controller
     public function getCompleto($B){
 
         $index=4;
-        $tlista = \App\carrera::where('id','<=',5)->lists('nombre','id');
-        $tlistac = \App\carrera::where('id','>',6)->lists('nombre','id');
+        $tlista = \App\carrera::where('institucion_id',1)->lists('nombre','id');
+        $tlistac = \App\carrera::where('institucion_id',2)->lists('nombre','id');
 
         $user = \App\User::where('boleta','=',$B)->lists('boleta','id');
 
@@ -83,15 +83,11 @@ class SignupController extends Controller
 
         $Usuario = \App\User::find($request->user);
 
-        $Usuario->update([
-            'completado' => 1,
-        ]);
-
         $dateA = Carbon::parse($request->edad);
         $dateA = $dateA->format('Y-m-d');
 
         if($request->insti=="UPIIZ"){
-
+            $this->validate($request,['tlista'=>'required']);
             informacion::create([
                 'usuario_id' => $request->user,
                 'institucion_id' => 1,
@@ -119,23 +115,8 @@ class SignupController extends Controller
                 'segIns' => $request->segIns,
 
             ]);
-
-            contactos::create([
-                'usuario_id' => $request->user,
-
-                'nombre' => $request->nomCon1,
-                'telefono' => $request->telCon1,
-            ]);
-
-            if (!empty($request->nomCon2) && !empty($request->telCon2)) {
-                contactos::create([
-                    'usuario_id' => $request->user,
-
-                    'nombre' => $request->nomCon2,
-                    'telefono' => $request->telCon2,
-                ]);
-            }
-        }else{
+        }else if($request->insti == "CECyT") {
+            $this->validate('tlistac'=>'required');
            informacion::create([
                 'usuario_id' => $request->user,
                 'institucion_id' => 2,
@@ -161,24 +142,53 @@ class SignupController extends Controller
                 'segMed' => $request->segMed,
                 'regIns' => $request->segIns,
             ]);
+        } else {
+            informacion::create([
+                 'usuario_id' => $request->user,
+                 'institucion_id' => 3,
+                 'carrera_id' => 1,
 
+                 'sexo' => $request->sexo,
+                 'edad' => $dateA,
+
+                 'calle' => $request->calle,
+                 'numExterior' => $request->ext,
+                 'numInterior' => $request->inter,
+                 'colonia' => $request->colonia,
+                 'codigoPostal' => $request->cp,
+
+                 'semestre' => $request->semestre,
+                 'grupo' => $request->grupo,
+
+                 'alergias' => $request->alergias,
+                 'estatura' => $request->estatura,
+                 'peso' => $request->peso,
+                 'sangre' => $request->sangre,
+
+                 'segMed' => $request->segMed,
+                 'regIns' => $request->segIns,
+             ]);
+        }
+
+        contactos::create([
+            'usuario_id' => $request->user,
+
+            'nombre' => $request->nomCon1,
+            'telefono' => $request->telCon1,
+        ]);
+
+        if (!empty($request->nomCon2) && !empty($request->telCon2)) {
             contactos::create([
                 'usuario_id' => $request->user,
 
-                'nombre' => $request->nomCon1,
-                'telefono' => $request->telCon1,
+                'nombre' => $request->nomCon2,
+                'telefono' => $request->telCon2,
             ]);
-
-            if (!empty($request->nomCon2) && !empty($request->telCon2)) {
-                contactos::create([
-                    'usuario_id' => $request->user,
-
-                    'nombre' => $request->nomCon2,
-                    'telefono' => $request->telCon2,
-                ]);
-            }
         }
 
+        $Usuario->update([
+            'completado' => 1,
+        ]);
 
         return redirect('/user');
 

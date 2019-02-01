@@ -43,8 +43,8 @@ class UserController extends Controller
         if($user->completado!=1){
 
             $index=4;
-            $tlista = \App\carrera::where('id','<=',5)->lists('nombre','id');
-            $tlistac = \App\carrera::where('id','>',6)->lists('nombre','id');
+            $tlista = \App\carrera::where('institucion_id',1)->lists('nombre','id');
+            $tlistac = \App\carrera::where('institucion_id',2)->lists('nombre','id');
 
             $wop = \App\User::where('boleta','=',$user->boleta)->lists('boleta','id');
 
@@ -199,8 +199,8 @@ class UserController extends Controller
         $index=1;
         $user = Auth::user();
         $info = \App\informacion::where('usuario_id','=',$user->id)->first();
-        $tlista = \App\carrera::where('id','<=',6)->lists('nombre','id');
-        $tlistac = \App\carrera::where('id','>',6)->lists('nombre','id');
+        $tlista = \App\carrera::where('institucion_id',1)->lists('nombre','id');
+        $tlistac = \App\carrera::where('institucion_id',2)->lists('nombre','id');
         $cont = \App\contactos::where('usuario_id',$user->id)->get();
 
         return view('User.EditarInfo',[
@@ -221,8 +221,6 @@ class UserController extends Controller
 
    public function postEditInfo (Request $request)
     {
-
-
         $this->validate($request, [
             'nombre' => 'required',
             'apellidoP' => 'required',
@@ -233,29 +231,39 @@ class UserController extends Controller
 
             'calle' => 'required',
             'ext' => 'required',
-            'inter' => 'required',
+            'inter' => '',
             'colonia' => 'required',
             'cp' => 'required',
 
             'insti' => 'required',
-            'semestre'=> 'required',
-            'grupo'=> 'required',
             'boleta'=> 'required',
             'email'=> 'required',
-            'tlista'=>'',
-            'tlistac'=>'',
+
+            'alergias' => '',
+            'estatura' => 'required',
+            'peso' => 'required',
+            'segMed' => 'required',
+            'segIns' => 'required',
         ]);
 
-
+        if($request->insti != "otro") {
+            $this->validate($request , [
+                'semestre'=> 'required',
+                'grupo'=> 'required',
+            ]);
+        }
 
         $user = Auth::user();
         $infoUser = \App\informacion::find($user->informacion->id);
 
-        if($request->insti=="UPIIZ"){
+        if($request->insti=="UPIIZ") {
+            $this->validate($request, [
+                'Carrera'=>'required',
+            ]);
 
             $infoUser-> update([
                 'institucion_id' => 1,
-                'carrera_id' => $request->tlista,
+                'carrera_id' => $request->Carrera,
 
                 'edad' => $request->edad,
                 'telefono' => $request->telefono,
@@ -270,15 +278,26 @@ class UserController extends Controller
                 'semestre' => $request->semestre,
                 'grupo' => $request->grupo,
 
-        ]);
-        }else{
+                'alergias' => $request->alergias,
+                'estatura' => $request->estatura,
+                'peso' => $request->peso,
+                'sangre' => $request->sangre,
+
+                'segMed' => $request->segMed,
+                'segIns' => $request->segIns,
+            ]);
+        } else if($request->insti == "CECyT"){
+            $this->validate($request, [
+                'Bachiller' => 'required',
+            ]);
+
            $infoUser->update([
                 'institucion_id' => 2,
-                'carrera_id' => $request->tlistac,
+                'carrera_id' => $request->Bachiller,
 
                 'edad' => $request->edad,
-               'telefono' => $request->telefono,
-               'sexo' => $request->sexo -1,
+                'telefono' => $request->telefono,
+                'sexo' => $request->sexo -1,
 
                 'calle' => $request->calle,
                 'numExterior' => $request->ext,
@@ -289,7 +308,40 @@ class UserController extends Controller
                 'semestre' => $request->semestre,
                 'grupo' => $request->grupo,
 
-        ]);
+                'alergias' => $request->alergias,
+                'estatura' => $request->estatura,
+                'peso' => $request->peso,
+                'sangre' => $request->sangre,
+
+                'segMed' => $request->segMed,
+                'segIns' => $request->segIns,
+            ]);
+        } else {
+            $infoUser->update([
+                'institucion_id' => 3,
+                'carrera_id' => 1,
+
+                'edad' => $request->edad,
+                'telefono' => $request->telefono,
+                'sexo' => $request->sexo -1,
+
+                 'calle' => $request->calle,
+                 'numExterior' => $request->ext,
+                 'numInterior' => $request->inter,
+                 'colonia' => $request->colonia,
+                 'codigoPostal' => $request->cp,
+
+                 'semestre' => $request->semestre,
+                 'grupo' => $request->grupo,
+
+                 'alergias' => $request->alergias,
+                 'estatura' => $request->estatura,
+                 'peso' => $request->peso,
+                 'sangre' => $request->sangre,
+
+                 'segMed' => $request->segMed,
+                 'segIns' => $request->segIns,
+             ]);
         }
             $user-> update([
                 'nombre' => $request->nombre,
