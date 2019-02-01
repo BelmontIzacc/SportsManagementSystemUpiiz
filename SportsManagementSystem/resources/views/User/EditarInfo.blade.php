@@ -131,6 +131,7 @@
         </div>
     </div>
 
+    @unless($info->institucion_id == 3)
     <h5 class="m-t-lg with-border">Datos de escolares</h5>
 
     <div class="row">
@@ -155,13 +156,22 @@
                     > UPIIZ
                 </div>
                 <div class="rdio rdio-primary">
-                      <input type="radio" name="insti" value="Cecyt" id="tlistt" onclick="mostrar();"
+                      <input type="radio" name="insti" value="CECyT" id="tlistt" onclick="mostrar();"
                         @if($inst == 2)
                             checked=""
                         @else
 
                         @endif
                       > CECyT
+                </div>
+                <div class="rdio rdio-primary">
+                      <input type="radio" name="insti" value="otro" id="tlisttt" onclick="mostrar();"
+                        @if($inst == 2)
+                            checked=""
+                        @else
+
+                        @endif
+                      > Otro
                 </div>
             </fieldset>
         </div>
@@ -173,14 +183,14 @@
         <div id="tlistF" class="{{$classSize}}" style="display:none;">
             <fieldset class="form-group">
                 <label class="form-label" for="exampleInputDisabled2">Carrera</label>
-                {!!Form::select('tlista',$tlista, $ins, ['class'=>'bootstrap-select bootstrap-select-arrow form-control', 'placeholder'=>'Seleccionar carrera','id'=>'tlista'])!!}
+                {!!Form::select('Carrera',$tlista, $ins, ['class'=>'bootstrap-select bootstrap-select-arrow form-control', 'placeholder'=>'Seleccionar carrera','id'=>'tlista'])!!}
             </fieldset>
         </div>
                               <!--Bloque Oculto-->
         <div id="tlistM" class="{{$classSize}}" style="display:none;">
             <fieldset class="form-group">
                 <label class="form-label" for="exampleInputDisabled2">Carrera</label>
-                {!!Form::select('tlistac',$tlistac, $ins, ['class'=>'bootstrap-select bootstrap-select-arrow form-control', 'placeholder'=>'Seleccionar carrera','id'=>'tlistac'])!!}
+                {!!Form::select('Bachiller',$tlistac, $ins, ['class'=>'bootstrap-select bootstrap-select-arrow form-control', 'placeholder'=>'Seleccionar carrera','id'=>'tlistac'])!!}
             </fieldset>
         </div>
                               <!--Bloque Oculto-->
@@ -207,6 +217,7 @@
         </div>
         @endunless
     </div>
+    @endunless
 
     <h5 class="m-t-lg with-border">Datos de geográficos</h5>
 
@@ -300,12 +311,26 @@
         @unless($info->usuario_id == null)
         <div class="{{$classSize}}">
             <fieldset class="form-group">
-                <label class="form-label" for="exampleInputDisabled2">¿Cuentas con seguro médico caca?</label>
-                @if($info->segMed == 1)
-                    <input type="text" readonly class="form-control" value="Si">
-                @else
-                    <input type="text" readonly class="form-control" value="No">
-                @endif
+                <label class="form-label" for="exampleInputDisabled2">¿Cuentas con seguro médico?</label>
+                <div class="rdio rdio-primary">
+                    <?php $segMed = $info->segMed ?>
+                    <input type="radio" name="segMed" value="1" id="segMedSi"
+                        @if($segMed == 1)
+                            checked=""
+                        @else
+
+                        @endif
+                    > Si
+                </div>
+                <div class="rdio rdio-primary">
+                      <input type="radio" name="segMed" value="0" id="segMedNo"
+                        @if($segMed == 0)
+                            checked=""
+                        @else
+
+                        @endif
+                      > No
+                </div>
             </fieldset>
         </div>
         @endunless
@@ -313,12 +338,24 @@
         @unless($info->usuario_id == null)
         <div class="{{$classSize}}">
             <fieldset class="form-group">
+                <?php $segIns = $info->segIns; ?>
                 <label class="form-label" for="exampleInputDisabled2">¿Cuentas con seguro de vida institucioal?</label>
-                @if($info->segIns == 1)
-                    <input type="text" readonly class="form-control" value="Si">
-                @else
-                    <input type="text" readonly class="form-control" value="No">
-                @endif
+                <div class="rdio rdio-primary">
+                    <input type="radio" name="segIns" value="1" id="segInsSi"
+                    @if($segIns == 1)
+                        checked=""
+                    @else
+                    @endif
+                    > Si
+                </div>
+                <div class="rdio rdio-primary">
+                    <input type="radio" name="segIns" value="0" id="segInsNo"
+                    @if($segIns == 0)
+                        checked=""
+                    @else
+                    @endif
+                    > No
+                </div>
             </fieldset>
         </div>
         @endunless
