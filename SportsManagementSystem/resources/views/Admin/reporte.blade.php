@@ -5,7 +5,7 @@
 <html>
     <body background="https://i.imgur.com/1kKMCdT.png" style="background-position: center center; background-repeat: no-repeat;">
         <div class="Header">
-            <img src="https://i.imgur.com/aCLHQwE.png" class="SEP">
+            <img src="http://www.mexterior.sep.gob.mx/images/firma.png" class="SEP">
             <div class="Insituciones">
                 <div class="nombres">
                     <p style="font-size:11pt;">
@@ -94,20 +94,20 @@
 
     <style media="screen" type="text/css">
         .SEP {
-            height: 1.5cm;
+            height: auto;
             width: 4.91cm;
             position: absolute;
             left: 0.75cm;
             top: 0.23cm;
         }
         .IPN {
-            height: 1.5cm;
+            height: auto;
             width: 1.01cm;
             position:absolute;
             right: 0.75cm;
         }
         .UPIIZ {
-            height: 1.3cm;
+            height: auto;
             width: 1.3cm;
             position: absolute;
             right: 0.75cm;
