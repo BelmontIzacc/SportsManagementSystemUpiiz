@@ -56,6 +56,8 @@
 	                            <a class="dropdown-item" href="{{asset('/admin/profile')}}"><span class="font-icon glyphicon glyphicon-user"></span>Perfil</a>
 	                            <div class="dropdown-divider"></div>
 	                            <a class="dropdown-item" href="{{asset('/admin')}}"><span class="font-icon font-icon-home"></span>Home</a>
+	                            <a class="dropdown-item" href="{{asset('/Credits')}}"><span class="font-icon font-icon-heart"></span>Creditos</a>
+	                            <div class="dropdown-divider"></div>	                            
 	                            <a class="dropdown-item" href="{{asset('/logout')}}"><span class="font-icon glyphicon glyphicon-log-out"></span>Logout</a>
 	                        </div>
 	                    </div>

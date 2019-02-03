@@ -51,7 +51,7 @@ class AuthController extends Controller
                 'nombre'=>'required|min:1|max:50',
                 'apellidoPaterno'=>'required|min:1|max:50',
                 'apellidoMaterno'=>'required|min:1|max:50',
-                'email'=>'required|min:8|max:90',
+                'email'=>'required|unique:usuario|min:7|max:90',
                 'boleta'=>'required',
                 'password' => 'required', 
                 'password2' => 'required',

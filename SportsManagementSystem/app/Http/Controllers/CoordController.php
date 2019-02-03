@@ -653,6 +653,7 @@ class CoordController extends Controller
 
         ]);
         }
+            $infoUser->save();
             $user-> update([
                 'nombre' => $request->nombre,
                 'apellidoPaterno' => $request->apellidoP,
@@ -661,7 +662,9 @@ class CoordController extends Controller
                 'email'  => $request->email
             ]);
 
-       return redirect('/user/Info');
+            $infoUser->save();
+            $user->save();
+       return redirect('/coord/user/Info');
     }
 
     public function postShowTaller(Request $request,$id)

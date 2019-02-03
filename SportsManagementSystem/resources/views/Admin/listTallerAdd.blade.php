@@ -74,6 +74,18 @@ $classSizeForms = "col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3 col-sm-6 co
                         </tr>
                     </thead>
                     <tbody>
+
+                    @if($taller == null)
+                        <tr id="$st->usuario->id" class="text-center">
+                            <td>
+                                <span class="tabledit-span tabledit-identifier"></span>
+                            </td>
+                            <td class="table-icon-cell">No hay talleres disponibles para registrar
+                            </td>
+                            <td class="table-icon-cell">
+                            </td>
+                        </tr>
+                    @else
                         <?php $num=0; ?>
                         @foreach($taller as $st)
                         <tr id="$st->usuario->id" class="text-center">
@@ -91,6 +103,7 @@ $classSizeForms = "col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3 col-sm-6 co
                             </td>
                         </tr>
                         @endforeach
+                    @endif
                     </tbody>
                 </table>
                 </div>

@@ -244,6 +244,8 @@ class UserController extends Controller
             'peso' => 'required',
             'segMed' => 'required',
             'segIns' => 'required',
+            'sangre' => 'required'
+
         ]);
 
         if($request->insti != "otro") {

@@ -15,7 +15,7 @@
 @section('popUp')
 @stop
 @section('subHead')
-Talleres Registrados
+Talleres a Impartir
 @stop
 @section('content')
 <div class="container-fluid" >

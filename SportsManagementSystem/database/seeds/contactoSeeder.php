@@ -2,16 +2,15 @@
 
 use Illuminate\Database\Seeder;
 
-class contactosSeeder extends Seeder
+class contactoSeeder extends Seeder
 {
     /**
-    * Run the database seeds.
-    *
-    *@return void
-    */
+     * Run the database seeds.
+     *
+     * @return void
+     */
     public function run()
     {
-        //
         $limit = config('global.limite');
         $word = "ABCDEFGHIGKLMNOPQRSTUVWXYZ i o u";
             for($i = 0; $i <= $limit+3; $i++){
@@ -29,4 +28,3 @@ class contactosSeeder extends Seeder
             }
     }
 }
-?>

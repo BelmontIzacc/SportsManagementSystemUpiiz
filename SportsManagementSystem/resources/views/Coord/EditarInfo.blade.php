@@ -80,13 +80,13 @@
         </div>
         <div class="{{$classSize}}">
             <fieldset class="form-group">
-              <label class="form-label">Nombre</label>
+              <label class="form-label">Apellido Paterno/label>
               {!!Form::text('apellidoP', $user->apellidoPaterno, ['class'=>'form-control', 'id'=>'nombre','placeholder'=>'$user->apellidoPaterno'])!!}
             </fieldset>
         </div>
         <div class="{{$classSize}}">
             <fieldset class="form-group">
-              <label class="form-label">Nombre</label>
+              <label class="form-label">Apellido Materno</label>
               {!!Form::text('apellidoM', $user->apellidoMaterno, ['class'=>'form-control', 'id'=>'nombre','placeholder'=>'$user->apellidoMaterno'])!!}
             </fieldset>
         </div>

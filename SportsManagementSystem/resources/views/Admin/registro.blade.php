@@ -397,7 +397,7 @@
                   <div class="{{$classSizeForms}}">
                     <fieldset class="form-group">
                       <label class="form-label">Codigo Postal</label>
-                        {!!Form::text('postal', null, ['class'=>'form-control', 'placeholder'=>'Ingresa Codigo Postal', 'id'=>'postal'])!!}  
+                        {!!Form::number('postal', null, ['class'=>'form-control', 'placeholder'=>'Ingresa Codigo Postal', 'id'=>'postal'])!!}  
                     </fieldset>
                   </div>
                   <div class="{{$classSizeForms}}">

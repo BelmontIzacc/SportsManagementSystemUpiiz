@@ -82,7 +82,7 @@ class AdminController extends Controller
             'apellidoMaterno' => 'required',
             'sexo' => 'required|min:1',
             'telefono' => 'required',
-            'email' => 'required',
+            'email' => 'required|unique:usuario',
             'edad' => 'required',
 
             'boleta' => 'required|unique:usuario,boleta',
@@ -110,7 +110,7 @@ class AdminController extends Controller
             $this->validate($request, [
                 'plantel' => 'required',
                 'carrera' => 'required',
-                'semestre' => 'required|numeric|between:1,15',
+                'semestre' => 'required|numeric|between:1,13',
             ]);
         }
 
@@ -1320,7 +1320,7 @@ class AdminController extends Controller
 
     public function showTallerAdd($id){
         $index=4;
-        $taller = \App\taller::all();
+        $taller = \App\taller::where('usuario_id','!=',$id)->get();
         $user = \App\User::find($id);
 
         return view('Admin.listTallerAdd',[
@@ -1818,7 +1818,7 @@ class AdminController extends Controller
     public function Reportes($idT,$idU) {
 
         $user = \App\User::where('id',$idU)->get();
-        $taller = \App\Taller::where('id',$idT)->get();
+        $taller = \App\taller::where('id',$idT)->get();
         $constancia = \App\Constancia::all();
 
         $compAnio = date('Y');

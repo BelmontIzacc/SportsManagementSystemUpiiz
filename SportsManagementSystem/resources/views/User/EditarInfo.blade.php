@@ -75,19 +75,22 @@
         <div class="{{$classSize}}">
             <fieldset class="form-group">
               <label class="form-label">Nombre</label>
-              {!!Form::text('nombre', $user->nombre, ['class'=>'form-control', 'id'=>'nombre','placeholder'=>'$user->nombre'])!!}
+              <?php $n = $user->nombre; ?>
+              {!!Form::text('nombre', $user->nombre, ['class'=>'form-control', 'id'=>'nombre','placeholder'=>''.$n])!!}
             </fieldset>
         </div>
         <div class="{{$classSize}}">
             <fieldset class="form-group">
               <label class="form-label">Apelldo paterno</label>
-              {!!Form::text('apellidoP', $user->apellidoPaterno, ['class'=>'form-control', 'id'=>'nombre','placeholder'=>'$user->apellidoPaterno'])!!}
+              <?php $ap = $user->apellidoPaterno; ?>
+              {!!Form::text('apellidoP', $user->apellidoPaterno, ['class'=>'form-control', 'id'=>'nombre','placeholder'=>''.$ap])!!}
             </fieldset>
         </div>
         <div class="{{$classSize}}">
             <fieldset class="form-group">
               <label class="form-label">Apellido materno</label>
-              {!!Form::text('apellidoM', $user->apellidoMaterno, ['class'=>'form-control', 'id'=>'nombre','placeholder'=>'$user->apellidoMaterno'])!!}
+              <?php $am = $user->apellidoMaterno; ?>
+              {!!Form::text('apellidoM', $user->apellidoMaterno, ['class'=>'form-control', 'id'=>'nombre','placeholder'=>''.$am])!!}
             </fieldset>
         </div>
         @unless($info->usuario_id == null)
@@ -126,7 +129,7 @@
     	<div class="{{$classSize}}">
             <fieldset class="form-group">
                 <label class="form-label" for="exampleInputDisabled2">Correo</label>
-                {!!Form::email('email', $user->email, ['class'=>'form-control', 'id'=>'email'])!!}
+                {!!Form::email('email', $user->email, ['class'=>'form-control', 'id'=>'email','placeholder'=>''.$user->email])!!}
             </fieldset>
         </div>
     </div>
@@ -138,7 +141,7 @@
     	<div class="{{$classSize}}">
             <fieldset class="form-group">
                 <label class="form-label" for="exampleInputDisabled2">Boleta</label>
-                 {!!Form::text('boleta', $user->boleta, ['class'=>'form-control', 'id'=>'bo'])!!}
+                 {!!Form::text('boleta', $user->boleta, ['class'=>'form-control', 'id'=>'bo','placeholder'=>''.$user->boleta])!!}
             </fieldset>
         </div>
         @unless($info->institucion->nombre == null)
@@ -226,7 +229,7 @@
         <div class="{{$classSize}}">
             <fieldset class="form-group">
                 <label class="form-label" for="exampleInputDisabled2">Calle</label>
-                {!!Form::text('calle', $info->calle, ['class'=>'form-control', 'id'=>'calle'])!!}
+                {!!Form::text('calle', $info->calle, ['class'=>'form-control', 'id'=>'calle','placeholder'=>''.$user->informacion->calle])!!}
             </fieldset>
         </div>
         @endunless
@@ -234,7 +237,7 @@
         <div class="{{$classSize}}">
             <fieldset class="form-group">
                 <label class="form-label" for="exampleInputDisabled2">Número exterior</label>
-                {!!Form::text('ext', $info->numExterior, ['class'=>'form-control', 'id'=>'exterior'])!!}
+                {!!Form::text('ext', $info->numExterior, ['class'=>'form-control', 'id'=>'exterior','placeholder'=>''.$user->informacion->numExterior])!!}
             </fieldset>
         </div>
         @endunless
@@ -245,7 +248,7 @@
                 @if($info->numInterior == null)
                     {!!Form::text('inter',null, ['class'=>'form-control', 'placeholder'=>'-', 'id'=>'interior'])!!}
                 @else
-                    {!!Form::text('inter', $info->numInterior, ['class'=>'form-control', 'id'=>'interior'])!!}
+                    {!!Form::text('inter', $info->numInterior, ['class'=>'form-control', 'id'=>'interior','placeholder'=>''.$user->informacion->numInterior])!!}
                 @endif
             </fieldset>
         </div>
@@ -255,7 +258,7 @@
         <div class="{{$classSize}}">
             <fieldset class="form-group">
                 <label class="form-label" for="exampleInputDisabled2">Colonia</label>
-                 {!!Form::text('colonia', $info->colonia, ['class'=>'form-control','id'=>'colonia'])!!}
+                 {!!Form::text('colonia', $info->colonia, ['class'=>'form-control','id'=>'colonia','placeholder'=>''.$user->informacion->colonia])!!}
             </fieldset>
         </div>
         @endunless
@@ -263,7 +266,7 @@
         <div class="{{$classSize}}">
             <fieldset class="form-group">
                 <label class="form-label" for="exampleInputDisabled2">Código postal</label>
-                 {!!Form::text('cp', $info->codigoPostal, ['class'=>'form-control', 'id'=>'cp'])!!}
+                 {!!Form::text('cp', $info->codigoPostal, ['class'=>'form-control', 'id'=>'cp','placeholder'=>''.$user->informacion->codigoPostal])!!}
             </fieldset>
         </div>
         @endunless
@@ -285,7 +288,7 @@
         <div class="{{$classSize}}">
             <fieldset class="form->group">
                 <label class="fomr-label" for="exampleInputDisabled2">Estatura</label>
-                {!!Form::text('estatura',$info->estatura,['class'=>'form-control', 'id'=>'Estatura'])!!}
+                {!!Form::text('estatura',$info->estatura,['class'=>'form-control', 'id'=>'Estatura','placeholder'=>''.$user->informacion->estatura])!!}
             </fieldset>
         </div>
         @endunless
@@ -294,7 +297,7 @@
         <div class="{{$classSize}}">
             <fieldset class="form-group">
                 <label class="form-label" for="exampleInputDisabled2">Peso</label>
-                {!!Form::text('peso',$info->peso,['class'=>'form-control', 'id'=>'peso'])!!}
+                {!!Form::text('peso',$info->peso,['class'=>'form-control', 'id'=>'peso','placeholder'=>''.$user->informacion->peso])!!}
             </fieldset>
         </div>
         @endunless
@@ -303,7 +306,7 @@
         <div class="{{$classSize}}">
             <fieldset class="form-group">
                 <label class="form-label" for="exampleInputDisabled2">Tipo de Sangre</label>
-                {!!Form::text('sangre',$info->sangre,['class'=>'form-control', 'id'=>'sangre'])!!}
+                {!!Form::text('sangre',$info->sangre,['class'=>'form-control', 'id'=>'sangre','placeholder'=>''.$user->informacion->sangre])!!}
             </fieldset>
         </div>
         @endunless
