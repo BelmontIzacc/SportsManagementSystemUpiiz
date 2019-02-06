@@ -67,7 +67,7 @@
 <style>
 #nombre,#apellidoPaterno,#apellidoMaterno,#nombreTaller,#col,#cal{
   text-transform: capitalize;
-} 
+}
 </style>
 
 @stop
@@ -106,23 +106,23 @@
                 <div class="row">
                   <div class="{{$classSizeForms}}">
                     <fieldset class="form-group">
-        				{!!Form::text('nombre', null, ['class'=>'form-control', 'placeholder'=>'Nombre(s)', 'id'=>'nombre'])!!}			
+        				{!!Form::text('nombre', null, ['class'=>'form-control', 'placeholder'=>'Nombre(s)', 'id'=>'nombre'])!!}
         			     </fieldset>
                   </div>
                   <div class="{{$classSizeForms}}">
                     <fieldset class="form-group">
-        				{!!Form::text('apellidoPaterno', null, ['class'=>'form-control', 'placeholder'=>'Apellido paterno', 'id'=>'apellidoPaterno'])!!}			
+        				{!!Form::text('apellidoPaterno', null, ['class'=>'form-control', 'placeholder'=>'Apellido paterno', 'id'=>'apellidoPaterno'])!!}
         						</fieldset>
                   </div>
                   <div class="{{$classSizeForms}}">
                     <fieldset class="form-group">
-        				    {!!Form::text('apellidoMaterno', null, ['class'=>'form-control', 'placeholder'=>'Apellido materno', 'id'=>'apellidoMaterno'])!!}		
+        				    {!!Form::text('apellidoMaterno', null, ['class'=>'form-control', 'placeholder'=>'Apellido materno', 'id'=>'apellidoMaterno'])!!}
         			 </fieldset>
                   </div>
                   <div class="{{$classSizeForms}}">
                     <fieldset class="form-group">
                       <label class="form-label">Sexo</label>
-                {!!Form::select('sexo',$sexos, -1, ['class'=>'bootstrap-select bootstrap-select-arrow form-control','id'=>'sexo','placeholder'=>'Seleccionar'])!!}   
+                {!!Form::select('sexo',$sexos, -1, ['class'=>'bootstrap-select bootstrap-select-arrow form-control','id'=>'sexo','placeholder'=>'Seleccionar'])!!}
                     </fieldset>
                   </div>
                 </div>
@@ -134,12 +134,12 @@
                   </div>
                   <div class="{{$classSizeForms}}">
                     <fieldset class="form-group">
-                {!!Form::text('email', null, ['class'=>'form-control', 'placeholder'=>'E-Mail', 'id'=>'email'])!!}      
+                {!!Form::text('email', null, ['class'=>'form-control', 'placeholder'=>'E-Mail', 'id'=>'email'])!!}
         						</fieldset>
                   </div>
                   <div class="{{$classSizeForms}}">
                     <fieldset class="form-group">
-                {!!Form::number('edad', null, ['class'=>'form-control', 'placeholder'=>'Edad', 'id'=>'edad'])!!}       
+                {!!Form::number('edad', null, ['class'=>'form-control', 'placeholder'=>'Edad', 'id'=>'edad'])!!}
         						</fieldset>
                   </div>
                   <div class="{{$classSizeForms}}">
@@ -187,7 +187,7 @@
                   <div class="{{$classSizeForms}}">
                     <fieldset class="form-group">
                     <label class="form-label">Usuario</label>
-                      {!!Form::text('boleta', null, ['class'=>'form-control', 'id'=>'boleta', 'placeholder'=> 'Boleta/Numero de Trabajador'])!!}
+                      {!!Form::text('boleta', null, ['class'=>'form-control', 'id'=>'boleta', 'placeholder'=> 'Boleta/Número de Trabajador'])!!}
                     </fieldset>
                   </div>
                   <div class="{{$classSizeForms}}">
@@ -203,7 +203,7 @@
                   </div>
                   <div class="{{$classSizeForms}} immsOnly">
                     <fieldset class="form-group">
-                      
+
                     </fieldset>
                   </div>
                   <div class="{{$classSizeForms}}">
@@ -242,7 +242,7 @@
                       </li>
                       <li class="active">
                           {!!$extra!!}
-                      </li>      
+                      </li>
                       <li>
                           {!!$taller!!}
                       </li>
@@ -293,13 +293,13 @@
                                     <div >
                                       <fieldset class="form-group">
                                         <label class="form-label">Semestre</label>
-                                          {!!Form::number('semestre',0, ['class'=>'form-control', 'placeholder'=>'Semestre actual', 'id'=>'semestre'])!!}  
+                                          {!!Form::number('semestre',0, ['class'=>'form-control', 'placeholder'=>'Semestre actual', 'id'=>'semestre'])!!}
                                       </fieldset>
                                     </div>
                                     <div >
                                       <fieldset class="form-group">
                                         <label class="form-label">Grupo</label>
-                                          {!!Form::text('grupo',' ', ['class'=>'form-control', 'placeholder'=>'Grupo actual', 'id'=>'grupo'])!!}  
+                                          {!!Form::text('grupo',' ', ['class'=>'form-control', 'placeholder'=>'Grupo actual', 'id'=>'grupo'])!!}
                                       </fieldset>
                                     </div>
                                     <div class="{{$classSizeForms}}">
@@ -364,40 +364,40 @@
                       </li>
                       <li class="active">
                           {!!$extra!!}
-                      </li>         
+                      </li>
                       <li>
                           {!!$taller!!}
                       </li>
                     </ul>
                 </div>
 
-                <h5 class="m-t-lg with-border">Llenado de información de localizacion</h5>
+                <h5 class="m-t-lg with-border">Llenado de información de localización</h5>
                 <div class="row">
                   <div class="{{$classSizeForms}}">
                     <fieldset class="form-group">
                       <label class="form-label">Calle</label>
-                        {!!Form::text('cal', null, ['class'=>'form-control', 'placeholder'=>'Ingresa la calle', 'id'=>'cal'])!!}  
+                        {!!Form::text('cal', null, ['class'=>'form-control', 'placeholder'=>'Ingresa la calle', 'id'=>'cal'])!!}
                     </fieldset>
                   </div>
                   <div class="{{$classSizeForms}}">
                     <fieldset class="form-group">
                       <label class="form-label">Colonia</label>
-                        {!!Form::text('col', null, ['class'=>'form-control', 'placeholder'=>'Ingresa la colonia', 'id'=>'col'])!!}  
+                        {!!Form::text('col', null, ['class'=>'form-control', 'placeholder'=>'Ingresa la colonia', 'id'=>'col'])!!}
                     </fieldset>
                   </div>
                   <div class="{{$classSizeForms}}">
                     <fieldset class="form-group">
-                      <label class="form-label">Numeracion</label>
+                      <label class="form-label">Numeración</label>
                       <label class="form-label">Exterior</label>
-                      {!!Form::text('numext', 0, ['class'=>'form-control', 'placeholder'=>'Ingresa el numero exterior', 'id'=>'numext'])!!}
+                      {!!Form::text('numext', 0, ['class'=>'form-control', 'placeholder'=>'Ingresa el número exterior', 'id'=>'numext'])!!}
                       <label class="form-label">Interior</label>
-                      {!!Form::text('numin', 0, ['class'=>'form-control', 'placeholder'=>'Ingresa el numero interior', 'id'=>'numint'])!!}  
+                      {!!Form::text('numin', 0, ['class'=>'form-control', 'placeholder'=>'Ingresa el número interior', 'id'=>'numint'])!!}
                     </fieldset>
                   </div>
                   <div class="{{$classSizeForms}}">
                     <fieldset class="form-group">
-                      <label class="form-label">Codigo Postal</label>
-                        {!!Form::number('postal', null, ['class'=>'form-control', 'placeholder'=>'Ingresa Codigo Postal', 'id'=>'postal'])!!}  
+                      <label class="form-label">Código Postal</label>
+                        {!!Form::text('postal', null, ['class'=>'form-control', 'placeholder'=>'Ingresa Código Postal', 'id'=>'postal'])!!}
                     </fieldset>
                   </div>
                   <div class="{{$classSizeForms}}">
@@ -441,7 +441,7 @@
                         </li>
                         <li class="active">
                             {!!$extra!!}
-                        </li>  
+                        </li>
                         <li class="active">
                             {!!$taller!!}
                         </li>
@@ -458,7 +458,7 @@
                               <div class="col-sm-12">
                                 <div class="rdio rdio-primary">
                                   <input type="radio" name="taller" value="si" id="tlist" onclick="mostrar();">
-                                  <label>Si</label>
+                                  <label>Sí</label>
                                 </div>
                                 <div class="rdio rdio-primary">
                                   <input type="radio" name="taller" value="no" id="tlistt" onclick="mostrar();">
@@ -489,20 +489,20 @@
                                   <div>
                                       <fieldset class="form-group">
                                           <label class="form-label"></label>
-                                            {!!Form::text('nombreTaller', null, ['class'=>'form-control', 'placeholder'=>'Nombre del taller', 'id'=>'nombreTaller'])!!}   
+                                            {!!Form::text('nombreTaller', null, ['class'=>'form-control', 'placeholder'=>'Nombre del taller', 'id'=>'nombreTaller'])!!}
                                       </fieldset>
                                   </div>
 
                                   <div>
                                     <fieldset class="form-group">
                                       <label class="form-label"></label>
-                                        {!!Form::number('duracion', null, ['class'=>'form-control', 'placeholder'=>'Duracion en horas (total)', 'id'=>'duracion'])!!}  
+                                        {!!Form::number('duracion', null, ['class'=>'form-control', 'placeholder'=>'Duración en horas (total)', 'id'=>'duracion'])!!}
                                     </fieldset>
                                 </div>
 
                               <div>
                                   <fieldset class="form-group">
-                                  <label class="form-label">Dias de Imparticion</label>
+                                  <label class="form-label">Días de Impartición</label>
                                   {!!Form::select('dia[]',$dia,0, ['class'=>'select2 remove-example', 'multiple'])!!}
                                   </fieldset>
                               </div>
@@ -513,13 +513,13 @@
                               </div>
                               <div>
                                   <fieldset class="form-group">
-                                      {!!Form::textArea('descri', null, ['class'=>'form-control','maxlength'=>'255','rows'=>'8','cols'=>31,'placeholder'=>'Descripcion del taller', 'id'=>'descri'])!!}
+                                      {!!Form::textArea('descri', null, ['class'=>'form-control','maxlength'=>'255','rows'=>'8','cols'=>31,'placeholder'=>'Descripción del taller', 'id'=>'descri'])!!}
                                   </fieldset>
                               </div>
                                 <div>
                                     <fieldset class="form-group">
                                       <label class="form-label"></label>
-                                           {!!Form::select('tilista',$tilista, 0, ['class'=>'select2 form-control', 'placeholder'=>'Selecciona un tipo','id'=>'tilista'])!!} 
+                                           {!!Form::select('tilista',$tilista, 0, ['class'=>'select2 form-control', 'placeholder'=>'Selecciona un tipo','id'=>'tilista'])!!}
                                     </fieldset>
                                 </div>
 
@@ -550,7 +550,7 @@
                                   <div>
                                     <fieldset class="form-group">
                                       <label class="form-label">Estatus</label>
-                                      {!!Form::select('status',$status, -1, ['class'=>'bootstrap-select bootstrap-select-arrow form-control','id'=>'status','placeholder'=>'Seleccionar'])!!}   
+                                      {!!Form::select('status',$status, -1, ['class'=>'bootstrap-select bootstrap-select-arrow form-control','id'=>'status','placeholder'=>'Seleccionar'])!!}
                                     </fieldset>
                                   </div>
 
@@ -601,7 +601,7 @@ Registro
     <script src="{{asset('/Template/js/lib/clockpicker/bootstrap-clockpicker.min.js')}}"></script>
     <script src="{{asset('/Template/js/lib/clockpicker/bootstrap-clockpicker-init.js')}}"></script>
     <script src="{{asset('/Template/js/lib/daterangepicker/daterangepicker.js')}}"></script>
-    
+
     <script>
     $(document).ready(function() {
         $('#telefono').mask('(000) 000-0000', {placeholder: "Teléfono personal"});

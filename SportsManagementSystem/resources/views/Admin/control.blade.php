@@ -110,7 +110,7 @@
     <header class="widgets-header">
         <div class="container-fluid">
             <div class="tbl tbl-outer">
-                <div class="tbl-row">              
+                <div class="tbl-row">
                     <div class="tbl-cell">
                         <div class="tbl tbl-item">
                             <div class="tbl-row">
@@ -130,14 +130,14 @@
                                 <div class="tbl-cell tbl-cell-progress">
                                     <div class="col-lg-6 col-md-6">
                      <a href="{{asset('/admin')}}" class="btn btn-rounded btn-primary btn-inline">Regresar</a>
-                                    </div> 
+                                    </div>
                                 </div>
                                 <div class="col-lg-6 col-md-6">
                      <button type="button" class="btn btn-rounded btn-inline btn-warning" data-toggle="modal" data-target=".bd-example1-modal-sm">Funciones de borrado</button>
-                                </div> 
+                                </div>
                                 <div class="col-lg-6 col-md-6">
                      <button type="button" class="btn btn-rounded btn-inline btn-info" data-toggle="modal" data-target=".bd-example2-modal-sm">Control registros</button>
-                                </div> 
+                                </div>
                             </div>
                         </div> <!--tbl tbl-item-->
                     </div> <!--tbl-cell-->
@@ -151,7 +151,7 @@
 
 @include('alerts.formError')
 @include('alerts.sessionAlert')
-    
+
 <div class="row">
 
     <div class="col-lg-4 col-md-6">
@@ -198,7 +198,7 @@
             </div>
         </section><!--.widget-->
     </div> <!--col-lg-4 col-md-6-->
-    
+
     <div class="col-lg-4 col-md-6">
         <section class="widget">
             <header class="widget-header-dark with-btn">
@@ -216,7 +216,7 @@
                                     @foreach($institucion as $ins)
                                     <tr>
                                         <td class="table-check">
-                                            <div class="font-11 color-blue-grey-lighter uppercase">Institucion</div>
+                                            <div class="font-11 color-blue-grey-lighter uppercase">Institución</div>
                                             {{$ins->nombre}}
                                         </td>
                                         <td class="table-check">
@@ -231,7 +231,7 @@
                     </center>
                 </div>
                 <div class="tab-pane" id="w-2-tab-2" role="tabpanel">
-                    
+
                 </div>
             </div>
             <div class="widget-tabs-nav bordered">
@@ -246,7 +246,7 @@
             </div>
         </section><!--.widget-->
     </div> <!--col-lg-4 col-md-6-->
-    
+
     <div class="col-lg-4 col-md-6">
         <section class="widget">
             <header class="widget-header-dark with-btn">
@@ -293,7 +293,7 @@
             </div>
         </section><!--.widget-->
     </div> <!--col-lg-4 col-md-6-->
-    
+
 </div>
 
 <div class="row">
@@ -329,7 +329,7 @@
                         </div>
                     </center>
                 </div>
-                <div class="tab-pane" id="w-4-tab-2" role="tabpanel">     
+                <div class="tab-pane" id="w-4-tab-2" role="tabpanel">
                 </div>
             </div>
             <div class="widget-tabs-nav bordered">
@@ -344,7 +344,7 @@
             </div>
         </section><!--.widget-->
     </div> <!--col-lg-4 col-md-6-->
-    
+
     <div class="col-lg-4 col-md-6">
         <section class="widget">
             <header class="widget-header-dark with-btn">
@@ -401,7 +401,7 @@
             </div>
         </section><!--.widget-->
     </div> <!--col-lg-4 col-md-6-->
-    
+
     <div class="col-lg-4 col-md-6">
         <section class="widget">
             <header class="widget-header-dark with-btn">
@@ -448,7 +448,7 @@
             </div>
         </section><!--.widget-->
     </div> <!--col-lg-4 col-md-6-->
-    
+
 </div>
 @stop
 @section('content')

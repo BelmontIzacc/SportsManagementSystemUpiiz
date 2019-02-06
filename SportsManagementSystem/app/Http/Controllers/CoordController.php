@@ -551,11 +551,13 @@ class CoordController extends Controller
         $index=1;
         $user = Auth::user();
         $info = \App\informacion::where('usuario_id','=',$user->id)->first();
-
+        $cont = \App\contactos::where('usuario_id',$user->id)->get();
+        
         return view('Coord.informacion',[
             'index' => $index,
             'user' => $user,
-            'info'=> $info
+            'info'=> $info,
+            'cont'=>$cont,
         ]);
     }
 
@@ -606,6 +608,13 @@ class CoordController extends Controller
             'email'=> 'required',
             'tlista'=>'',
             'tlistac'=>'',
+
+            'alergias' => 'required',
+            'estatura' => 'required',
+            'peso' => 'required',
+            'segMed' => 'required',
+            'segIns' => 'required',
+            'sangre' => 'required'
         ]);
 
 
@@ -613,11 +622,14 @@ class CoordController extends Controller
         $user = Auth::user();
         $infoUser = \App\informacion::find($user->informacion->id);
 
-        if($request->insti=="UPIIZ"){
+        if($request->insti=="UPIIZ") {
+            $this->validate($request, [
+                'Carrera'=>'required',
+            ]);
 
             $infoUser-> update([
                 'institucion_id' => 1,
-                'carrera_id' => $request->tlista,
+                'carrera_id' => $request->Carrera,
 
                 'edad' => $request->edad,
                 'telefono' => $request->telefono,
@@ -632,15 +644,27 @@ class CoordController extends Controller
                 'semestre' => $request->semestre,
                 'grupo' => $request->grupo,
 
-        ]);
-        }else{
+                'alergias' => $request->alergias,
+                'estatura' => $request->estatura,
+                'peso' => $request->peso,
+                'sangre' => $request->sangre,
+
+                'segMed' => $request->segMed,
+                'segIns' => $request->segIns,
+            ]);
+            $infoUser->save();
+        } else if($request->insti == "CECyT"){
+            $this->validate($request, [
+                'Bachiller' => 'required',
+            ]);
+
            $infoUser->update([
                 'institucion_id' => 2,
-                'carrera_id' => $request->tlistac,
+                'carrera_id' => $request->Bachiller,
 
                 'edad' => $request->edad,
-               'telefono' => $request->telefono,
-               'sexo' => $request->sexo -1,
+                'telefono' => $request->telefono,
+                'sexo' => $request->sexo -1,
 
                 'calle' => $request->calle,
                 'numExterior' => $request->ext,
@@ -651,9 +675,43 @@ class CoordController extends Controller
                 'semestre' => $request->semestre,
                 'grupo' => $request->grupo,
 
-        ]);
-        }
+                'alergias' => $request->alergias,
+                'estatura' => $request->estatura,
+                'peso' => $request->peso,
+                'sangre' => $request->sangre,
+
+                'segMed' => $request->segMed,
+                'segIns' => $request->segIns,
+            ]);
+           $infoUser->save();
+        } else {
+            $infoUser->update([
+                'institucion_id' => 3,
+                'carrera_id' => 1,
+
+                'edad' => $request->edad,
+                'telefono' => $request->telefono,
+                'sexo' => $request->sexo -1,
+
+                 'calle' => $request->calle,
+                 'numExterior' => $request->ext,
+                 'numInterior' => $request->inter,
+                 'colonia' => $request->colonia,
+                 'codigoPostal' => $request->cp,
+
+                 'semestre' => $request->semestre,
+                 'grupo' => $request->grupo,
+
+                 'alergias' => $request->alergias,
+                 'estatura' => $request->estatura,
+                 'peso' => $request->peso,
+                 'sangre' => $request->sangre,
+
+                 'segMed' => $request->segMed,
+                 'segIns' => $request->segIns,
+             ]);
             $infoUser->save();
+        }
             $user-> update([
                 'nombre' => $request->nombre,
                 'apellidoPaterno' => $request->apellidoP,
@@ -661,8 +719,6 @@ class CoordController extends Controller
                 'boleta' => $request->boleta,
                 'email'  => $request->email
             ]);
-
-            $infoUser->save();
             $user->save();
        return redirect('/coord/user/Info');
     }

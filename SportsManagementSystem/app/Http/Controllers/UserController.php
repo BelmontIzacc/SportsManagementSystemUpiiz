@@ -239,7 +239,7 @@ class UserController extends Controller
             'boleta'=> 'required',
             'email'=> 'required',
 
-            'alergias' => '',
+            'alergias' => 'required',
             'estatura' => 'required',
             'peso' => 'required',
             'segMed' => 'required',
@@ -257,7 +257,7 @@ class UserController extends Controller
 
         $user = Auth::user();
         $infoUser = \App\informacion::find($user->informacion->id);
-
+        
         if($request->insti=="UPIIZ") {
             $this->validate($request, [
                 'Carrera'=>'required',
@@ -288,6 +288,7 @@ class UserController extends Controller
                 'segMed' => $request->segMed,
                 'segIns' => $request->segIns,
             ]);
+            $infoUser->save();
         } else if($request->insti == "CECyT"){
             $this->validate($request, [
                 'Bachiller' => 'required',
@@ -318,6 +319,7 @@ class UserController extends Controller
                 'segMed' => $request->segMed,
                 'segIns' => $request->segIns,
             ]);
+           $infoUser->save();
         } else {
             $infoUser->update([
                 'institucion_id' => 3,
@@ -344,6 +346,7 @@ class UserController extends Controller
                  'segMed' => $request->segMed,
                  'segIns' => $request->segIns,
              ]);
+            $infoUser->save();
         }
             $user-> update([
                 'nombre' => $request->nombre,
@@ -352,7 +355,7 @@ class UserController extends Controller
                 'boleta' => $request->boleta,
                 'email'  => $request->email
             ]);
-
+            $user->save();
        return redirect('/user/Info');
     }
 

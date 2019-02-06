@@ -441,6 +441,7 @@ class AdminController extends Controller
         $student = \App\informacion::find($id);
         $iduser = $student->usuario->id;
         $taller = \App\taller::where('usuario_id',$iduser)->get();
+        $cont = \App\contactos::where('usuario_id',$iduser)->get();
         $u = Auth::User();
 
         return view('Admin.student', [
@@ -448,6 +449,7 @@ class AdminController extends Controller
             'student'=>$student,
             'taller'=>$taller,
             'userI' => $u,
+            'cont' => $cont,
         ]);
     }
 

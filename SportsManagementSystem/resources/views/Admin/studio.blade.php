@@ -39,7 +39,7 @@
 <style>
 #nombreTaller,#descri{
   text-transform: capitalize;
-} 
+}
 </style>
 
 @stop
@@ -70,24 +70,24 @@
                 <div class="row">
                     <div class="{{$classSizeForms}}">
                         <fieldset class="form-group">
-                            {!!Form::text('nombre', null, ['class'=>'form-control', 'placeholder'=>'Nombre del taller', 'id'=>'nombreTaller'])!!} 
+                            {!!Form::text('nombre', null, ['class'=>'form-control', 'placeholder'=>'Nombre del taller', 'id'=>'nombreTaller'])!!}
                         </fieldset>
-                        
+
                     </div>
                     <div class="{{$classSizeForms}}">
                         <fieldset class="form-group">
-                            {!!Form::number('duracion', null, ['class'=>'form-control', 'placeholder'=>'Duracion en horas (total)', 'id'=>'duracion'])!!} 
+                            {!!Form::number('duracion', null, ['class'=>'form-control', 'placeholder'=>'Duración en horas (total)', 'id'=>'duracion'])!!}
                         </fieldset>
                         </div>
                     <div class="{{$classSizeForms}}">
                         <fieldset class="form-group">
                             <label class="form-label"></label>
-        				            {!!Form::select('tipo',$tilista, 0, ['class'=>'select2 form-control', 'placeholder'=>'Selecciona un tipo'])!!}		
+        				            {!!Form::select('tipo',$tilista, 0, ['class'=>'select2 form-control', 'placeholder'=>'Selecciona un tipo'])!!}
         			     </fieldset>
                     </div>
                     <div class="{{$classSizeForms}}">
                         <fieldset class="form-group">
-                            <label class="form-label">Dias de Imparticion</label>
+                            <label class="form-label">Días de Impartición</label>
                             {!!Form::select('dia[]',$dia,0, ['class'=>'select2 remove-example', 'multiple'])!!}
                         </fieldset>
                     </div>
@@ -98,7 +98,7 @@
                     </div>
                     <div class="{{$classSizeForms}}">
                         <fieldset class="form-group">
-                            {!!Form::textarea('descri', null, ['class'=>'form-control','maxlength-simple','maxlength'=>'255','rows'=>'8','cols'=>31,'placeholder'=>'Descripcion del taller', 'id'=>'descri'])!!}
+                            {!!Form::textarea('descri', null, ['class'=>'form-control','maxlength-simple','maxlength'=>'255','rows'=>'8','cols'=>31,'placeholder'=>'Descripción del taller', 'id'=>'descri'])!!}
                         </fieldset>
                     </div>
                     <div class="{{$classSizeForms}}">
@@ -127,7 +127,7 @@
                     <div class="{{$classSizeForms}}">
                       <fieldset class="form-group">
                         <label class="form-label">Estatus</label>
-                        {!!Form::select('status',$status, -1, ['class'=>'bootstrap-select bootstrap-select-arrow form-control','id'=>'status','placeholder'=>'Seleccionar'])!!}   
+                        {!!Form::select('status',$status, -1, ['class'=>'bootstrap-select bootstrap-select-arrow form-control','id'=>'status','placeholder'=>'Seleccionar'])!!}
                       </fieldset>
                     </div>
 
@@ -191,7 +191,7 @@
     <script src="{{asset('/Template/js/lib/clockpicker/bootstrap-clockpicker.min.js')}}"></script>
     <script src="{{asset('/Template/js/lib/clockpicker/bootstrap-clockpicker-init.js')}}"></script>
     <script src="{{asset('/Template/js/lib/daterangepicker/daterangepicker.js')}}"></script>
-  
+
     <script>
     $(document).ready(function() {
         $('#telefono').mask('(000) 000-0000', {placeholder: "Teléfono personal"});

@@ -41,7 +41,7 @@ $index=4;
                                 @endforeach
                             </ul>
                         </div>
-                        @endif 
+                        @endif
                         <header class="sign-title">Control de Registros</header>
                         <div class="alert alert-info alert-icon alert-close alert-dismissible fade in" role="alert">
                             <i class="font-icon font-icon-warning"></i>
@@ -133,7 +133,7 @@ $index=4;
                             <article class="panel">
                                 <div class="panel-heading" role="tab" id="headingThree">
                                     <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                        Proceso de actualizacion
+                                        Proceso de actualización
                                         <i class="font-icon font-icon-arrow-down"></i>
                                     </a>
                                 </div>
@@ -143,7 +143,7 @@ $index=4;
                                             <div class="tbl-row">
                                                 <div class="tbl-cell">
                                                     <p class="user-card-row-name">Estatus de los estudiantes</p>
-                                                    <p class="user-card-row-location">Se puede cambiar el estatus de los estudiantes para la actualizacion de informacion.</p>
+                                                    <p class="user-card-row-location">Se puede cambiar el estatus de los estudiantes para la actualización de información.</p>
                                                 </div>
                                             </div>
                                         </div>

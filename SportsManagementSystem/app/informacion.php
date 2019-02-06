@@ -31,7 +31,7 @@ class informacion extends Model
             'colonia',
             'codigoPostal',
             'telefono',
-            'alerias',
+            'alergias',
             'estatura',
             'peso',
             'sangre',

@@ -80,7 +80,7 @@
         </div>
         <div class="{{$classSize}}">
             <fieldset class="form-group">
-              <label class="form-label">Apellido Paterno/label>
+              <label class="form-label">Apellido Paterno</label>
               {!!Form::text('apellidoP', $user->apellidoPaterno, ['class'=>'form-control', 'id'=>'nombre','placeholder'=>'$user->apellidoPaterno'])!!}
             </fieldset>
         </div>
@@ -167,14 +167,14 @@
         <div id="tlistF" class="{{$classSize}}" style="display:none;">
             <fieldset class="form-group">
                 <label class="form-label" for="exampleInputDisabled2">Carrera</label>
-                {!!Form::select('tlista',$tlista, $ins, ['class'=>'bootstrap-select bootstrap-select-arrow form-control', 'placeholder'=>'Seleccionar carrera','id'=>'tlista'])!!}
+                {!!Form::select('Carrera',$tlista, $ins, ['class'=>'bootstrap-select bootstrap-select-arrow form-control', 'placeholder'=>'Seleccionar carrera','id'=>'tlista'])!!}
             </fieldset>
         </div>
                               <!--Bloque Oculto-->
         <div id="tlistM" class="{{$classSize}}" style="display:none;">
             <fieldset class="form-group">
                 <label class="form-label" for="exampleInputDisabled2">Carrera</label>
-                {!!Form::select('tlistac',$tlistac, $ins, ['class'=>'bootstrap-select bootstrap-select-arrow form-control', 'placeholder'=>'Seleccionar carrera','id'=>'tlistac'])!!}
+                {!!Form::select('Bachiller',$tlistac, $ins, ['class'=>'bootstrap-select bootstrap-select-arrow form-control', 'placeholder'=>'Seleccionar carrera','id'=>'tlistac'])!!}
             </fieldset>
         </div>
                               <!--Bloque Oculto-->
@@ -246,6 +246,99 @@
         </div>
         @endunless
     </div>
+
+    <h5 class="m-t-lg with-border">Datos de salud</h5>
+
+    <div class="row">
+        @unless($info->usuario_id == null)
+        <div class="{{$classSize}}">
+            <fieldset class="form-group">
+                <label class="form-label" for="exampleInputDisabled2">Alergias</label>
+                {!!Form::text('alergias',$info->alergias,['class'=>'form-control', 'placeholder'=>'Alergias', 'id'=>'alergias'])!!}
+            </fieldset>
+        </div>
+        @endunless
+
+        @unless($info->usuario_id == null)
+        <div class="{{$classSize}}">
+            <fieldset class="form->group">
+                <label class="fomr-label" for="exampleInputDisabled2">Estatura</label>
+                {!!Form::text('estatura',$info->estatura,['class'=>'form-control', 'id'=>'Estatura','placeholder'=>''.$user->informacion->estatura])!!}
+            </fieldset>
+        </div>
+        @endunless
+
+        @unless($info->usuario_id == null)
+        <div class="{{$classSize}}">
+            <fieldset class="form-group">
+                <label class="form-label" for="exampleInputDisabled2">Peso</label>
+                {!!Form::text('peso',$info->peso,['class'=>'form-control', 'id'=>'peso','placeholder'=>''.$user->informacion->peso])!!}
+            </fieldset>
+        </div>
+        @endunless
+
+        @unless($info->usuario_id == null)
+        <div class="{{$classSize}}">
+            <fieldset class="form-group">
+                <label class="form-label" for="exampleInputDisabled2">Tipo de Sangre</label>
+                {!!Form::text('sangre',$info->sangre,['class'=>'form-control', 'id'=>'sangre','placeholder'=>''.$user->informacion->sangre])!!}
+            </fieldset>
+        </div>
+        @endunless
+
+        @unless($info->usuario_id == null)
+        <div class="{{$classSize}}">
+            <fieldset class="form-group">
+                <label class="form-label" for="exampleInputDisabled2">¿Cuentas con seguro médico?</label>
+                <div class="rdio rdio-primary">
+                    <?php $segMed = $info->segMed ?>
+                    <input type="radio" name="segMed" value="1" id="segMedSi"
+                        @if($segMed == 1)
+                            checked=""
+                        @else
+
+                        @endif
+                    > Si
+                </div>
+                <div class="rdio rdio-primary">
+                      <input type="radio" name="segMed" value="0" id="segMedNo"
+                        @if($segMed == 0)
+                            checked=""
+                        @else
+
+                        @endif
+                      > No
+                </div>
+            </fieldset>
+        </div>
+        @endunless
+
+        @unless($info->usuario_id == null)
+        <div class="{{$classSize}}">
+            <fieldset class="form-group">
+                <?php $segIns = $info->segIns; ?>
+                <label class="form-label" for="exampleInputDisabled2">¿Cuentas con seguro de vida institucioal?</label>
+                <div class="rdio rdio-primary">
+                    <input type="radio" name="segIns" value="1" id="segInsSi"
+                    @if($segIns == 1)
+                        checked=""
+                    @else
+                    @endif
+                    > Si
+                </div>
+                <div class="rdio rdio-primary">
+                    <input type="radio" name="segIns" value="0" id="segInsNo"
+                    @if($segIns == 0)
+                        checked=""
+                    @else
+                    @endif
+                    > No
+                </div>
+            </fieldset>
+        </div>
+        @endunless
+    </div>
+
 </div> <!--End box typical-->
 </div>
 

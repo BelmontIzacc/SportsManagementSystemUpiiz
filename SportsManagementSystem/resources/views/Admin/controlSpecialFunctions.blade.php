@@ -41,11 +41,11 @@ $index=4;
                                 @endforeach
                             </ul>
                         </div>
-                        @endif 
+                        @endif
                         <header class="sign-title">Funciones Especiales</header>
                         <div class="alert alert-info alert-icon alert-close alert-dismissible fade in" role="alert">
                             <i class="font-icon font-icon-warning"></i>
-                            Nota: Sera borrada toda la información relacionada con los usuarios 
+                            Nota: Sera borrada toda la información relacionada con los usuarios
                             ( asistencias, inscripciones, información, etc... ).
                         </div>
                             <section class="widget widget-simple-sm">
@@ -62,7 +62,7 @@ $index=4;
                                                 <input type="checkbox" id="check-toggle-2" name="check-toggle-2" onclick="getValue2();">
                                                 <label for="check-toggle-2">Borrar solo Coordinadores&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
                                             </div>
-                                        </div>                        
+                                        </div>
                                         <div class="col-lg-12 col-lg-offset-1 col-md-12 col-md-offset-1 center-block">
                                             <div class="checkbox-toggle">
                                                 <input type="checkbox" id="check-toggle-3" name="check-toggle-3" onclick="getValue3();">
@@ -76,7 +76,7 @@ $index=4;
                                             </div>
                                         </div>
                                     </div>
-                                </div>                                    
+                                </div>
                             </section>
                         <input type="hidden" id="usuarios" name="usuarios"></input>
                         <input type="hidden" id="coordinador" name="coordinador"></input>
@@ -140,21 +140,21 @@ $index=4;
         $('.swal-btn-cancel').click(function(e){
                 e.preventDefault();
                 swal({
-                            title: "Estas seguro?",
-                            text: "No podras recobrar la informacion despues de esto!",
+                            title: "¿Estas seguro?",
+                            text: "No podras recobrar la información despues de esto",
                             type: "warning",
                             showCancelButton: true,
                             confirmButtonClass: "btn-danger",
-                            confirmButtonText: "Si, Eliminar!",
-                            cancelButtonText: "No, cancelar!",
+                            confirmButtonText: "¡Si, Eliminar!",
+                            cancelButtonText: "¡No, cancelar!",
                             closeOnConfirm: false,
                             closeOnCancel: false
                         },
                         function(isConfirm) {
                             if (isConfirm) {
                                 swal({
-                                    title: "Eliminando!",
-                                    text: "Tu informacion va a ser eliminada.",
+                                    title: "¡Eliminando!",
+                                    text: "Tu información va a ser eliminada.",
                                     type: "success",
                                     confirmButtonClass: "btn-success"
                                 },function() {
@@ -163,7 +163,7 @@ $index=4;
                             } else {
                                 swal({
                                     title: "Cancelado",
-                                    text: "Tu informacion esta segura :)",
+                                    text: "Tu información esta segura :)",
                                     type: "error",
                                     confirmButtonClass: "btn-danger"
                                 });

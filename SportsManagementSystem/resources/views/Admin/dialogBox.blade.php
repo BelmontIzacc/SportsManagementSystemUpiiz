@@ -31,27 +31,27 @@
                     <input type="hidden" name="idVal" id="idVal" value="">
                 </div>
             </div>
-            
+
             <div class="modal-footer">
                 <div class="text-center">
                     <button type="submit" class="btn btn-rounded btn-primary btn-warning" formaction="/" id="formButton">Guardar</button>
                 </div>
             </div>
             {!!Form::close()!!}
-            
+
             <div class="modal-footer">
                 <div class="text-center">
                     <a onclick="toggle();" id="more">Mostrar más</a>
                 </div>
             </div>
-            
+
             {!!Form::open(array('method'=>'delete', 'style'=>'display:none', 'class'=>'details'))!!}
                 <div class="modal-body">
                     <div class="form-group">
-                        <label class="form-label">¿Seguro que quiere eliminar el registro?</label>
+                        <label class="form-label">¿Seguro quiere eliminar el registro?</label>
                     </div>
                 </div>
-            
+
                 <input type="hidden" name="idVal2" id="idVal2" value="">
                 <div class="modal-footer">
                     <div class="text-center">
@@ -89,7 +89,7 @@
                 </button></a>
             </header>
             <div class="widget-time-content">
-            
+
             @include('alerts.formSus')
                 {!!Form::open(array('method'=>'post'))!!}
                 @if($variable!=3 && $variable!=5 && $variable!=6)
@@ -106,7 +106,7 @@
                                     tipo
                                 @endif
                             </label>
-                            <input name="nombre" type="text" class="form-control" 
+                            <input name="nombre" type="text" class="form-control"
 placeholder="
 @if($variable == 1)
 Ej: Ingeniería en Sistemas Computacionales
@@ -115,17 +115,17 @@ Ej: Upiiz
 @elseif($variable == 4)
 Ej: Acuatico
 @endif" value="">
-                        
+
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="text-center">
                     <button type="submit" class="btn btn-rounded btn-primary btn-warning" formaction="{{asset('/admin/controlPanel/insert')}}/{{$variable}}">Agregar</button>
                 </div>
                 @endif
                 {!!Form::close()!!}
-                
+
                 <h5 class="m-t-lg with-border">
                     @if($variable == 1)
                         Carreras/Bachiller registradas
@@ -138,14 +138,14 @@ Ej: Acuatico
                     @elseif($variable == 5)
                         Coordinador/Admin registrados
                     @elseif($variable == 6)
-                        Usuario-Coordinador registrados   
+                        Usuario-Coordinador registrados
                     @endif
                 en sistema</h5>
-                
+
                 <div class="pre-scrollable">
                     <table class="table table-hover">
                         <tbody>
-                            
+
                             @if($variable == 1)
                                 @foreach(\App\carrera::all() as $carrer)
                                 <tr>
@@ -172,7 +172,7 @@ Ej: Acuatico
                                 @foreach(\App\institucion::all() as $state)
                                 <tr>
                                     <td class="table-check">
-                                        <div class="font-11 color-blue-grey-lighter uppercase">Institucion</div>
+                                        <div class="font-11 color-blue-grey-lighter uppercase">Institución</div>
                                         {{$state->nombre}}
                                     </td>
                                     <td class="table-check">
@@ -262,7 +262,7 @@ Ej: Acuatico
                                 <tr>
                                     <td class="table-check">
                                         <div class="font-11 color-blue-grey-lighter uppercase">Usuario-Coordinador</div>
-                                        
+
                                         <a href="{{asset('/admin/lists')}}/{{$clinic->informacion->id}}" class="semibold">{{$clinic}}</a>
                                     </td>
                                     <td class="table-check">
@@ -272,11 +272,11 @@ Ej: Acuatico
                                 </tr>
                                 @endforeach
                             @endif
-                            
+
                         </tbody>
                     </table>
                 </div>
-                
+
             </div>
         </section><!--.widget-time-->
     </div>
@@ -299,7 +299,7 @@ Hola
     <script src="{{asset('/Template/js/custom/configEdit.js')}}"></script>
     <script src="{{asset('/Template/js/lib/select2/select2.full.min.js')}}"></script>
     <script src="{{asset('/Template/js/lib/colorpicker/bootstrap-colorpicker.min.js')}}"></script>
-    
+
     <script>
         $(document).ready(function(){
             $("input[name='numero']").TouchSpin();

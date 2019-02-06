@@ -45,7 +45,7 @@
                         </div>
                         <div class="col-lg-6 col-lg-offset-1 col-md-5 col-md-offset-1">
                             <div class="checkbox-toggle">
-                                <input 
+                                <input
                                     @if(($student->usuario->tipo == 3) || ($student->usuario->tipo == 1))
                                         disabled=""
                                     @else
@@ -108,7 +108,7 @@
                 <div class="modal-footer">
                     <div class="container text-center">
                         <div class="form-group">
-                            <h5 class="m-t-lg with-border">¿Seguro que quiere eliminar el Usuario?</h5>
+                            <h5 class="m-t-lg with-border">¿Seguro quiere eliminar el Usuario?</h5>
                         </div>
                         <div class="row">
                             <div class="col-lg-6 col-md-6">
@@ -431,6 +431,91 @@
             </fieldset>
         </div>
         @endunless
+    </div>
+
+        <h5 class="m-t-lg with-border">Datos de salud</h5>
+
+    <div class="row">
+        @unless($student->usuario_id == null)
+        <div class="{{$classSize}}">
+            <fieldset class="form-group">
+                <label class="form-label" for="exampleInputDisabled2">Alergias</label>
+                @if($student->alergias == null)
+                    <input type="text" readonly class="form-control" value="Ninguna">
+                @else
+                    <input type="text" readonly class="form-control" value="{{$student->alergias}}">
+                @endif
+            </fieldset>
+        </div>
+        @endunless
+
+        @unless($student->usuario_id == null)
+        <div class="{{$classSize}}">
+            <fieldset class="form->group">
+                <label class="fomr-label" for="exampleInputDisabled2">Estatura</label>
+                <input type="text" readonly class="form-control" value="{{$student->estatura}}m">
+            </fieldset>
+        </div>
+        @endunless
+
+        @unless($student->usuario_id == null)
+        <div class="{{$classSize}}">
+            <fieldset class="form-group">
+                <label class="form-label" for="exampleInputDisabled2">Peso</label>
+                <input type="text" readonly class="form-control" value="{{$student->peso}}kg">
+            </fieldset>
+        </div>
+        @endunless
+
+        @unless($student->usuario_id == null)
+        <div class="{{$classSize}}">
+            <fieldset class="form-group">
+                <label class="form-label" for="exampleInputDisabled2">Tipo de Sangre</label>
+                <input type="text" readonly class="form-control" value="{{$student->sangre}}">
+            </fieldset>
+        </div>
+        @endunless
+
+        @unless($student->usuario_id == null)
+        <div class="{{$classSize}}">
+            <fieldset class="form-group">
+                <label class="form-label" for="exampleInputDisabled2">¿Cuentas con seguro médico?</label>
+                @if($student->segMed == 1)
+                    <input type="text" readonly class="form-control" value="Si">
+                @else
+                    <input type="text" readonly class="form-control" value="No">
+                @endif
+            </fieldset>
+        </div>
+        @endunless
+
+        @unless($student->usuario_id == null)
+        <div class="{{$classSize}}">
+            <fieldset class="form-group">
+                <label class="form-label" for="exampleInputDisabled2">¿Cuentas con seguro de vida institucioal?</label>
+                @if($student->segIns == 1)
+                    <input type="text" readonly class="form-control" value="Si">
+                @else
+                    <input type="text" readonly class="form-control" value="No">
+                @endif
+            </fieldset>
+        </div>
+        @endunless
+    </div>
+
+    <h5 class="m-t-lg with-border">Contactos de emergencia</h5>
+
+    <div class="row">
+        @foreach($cont as $c)
+            @unless($c->usuario_id == null)
+                <div class="{{$classSize}}">
+                    <fieldset class="form-group">
+                        <label class="form-label" for="exampleInputDisabled2">{{$c->nombre}}</label>
+                        <input type="text" readonly class="form-control" value="{{$c->telefono}}">
+                    </fieldset>
+                </div>
+                @endunless
+        @endforeach
     </div>
 
 </div> <!--End box typical-->
