@@ -94,6 +94,10 @@ Route::get('/user/taller/registro/{id}','UserController@tallerInfoRegister');
 Route::get('/user/Info','UserController@getInfo');
 Route::get('/user/EditInfo','UserController@getEditInfo');
 Route::post('/user/EditInfo','UserController@postEditInfo');
+Route::get('/user/editContactos', 'UserController@EditContactos');
+Route::post('/user/editContactos', 'UserController@postEditContactos');
+Route::post('/user/crearContato', 'UserController@crearContacto');
+Route::get('/user/elmContacto/{id}', 'UserController@eliminarContacto');
 
 Route::get('/user/search','UserController@getSearch');
 Route::post('/user/search','UserController@postSearch');

@@ -280,8 +280,12 @@
     <br/>
 
     <div class="row text-center">
-        <div class="col-lg-12 col-md-12">
+        <div class="col-lg-6 col-md-6">
             <a href="{{asset('/user/EditInfo')}}" class="btn btn-rounded btn-inline btn-warning">Editar info</a>
+        </div>
+
+        <div class="col-lg-6 col-md-6">
+            <a href="{{asset('/user/editContactos')}}" class="btn btn-rounded btn-inline btn-submit">Editar contactos</a>
         </div>
     </div>
 </div>

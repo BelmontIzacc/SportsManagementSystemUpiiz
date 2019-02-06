@@ -471,4 +471,56 @@ class UserController extends Controller
 
         return redirect('/user');
     }
+
+    public function EditContactos() {
+        $index = 1;
+        $user = Auth::User();
+        $contactos = \App\contactos::where('usuario_id',$user->id)->get();
+        $info = \App\informacion::find($user->informacion->id);
+
+        $data = [
+            'index' => $index,
+            'user' => $user,
+            'userI' => $user,
+            'info' => $info,
+            'contactos' => $contactos
+        ];
+
+        return view('User.editContactos', $data);
+    }
+
+    public function postEditContactos(Request $request) {
+        $cont = \App\contactos::find($request->contacto_id);
+
+        $cont->update([
+            'nombre' => $request->nombre,
+            'telefono' => $request->telefono,
+        ]);
+
+        return redirect('user/editContactos');
+    }
+
+    public function crearContacto(Request $request) {
+
+        $this->validate($request, [
+            'nombre' => 'required',
+            'telefono' => 'required',
+        ]);
+
+        \App\contactos::create([
+            'usuario_id' => $user->id,
+            'nombre' => $request->nombre,
+            'telefono' => $request->telefono,
+        ]);
+
+        return redirect('user/editContactos');
+    }
+
+    public function eliminarContacto($id) {
+        $cont = \App\contactos::find($id);
+
+        $cont->delete();
+
+        return redirect('user/editContactos');
+    }
 }
