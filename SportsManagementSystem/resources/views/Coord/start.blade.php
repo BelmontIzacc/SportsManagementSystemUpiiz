@@ -26,7 +26,7 @@
         <?php
             $i = 0;
             $num = rand ( 1 , 25 );
-            $i = $i +1;   
+            $i = $i +1;
             $url = '/Template/img/Stickmen/StickmenSVG/sports2('.$num.').svg';  ?>
         <div class="gallery-col col-md-3">
             <article class="gallery-item" style="height: 188px; width:auto;">

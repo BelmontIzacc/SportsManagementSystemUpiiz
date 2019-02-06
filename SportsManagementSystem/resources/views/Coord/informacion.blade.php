@@ -3,11 +3,11 @@
   $classSizeForms = "col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2";
   $classSize = "col-lg-4 col-md-4 col-sm-6";
   $classSizeModal = "col-lg-6 col-md-6";
-  
+
 ?>
 
 @section('title')
-<title>Informacion del usuario</title>
+<title>Información del usuario</title>
 @stop
 
 @section('css')
@@ -79,7 +79,7 @@
             </fieldset>
         </div>
          @endunless
-        
+
         @unless($info->edad == null)
         <div class="{{$classSize}}">
             <fieldset class="form-group">
@@ -233,7 +233,7 @@
             <fieldset class="form-group">
                 <label class="form-label" for="exampleInputDisabled2">¿Cuentas con seguro médico?</label>
                 @if($info->segMed == 1)
-                    <input type="text" readonly class="form-control" value="Si">
+                    <input type="text" readonly class="form-control" value="Sí">
                 @else
                     <input type="text" readonly class="form-control" value="No">
                 @endif
@@ -246,7 +246,7 @@
             <fieldset class="form-group">
                 <label class="form-label" for="exampleInputDisabled2">¿Cuentas con seguro de vida institucioal?</label>
                 @if($info->segIns == 1)
-                    <input type="text" readonly class="form-control" value="Si">
+                    <input type="text" readonly class="form-control" value="Sí">
                 @else
                     <input type="text" readonly class="form-control" value="No">
                 @endif

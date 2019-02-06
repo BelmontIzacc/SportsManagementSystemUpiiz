@@ -41,7 +41,7 @@
 @endif
                 <form class="sign-box">
                     <div class="sign-avatar no-photo">+</div>
-                    <header class="sign-title">Sign Up</header>
+                    <header class="sign-title">Registro</header>
                     <div class="form-group">
                         <fieldset class="form-group">
         				    {!!Form::text('nombre', null, ['class'=>'form-control', 'placeholder'=>'Nombre', 'id'=>'nombre'])!!}
@@ -64,7 +64,7 @@
                     </div>
                     <div class="form-group">
                         <fieldset class="form-group">
-        				    {!!Form::text('boleta', null, ['class'=>'form-control', 'placeholder'=>'Boleta/No. de empleado o Nombre de usuario (solo para personas fuera del IPN)', 'id'=>'bo'])!!}		
+        				    {!!Form::text('boleta', null, ['class'=>'form-control', 'placeholder'=>'Boleta/No. de empleado o Nombre de usuario (solo para personas fuera del IPN)', 'id'=>'bo'])!!}
         			 </fieldset>
                     </div>
                     <div class="form-group">
@@ -78,7 +78,7 @@
         			 </fieldset>
                     </div>
                     <button type="submit" class="btn btn-rounded btn-success sign-up">Registrarse</button>
-                    <p class="sign-note">Ya tienes una cuenta? <a href="/login">entra aqui</a></p>
+                    <p class="sign-note">Ya tienes una cuenta? <a href="/login">entra aquí</a></p>
                     <!--<button type="button" class="close">
                         <span aria-hidden="true">&times;</span>
                     </button>-->

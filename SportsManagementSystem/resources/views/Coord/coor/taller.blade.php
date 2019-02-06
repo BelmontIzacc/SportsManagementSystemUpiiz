@@ -14,7 +14,7 @@
 @section('popUp')
 
 <div class="container-fluid">
-    
+
 <div class="row">
     <div class="container-fluid">
 		<section class="card widget widget-user">
@@ -29,7 +29,7 @@
 		    @unless($taller->usuario == null)
 		    <div>Coordinador <font FACE="raro, courier" SIZE=3 COLOR="red">{{$taller->usuario}}</font></div>
 		    @endunless
-		    
+
 		    <div class="widget-user-stat hidden-md-down">
 		        <div class="item">
 		            <div class="number">{{count($inscripcion)}}</div>
@@ -79,7 +79,7 @@
                             Suspendido temporalmente
                         @elseif($t == 4)
                             Sin Coordinador
-                        @endif 
+                        @endif
                     </div>
                     <div class="caption">Estatus</div>
                 @endunless
@@ -87,7 +87,7 @@
 		    <div class="widget-user-stat">
 		        @unless($taller->descripcion == null)
 		            <div class="number">{{$taller->descripcion}}</div>
-		            <div class="caption">Descripcion</div>
+		            <div class="caption">Descripción</div>
 		        @endunless
 		    </div>
 		</section>
@@ -128,7 +128,7 @@
                                     <th>Boleta</th>
                                     <th>Carrera</th>
                                     <th>Semestre</th>
-                                    <th>Institucion</th>
+                                    <th>Institución</th>
                                     <th>Asistencias</th>
                                     <th>Faltas</th>
                                 </tr>
@@ -145,7 +145,7 @@
                                         <span class="tabledit-span"><font FACE="raro, courier" SIZE=2 COLOR="black">{{$i->usuario}}</font></span>
                                     </td>
                                     <td class="table-icon-cell">
-                                        	@if($i->usuario->informacion->sexo == 0) 
+                                        	@if($i->usuario->informacion->sexo == 0)
                     	 						Masculino
 						                   	@else
 						                   		Femenino

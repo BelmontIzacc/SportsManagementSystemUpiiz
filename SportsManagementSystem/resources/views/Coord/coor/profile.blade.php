@@ -67,7 +67,7 @@
               <div class="sign-avatar">
                   <a data-toggle="modal" data-target="#photoModal"><img src="{{asset('/Template/img/Stickmen/LogoSRDpng2.png')}}" alt="" ></a>
               </div>
-              <small class="text-muted">Actualiza tu informacion</small>
+              <small class="text-muted">Actualiza tu información</small>
               <br/>
 
               @include('alerts.formError')
@@ -124,7 +124,7 @@
                   <label class="form-label" for="exampleInputDisabled2">Contraseña</label>
                   {!!Form::text('clave', null, ['class'=>'form-control', 'placeholder'=>'Ej: xxxxx'])!!}
                                 </fieldset>
-                               
+
                                 <fieldset class="form-group">
                   <label class="form-label" for="exampleInputDisabled2">Repetir Constraseña</label>
                   {!!Form::text('clave2', null, ['class'=>'form-control', 'placeholder'=>'Ej: xxxxx'])!!}
@@ -135,7 +135,7 @@
                   </fieldset>
               </div>
 
-              <button type="submit" class="btn btn-rounded btn-danger" data-toggle="modal" data-target=".bd-example-modal-sm">Actualizar perfíl</button>
+              <button type="submit" class="btn btn-rounded btn-danger" data-toggle="modal" data-target=".bd-example-modal-sm">Actualizar perfil</button>
 
               <a href="{{asset('/coord/profile')}}"><button type="button" class="close">
                   <span aria-hidden="true">&times;</span>
@@ -163,7 +163,7 @@
 
                 <header class="sign-title"></header>
 
-                <button type="button" class="btn btn-rounded btn-warning" data-toggle="modal" data-target=".bd-example-modal-sm">Editar perfíl</button>
+                <button type="button" class="btn btn-rounded btn-warning" data-toggle="modal" data-target=".bd-example-modal-sm">Editar perfil</button>
 
                 <a href="{{asset('/coord')}}"><button type="button" class="close">
                     <span aria-hidden="true">&times;</span>

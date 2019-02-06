@@ -19,7 +19,7 @@
     <div class="caption hidden-sm-down">Domicilio</div>
   ';
 
-  $Academicos = '
+  $Académicos = '
     <div class="icon">
         <i class="font-icon font-icon-fire"></i>
     </div>
@@ -80,7 +80,7 @@
                             {!!$Domicilio!!}
                         </li>
                         <li>
-                            {!!$Academicos!!}
+                            {!!$Académicos!!}
                         </li>
                         <li>
                             {!!$Salud!!}
@@ -116,7 +116,7 @@
                 <div class="{{$classSizeForms}}">
                     <fieldset class="form-group">
                       <label class="form-label">Teléfono</label>
-                       {!!Form::text('telefono', null, ['class'=>'form-control','placeholder'=>'Telefono', 'id'=>'telefono'])!!}
+                       {!!Form::text('telefono', null, ['class'=>'form-control','placeholder'=>'Teléfono', 'id'=>'telefono'])!!}
                     </fieldset>
                   </div>
                 </div>
@@ -146,7 +146,7 @@
                           {!!$Domicilio!!}
                       </li>
                       <li>
-                          {!!$Academicos!!}
+                          {!!$Académicos!!}
                       </li>
                       <li>
                           {!!$Salud!!}
@@ -226,7 +226,7 @@
                             {!!$Domicilio!!}
                         </li>
                         <li class="active">
-                            {!!$Academicos!!}
+                            {!!$Académicos!!}
                         </li>
                         <li>
                             {!!$Salud!!}
@@ -241,7 +241,7 @@
                             <label class="form-label"></label>
                             <div class="form-group">
                               <label class="col-sm-12">Pertenece a: </label>
-                              <label>Si bienes de fuera del IPN selecciona Otro, de lo contrario selecciona UPIIZ o CECyT</label>
+                              <label>Si vienes de fuera del IPN selecciona Otro, de lo contrario selecciona UPIIZ o CECyT</label>
                               <div class="col-sm-12">
                                 <div class="rdio rdio-primary">
                                   <input type="radio" name="insti" value="UPIIZ" id="tlist" onclick="mostrar();">
@@ -342,7 +342,7 @@
                                 {!!$Domicilio!!}
                             </li>
                             <li class="active">
-                                {!!$Academicos!!}
+                                {!!$Académicos!!}
                             </li>
                             <li class="active">
                                 {!!$Salud!!}
@@ -360,7 +360,7 @@
                                     <div class="col-sm-12">
                                         <div class="rdio rdio-primary">
                                             <input type="radio" name="alergia" value="1" id="alergiaSi" onclick="mostrar();">
-                                            <label>Si</label>
+                                            <label>Sí</label>
                                         </div>
                                         <div class="rdio rdio-primary">
                                             <input type="radio" name="alergia" value="0" id="alergiaNo" onclick="mostrar();">
@@ -375,7 +375,7 @@
                         <div id="alg" class="{{$classSizeForms}}" style="display:none">
                             <fieldset class="form-group">
                                 <div>
-                                    <h5>¿Cual? o ¿Cuales?</h5>
+                                    <h5>¿Cuál? o ¿Cuáles?</h5>
                                     <div>
                                         <fieldset class="form-group">
                                             {!!Form::text('alergias',null,['class'=>'form-control','placeholder'=>'Alergias','id'=>'alergias'])!!}
@@ -387,14 +387,14 @@
 
                         <div class="{{$classSizeForms}}">
                             <fieldset class="form-group">
-                                <label class="form-label">Estatura </br> (esriba unicamente el número)</label>
+                                <label class="form-label">Estatura </br> (escriba únicamente el número)</label>
                                 {!!Form::text('estatura',null,['class'=>'form-control','placeholder'=>'Ejemplo: 1.64','id'=>'estatura'])!!}
                             </fieldset>
                         </div>
 
                         <div class="{{$classSizeForms}}">
                             <fieldset class="form-group">
-                                <label class="form-label">Peso <br> (escriba unicamente el número)</label>
+                                <label class="form-label">Peso <br> (escriba únicamente el número)</label>
                                 {!!Form::text('peso',null,['class'=>'form-control','placeholder'=>'Ejemplo: 54','id'=>'peso'])!!}
                             </fieldset>
                         </div>
@@ -411,7 +411,7 @@
                                 <label class="col-sm-12">¿Cuentas con seguro médico?</label>
                                 <div class="rdio rdio-primary">
                                     <input type="radio" name="segMed" value="1" id="segMedSi">
-                                    <label>Si</label>
+                                    <label>Sí</label>
                                 </div>
                                 <div class="rdio rdio-primary">
                                     <input type="radio" name="segMed" value="0" id="segMedNo">
@@ -425,7 +425,7 @@
                                 <label class="col-sm-12">¿Cuentas con seguro de vida institucional?</label>
                                 <div class="rdio rdio-primary">
                                     <input type="radio" name="segIns" value="1" id="segInsSi">
-                                    <label>Si</label>
+                                    <label>Sí</label>
                                 </div>
                                 <div class="rdio rdio-primary">
                                     <input type="radio" name="segIns" value="0" id="segInsNo">

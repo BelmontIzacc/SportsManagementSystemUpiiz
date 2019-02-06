@@ -139,11 +139,11 @@
             <fieldset class="form-group">
                 <label class="form-label" for="exampleInputDisabled2">Platel</label>
                 <div class="rdio rdio-primary">
-                    <?php $inst = $info->institucion_id ?> 
-                    <input type="radio" name="insti" value="UPIIZ" id="tlist" onclick="mostrar();" 
+                    <?php $inst = $info->institucion_id ?>
+                    <input type="radio" name="insti" value="UPIIZ" id="tlist" onclick="mostrar();"
                         @if($inst == 1)
                             checked=""
-                        @else 
+                        @else
 
                         @endif
                     > UPIIZ
@@ -152,7 +152,7 @@
                       <input type="radio" name="insti" value="Cecyt" id="tlistt" onclick="mostrar();"
                         @if($inst == 2)
                             checked=""
-                        @else 
+                        @else
 
                         @endif
                       > CECyT
@@ -298,7 +298,7 @@
                         @else
 
                         @endif
-                    > Si
+                    > Sí
                 </div>
                 <div class="rdio rdio-primary">
                       <input type="radio" name="segMed" value="0" id="segMedNo"
@@ -317,14 +317,14 @@
         <div class="{{$classSize}}">
             <fieldset class="form-group">
                 <?php $segIns = $info->segIns; ?>
-                <label class="form-label" for="exampleInputDisabled2">¿Cuentas con seguro de vida institucioal?</label>
+                <label class="form-label" for="exampleInputDisabled2">¿Cuentas con seguro de vida institucional?</label>
                 <div class="rdio rdio-primary">
                     <input type="radio" name="segIns" value="1" id="segInsSi"
                     @if($segIns == 1)
                         checked=""
                     @else
                     @endif
-                    > Si
+                    > Sí
                 </div>
                 <div class="rdio rdio-primary">
                     <input type="radio" name="segIns" value="0" id="segInsNo"

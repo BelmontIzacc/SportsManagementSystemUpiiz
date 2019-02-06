@@ -33,7 +33,7 @@
  @unless($index == 4)
 	<header class="site-header">
 	    <div class="container-fluid">
-	        <a href="{{asset('/coord/User')}}" class="site-logo"> 
+	        <a href="{{asset('/coord/User')}}" class="site-logo">
 	            <img class="hidden-md-down" src="{{asset('/Template/img/Stickmen/LogoSRDpng2.png')}}" alt="" style="height:60px;width:auto;">
 	            <img class="hidden-lg-up" src="{{asset('/Template/img/Stickmen/LogoSRDpng2.png')}}" alt="" >
 	        </a>
@@ -46,7 +46,7 @@
 	                <div class="site-header-shown">
 	                    <div class="dropdown user-menu">
 	                        <button class="dropdown-toggle" id="dd-user-menu" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-	                        	<a href="{{asset('/coord/User')}}"> 
+	                        	<a href="{{asset('/coord/User')}}">
 	                            <img src="{{asset('/Template/img/Stickmen/LogoDeporte.png')}}" alt="" style="height:40px;width:auto;">
 	                        	</a>
 	                        </button>
@@ -85,7 +85,7 @@
 	<nav class="side-menu">
 	    <div class="side-menu-avatar">
 	        <div class="avatar-preview avatar-preview-100">
-	        	<a href="{{asset('/coord/User')}}"> 
+	        	<a href="{{asset('/coord/User')}}">
 	            <img src="{{asset('/Template/img/Stickmen/LogoDeporte.png')}}" alt="" style="height:130px;width:auto;">
 	        	</a>
 	        </div>
