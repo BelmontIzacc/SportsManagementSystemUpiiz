@@ -257,8 +257,6 @@ class UserController extends Controller
 
         $user = Auth::user();
         $infoUser = \App\informacion::find($user->informacion->id);
-
-        error_log($request->insti);
         
         if($request->insti=="UPIIZ") {
             $this->validate($request, [

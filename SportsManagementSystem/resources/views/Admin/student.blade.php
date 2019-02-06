@@ -433,6 +433,91 @@
         @endunless
     </div>
 
+        <h5 class="m-t-lg with-border">Datos de salud</h5>
+
+    <div class="row">
+        @unless($student->usuario_id == null)
+        <div class="{{$classSize}}">
+            <fieldset class="form-group">
+                <label class="form-label" for="exampleInputDisabled2">Alergias</label>
+                @if($student->alergias == null)
+                    <input type="text" readonly class="form-control" value="Ninguna">
+                @else
+                    <input type="text" readonly class="form-control" value="{{$student->alergias}}">
+                @endif
+            </fieldset>
+        </div>
+        @endunless
+
+        @unless($student->usuario_id == null)
+        <div class="{{$classSize}}">
+            <fieldset class="form->group">
+                <label class="fomr-label" for="exampleInputDisabled2">Estatura</label>
+                <input type="text" readonly class="form-control" value="{{$student->estatura}}m">
+            </fieldset>
+        </div>
+        @endunless
+
+        @unless($student->usuario_id == null)
+        <div class="{{$classSize}}">
+            <fieldset class="form-group">
+                <label class="form-label" for="exampleInputDisabled2">Peso</label>
+                <input type="text" readonly class="form-control" value="{{$student->peso}}kg">
+            </fieldset>
+        </div>
+        @endunless
+
+        @unless($student->usuario_id == null)
+        <div class="{{$classSize}}">
+            <fieldset class="form-group">
+                <label class="form-label" for="exampleInputDisabled2">Tipo de Sangre</label>
+                <input type="text" readonly class="form-control" value="{{$student->sangre}}">
+            </fieldset>
+        </div>
+        @endunless
+
+        @unless($student->usuario_id == null)
+        <div class="{{$classSize}}">
+            <fieldset class="form-group">
+                <label class="form-label" for="exampleInputDisabled2">¿Cuentas con seguro médico?</label>
+                @if($student->segMed == 1)
+                    <input type="text" readonly class="form-control" value="Si">
+                @else
+                    <input type="text" readonly class="form-control" value="No">
+                @endif
+            </fieldset>
+        </div>
+        @endunless
+
+        @unless($student->usuario_id == null)
+        <div class="{{$classSize}}">
+            <fieldset class="form-group">
+                <label class="form-label" for="exampleInputDisabled2">¿Cuentas con seguro de vida institucioal?</label>
+                @if($student->segIns == 1)
+                    <input type="text" readonly class="form-control" value="Si">
+                @else
+                    <input type="text" readonly class="form-control" value="No">
+                @endif
+            </fieldset>
+        </div>
+        @endunless
+    </div>
+
+    <h5 class="m-t-lg with-border">Contactos de emergencia</h5>
+
+    <div class="row">
+        @foreach($cont as $c)
+            @unless($c->usuario_id == null)
+                <div class="{{$classSize}}">
+                    <fieldset class="form-group">
+                        <label class="form-label" for="exampleInputDisabled2">{{$c->nombre}}</label>
+                        <input type="text" readonly class="form-control" value="{{$c->telefono}}">
+                    </fieldset>
+                </div>
+                @endunless
+        @endforeach
+    </div>
+
 </div> <!--End box typical-->
 
 <!-- end profile -->
