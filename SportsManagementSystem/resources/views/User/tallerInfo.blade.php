@@ -18,7 +18,7 @@
     <h3 class="m-t-lg with-border">Talleres en los que estoy registrado</h3>
 </div>
  @if($total == 0)
-        No te as registrado a ningun taller...
+        No te has registrado a ningun taller...
     @else
     <div class="container-fluid" >
         <section class="box-typical box-typical-full-height-with-header">

@@ -7,7 +7,7 @@
 ?>
 
 @section('title')
-<title>Informacion del usuario</title>
+<title>Información del usuario</title>
 @stop
 
 @section('css')
@@ -234,7 +234,7 @@
             <fieldset class="form-group">
                 <label class="form-label" for="exampleInputDisabled2">¿Cuentas con seguro médico?</label>
                 @if($info->segMed == 1)
-                    <input type="text" readonly class="form-control" value="Si">
+                    <input type="text" readonly class="form-control" value="Sí">
                 @else
                     <input type="text" readonly class="form-control" value="No">
                 @endif
@@ -247,7 +247,7 @@
             <fieldset class="form-group">
                 <label class="form-label" for="exampleInputDisabled2">¿Cuentas con seguro de vida institucioal?</label>
                 @if($info->segIns == 1)
-                    <input type="text" readonly class="form-control" value="Si">
+                    <input type="text" readonly class="form-control" value="Sí">
                 @else
                     <input type="text" readonly class="form-control" value="No">
                 @endif

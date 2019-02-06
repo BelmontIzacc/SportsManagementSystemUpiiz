@@ -52,7 +52,7 @@
 </section>
 <div class="box-typical box-typical-padding">
 
-    <h5 class="m-t-lg with-border">Informacion</h5>
+    <h5 class="m-t-lg with-border">Información</h5>
 
     <div class="row">
         @unless($user->nombre == null)
@@ -62,12 +62,12 @@
                 <input type="text" readonly class="form-control" value="{{$user->nombre}}">
             </fieldset>
         </div>
-        
+
         @endunless($user->apellidoPaterno == null)
         <div class="{{$classSize}}">
             <fieldset class="form-group">
                 <label class="form-label" for="exampleInputDisabled2">Apellido Paterno</label>
-                <input type="text" readonly class="form-control" value="{{$user->apellidoPaterno}}">    
+                <input type="text" readonly class="form-control" value="{{$user->apellidoPaterno}}">
             </fieldset>
         </div>
          @unless($user->apellidoMaterno == null)
@@ -103,9 +103,9 @@
                 <input type="text" readonly class="form-control" value="{{$student->telefono}}">
             </fieldset>
         </div>
-        
-       
-                
+
+
+
         @endunless
     </div>
 </div>
@@ -114,7 +114,7 @@
 	<div class="row text-center">
         <a href="/user/Info">
 		<div class="col-lg-3 col-md-3">
-		    <button type="button" class="btn btn-rounded btn-inline btn-success" data-toggle="modal" data-target=".bd-example-modal-sm">Informacion completa</button>
+		    <button type="button" class="btn btn-rounded btn-inline btn-success" data-toggle="modal" data-target=".bd-example-modal-sm">Información completa</button>
 		</div>
         </a>
         <a href="/user/EditProfile">

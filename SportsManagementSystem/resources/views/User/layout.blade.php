@@ -33,7 +33,7 @@
  @unless($index == 4)
 	<header class="site-header">
 	    <div class="container-fluid">
-	        <a href="{{asset('/user')}}" class="site-logo"> 
+	        <a href="{{asset('/user')}}" class="site-logo">
 	            <img class="hidden-md-down" src="{{asset('/Template/img/Stickmen/LogoSRDpng2.png')}}" alt="" style="height:60px;width:auto;">
 	            <img class="hidden-lg-up" src="{{asset('/Template/img/Stickmen/LogoSRDpng2.png')}}" alt="" >
 	        </a>
@@ -46,7 +46,7 @@
 	                <div class="site-header-shown">
 	                    <div class="dropdown user-menu">
 	                        <button class="dropdown-toggle" id="dd-user-menu" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-	                        	<a href="{{asset('/user')}}"> 
+	                        	<a href="{{asset('/user')}}">
 	                            <img src="{{asset('/Template/img/Stickmen/LogoDeporte.png')}}" alt="" style="height:40px;width:auto;">
 	                           	</a>
 	                        </button>
@@ -54,7 +54,7 @@
 	                            <a class="dropdown-item" href="{{asset('/user/Info')}}"><span class="font-icon glyphicon glyphicon-user"></span>Perfil</a>
 	                            <div class="dropdown-divider"></div>
 	                            <a class="dropdown-item" href="{{asset('/user')}}"><span class="font-icon font-icon-home"></span>Hogar</a>
-	                            <a class="dropdown-item" href="{{asset('/Credits')}}"><span class="font-icon font-icon-heart"></span>Creditos</a>
+	                            <a class="dropdown-item" href="{{asset('/Credits')}}"><span class="font-icon font-icon-heart"></span>Créditos</a>
 	                            <div class="dropdown-divider"></div>
 	                            <a class="dropdown-item" href="{{asset('/logout')}}"><span class="font-icon glyphicon glyphicon-log-out"></span>Salir</a>
 	                        </div>

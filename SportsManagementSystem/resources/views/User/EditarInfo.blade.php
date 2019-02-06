@@ -13,7 +13,7 @@
 ?>
 
 @section('title')
-<title>Informacion del usuario</title>
+<title>Información del usuario</title>
 @stop
 
 @section('css')
@@ -323,7 +323,7 @@
                         @else
 
                         @endif
-                    > Si
+                    > Sí
                 </div>
                 <div class="rdio rdio-primary">
                       <input type="radio" name="segMed" value="0" id="segMedNo"
@@ -349,7 +349,7 @@
                         checked=""
                     @else
                     @endif
-                    > Si
+                    > Sí
                 </div>
                 <div class="rdio rdio-primary">
                     <input type="radio" name="segIns" value="0" id="segInsNo"

@@ -37,7 +37,7 @@
             @unless($taller->usuario == null)
             <div>Coordinador {{$taller->usuario}}</div>
             @endunless
-            
+
             <div class="widget-user-stat">
                 <div class="item">
                     <div class="number">{{$total}}</div>
@@ -56,7 +56,7 @@
                     </div>
                 @endunless
             </div>
-            
+
             <div class="widget-user-stat">
                 <div class="item">
                     <div class="number">{{$fechaI}}</div>
@@ -71,7 +71,7 @@
                 @unless($taller->dias == null)
                 <div class="item hidden-md-down">
                     <div class="number">{{$taller->duracion}} hrs</div>
-                    <div class="caption">Duracion total</div>
+                    <div class="caption">Duración total</div>
                 </div>
                 @endunless
             </div>
@@ -88,7 +88,7 @@
                             Suspendido temporalmente
                         @elseif($t == 4)
                             Sin Coordinador
-                        @endif 
+                        @endif
                     </div>
                     <div class="caption">Estatus</div>
                 @endunless
@@ -98,7 +98,7 @@
             </br>
                 @unless($taller->descripcion == null)
                     <div class="number">{{$taller->descripcion}}</div>
-                    <div class="caption">Descripcion</div>
+                    <div class="caption">Descripción</div>
                 @endunless
             </div>
 
@@ -110,20 +110,20 @@
                     <div class="col-lg-12 col-md-12">
                     {!!Form::open(array('url'=>'/user/inscripcion/taller/'.$taller->id, 'class'=>'patata', 'method'=>'post'))!!}
                         <label class="form-label">¿Deseas entrar al Taller:  {{$taller->nombre}}?</label>
-                        <button type="submit" class="btn btn-rounded btn-inline" 
+                        <button type="submit" class="btn btn-rounded btn-inline"
                             @if($valor == 2)
                                 disabled=""
                             @elseif($valor == 1)
-                                
-                            @endif 
+
+                            @endif
                         > Sí </button>
                     {!!Form::close()!!}
                     </div>
                             @if($valor == 2)
-                                Se a pasado el tiempo de registro del taller, para más informacion ir con el encargado del area de deporte.
+                                Se a pasado el tiempo de registro del taller, para más información ir con el encargado del area de deporte.
                             @elseif($valor == 1)
-                                
-                            @endif 
+
+                            @endif
                 </div>
             </div>
         </section>

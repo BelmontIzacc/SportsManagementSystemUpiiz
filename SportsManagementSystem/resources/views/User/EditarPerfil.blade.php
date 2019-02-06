@@ -51,7 +51,7 @@
 </section>
  {!!Form::open(array('url'=>'/user/EditProfile', 'class'=>'patata', 'method'=>'post'))!!}
 <div class="box-typical box-typical-padding">
-    <h5 class="m-t-lg with-border">Informacion</h5>
+    <h5 class="m-t-lg with-border">Información</h5>
     <form class="patata">
     <div class="row">
         <div class="{{$classSize}}">

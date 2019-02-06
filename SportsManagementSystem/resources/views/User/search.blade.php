@@ -52,7 +52,7 @@ Busqueda de talleres
                         <div class="user-card-row">
                             <div class="tbl-row">
                                 <div class="tbl-cell tbl-cell-photo">
-                                
+
                                 </div>
                                 <div class="tbl-cell">
                                     @unless($t->nombre == null)
@@ -78,13 +78,13 @@ Busqueda de talleres
                                     </p>
                                     <p>
                                         @unless($t->status == null)
-                                            @if($t->status == 0) 
+                                            @if($t->status == 0)
                                                 Estatus: Inactivo
-                                            @elseif($t->status == 1) 
+                                            @elseif($t->status == 1)
                                                 Estatus: Activo
-                                            @elseif($t->status == 2) 
+                                            @elseif($t->status == 2)
                                                 Estatus: Suspendido temporalmente
-                                            @elseif($t->status == 3) 
+                                            @elseif($t->status == 3)
                                                 Estatus: Sin Coordinador
                                             @endif
                                         @endunless
