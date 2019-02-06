@@ -25,7 +25,7 @@ Busqueda de registro
                         Buscar
                     </button>
                     <div class="dropdown-menu dropdown-menu-right">
-                        <a class="dropdown-item" onclick="identification(1);">Boleta especifica</a>
+                        <a class="dropdown-item" onclick="identification(1);">Boleta específica</a>
                         <div role="separator" class="dropdown-divider"></div>
                         <a class="dropdown-item" onclick="identification(2);">Nombre del Taller</a>
                     </div>
@@ -64,11 +64,11 @@ Busqueda de registro
                                     @endunless
                                     <p>
                                         @unless($u->tipo == null)
-                                            @if($u->tipo == 1) 
+                                            @if($u->tipo == 1)
                                                 Cargo: Administrador
-                                            @elseif($u->tipo == 2) 
+                                            @elseif($u->tipo == 2)
                                                 Cargo: Usuario
-                                            @elseif($u->tipo == 3) 
+                                            @elseif($u->tipo == 3)
                                                 Cargo: Coordinador
                                             @endif
                                         @endunless
@@ -83,7 +83,7 @@ Busqueda de registro
                                     </p>
                                     <p>
                                         @unless($u->informacion == null)
-                                            Institucion: {{$u->informacion->institucion->nombre}}
+                                            Institución: {{$u->informacion->institucion->nombre}}
                                         @endunless
                                     </p>
                                     <p>
@@ -92,10 +92,10 @@ Busqueda de registro
                                         @endunless
                                     </p>
                                     <p>
-                                        @if($u->completado == 1) 
-                                            Status: Completado
+                                        @if($u->completado == 1)
+                                          Estatus: Completado
                                         @else
-                                            Status: Incompleto
+                                          Estatus: Incompleto
                                         @endif
                                     </p>
                                 </div>
@@ -149,13 +149,13 @@ Busqueda de registro
                                     </p>
                                     <p>
                                         @unless($t->status == null)
-                                            @if($t->status == 0) 
+                                            @if($t->status == 0)
                                                 Estatus: Inactivo
-                                            @elseif($t->status == 1) 
+                                            @elseif($t->status == 1)
                                                 Estatus: Activo
-                                            @elseif($t->status == 2) 
+                                            @elseif($t->status == 2)
                                                 Estatus: Suspendido temporalmente
-                                            @elseif($t->status == 3) 
+                                            @elseif($t->status == 3)
                                                 Estatus: Sin Coordinador
                                             @endif
                                         @endunless

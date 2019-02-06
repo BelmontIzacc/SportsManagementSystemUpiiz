@@ -47,7 +47,7 @@
 
 @include('alerts.formError')
 @include('alerts.sessionAlert')
-    
+
 <div class="row">
     <div class="container-fluid">
 		<section class="card widget widget-user">
@@ -62,7 +62,7 @@
 		    @unless($taller->usuario == null)
 		    <div>Coordinador <a href="{{asset('/admin/lists')}}/{{$taller->usuario_id}}">{{$taller->usuario}}</a></div>
 		    @endunless
-		    
+
 		    <div class="widget-user-stat hidden-md-down">
 		        <div class="item">
 		            <div class="number">{{$total}}</div>
@@ -84,7 +84,7 @@
 		    <div class="widget-user-stat">
 		        @unless($taller->descripcion == null)
 		            <div class="number">{{$taller->descripcion}}</div>
-		            <div class="caption">Descripcion</div>
+		            <div class="caption">Descripción</div>
 		        @endunless
 		    </div>
 		</section>
@@ -156,7 +156,7 @@
                                         <span class="tabledit-span"><a href="{{asset('/admin/lists')}}/{{$i->usuario->informacion->id}}" class="semibold">{{$i->usuario}}</a></span>
                                     </td>
                                     <td class="table-icon-cell">
-                                        	@if($i->usuario->informacion->sexo == 0) 
+                                        	@if($i->usuario->informacion->sexo == 0)
                     	 						Masculino
 						                   	@else
 						                   		Femenino

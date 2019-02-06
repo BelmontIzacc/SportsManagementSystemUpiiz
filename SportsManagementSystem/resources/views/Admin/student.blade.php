@@ -45,7 +45,7 @@
                         </div>
                         <div class="col-lg-6 col-lg-offset-1 col-md-5 col-md-offset-1">
                             <div class="checkbox-toggle">
-                                <input 
+                                <input
                                     @if(($student->usuario->tipo == 3) || ($student->usuario->tipo == 1))
                                         disabled=""
                                     @else
@@ -108,7 +108,7 @@
                 <div class="modal-footer">
                     <div class="container text-center">
                         <div class="form-group">
-                            <h5 class="m-t-lg with-border">¿Seguro que quiere eliminar el Usuario?</h5>
+                            <h5 class="m-t-lg with-border">¿Seguro quiere eliminar el Usuario?</h5>
                         </div>
                         <div class="row">
                             <div class="col-lg-6 col-md-6">

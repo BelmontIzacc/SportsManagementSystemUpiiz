@@ -12,7 +12,7 @@
                         Instituto Politécnico Nacional <br><br>
                     </p>
                     <p style="font-size:9pt;">
-                        Unidad Profecional Interdisciplinarioa de Ingeniería <br>
+                        Unidad Profecional Interdisciplinaria de Ingeniería <br>
                         Campus zacatecas <br>
                         Subdirección de Servicios Educativos e Integración Social <br>
                         Departamento de Servicios Estudiantiles-Coordinación de Deporte y Cultura

@@ -29,7 +29,7 @@
     @unless($taller->usuario == null)
     <div><a href="{{asset('/admin/lists')}}/{{$taller->usuario_id}}">{{$taller->usuario}}</a></div>
     @endunless
-    
+
     <div class="widget-user-stat hidden-md-down">
         <div class="item">
             <div class="number">{{count($inscripcion)}}</div>
@@ -51,18 +51,18 @@
     <div class="widget-user-stat">
         @unless($taller->descripcion == null)
             <div class="number">{{$taller->descripcion}}</div>
-            <div class="caption">Descripcion</div>
+            <div class="caption">Descripción</div>
         @endunless
     </div>
 </section>
 
 <div class="box-typical box-typical-padding">
-		
+
 	<br/>
 
 	<div class="row text-center">
 		<div class="col-lg-4 col-md-4">
-		    <button type="button" class="btn btn-rounded btn-inline btn-warning" data-toggle="modal" data-target=".bd-example-modal-sm" onclick="Graficos();">Estadisticas</button>
+		    <button type="button" class="btn btn-rounded btn-inline btn-warning" data-toggle="modal" data-target=".bd-example-modal-sm" onclick="Graficos();">Estadísticas</button>
 		</div>
         <div class="col-lg-4 col-md-4">
              <a class="btn btn-rounded btn-inline btn-success" target="_blank" onclick="Asistentes();">Participantes</a>
@@ -72,22 +72,22 @@
 
 <div class="box-typical box-typical-padding">
 
- 
+
     <div class="row" id="lista_asistentes" style="display:none">
         <div class="col-sm-12">
             <table id="example" class="display table table-striped table-bordered dataTable" cellspacing="0" width="100%" role="grid" aria-describedby="example_info" style="width: 100%;">
                 <thead>
-					<tr role="row">   
+					<tr role="row">
                         <th class="sorting_asc" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 114px;">Nombre</th>
-                            
-                        <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending" style="width: 62px;">Edad</th>      
-                        
+
+                        <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending" style="width: 62px;">Edad</th>
+
                         <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 36px;">Sexo</th>
-                            
+
                         <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 36px;">Institución</th>
-                            
+
                         <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 80px;">Carrera/<br/>Bachiller</th>
-                        
+
                         <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 80px;">Semestre</th>
                     </tr>
 				</thead>

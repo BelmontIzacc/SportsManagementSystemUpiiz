@@ -22,7 +22,7 @@
 ?>
 
 @section('title')
-<title>Informacion</title>
+<title>Información</title>
 @stop
 
 @section('css')
@@ -76,7 +76,7 @@
             <div class="widget-user-stat">
                 @unless($taller->descripcion == null)
                     <div class="number">{{$taller->descripcion}}</div>
-                    <div class="caption">Descripcion</div>
+                    <div class="caption">Descripción</div>
                 @endunless
             </div>
         </section>
@@ -90,15 +90,15 @@
             <fieldset class="form-group">
                 <label class="form-label">Nombre del taller</label>
                 <?php $nombre = $taller->nombre ?>
-                {!!Form::text('nombre',$nombre, ['class'=>'form-control', 'placeholder'=>'Nombre del taller', 'id'=>'nombreTaller'])!!} 
+                {!!Form::text('nombre',$nombre, ['class'=>'form-control', 'placeholder'=>'Nombre del taller', 'id'=>'nombreTaller'])!!}
             </fieldset>
         </div>
 
         <div class="{{$classSize}}">
             <fieldset class="form-group">
-                <label class="form-label">Duracion total (horas)</label>
+                <label class="form-label">Duración total (horas)</label>
                 <?php $d = $taller->duracion ?>
-                {!!Form::text('duracion', $d, ['class'=>'form-control', 'placeholder'=>'Duracion en horas (total)', 'id'=>'duracion'])!!} 
+                {!!Form::text('duracion', $d, ['class'=>'form-control', 'placeholder'=>'Duracion en horas (total)', 'id'=>'duracion'])!!}
             </fieldset>
         </div>
 
@@ -106,13 +106,13 @@
             <fieldset class="form-group">
                 <label class="form-label">Tipo</label>
                     <?php $t = $taller->tipo_id ?>
-                    {!!Form::select('tipo',$tilista, $t, ['class'=>'select2 form-control', 'placeholder'=>'Selecciona un tipo'])!!}      
+                    {!!Form::select('tipo',$tilista, $t, ['class'=>'select2 form-control', 'placeholder'=>'Selecciona un tipo'])!!}
             </fieldset>
         </div>
 
         <div class="{{$classSize}}">
             <fieldset class="form-group">
-                <label class="form-label">Dias de Imparticion</label>
+                <label class="form-label">Días de Impartición</label>
                 {!!Form::select('dia[]',$dia,$tDi, ['class'=>'select2 remove-example', 'multiple'])!!}
             </fieldset>
         </div>
@@ -127,18 +127,18 @@
 
     </div>
 
-    <h5 class="m-t-lg with-border">Descripcion</h5>
-    
+    <h5 class="m-t-lg with-border">Descripción</h5>
+
     <div class="row">
         <div class="{{$classSize}}">
             <fieldset class="form-group">
-                <label class="form-label">Descripcion</label>
+                <label class="form-label">Descripción</label>
                 <?php $des = $taller->descripcion ?>
                 {!!Form::textarea('descri', $des, ['class'=>'form-control','maxlength-simple','maxlength'=>'255','rows'=>'8','cols'=>31,'placeholder'=>'Descripcion del taller', 'id'=>'descri'])!!}
             </fieldset>
         </div>
     </div>
-    
+
     <h5 class="m-t-lg with-border">Fechas</h5>
 
     <div class="row">
@@ -170,7 +170,7 @@
           <fieldset class="form-group">
             <label class="form-label">Estatus</label>
             <?php $st = $taller->status ?>
-            {!!Form::select('status',$status, $st, ['class'=>'bootstrap-select bootstrap-select-arrow form-control','id'=>'status','placeholder'=>'Seleccionar'])!!}   
+            {!!Form::select('status',$status, $st, ['class'=>'bootstrap-select bootstrap-select-arrow form-control','id'=>'status','placeholder'=>'Seleccionar'])!!}
           </fieldset>
         </div>
     </div>
@@ -190,17 +190,17 @@
                         @if($taller->usuario_id != null)
                             checked=""
                         @else
-                            
+
                         @endif
                       >
-                      <label>Si</label>
+                      <label>Sí</label>
                     </div>
                     <div class="rdio rdio-primary">
-                      <input type="radio" name="taller" value="no" id="tlistt" onclick="mostrar();" 
+                      <input type="radio" name="taller" value="no" id="tlistt" onclick="mostrar();"
                         @if($taller->usuario_id == null)
                             checked=""
                         @else
-                            
+
                         @endif
                       >
                       <label>No</label>
@@ -214,16 +214,16 @@
                 <label class="form-label"</label>
                   <!--Bloque Oculto-->
                   <div id="tlistF" style="display:none;">
-                    <label>¿Seleccione el Coordinador?</label>
+                    <label>Seleccione el Coordinador:</label>
                     <div>
                           <fieldset class="form-group">
                             </br>
-                              <label class="form-label">Coordinadores</br></label>
+                              <label class="form-label">Coordinador</br></label>
                                 {!!Form::select('coordinador',$coord, $taller->usuario_id, ['class'=>'select2 form-control', 'placeholder'=>'Selecciona un usuario'])!!}
                           </fieldset>
                           @unless(count($Pcoord)==0)
                           <fieldset class="form-group">
-                              <label class="form-label">Alumnos</br></label>
+                              <label class="form-label">Alumno</br></label>
                                 {!!Form::select('Pcoordinador',$Pcoord, -1, ['class'=>'select2 form-control', 'placeholder'=>'Selecciona un usuario'])!!}
                           </fieldset>
                           @endunless

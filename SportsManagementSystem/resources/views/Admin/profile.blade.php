@@ -1,7 +1,7 @@
 @extends('Admin.layout')
 
 @section('title')
-<title>Perfíl servicio Deportes</title>
+<title>Perfil servicio Deportes</title>
 <meta name="csrf-token" content="{{ csrf_token() }}" /> <!--cabecera para que se puedan enviar peticiones POST desde javascript-->
 @stop
 
@@ -38,7 +38,7 @@
               <button type="button" class="modal-close" data-dismiss="modal" aria-label="Close">
                   <i class="font-icon-close-2"></i>
               </button>
-              <h4 class="modal-title" id="myModalLabel">¿Desea editar el perfíl de administrador?</h4>
+              <h4 class="modal-title" id="myModalLabel">¿Desea editar el perfil de administrador?</h4>
           </div>
           {!!Form::open(array('method'=>'post'))!!}
           <div class="modal-body">
@@ -67,7 +67,7 @@
               <div class="sign-avatar">
                   <a data-toggle="modal" data-target="#photoModal"><img src="{{asset('/Template/img/Stickmen/LogoSRDpng2.png')}}" alt="" ></a>
               </div>
-              <small class="text-muted">Actualiza tu informacion</small>
+              <small class="text-muted">Actualiza tu información</small>
               <br/>
 
               @include('alerts.formError')
@@ -118,13 +118,13 @@
                       <label class="form-label"></label>
                         <!--Bloque Oculto-->
                         <div id="tlistF" style="display:none;">
-                          <label>¿Escriba la nueva contraseña?</label> </br>
+                          <label>Escriba la nueva contraseña:</label> </br>
                           <div>
                                 <fieldset class="form-group">
                   <label class="form-label" for="exampleInputDisabled2">Contraseña</label>
                   {!!Form::text('clave', null, ['class'=>'form-control', 'placeholder'=>'Ej: xxxxx'])!!}
                                 </fieldset>
-                               
+
                                 <fieldset class="form-group">
                   <label class="form-label" for="exampleInputDisabled2">Repetir Constraseña</label>
                   {!!Form::text('clave2', null, ['class'=>'form-control', 'placeholder'=>'Ej: xxxxx'])!!}
@@ -135,7 +135,7 @@
                   </fieldset>
               </div>
 
-              <button type="submit" class="btn btn-rounded btn-danger" data-toggle="modal" data-target=".bd-example-modal-sm">Actualizar perfíl</button>
+              <button type="submit" class="btn btn-rounded btn-danger" data-toggle="modal" data-target=".bd-example-modal-sm">Actualizar perfil</button>
 
               <a href="{{asset('/admin/profile')}}"><button type="button" class="close">
                   <span aria-hidden="true">&times;</span>
@@ -164,7 +164,7 @@
 
                 <header class="sign-title"></header>
 
-                <button type="button" class="btn btn-rounded btn-warning" data-toggle="modal" data-target=".bd-example-modal-sm">Editar perfíl</button>
+                <button type="button" class="btn btn-rounded btn-warning" data-toggle="modal" data-target=".bd-example-modal-sm">Editar perfil</button>
 
                 <a href="{{asset('/admin')}}"><button type="button" class="close">
                     <span aria-hidden="true">&times;</span>

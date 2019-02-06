@@ -6,9 +6,9 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 	<meta http-equiv="x-ua-compatible" content="ie=edge">
-	
+
 	@yield('title')
-	
+
 	<link href="{{asset('/Template/img/favicon.144x144.png')}}" rel="apple-touch-icon" type="/image/png" sizes="144x144">
 	<link href="{{asset('/Template/img/favicon.114x114.png')}}" rel="apple-touch-icon" type="/image/png" sizes="114x114">
 	<link href="{{asset('/Template/img/favicon.72x72.png')}}" rel="apple-touch-icon" type="/image/png" sizes="72x72">
@@ -24,7 +24,7 @@
 	<![endif]-->
     <link rel="stylesheet" href="{{asset('/Template/css/lib/font-awesome/font-awesome.min.css')}}">
     <link rel="stylesheet" href="{{asset('/Template/css/main.css')}}">
-	
+
 	<style type="text/css">.fancybox-margin{margin-right:0px;}</style>
 	@yield('css')
 </head>
@@ -61,7 +61,7 @@
 	                            <a class="dropdown-item" href="{{asset('/logout')}}"><span class="font-icon glyphicon glyphicon-log-out"></span>Logout</a>
 	                        </div>
 	                    </div>
-	
+
 	                </div><!--.site-header-shown-->
 				@endif
 	                <div class="mobile-menu-right-overlay"></div>
@@ -123,13 +123,13 @@
 	                <i class="font-icon font-icon-users"></i>
 	                <span class="lbl">Panel de control</span>
 	            </a>
-	        </li>  
+	        </li>
 	        <li class="grey">
 	            <a href="{{asset('/admin/Register/userList')}}">
 	                <i class="font-icon font-icon-list-square"></i>
 	                <span class="lbl">Usuarios registrados</span>
 	            </a>
-	        </li>      
+	        </li>
 	    </ul>
 	</nav><!--.side-menu-->
 
