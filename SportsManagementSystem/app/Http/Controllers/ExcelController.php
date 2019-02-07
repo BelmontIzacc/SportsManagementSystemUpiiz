@@ -63,4 +63,65 @@ ORDER BY carrera.nombre
 
 */
 
+public function taller($id){
+
+    $taller = \App\taller::find($id);
+
+    \Excel::create('Lista_Taller_Registrados',function($excel) use($taller)
+        {
+            
+
+            $excel->sheet(''.$taller->nombre,function($sheet) use($taller)
+            {
+                    $users = \DB::table('usuario')
+                        ->join('informacion','informacion.usuario_id','=','usuario.id')
+                        ->join('carrera','carrera.id','=','informacion.carrera_id')
+                        ->select(\DB::raw("CONCAT(usuario.apellidoPaterno,' ',usuario.apellidoMaterno,' ',usuario.nombre) as Nombre"),'usuario.boleta as Boleta','carrera.nombre as Carrera_Bachiller',
+                            \DB::raw("IF(informacion.sexo = 0,'Hombre','Mujer') as Sexo"))    
+                        ->where('taller.id','=',$taller->id)
+                        ->OrderBy('usuario.apellidoPaterno')      
+                        ->get();
+
+                        $users = json_decode(json_encode($users),true);
+        
+                        $sheet->cells('A1:D1', function($cells) 
+                        {
+                        /*modifica fila*/
+            
+                        $cells->setBackground('#8A0829');
+                        $cells->setFontColor('#ffffff');
+
+                        });
+             
+                $sheet->fromArray($users);
+            });
+        })->export('xls');
+}
+/*
+SELECT usuario.nombre as Nombre, usuario.apellidoPaterno as ApellidoPaterno, usuario.apellidoMaterno as ApellidoMaterno,  usuario.boleta as Boleta, carrera.nombre, informacion.sexo as Sexo
+FROM taller,usuario
+INNER JOIN informacion ON informacion.usuario_id = usuario.id
+INNER JOIN carrera ON carrera.id = informacion.carrera_id
+WHERE taller.id = 2
+ORDER BY usuario.apellidoPaterno
+
+SELECT CONCAT(usuario.nombre,' ',usuario.apellidoPaterno ,' ',usuario.apellidoMaterno ) as nombre,usuario.boleta as Boleta, carrera.nombre, informacion.sexo as Sexo
+FROM usuario
+INNER JOIN informacion ON informacion.usuario_id = usuario.id
+INNER JOIN carrera ON carrera.id = informacion.carrera_id
+WHERE usuario.tipo != 2
+ORDER BY usuario.apellidoPaterno
+
+
+SELECT usuario.nombre as Nombre, usuario.apellidoPaterno as ApellidoPaterno, usuario.apellidoMaterno as ApellidoMaterno,  usuario.boleta as Boleta, carrera.nombre, IF(informacion.sexo = 0, 'Mujer','Hombre') AS Genero
+FROM usuario
+INNER JOIN informacion ON informacion.usuario_id = usuario.id
+INNER JOIN carrera ON carrera.id = informacion.carrera_id
+WHERE usuario.tipo != 2
+ORDER BY usuario.apellidoPaterno
+
+*/
+
+
+
 }

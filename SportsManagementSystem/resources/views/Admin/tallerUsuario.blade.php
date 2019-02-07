@@ -114,6 +114,9 @@
                                 <th>
                                     <a href="{{asset('/admin/student/')}}/{{$taller->id}}/studio/delete/User" class="btn btn-rounded btn-inline btn-info">Eliminar usuarios del taller</a>
                                 </th>
+                                <th>
+                                    <a href="{{asset('/admin/student')}}/{{$taller->id}}/studio/ExportTallerAll" class="btn btn-rounded btn-inline btn-danger">Imprimir lista del taller</a>
+                                </th>
                             </tr>
                     </div>
             </div>
