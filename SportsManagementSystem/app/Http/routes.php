@@ -130,6 +130,11 @@ Route::get('/coord/user/taller/registro/{id}','CoordController@tallerInfoRegiste
 Route::get('/coord/user/Info','CoordController@getInfo');
 Route::get('/coord/user/EditInfo','CoordController@getEditInfo');
 Route::post('/coord/user/EditInfo','CoordController@postEditInfo');
+
+Route::get('/coord/user/editContactos', 'CoordController@EditContactos');
+Route::post('/coord/user/editContactos', 'CoordController@postEditContactos');
+Route::post('/coord/user/crearContato', 'CoordController@crearContacto');
+Route::get('/coord/user/elmContacto/{id}', 'CoordController@eliminarContacto');
 //-----------------------------------------------------------------------------------//
 // Password reset link request routes...
 Route::get('/password/email', 'Auth\PasswordController@getEmail');

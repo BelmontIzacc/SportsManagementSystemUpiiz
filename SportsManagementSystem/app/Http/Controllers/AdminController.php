@@ -98,6 +98,9 @@ class AdminController extends Controller
             'postal' => 'required',
 
             'taller' => 'required',
+
+            'nombreE' => 'required',
+            'telefonoE' => 'required',
         ]);
 
         $lugar = $request->plantell;
@@ -124,6 +127,12 @@ class AdminController extends Controller
             'tipo' => 3,
             'completado' => 1,
             'permisos' =>1,
+        ]);
+
+        \App\contactos::create([
+            'usuario_id' => $user->id,
+            'nombre' => $request->nombreE,
+            'telefono' => $request->telefonoE,
         ]);
 
         $plantel = $request->plantel;

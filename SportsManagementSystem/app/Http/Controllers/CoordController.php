@@ -755,4 +755,58 @@ class CoordController extends Controller
         session()->flash('type', 'success');
         return redirect('/coord/User');
     }
+
+    public function EditContactos() {
+        $index = 1;
+        $user = Auth::User();
+        $contactos = \App\contactos::where('usuario_id',$user->id)->get();
+        $info = \App\informacion::find($user->informacion->id);
+
+        $data = [
+            'index' => $index,
+            'user' => $user,
+            'userI' => $user,
+            'info' => $info,
+            'contactos' => $contactos
+        ];
+
+        return view('Coord.editContactos', $data);
+    }
+
+    public function postEditContactos(Request $request) {
+        $cont = \App\contactos::find($request->contacto_id);
+
+        $cont->update([
+            'nombre' => $request->nombre,
+            'telefono' => $request->telefono,
+        ]);
+
+        return redirect('/coord/user/editContactos');
+    }
+
+    public function crearContacto(Request $request) {
+
+        $this->validate($request, [
+            'nombre' => 'required',
+            'telefono' => 'required',
+        ]);
+        
+        $user = Auth::User();
+
+        \App\contactos::create([
+            'usuario_id' => $user->id,
+            'nombre' => $request->nombre,
+            'telefono' => $request->telefono,
+        ]);
+
+        return redirect('/coord/user/editContactos');
+    }
+
+    public function eliminarContacto($id) {
+        $cont = \App\contactos::find($id);
+
+        $cont->delete();
+
+        return redirect('/coord/user/editContactos');
+    }
 }

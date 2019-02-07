@@ -500,7 +500,7 @@ class UserController extends Controller
             'telefono' => $request->telefono,
         ]);
 
-        return redirect('user/editContactos');
+        return redirect('/user/editContactos');
     }
 
     public function crearContacto(Request $request) {
@@ -509,6 +509,8 @@ class UserController extends Controller
             'nombre' => 'required',
             'telefono' => 'required',
         ]);
+        
+        $user = Auth::User();
 
         \App\contactos::create([
             'usuario_id' => $user->id,
@@ -516,7 +518,7 @@ class UserController extends Controller
             'telefono' => $request->telefono,
         ]);
 
-        return redirect('user/editContactos');
+        return redirect('/user/editContactos');
     }
 
     public function eliminarContacto($id) {
@@ -524,6 +526,6 @@ class UserController extends Controller
 
         $cont->delete();
 
-        return redirect('user/editContactos');
+        return redirect('/user/editContactos');
     }
 }

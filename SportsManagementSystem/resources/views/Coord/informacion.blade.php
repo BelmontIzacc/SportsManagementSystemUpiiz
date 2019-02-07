@@ -278,10 +278,15 @@
     <br/>
 
     <div class="row text-center">
-        <div class="col-lg-12 col-md-12">
-            <a href="{{asset('/coord/user/EditInfo')}}" class="btn btn-rounded btn-inline btn-warning">Editar info</a>
+        <div class="col-lg-6 col-md-6">
+            <a href="{{asset('/coord/user/EditInfo')}}" class="btn btn-rounded btn-inline btn-warning">Editar información</a>
+        </div>
+
+        <div class="col-lg-6 col-md-6">
+            <a href="{{asset('/coord/user/editContactos')}}" class="btn btn-rounded btn-inline btn-submit">Editar contactos</a>
         </div>
     </div>
+    
 </div>
 @stop
 @section('scripts')

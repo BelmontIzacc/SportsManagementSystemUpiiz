@@ -142,10 +142,27 @@
                 {!!Form::number('edad', null, ['class'=>'form-control', 'placeholder'=>'Edad', 'id'=>'edad'])!!}
         						</fieldset>
                   </div>
+                  
+                  
+
                   <div class="{{$classSizeForms}}">
                     <fieldset class="form-group">
+                      <label class="form-label">Contato de emergencia</label>
+                    </fieldset>
+                  </div>
 
+                  <div class="{{$classSizeForms}}">
+                    <fieldset class="form-group">
+                      <label class="form-label">Nombre</label>
+                      {!!Form::text('nombreE',null,['class'=>'form-control', 'placeholder'=>'Nombre', 'id'=>'nombre'])!!}
         						</fieldset>
+                  </div>
+
+                  <div class="{{$classSizeForms}}">
+                    <fieldset class="form-group">
+                      <label class="form-label">Teléfono</label>
+                      {!!Form::text('telefonoE',null,['class'=>'form-control', 'placeholder'=>'Teléfono', 'id'=>'telefono'])!!}
+                    </fieldset>
                   </div>
                 </div>
 

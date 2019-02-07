@@ -1,4 +1,4 @@
-@extends('User.layout')
+@extends('Coord.layout')
 <?php
     $classSizeForms = "col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2";
     $classSize = "col-lg-4 col-md-4 col-sm-6";
@@ -51,7 +51,7 @@
     </section>
 
     @foreach($contactos as $c)
-    {!!Form::open(array('url'=>'/user/editContactos', 'class'=>'form-control', 'method'=>'post'))!!}
+    {!!Form::open(array('url'=>'/coord/user/editContactos', 'class'=>'form-control', 'method'=>'post'))!!}
     <div class="box-typical box-typical-padding">
         {!!Form::hidden('contacto_id',$c->id,['class'=>'form-control', 'id'=>'contacto_id'])!!}
         <div class="row text-center">
@@ -83,7 +83,7 @@
         <div class="row text-center col-lg-3 col-md-3">
             <div class="{{$classSize}}">
                 <fieldset class="form-group">
-                    <a class="btn btn-rounded btn-delete" href="{{asset('user/elmContacto/'.$c->id)}}">Borrar</a>
+                    <a class="btn btn-rounded btn-delete" href="{{asset('/coord/user/elmContacto/'.$c->id)}}">Borrar</a>
                 </fieldset>
             </div>
         </div>
@@ -92,7 +92,7 @@
     {!!Form::close()!!}
     @endforeach
 
-    {!!Form::open(array('url'=>'/user/crearContato', 'class'=>'form-control', 'method'=>'post'))!!}
+    {!!Form::open(array('url'=>'/coord/user/crearContato', 'class'=>'form-control', 'method'=>'post'))!!}
     <div class="box-typical box-typical-padding">
         <div class="row text-center">
             <div class="{{$classSize}}">
