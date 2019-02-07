@@ -17,7 +17,7 @@
             <div class="page-error-box">
                 <div class="sign-avatar">
                     <img src="{{asset('Template/img/Stickmen/LogoSRDpng2.png')}}" alt="" style="height:125px;width:auto;">
-                </div>
+								</div>
                 <div class="error-title" style="color:#303030;"><font face="Broadway" >Cr&eacute;ditos</font></div>
                 <div style="color:#404040;">
                     <h4><font face="Britannic" >Encargados del proyecto</font></h4>
@@ -28,7 +28,7 @@
                     <p style="color:#a00a0b;"><font size="5">Orlando Odiseo Belmonte Flores:</font></p>
                     <h5>Programador encargado del "Coordinador", Ayudante del "Administrador", Encargado de DB, Diseñado inicial. </h5>
                     <center>&nbsp;</center>
-                    <p style="color:#a00a0b;"><font size="5">Guillermo Ignacio Bautista Garc&iacute;a:</font></p>  
+                    <p style="color:#a00a0b;"><font size="5">Guillermo Ignacio Bautista Garc&iacute;a<a href="{{asset('/Credits/EE')}}">:</a></font></p>
                     <h5>Programador encargado del "Usuario", pequeños ajustes JS, ayudante de DB, Beta-tester. </h5>
                 </div>
             </div>

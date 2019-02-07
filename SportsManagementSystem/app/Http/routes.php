@@ -146,3 +146,4 @@ Route::get('/password/reset/{token}', 'Auth\PasswordController@getReset');
 Route::post('/password/reset', 'Auth\PasswordController@postReset');
 //-----------------------------------------------------------------------------------//
 Route::get('/Credits','welcomeController@creditos');
+Route::get('/Credits/EE','welcomeController@creditosEE');
