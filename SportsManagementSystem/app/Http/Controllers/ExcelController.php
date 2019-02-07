@@ -66,25 +66,24 @@ ORDER BY carrera.nombre
 public function taller($id){
 
     $taller = \App\taller::find($id);
-
     \Excel::create('Lista_Taller_Registrados',function($excel) use($taller)
         {
-            
-
             $excel->sheet(''.$taller->nombre,function($sheet) use($taller)
             {
-                    $users = \DB::table('usuario')
+                    /*$users = \DB::table('usuario')
                         ->join('informacion','informacion.usuario_id','=','usuario.id')
                         ->join('carrera','carrera.id','=','informacion.carrera_id')
                         ->select(\DB::raw("CONCAT(usuario.apellidoPaterno,' ',usuario.apellidoMaterno,' ',usuario.nombre) as Nombre"),'usuario.boleta as Boleta','carrera.nombre as Carrera_Bachiller',
-                            \DB::raw("IF(informacion.sexo = 0,'Hombre','Mujer') as Sexo"))    
+                            \DB::raw("IF(informacion.sexo = 0,'Hombre','Mujer') as Sexo"), 'informacion.edad as Edad')    
                         ->where('taller.id','=',$taller->id)
                         ->OrderBy('usuario.apellidoPaterno')      
                         ->get();
 
-                        $users = json_decode(json_encode($users),true);
-        
-                        $sheet->cells('A1:D1', function($cells) 
+                        $users = json_decode(json_encode($users),true);*/
+                        
+                        $inscripcion = \App\inscripcion::where('taller_id',$taller->id)->get();
+
+                        $sheet->cells('A1:E1', function($cells) 
                         {
                         /*modifica fila*/
             
@@ -92,8 +91,34 @@ public function taller($id){
                         $cells->setFontColor('#ffffff');
 
                         });
+
+                        $sheet->row(1,[
+                            'Nombre','Boleta','Carrera','Sexo','Edad'
+                        ]);
+
+                        $x = 0;
+                        foreach ($inscripcion as $i) {
+
+                            $s = " ";
+                            if($i->usuario->informacion->sexo == 0){
+                                $s = "Hombre";
+                            }else{
+                                $s = "Mujer";
+                            }
+
+
+                            $sheet->row($x+2,[
+                                $i->usuario,
+                                $i->usuario->boleta,
+                                $i->usuario->informacion->carrera->nombre,
+                                $sexo = $s,
+                                $i->usuario->informacion->edad,
+                            ]);
+                            $x=$x+1;
+                        }
              
-                $sheet->fromArray($users);
+                //$sheet->fromArray($inscripcion);
+                //$sheet->fromArray($users);
             });
         })->export('xls');
 }
