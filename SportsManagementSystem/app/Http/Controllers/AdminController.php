@@ -251,7 +251,7 @@ class AdminController extends Controller
             if($tu!=$i){
                 $dias=$dias.',';
             }else{
-                
+
             }
         }
 
@@ -333,7 +333,7 @@ class AdminController extends Controller
             if($tu!=$i){
                 $dias=$dias.',';
             }else{
-                
+
             }
         }
 
@@ -520,7 +520,7 @@ class AdminController extends Controller
                     $user->permisos = 1;
 
                 $user->save();
-                
+
                 session()->flash('message', 'Se a actualizado el Usuario '.$user.' a Administrador');
                 session()->flash('type', 'success');
 
@@ -557,7 +557,7 @@ class AdminController extends Controller
                     $user->permisos = 0;
 
                     $id = $user->id;
-                    $taller = \App\taller::where('usuario_id',$id)->get(); 
+                    $taller = \App\taller::where('usuario_id',$id)->get();
 
                     foreach ($taller as $ta) {
                         $ta->update([
@@ -890,8 +890,14 @@ class AdminController extends Controller
     }
     public function getRegisterWindow($variable){
         $index = -1;
+        $insti = \App\institucion::all()->lists('nombre','id');
+        $data = [
+            'index' => $index,
+            'variable' => $variable,
+            'insti' => $insti,
+        ];
 
-        return view('Admin.dialogBox', ['index'=>$index, 'variable'=>$variable]);
+        return view('Admin.dialogBox', $data);
     }
     public function insertRegister(Request $request, $variable){
         //return redirect('/blocked');
@@ -902,7 +908,8 @@ class AdminController extends Controller
 
 
         if($variable == 1){
-           \App\carrera::create([
+            \App\carrera::create([
+                'institucion_id' => $request->institucion,
                 'nombre' => $request->nombre,
             ]);
         } elseif($variable == 2){
@@ -1968,7 +1975,7 @@ class AdminController extends Controller
         $tu = count($unico);
         $i=1;
         $j=0;
-        
+
         $dias="";
         $array = array();
 
@@ -1997,19 +2004,19 @@ class AdminController extends Controller
             if($tu!=$i){
 
             }else{
-               $dias=$dias.','; 
+               $dias=$dias.',';
             }
 
         }
 
         $input = 'Y-m-d';
         $date = $taller->fechaInicio;
-        $output = 'd-m-Y'; 
+        $output = 'd-m-Y';
         $dF = Carbon::createFromFormat($input, $date)->format($output);
 
         $input2 = 'Y-m-d';
         $date2 = $taller->fechaFin;
-        $output2 = 'd-m-Y'; 
+        $output2 = 'd-m-Y';
         $dF2 = Carbon::createFromFormat($input2, $date2)->format($output2);
 
         $u = Auth::User();
@@ -2074,7 +2081,7 @@ class AdminController extends Controller
             if($tu!=$i){
                 $dias=$dias.',';
             }else{
-                
+
             }
         }
 

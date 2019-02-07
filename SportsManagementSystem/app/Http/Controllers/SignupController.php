@@ -116,7 +116,7 @@ class SignupController extends Controller
 
             ]);
         }else if($request->insti == "CECyT") {
-            $this->validate('tlistac'=>'required');
+            $this->validate($request, ['tlistac'=>'required']);
            informacion::create([
                 'usuario_id' => $request->user,
                 'institucion_id' => 2,

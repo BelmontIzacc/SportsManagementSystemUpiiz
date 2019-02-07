@@ -96,7 +96,10 @@
                 <div class="row">
                     <div class="col-lg-10 col-lg-offset-1">
                         <div class="form-group">
-
+                            @if($variable == 1)
+                                <label class="form-label">Institución a la que pertenece </label>
+                                {!!Form::select('institucion',$insti,0,['class'=>'bootstrap-select bootstrap-select-arrow form-control', 'id'=>'institución'])!!}
+                            @endif
                             <label class="form-label" for="exampleInputDisabled2">Nombre de
                                 @if($variable == 1)
                                     carrera/bachiller
@@ -107,7 +110,7 @@
                                 @endif
                             </label>
                             <input name="nombre" type="text" class="form-control"
-placeholder="
+                                placeholder="
 @if($variable == 1)
 Ej: Ingeniería en Sistemas Computacionales
 @elseif($variable == 2)
