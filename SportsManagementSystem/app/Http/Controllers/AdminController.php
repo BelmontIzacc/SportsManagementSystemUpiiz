@@ -245,6 +245,10 @@ class AdminController extends Controller
                 $dias=$dias.'jueves';
             }else if ($d=='4') {
                 $dias=$dias.'viernes';
+            }else if ($d=='5') {
+                $dias=$dias.'sabado';
+            }else if ($d=='6') {
+                $dias=$dias.'domingo';
             }
 
             $i=$i+1;
@@ -327,6 +331,10 @@ class AdminController extends Controller
                 $dias=$dias.'jueves';
             }else if ($d=='4') {
                 $dias=$dias.'viernes';
+            }else if ($d=='5') {
+                $dias=$dias.'sabado';
+            }else if ($d=='6') {
+                $dias=$dias.'domingo';
             }
 
             $i=$i+1;
@@ -757,7 +765,9 @@ class AdminController extends Controller
         $i = 0;
         for($i = 1 ; $i<=count($array); $i++){
             $nombre = \App\carrera::find($i);
-            $carrer->addRow([''.$nombre->nombre, $array[$i]]);
+            if($nombre!=null){
+                $carrer->addRow([''.$nombre->nombre, $array[$i]]);
+            }
         }
 
         \Lava::DonutChart('carrera', $carrer, [
@@ -1998,6 +2008,12 @@ class AdminController extends Controller
             }else if ($u=='viernes') {
                 $dias=$dias.'4';
                 $array[$j] = 4;
+            }else if ($u=='sabado') {
+                $dias=$dias.'5';
+                $array[$j] = 5;
+            }else if ($u=='domingo') {
+                $dias=$dias.'6';
+                $array[$j] = 6;
             }
 
             $i=$i+1;
@@ -2077,6 +2093,10 @@ class AdminController extends Controller
                 $dias=$dias.'jueves';
             }else if ($d=='4') {
                 $dias=$dias.'viernes';
+            }else if ($d=='5') {
+                $dias=$dias.'sabado';
+            }else if ($d=='6') {
+                $dias=$dias.'domingo';
             }
 
             $i=$i+1;

@@ -11,6 +11,8 @@
         'Miercoles',
         'Jueves',
         'Viernes',
+        'Sabado',
+        'Domingo',
     );
 
     $status = array(

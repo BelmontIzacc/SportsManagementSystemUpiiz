@@ -17,6 +17,8 @@
         'Miercoles',
         'Jueves',
         'Viernes',
+        'Sabado',
+        'Domingo',
     );
 
     $status = array(
@@ -35,12 +37,6 @@
 @section('css')
 <link rel="stylesheet" href="{{asset('/Template/css/lib/bootstrap-sweetalert/sweetalert.css')}}"/>
 <link rel="stylesheet" href="{{asset('/Template/css/lib/clockpicker/bootstrap-clockpicker.min.css')}}"/>
-
-<style>
-#nombreTaller,#descri{
-  text-transform: capitalize;
-}
-</style>
 
 @stop
 
