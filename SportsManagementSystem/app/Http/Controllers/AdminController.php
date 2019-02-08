@@ -154,7 +154,7 @@ class AdminController extends Controller
 
             \App\informacion::create([
                 'usuario_id' => $user->id,
-                'institucion_id' => null,
+                'institucion_id' => 3,
                 'semestre' => null,
                 'carrera_id' => $request->carrera,
                 'calle' => $request->cal,
@@ -890,7 +890,9 @@ class AdminController extends Controller
     }
     public function getRegisterWindow($variable){
         $index = -1;
-        $insti = \App\institucion::all()->lists('nombre','id');
+        //$insti = \App\institucion::all()->lists('nombre','id');
+        $insti = \App\institucion::where('id','!=',3)->lists('nombre','id');
+        //error_log($insti);
         $data = [
             'index' => $index,
             'variable' => $variable,

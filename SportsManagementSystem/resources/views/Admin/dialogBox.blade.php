@@ -172,7 +172,7 @@ Ej: Acuatico
                                 </tr>
                                 @endforeach
                             @elseif($variable == 2)
-                                @foreach(\App\institucion::all() as $state)
+                                @foreach(\App\institucion::where('id','!=',3)->get() as $state)
                                 <tr>
                                     <td class="table-check">
                                         <div class="font-11 color-blue-grey-lighter uppercase">Institución</div>

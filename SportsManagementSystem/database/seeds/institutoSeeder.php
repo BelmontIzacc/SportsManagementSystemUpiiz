@@ -19,5 +19,9 @@ class institutoSeeder extends Seeder
         DB::table('institucion')->insert([
             'nombre' => 'Zecyt',
         ]);
+
+        DB::table('institucion')->insert([
+            'nombre' => 'Otro',
+        ]);
     }
 }
