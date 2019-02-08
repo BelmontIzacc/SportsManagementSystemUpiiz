@@ -306,7 +306,7 @@
                                     <div >
                                       <fieldset class="form-group">
                                       <label class="form-label">Carrera/Bachiller/Cargo</label>
-                                        {!!Form::select('carrera',$carrera, 0, ['class'=>'select2 form-control', 'placeholder'=>'Selecciona una Carrera/Bachiller','id'=>'carrera'])!!}
+                                        {!!Form::select('carrer',$carrera, 0, ['class'=>'select2 form-control', 'placeholder'=>'Selecciona una Carrera/Bachiller','id'=>'carrera'])!!}
                                       </fieldset>
                                     </div>
                                     <div >
@@ -341,7 +341,7 @@
                                   <div>
                                       <fieldset class="form-group">
                                       <label class="form-label">Carrera/Bachiller/Cargo</label>
-                                        {!!Form::select('carrera',$carrera, 0, ['class'=>'select2 form-control', 'placeholder'=>'Selecciona una Carrera/Bachiller','id'=>'carrera'])!!}
+                                        {!!Form::select('carre',$carrera, 0, ['class'=>'select2 form-control', 'placeholder'=>'Selecciona una Carrera/Bachiller','id'=>'carrera'])!!}
                                       </fieldset>
                                   </div>
 

@@ -101,20 +101,24 @@ class AdminController extends Controller
 
             'nombreE' => 'required',
             'telefonoE' => 'required',
+            
         ]);
 
         $lugar = $request->plantell;
 
+        $ca = "";
         if($lugar == 'si'){
             $this->validate($request, [
-                'carrera' => 'required',
+                'carre' =>'required',
             ]);
+            $ca = $request->carre;
         }else if($lugar == 'no'){
             $this->validate($request, [
                 'plantel' => 'required',
-                'carrera' => 'required',
+                'carrer' =>'required',
                 'semestre' => 'required|numeric|between:1,13',
             ]);
+            $ca = $request->carrer;
         }
 
         $user = User::create([
@@ -156,7 +160,7 @@ class AdminController extends Controller
                 'usuario_id' => $user->id,
                 'institucion_id' => 3,
                 'semestre' => null,
-                'carrera_id' => $request->carrera,
+                'carrera_id' => $ca,
                 'calle' => $request->cal,
                 'numExterior' => $request->numext,
                 'numInterior' => $request->numin,
@@ -174,7 +178,7 @@ class AdminController extends Controller
                 'usuario_id' => $user->id,
                 'institucion_id' => $plantel,
                 'semestre' => $semestre,
-                'carrera_id' => $request->carrera,
+                'carrera_id' => $ca,
                 'calle' => $request->cal,
                 'numExterior' => $request->numext,
                 'numInterior' => $request->numin,
