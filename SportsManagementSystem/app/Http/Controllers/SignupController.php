@@ -88,7 +88,7 @@ class SignupController extends Controller
 
         if($request->insti=="UPIIZ"){
             $this->validate($request,['tlista'=>'required']);
-            informacion::create([
+            informacion::update([
                 'usuario_id' => $request->user,
                 'institucion_id' => 1,
                 'carrera_id' => $request->tlista,
@@ -117,7 +117,7 @@ class SignupController extends Controller
             ]);
         }else if($request->insti == "CECyT") {
             $this->validate($request, ['tlistac'=>'required']);
-           informacion::create([
+           informacion::update([
                 'usuario_id' => $request->user,
                 'institucion_id' => 2,
                 'carrera_id' => $request->tlistac,
@@ -143,7 +143,7 @@ class SignupController extends Controller
                 'regIns' => $request->segIns,
             ]);
         } else {
-            informacion::create([
+            informacion::update([
                  'usuario_id' => $request->user,
                  'institucion_id' => 3,
                  'carrera_id' => 1,

@@ -43,10 +43,11 @@
 				</thead>
 				
 				<tbody>
+					 <?php $num = 1; ?>
 					@foreach($user as $u)
 					<tr id="{{$u->id}}">
 						<td>
-							<span class="tabledit-span tabledit-identifier">{{$u->id}}</span>
+							<span class="tabledit-span tabledit-identifier"> <?php echo $num; $num = $num +1; ?> </span>
 						</td>
 						<td class="tabledit-view-mode">
 							<span class="tabledit-span"><a href="{{asset('/admin/lists')}}/{{$u->informacion->id}}" class="semibold">{{$u->boleta}}</a></span>

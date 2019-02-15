@@ -67,7 +67,7 @@ class AuthController extends Controller
      */
     protected function create(array $data)
     {
-        return user::create([
+        $user = user::create([
             'nombre' => $data['nombre'],
             'apellidoPaterno'=>$data['apellidoPaterno'],
             'apellidoMaterno'=>$data['apellidoMaterno'],
@@ -78,6 +78,30 @@ class AuthController extends Controller
             'permisos' => 0,
             'completado' => 0,
         ]);
+
+        $student = \App\student::create([
+            'usuario_id'=>$user->id,
+            'institucion_id' => 1,
+            'carrera_id' => 3,
+            'semestre' => 12,
+            'calle' => 'Calle generica',
+            'numExterior' => ''.rand (0 , 9),
+            'numInterior' => ''.rand (0 , 9),
+            'colonia' => 'Generica',
+            'codigoPostal' => rand (0 , 1).rand (0 , 1).rand (0 , 1).rand (0 , 1),
+            'sexo' => ''.rand (0 , 1),
+            'grupo' => '2CM3',
+            'edad' => rand (0 , 2).rand (0 , 2),
+            'telefono' => rand (0 , 1).rand (0 , 1).rand (0 , 1).rand (0 , 1),
+            'alergias' => 'Generico',
+            'estatura' => rand (151,180),
+            'peso' => rand (45,68),
+            'sangre' => 'A+',
+            'segMed' => rand (0,1),
+            'segIns' => rand (0,1),
+        ]);
+
+        return $user;
     }
 
     //---------------------------------------------------------------------------------------------//
