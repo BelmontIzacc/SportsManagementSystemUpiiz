@@ -108,10 +108,15 @@
          @endunless
 
         @unless($info->usuario_id == null)
-        <div class="{{$classSize}}">
-           <fieldset class="form-group">
-                <label class="form-label">Edad</label>
-				{!!Form::number('edad', $info->edad, ['class'=>'form-control', 'id'=>'edad'])!!}
+         <div class="{{$classSize}}">
+            <fieldset class="form-group">
+                <label class="form-label">Fecha de nacimieto</label>
+                <div class="input-group date">
+                    {!!Form::text('edad', $info->edad, ['class'=>'form-control', 'id'=>'date_box','placeholder'=>'00/00/0000'])!!}
+                    <span class="input-group-addon">
+                        <i class="font-incon font-icon-calend"></i>
+                    </span>
+                </div>
             </fieldset>
         </div>
         @endunless
@@ -357,18 +362,21 @@
 @stop
 @section('scripts')
 
+    <script src="{{asset('/Template/js/lib/hide-show-password/bootstrap-show-password.min.js')}}"></script>
+    <script src="{{asset('/Template/js/lib/hide-show-password/bootstrap-show-password-init.js')}}"></script>
+
+    <script src="{{asset('/Template/js/custom/completeProfileToggle.js')}}"></script>
+    <script src="{{asset('/Template/js/plugins.js')}}"></script>
+
     <script src="{{asset('/Template/js/lib/bootstrap-select/bootstrap-select.min.js')}}"></script>
     <script src="{{asset('/Template/js/lib/select2/select2.full.min.js')}}"></script>
-    <script src="{{asset('/Template/js/custom/completeProfileToggle.js')}}"></script>
-
+    
     <script src="{{asset('/Template/js/lib/clockpicker/bootstrap-clockpicker.min.js')}}"></script>
     <script src="{{asset('/Template/js/lib/clockpicker/bootstrap-clockpicker-init.js')}}"></script>
     <script src="{{asset('/Template/js/lib/daterangepicker/daterangepicker.js')}}"></script>
 
     <script src="{{asset('/Template/js/lib/input-mask/jquery.mask.min.js')}}"></script>
 
-    <script src="{{asset('/Template/js/lib/hide-show-password/bootstrap-show-password.min.js')}}"></script>
-    <script src="{{asset('/Template/js/lib/hide-show-password/bootstrap-show-password-init.js')}}"></script>
     <script>
     $(document).ready(function() {
         String.prototype.firstUpper = function(){

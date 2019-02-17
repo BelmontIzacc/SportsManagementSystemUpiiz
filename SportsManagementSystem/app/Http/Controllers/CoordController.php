@@ -38,11 +38,19 @@ class CoordController extends Controller
         $taller = \App\taller::where('usuario_id',Auth::user()->id)->get();
         $user = Auth::user();
 
-        return view('Coord.coor.start',[
-            'index' => $index,
-            'taller'=>$taller,
-            'user'=>$user
-        ]);
+        if($user->completado!=1){
+            session()->flash('message', 'Aun no as terminado de editar tu perfil.');
+            session()->flash('type', 'danger');
+            
+            return redirect('/coord/user/EditInfo');
+        }else{
+            return view('Coord.coor.start',[
+                'index' => $index,
+                'taller'=>$taller,
+                'user'=>$user
+            ]);
+        }
+
     }
 
     public function index2()
@@ -51,11 +59,19 @@ class CoordController extends Controller
         $taller = \App\taller::all();
         $user = Auth::user();
 
-        return view('Coord.start',[
-            'index' => $index,
-            'taller'=>$taller,
-            'user'=>$user
-        ]);
+        if($user->completado!=1){
+            session()->flash('message', 'Aun no as terminado de editar tu perfil.');
+            session()->flash('type', 'danger');
+            
+            return redirect('/coord/user/EditInfo');
+        }else{
+            return view('Coord.start',[
+                'index' => $index,
+                'taller'=>$taller,
+                'user'=>$user
+             ]);
+
+        }
     }
 
     public function indexPost(Request $request)
@@ -622,6 +638,12 @@ class CoordController extends Controller
         $user = Auth::user();
         $infoUser = \App\informacion::find($user->informacion->id);
 
+        $input = 'd-m-Y';
+        $date = $request->edad;
+        $output = 'Y-m-d';
+
+        $dateFormated = Carbon::createFromFormat($input, $date)->format($output);
+
         if($request->insti=="UPIIZ") {
             $this->validate($request, [
                 'Carrera'=>'required',
@@ -631,7 +653,7 @@ class CoordController extends Controller
                 'institucion_id' => 1,
                 'carrera_id' => $request->Carrera,
 
-                'edad' => $request->edad,
+                'edad' => $dateFormated,
                 'telefono' => $request->telefono,
                 'sexo' => $request->sexo -1,
 
@@ -662,7 +684,7 @@ class CoordController extends Controller
                 'institucion_id' => 2,
                 'carrera_id' => $request->Bachiller,
 
-                'edad' => $request->edad,
+                'edad' => $dateFormated,
                 'telefono' => $request->telefono,
                 'sexo' => $request->sexo -1,
 
@@ -689,7 +711,7 @@ class CoordController extends Controller
                 'institucion_id' => 3,
                 'carrera_id' => 1,
 
-                'edad' => $request->edad,
+                'edad' => $dateFormated,
                 'telefono' => $request->telefono,
                 'sexo' => $request->sexo -1,
 
@@ -717,7 +739,8 @@ class CoordController extends Controller
                 'apellidoPaterno' => $request->apellidoP,
                 'apellidoMaterno' => $request->apellidoM,
                 'boleta' => $request->boleta,
-                'email'  => $request->email
+                'email'  => $request->email,
+                'completado' => 1,
             ]);
             $user->save();
        return redirect('/coord/user/Info');

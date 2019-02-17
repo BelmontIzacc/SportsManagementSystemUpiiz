@@ -248,6 +248,12 @@ class UserController extends Controller
 
         ]);
 
+        $input = 'd-m-Y';
+        $date = $request->edad;
+        $output = 'Y-m-d';
+
+        $dateFormated = Carbon::createFromFormat($input, $date)->format($output);
+
         if($request->insti != "otro") {
             $this->validate($request , [
                 'semestre'=> 'required',
@@ -267,7 +273,7 @@ class UserController extends Controller
                 'institucion_id' => 1,
                 'carrera_id' => $request->Carrera,
 
-                'edad' => $request->edad,
+                'edad' => $dateFormated,
                 'telefono' => $request->telefono,
                 'sexo' => $request->sexo -1,
 
@@ -298,7 +304,7 @@ class UserController extends Controller
                 'institucion_id' => 2,
                 'carrera_id' => $request->Bachiller,
 
-                'edad' => $request->edad,
+                'edad' => $dateFormated,
                 'telefono' => $request->telefono,
                 'sexo' => $request->sexo -1,
 
@@ -325,7 +331,7 @@ class UserController extends Controller
                 'institucion_id' => 3,
                 'carrera_id' => 1,
 
-                'edad' => $request->edad,
+                'edad' => $dateFormated,
                 'telefono' => $request->telefono,
                 'sexo' => $request->sexo -1,
 
@@ -353,7 +359,8 @@ class UserController extends Controller
                 'apellidoPaterno' => $request->apellidoP,
                 'apellidoMaterno' => $request->apellidoM,
                 'boleta' => $request->boleta,
-                'email'  => $request->email
+                'email'  => $request->email,
+                'completado' => 1,
             ]);
             $user->save();
        return redirect('/user/Info');

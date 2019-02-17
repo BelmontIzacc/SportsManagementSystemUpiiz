@@ -482,18 +482,20 @@ Registro
 @stop
 @section('scripts')
 
+    <script src="{{asset('/Template/js/lib/hide-show-password/bootstrap-show-password.min.js')}}"></script>
+    <script src="{{asset('/Template/js/lib/hide-show-password/bootstrap-show-password-init.js')}}"></script>
+
+    <script src="{{asset('/Template/js/custom/completeProfileToggle.js')}}"></script>
+    <script src="{{asset('/Template/js/plugins.js')}}"></script>
+
     <script src="{{asset('/Template/js/lib/bootstrap-select/bootstrap-select.min.js')}}"></script>
     <script src="{{asset('/Template/js/lib/select2/select2.full.min.js')}}"></script>
-    <script src="{{asset('/Template/js/custom/completeProfileToggle.js')}}"></script>
-
+    
     <script src="{{asset('/Template/js/lib/clockpicker/bootstrap-clockpicker.min.js')}}"></script>
     <script src="{{asset('/Template/js/lib/clockpicker/bootstrap-clockpicker-init.js')}}"></script>
     <script src="{{asset('/Template/js/lib/daterangepicker/daterangepicker.js')}}"></script>
 
     <script src="{{asset('/Template/js/lib/input-mask/jquery.mask.min.js')}}"></script>
-
-    <script src="{{asset('/Template/js/lib/hide-show-password/bootstrap-show-password.min.js')}}"></script>
-    <script src="{{asset('/Template/js/lib/hide-show-password/bootstrap-show-password-init.js')}}"></script>
     <script>
     $(document).ready(function() {
         String.prototype.firstUpper = function(){

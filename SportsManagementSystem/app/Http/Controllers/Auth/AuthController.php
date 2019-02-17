@@ -79,7 +79,7 @@ class AuthController extends Controller
             'completado' => 0,
         ]);
 
-        $student = \App\student::create([
+        $student = \App\informacion::create([
             'usuario_id'=>$user->id,
             'institucion_id' => 1,
             'carrera_id' => 3,
