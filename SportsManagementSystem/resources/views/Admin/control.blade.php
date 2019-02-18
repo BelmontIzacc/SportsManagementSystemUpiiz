@@ -117,7 +117,18 @@
                                 <div class="tbl-cell">
                                     <div class="title">Total de Registros : {{$usuarios->count()}}</div>
                                 </div>
-                                <div class="tbl-cell tbl-cell-progress">
+                                <div class="row tbl-cell">
+                                    <div class="row col-md-12">
+                                        <div class="title">&nbsp&nbsp&nbsp</div>
+                                    </div>
+                                </div>
+                                <div class="row tbl-cell">
+                                    <div class="row col-md-12">
+                                        <div class="title">Registros Completos : {{$completo->count()}}</div>
+                                    </div>
+                                    <div class="row col-md-12">
+                                        <div class="title">Registros Incompletos : {{$incompleto->count()}}</div>
+                                    </div>
                                 </div>
                             </div>
                         </div> <!--tbl tbl-item-->

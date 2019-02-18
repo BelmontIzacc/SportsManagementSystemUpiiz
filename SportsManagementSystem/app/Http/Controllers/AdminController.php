@@ -873,8 +873,11 @@ class AdminController extends Controller
         $carrer = \App\carrera::all();
         $institucion = \App\institucion::all();
         $tipo = \App\tipo::all();
-        $coord = \App\User::where('tipo','!=',2)->get();
+        $coord = \App\User::where('tipo','!=',2)->where('boleta','!=','2016670126')->where('boleta','!=','201800217')->get();
         $sp = \App\User::where('permisos',1)->get();
+
+        $completo = \App\User::where('completado','=',1)->where('tipo','!=',1)->get();
+        $incompleto = \App\User::where('completado','=',0)->where('tipo','!=',1)->get();
 
         return view('Admin.control',[
             'index' => $index,
@@ -885,6 +888,8 @@ class AdminController extends Controller
             'tipo' => $tipo,
             'coord' => $coord,
             'sp' => $sp,
+            'completo' => $completo,
+            'incompleto' => $incompleto,
         ]);
     }
     public function checkPassword(Request $request, $variable){
