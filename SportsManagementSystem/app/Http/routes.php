@@ -84,6 +84,9 @@ Route::get('admin/reporte', 'adminController@pruebaReporte');
 Route::get('admin/{idT}/{idU}/pdf', 'adminController@htmlView');
 
 Route::get('/admin/student/{id}/studio/ExportTallerAll','ExcelController@taller');
+
+Route::get('/admin/complete', 'adminController@complete');
+Route::get('/admin/incomplete', 'adminController@incomplete');
 //-----------------------------------------------------------------------------------//
 Route::get('/user','UserController@index');
 Route::get('/user/Profile','UserController@getProfile');

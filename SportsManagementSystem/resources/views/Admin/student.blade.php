@@ -518,17 +518,6 @@
         @endforeach
     </div>
 
-    <h5 class="m-t-lg with-border">Credenciales</h5>
-
-    <div class="row">
-        <div class="{{$classSize}}">
-            <fieldset class="form-group">
-                <label class="form-label" for="exampleInputDisabled2"> Usuario: {{$c->usuario->boleta}}</label>
-                <label class="form-label" for="exampleInputDisabled2"> </label>
-            </fieldset>
-        </div>
-    </div>
-
 </div> <!--End box typical-->
 
 <!-- end profile -->

@@ -124,10 +124,10 @@
                                 </div>
                                 <div class="row tbl-cell">
                                     <div class="row col-md-12">
-                                        <div class="title">Registros Completos : {{$completo->count()}}</div>
+                                        <div class="title"><a href="{{asset('/admin/complete')}}">Registros Completos : {{$completo->count()}}</a></div>
                                     </div>
                                     <div class="row col-md-12">
-                                        <div class="title">Registros Incompletos : {{$incompleto->count()}}</div>
+                                        <div class="title"><a href="{{asset('/admin/incomplete')}}">Registros Incompletos : {{$incompleto->count()}}</a></div>
                                     </div>
                                 </div>
                             </div>

@@ -465,14 +465,12 @@ class AdminController extends Controller
         $cont = \App\contactos::where('usuario_id',$iduser)->get();
         $u = Auth::User();
         
-
         return view('Admin.student', [
             'index'=>$index,
             'student'=>$student,
             'taller'=>$taller,
             'userI' => $u,
             'cont' => $cont,
-
         ]);
     }
 
@@ -893,6 +891,24 @@ class AdminController extends Controller
             'completo' => $completo,
             'incompleto' => $incompleto,
         ]);
+    }
+    public function complete()
+    {
+        $index = -1;
+
+        $user = \App\User::where('completado','=',1)->where('tipo','!=',1)->paginate(12);
+        $u = Auth::User();
+
+        return view('Admin.complete', ['index'=>$index, 'user'=> $user, 'userI'=>$u]);
+    }
+    public function incomplete()
+    {
+        $index = -1;
+
+        $user = \App\User::where('completado','=',0)->where('tipo','!=',1)->paginate(12);
+        $u = Auth::User();
+
+        return view('Admin.complete', ['index'=>$index, 'user'=> $user, 'userI'=>$u]);
     }
     public function checkPassword(Request $request, $variable){
         $this->validate($request, [
