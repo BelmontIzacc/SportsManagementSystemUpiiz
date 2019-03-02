@@ -82,13 +82,16 @@ class SignupController extends Controller
 
 
         $Usuario = \App\User::find($request->user);
+        error_log($Usuario);
+        $infoUser = \App\informacion::find($Usuario->informacion->id);
+        error_log($infoUser);
 
         $dateA = Carbon::parse($request->edad);
         $dateA = $dateA->format('Y-m-d');
 
         if($request->insti=="UPIIZ"){
             $this->validate($request,['tlista'=>'required']);
-            informacion::update([
+         $infoUser-> update([
                 'usuario_id' => $request->user,
                 'institucion_id' => 1,
                 'carrera_id' => $request->tlista,
@@ -115,9 +118,10 @@ class SignupController extends Controller
                 'segIns' => $request->segIns,
 
             ]);
+            $infoUser->save();
         }else if($request->insti == "CECyT") {
             $this->validate($request, ['tlistac'=>'required']);
-           informacion::update([
+           $infoUser-> update([
                 'usuario_id' => $request->user,
                 'institucion_id' => 2,
                 'carrera_id' => $request->tlistac,
@@ -142,8 +146,9 @@ class SignupController extends Controller
                 'segMed' => $request->segMed,
                 'regIns' => $request->segIns,
             ]);
+           $infoUser->save();
         } else {
-            informacion::update([
+            $infoUser-> update([
                  'usuario_id' => $request->user,
                  'institucion_id' => 3,
                  'carrera_id' => 1,
@@ -168,9 +173,10 @@ class SignupController extends Controller
                  'segMed' => $request->segMed,
                  'regIns' => $request->segIns,
              ]);
+            $infoUser->save();
         }
 
-        contactos::create([
+        $con = \App\contactos::create([
             'usuario_id' => $request->user,
 
             'nombre' => $request->nomCon1,

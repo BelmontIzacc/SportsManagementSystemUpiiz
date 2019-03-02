@@ -464,6 +464,7 @@ class AdminController extends Controller
         $taller = \App\taller::where('usuario_id',$iduser)->get();
         $cont = \App\contactos::where('usuario_id',$iduser)->get();
         $u = Auth::User();
+        
 
         return view('Admin.student', [
             'index'=>$index,
@@ -471,6 +472,7 @@ class AdminController extends Controller
             'taller'=>$taller,
             'userI' => $u,
             'cont' => $cont,
+
         ]);
     }
 
@@ -876,8 +878,8 @@ class AdminController extends Controller
         $coord = \App\User::where('tipo','!=',2)->where('boleta','!=','2016670126')->where('boleta','!=','201800217')->get();
         $sp = \App\User::where('permisos',1)->get();
 
-        $completo = \App\User::where('completado','=',1)->where('tipo','!=',1)->get();
-        $incompleto = \App\User::where('completado','=',0)->where('tipo','!=',1)->get();
+        $completo = \App\User::where('completado','=',1)->get();
+        $incompleto = \App\User::where('completado','=',0)->get();
 
         return view('Admin.control',[
             'index' => $index,
